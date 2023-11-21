@@ -27,7 +27,7 @@
     font-style: normal;
     line-height: 150%;
     color: #403F3D;
-    background: #fff;
+    background: #E1D4C9;
 }
 .header {
     height: 100px;
@@ -38,6 +38,9 @@
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
+}
+.logo {
+    margin-top: 5px;
 }
 .nav-menu {
     width: 1188px;
@@ -64,6 +67,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.menu-cup img {
+    margin-bottom: 5px;
 }
 .main {
     flex: 1;
@@ -99,9 +105,11 @@
     font-size: 72px;
     font-weight: 600;
     line-height: 105%;
+    letter-spacing: 1px;
 }
 .enjoy-text h1 span {
     color: #B0907A;
+    font-style: italic;
 }
 .enjoy-text button {
     width: 200px;
@@ -110,6 +118,9 @@
     border-radius: 100px;
     font-weight: 600;
     color: #403F3D;
+    letter-spacing: 2px;
+    background: #E1D4C9;
+    border: none;
 }
 .section-favourites-coffee {
     display: flex;
@@ -124,6 +135,7 @@
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+    letter-spacing: 0.5px;
 }
 .section-favourites-coffee h2 span {
     font-style: italic;
@@ -136,7 +148,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
+    gap: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .controls {
     position: absolute;
@@ -145,17 +159,26 @@
     width: 144px;
     height: 4px;
     bottom: 0px;
-    left: 47.3%;
+    left: 44.8%;
 }
 .controls input {
+    display: none;
+}
+.control-slide-1 div,
+.control-slide-2 div,
+.control-slide-3 div {
     width: 40px;
     height: 4px;
     border-radius: 100px;
     cursor: pointer; 
     background-color: #C1B6AD;
 }
-.controls input:checked {
+.control-slide-1 div {
     background-color: #665F55;
+}
+.arrow-left,
+.arrow-right {
+    padding-bottom: 36px;
 }
 .wrapper-slides {
     position: relative;
@@ -204,6 +227,9 @@
     font-weight: 600;
     line-height: 125%;
 }
+.text-item {
+    font-weight: 400;
+}
 .section-about {
     display: flex;
     padding: 0px 40px;
@@ -220,6 +246,7 @@
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+    letter-spacing: 0.45px;
 }
 .section-about h2 span {
     font-style: italic;
@@ -249,11 +276,17 @@
 }
 .images-left-2,
 .images-right-1 {
+    position: relative;
     overflow: hidden;
     text-align: center;
     border-radius: 20px;
     width: 660px;
     height: 430px;
+}
+.images-right-1 img {
+    position: absolute;
+    left: 0;
+    bottom: -80px;
 }
 .section-mobile-app {
     display: flex;
@@ -270,12 +303,14 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    margin-bottom: 7px;
 }
 .mobile-app-container h2 {
     margin: 0 auto;
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+    letter-spacing: 0.7px;
 }
 .mobile-app-container h2 span {
     font-style: italic;
@@ -296,23 +331,30 @@
     display: flex;
     justify-content: start;
     gap: 8px;
+    color: #403F3D;
+    background-color: #E1D4C9;
+    margin-top: 1px;
 
 }
 .buttons-container button div {
     display: flex;
     flex-direction: column;
     align-items: start;
-    justify-content: space-between;
 }
 .app-store-text,
 .google-play-text {
     font-size: 10px;
     line-height: 140%;
 }
+.app-store-title,
+.google-play-title {
+    font-size: 16px;
+    line-height: 150%;
+}
 .contacts-wrapper {
     height: 450px;
     width: 1360px;
-    margin: 100px 40px 40px;
+    margin: 95px 40px 40px;
     background-color: #665F55;
     border-radius: 40px;
     padding: 100px;
@@ -326,6 +368,7 @@
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+    letter-spacing: 0.5px;
     color: #E1D4C9;
 }
 .offer-text span {
@@ -341,6 +384,8 @@
     align-items: center;
     justify-content: start;
     gap: 12px;
+    margin-top: 40px;
+    padding: 0;
 }
 .socials-links li {
     display: flex;
@@ -357,16 +402,19 @@
     justify-content: center;
 }
 .contacts-right {
+    display: flex;
+    flex-direction: column;
     width: 530px;
     height: 186px;
-    gap: 16px;
+    gap: 20px;
     color: #E1D4C9;
 }
 .contacts-right-title {
     font-size: 24px;
     font-weight: 600;
     line-height: 125%;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    letter-spacing: 0.4px;
 }
 .link-contact {
     display: flex;
