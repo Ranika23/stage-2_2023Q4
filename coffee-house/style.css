@@ -55,10 +55,16 @@
     padding: 0;
     color: #403F3D;
     text-decoration: none;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #403F3D, #403F3D);
+    background-repeat: no-repeat;
+    background-size: 10px 0px;
+    background-position: center bottom;
+    padding-bottom: 5px;
+    transition: 0.5s;
 }
 .nav-link:hover {
-    color: #4c412a;;
-    text-decoration: underline;
+    background-size: 100% 2px;
     transition: 0.5s;
 }
 .menu-cup {
@@ -67,8 +73,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    transition: 0.5s;
+    background-image: linear-gradient(to right, #403F3D, #403F3D);
+    background-repeat: no-repeat;
+    background-size: 10px 0px;
+    background-position: center bottom;
+    padding-bottom: 5px;
+    transition: 0.5s;
 }
-.menu-cup img {
+.menu-cup:hover {
+    background-size: 100% 2px;
+    transition: 0.5s;
+}
+.menu-cup svg {
     margin-bottom: 5px;
 }
 .main {
@@ -82,7 +100,7 @@
     justify-content: space-between;
     gap: 100px;
 }
-.enjoy-header {
+.enjoy {
     position: relative;
     display: flex;
     align-items: center;
@@ -111,18 +129,44 @@
     color: #B0907A;
     font-style: italic;
 }
-.enjoy-text button {
+.enjoy-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
     width: 200px;
     height: 64px;
-    padding: 20px 78px;
+    padding: 20px 23px 20px 50px;
     border-radius: 100px;
-    font-weight: 600;
     color: #403F3D;
-    letter-spacing: 2px;
     background: #E1D4C9;
     border: none;
+    cursor: pointer;
+    margin-top: 0px;
+    padding-left: 24px;
+    transition: 1s;
 }
-.section-favourites-coffee {
+.menu-button {
+    margin-left: 24px;
+    transition: margin-left .5s;
+}
+.menu-img {
+    position: absolute;
+    left: 120px;
+    opacity: 0;
+    transition: opacity .5s;
+}
+.enjoy-button:hover {
+    padding-left: 0px;
+}
+.enjoy-text button:hover .menu-img {
+    opacity: 1;
+}
+.favourites-coffee {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,14 +174,14 @@
     gap: 40px;
     padding: 0px 40px;
 }
-.section-favourites-coffee h2 {
+.favourites-coffee h2 {
     margin: 0 auto;
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
     letter-spacing: 0.5px;
 }
-.section-favourites-coffee h2 span {
+.favourites-coffee h2 span {
     font-style: italic;
     color: #B0907A;
 }
@@ -164,21 +208,49 @@
 .controls input {
     display: none;
 }
-.control-slide-1 div,
-.control-slide-2 div,
-.control-slide-3 div {
+.control-slide-1,
+.control-slide-2,
+.control-slide-3 {
     width: 40px;
     height: 4px;
     border-radius: 100px;
-    cursor: pointer; 
     background-color: #C1B6AD;
 }
-.control-slide-1 div {
+.control-slide-1 {
     background-color: #665F55;
 }
 .arrow-left,
 .arrow-right {
     padding-bottom: 36px;
+}
+.arrow-left div,
+.arrow-right div {
+    position: relative;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: solid 1px #665F55;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+.arrow-right div {
+    cursor: pointer;
+}
+.arrow-left-icon,
+.arrow-right-icon {
+    stroke: #403F3D;
+    transition: 1.5s;
+}
+.arrow-left div:hover,
+.arrow-right div:hover {
+    border: solid 1px #C1B6AD;
+    background-color: #665F55;
+}
+.arrow-left div:hover .arrow-left-icon,
+.arrow-right div:hover .arrow-right-icon {
+    stroke: #C1B6AD;
 }
 .wrapper-slides {
     position: relative;
@@ -268,25 +340,45 @@
 }
 .images-left-1,
 .images-right-2 {
-    overflow: hidden;
+    position: relative;
+    display: flex;
     text-align: center;
     border-radius: 20px;
     width: 660px;
     height: 590px;
+    background-size: 110%;
+    background-position: center;
+    transition: background-size 1s;
+}
+.images-left-1 {
+    background-image: url(assets/img/about-1.jpg);
+}
+.images-left-2 {
+    background-image: url(assets/img/about-2.jpg);
+}
+.images-right-1 {
+    background-image: url(assets/img/about-3.jpg);
+}
+.images-right-2 {
+    background-image: url(assets/img/about-4.jpg);
 }
 .images-left-2,
 .images-right-1 {
     position: relative;
-    overflow: hidden;
+    display: flex;
     text-align: center;
     border-radius: 20px;
     width: 660px;
     height: 430px;
+    background-size: 110%;
+    background-position: center;
+    transition: background-size 1s;
 }
-.images-right-1 img {
-    position: absolute;
-    left: 0;
-    bottom: -80px;
+.images-left-2:hover,
+.images-left-1:hover,
+.images-right-1:hover,
+.images-right-2:hover {
+    background-size: 100%; 
 }
 .section-mobile-app {
     display: flex;
@@ -321,7 +413,8 @@
     align-items: center;
     gap: 20px;
 }
-.buttons-container button {
+.button-app-store,
+.button-google-play {
     width: 200px;
     height: 62px;
     border: solid 1px #665F55;
@@ -334,12 +427,28 @@
     color: #403F3D;
     background-color: #E1D4C9;
     margin-top: 1px;
-
+    transition: 2s;
 }
-.buttons-container button div {
+.button-app-store div,
+.button-google-play div {
     display: flex;
     flex-direction: column;
     align-items: start;
+}
+.button-app-store:hover,
+.button-google-play:hover {
+    color: #E1D4C9;
+    background-color: #665F55;
+}
+.button-icon {
+    width: 36px;
+    height: 36px;
+    fill: #403F3D;
+    transition: 2s;
+}
+.button-app-store:hover .button-icon,
+.button-google-play:hover .button-icon {
+    fill: #E1D4C9;
 }
 .app-store-text,
 .google-play-text {
@@ -388,6 +497,7 @@
     padding: 0;
 }
 .socials-links li {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -395,6 +505,30 @@
     height: 60px;
     border: solid 1px #C1B6AD;
     border-radius: 100px;
+    cursor: pointer;
+    transition: 1.5s;
+}
+.instagram-hover {
+    position: absolute;
+    top: 17px;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
+.socials-links li:hover .instagram-hover{
+    opacity: 1;
+}
+.socials-links li:hover{
+   background-color: #C1B6AD;
+}
+.social-icon {
+    fill: #665F55;
+    stroke: #E1D4C9;
+    transition: 1.5s;
+}
+.socials-links li:hover .social-icon {
+    fill: #C1B6AD;
+    stroke: #665F55;
+
 }
 .socials-links li a div {
     display: flex;
@@ -405,23 +539,44 @@
     display: flex;
     flex-direction: column;
     width: 530px;
-    height: 186px;
-    gap: 20px;
+    height: auto;
+    gap: 14px;
     color: #E1D4C9;
 }
 .contacts-right-title {
     font-size: 24px;
     font-weight: 600;
     line-height: 125%;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     letter-spacing: 0.4px;
 }
 .link-contact {
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 8px;
     font-size: 16px;
+}
+.link-contact img {
+    padding-right: 8px;
+}
+.link-contact-wrapper img {
+    padding-right: 8px;
+}
+.link-contact a {
+    display: inline-block;
+    line-height: 24px;
+    text-align: center;
+}
+.link-contact-wrapper {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #E1D4C9, #E1D4C9);
+    background-repeat: no-repeat;
+    background-size: 10px 0px;
+    background-position: center bottom;
+    padding-bottom: 5px;
+    transition: 0.5s;
 }
 .link-item {
     padding: 0;
@@ -431,8 +586,17 @@
     font-size: 16px;
     text-decoration: none;
 }
+.link-item-clock {
+    padding: 0;
+    color: #E1D4C9;
+    font-weight: 600;
+    line-height: 150%;
+    font-size: 16px;
+}
 .link-item:hover {
-    color: #4c412a;;
-    text-decoration: underline;
+    color: #E1D4C9;
+}
+.link-contact-wrapper:hover {
+    background-size: 100% 2px;
     transition: 0.5s;
 }
