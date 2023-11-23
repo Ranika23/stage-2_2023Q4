@@ -868,3 +868,31 @@
     align-items: center;
     gap: 100px;
 }
+.socials-links-items-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: solid 1px #C1B6AD;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: 1.5s;
+}
+.socials-links-items-menu:hover .instagram-hover{
+    opacity: 1;
+}
+.socials-links-items-menu:hover{
+   background-color: #C1B6AD;
+}
+.socials-links-items-menu:hover .social-icon {
+    fill: #C1B6AD;
+    stroke: #665F55;
+
+}
+.socials-links-items-menu div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
