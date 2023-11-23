@@ -620,7 +620,7 @@
 
 
 
-
+/*style for menu-page*/
 .menu-container {
     display: flex;
     flex-direction: column;
@@ -693,7 +693,6 @@
     align-items: center;
     justify-content: start;
     gap: 8px;
-    width: auto;
     height: 46px;
     border-radius: 100px; 
     padding: 8px 16px 8px 8px;
@@ -706,11 +705,26 @@
     border: 1px solid #665F55;
     background-color: #665F55;
     color: #E1D4C9;
+    width: 115px;
 }
 .container-icons-tea,
 .container-icons-dessert {
     color: #403F3D;
     border: 1px solid #C1B6AD;
+    cursor: pointer;
+    transition: 1s;
+}
+.container-icons-tea {
+    width: 90px;
+}
+.container-icons-dessert {
+    width: 124px;
+}
+.container-icons-tea:hover,
+.container-icons-dessert:hover {
+    color: #E1D4C9;
+    border: 1px solid #665F55;
+    background-color: #665F55;
 }
 .container-icons-coffee div,
 .container-icons-tea div,
