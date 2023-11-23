@@ -89,6 +89,14 @@
 .menu-cup svg {
     margin-bottom: 5px;
 }
+.menu-cup a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: #403F3D;
+}
 .main {
     flex: 1;
     width: 100%;
@@ -150,6 +158,10 @@
     padding-left: 24px;
     transition: 1s;
 }
+.enjoy-text a {
+    text-decoration: none;
+    color: #403F3D;
+}
 .menu-button {
     margin-left: 24px;
     transition: margin-left .5s;
@@ -163,7 +175,7 @@
 .enjoy-button:hover {
     padding-left: 0px;
 }
-.enjoy-text button:hover .menu-img {
+.enjoy-button:hover .menu-img {
     opacity: 1;
 }
 .favourites-coffee {
@@ -427,6 +439,7 @@
     color: #403F3D;
     background-color: #E1D4C9;
     margin-top: 1px;
+    cursor: pointer;
     transition: 2s;
 }
 .button-app-store div,
@@ -600,3 +613,5 @@
     background-size: 100% 2px;
     transition: 0.5s;
 }
+
+
