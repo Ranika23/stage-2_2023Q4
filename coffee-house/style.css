@@ -510,7 +510,7 @@
     margin-top: 40px;
     padding: 0;
 }
-.socials-links-item {
+.socials-links-items {
     position: relative;
     display: flex;
     align-items: center;
@@ -528,10 +528,10 @@
     opacity: 0;
     transition: opacity 1.5s;
 }
-.socials-links-item:hover .instagram-hover{
+.socials-links-items:hover .instagram-hover{
     opacity: 1;
 }
-.socials-links-item:hover{
+.socials-links-items:hover{
    background-color: #C1B6AD;
 }
 .social-icon {
@@ -539,12 +539,12 @@
     stroke: #E1D4C9;
     transition: 1.5s;
 }
-.socials-links-item:hover .social-icon {
+.socials-links-items:hover .social-icon {
     fill: #C1B6AD;
     stroke: #665F55;
 
 }
-.socials-links-item div {
+.socials-links-items div {
     display: flex;
     align-items: center;
     justify-content: center;
