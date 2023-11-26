@@ -3,6 +3,16 @@
     font-weight: 400;
     src: url(assets/fonts/Inter-Regular.ttf);
 }
+@font-face {
+    font-family: Inter-Italic;
+    font-weight: 400;
+    src: url(assets/fonts/Inter-Italic.ttf);
+}
+@font-face {
+    font-family: Inter;
+    font-weight: 400;
+    src: url(assets/fonts/Inter.ttf);
+}
 * {
     box-sizing: border-box;
     scroll-behavior: smooth; 
@@ -120,7 +130,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    left: 140px;
+    left: 141px;
     top: 100px;
     gap: 40px;
     width: 530px;
@@ -132,11 +142,17 @@
     font-size: 72px;
     font-weight: 600;
     line-height: 105%;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
 }
 .enjoy-text h1 span {
+    font-family: Inter-Italic;
+    letter-spacing: 4.5px;
     color: #B0907A;
     font-style: italic;
+}
+.enjoy-text div {
+    font-family: Inter;
+    letter-spacing: 0.6px;
 }
 .enjoy-button {
     position: relative;
@@ -157,6 +173,7 @@
     cursor: pointer;
     margin-top: 0px;
     padding-left: 24px;
+    left: -1px;
     transition: 1s;
 }
 .enjoy-text a {
@@ -404,22 +421,31 @@
     justify-content: space-between;
 }
 .mobile-app-left {
+    font-family: Inter;
     height: 342px;
     display: flex;
     flex-direction: column;
     gap: 40px;
     margin-bottom: 17px;
 }
+.mobile-app-container div img {
+    position: relative;
+    top: -5px;
+}
 .mobile-app-container h2 {
     margin: 0 auto;
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
-    letter-spacing: 0.7px;
+    letter-spacing: 3px;
 }
 .mobile-app-container h2 span {
-    font-style: italic;
+    font-family: Inter-Italic;
+    letter-spacing: 4.5px;
     color: #B0907A;
+}
+.mobile-app-container div {
+    letter-spacing: 0.6px;
 }
 .buttons-container {
     display: flex;
@@ -477,7 +503,7 @@
 .contacts-wrapper {
     height: 450px;
     width: 1360px;
-    margin: 90px 40px 40px;
+    margin: 89px 40px 40px;
     background-color: #665F55;
     border-radius: 40px;
     padding: 100px;
@@ -495,7 +521,8 @@
     color: #E1D4C9;
 }
 .offer-text span {
-    font-style: italic;
+    font-family: Inter-Italic;
+    letter-spacing: 3px;
     color: #B0907A;
 }
 .contacts-left {
@@ -565,6 +592,8 @@
     letter-spacing: 0.4px;
 }
 .link-contact {
+    font-family: Inter;
+    letter-spacing: 1px;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -675,9 +704,9 @@
     letter-spacing: 0.4px;
 }
 .offer-italic {
-    font-style: italic;
+    font-family: Inter-Italic;
     color: #B0907A;
-    letter-spacing: 1px;
+    letter-spacing: 3.6px;
 }
 .container-icons {
     display: flex;
