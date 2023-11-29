@@ -21,6 +21,7 @@
     width: 100%;
     margin: 0;
     background: #E1D4C9;
+    overflow-x: hidden;
 }
 .body-container {
     overflow: hidden;
