@@ -21,11 +21,10 @@
     width: 100%;
     margin: 0;
     background: #E1D4C9;
-    overflow-x: hidden;
 }
 .body-container {
-    overflow: hidden;
-    width: 1440px;
+    overflow: clip;
+    max-width: 1440px;
     height: 100%;
     min-height: 100vh;
     margin: 0 auto;
@@ -54,13 +53,14 @@
     margin-top: 5px;
 }
 .nav-menu {
-    width: 1188px;
+    width: 100%;
     padding: 0px 2px 7px 0px;
     list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 41.5px;
+    transition: 0.2s;
 }
 .nav-link {
     padding: 0;
@@ -109,6 +109,18 @@
     text-decoration: none;
     color: #403F3D;
 }
+.button-burger {
+    position: absolute;
+    right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #665F55;
+    border-radius: 100px;
+    display: none;
+}
 .main {
     flex: 1;
     width: 100%;
@@ -125,18 +137,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 645px;
+    background-image: url(assets/img/enjoy-container.png);
+    background-size: auto;
+    background-position: center;
+    margin: auto 40px;
+    border-radius: 40px;
+    transition: 1s;
 }
+
 .enjoy-text {
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    left: 141px;
+    left: 101px;
     top: 100px;
     gap: 40px;
     width: 530px;
     height: 444px;
     color: #E1D4C9;
+    transition: 1s;
 }
 .enjoy-text h1 {
     margin: 0;
@@ -210,6 +231,7 @@
     font-size: 60px;
     font-weight: 600;
     line-height: 125%;
+    text-align: center;
     letter-spacing: 0.5px;
 }
 .favourites-coffee h2 span {
@@ -234,7 +256,8 @@
     width: 144px;
     height: 4px;
     bottom: 0px;
-    left: 44.8%;
+    left: 50%;
+    margin-left: -72px;
 }
 .controls input {
     display: none;
@@ -295,12 +318,12 @@
     display: flex;
     justify-content: space-between;
     height: 100%;
-    padding: 0px 20px;
+    width: 300%;
 }
 .slide-1,
 .slide-2,
 .slide-3 {
-    width: 1152px;
+    width: 33.3%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -343,6 +366,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 40px;
+    width: 100%;
 }
 .section-about h2 {
     margin: 0 auto;
@@ -440,10 +464,13 @@
     line-height: 125%;
     letter-spacing: 3px;
 }
-.mobile-app-container h2 span {
+.word-intel {
     font-family: Inter-Italic;
     letter-spacing: 4.5px;
     color: #B0907A;
+}
+.last-word {
+    letter-spacing: 4.5px;
 }
 .mobile-app-container div {
     letter-spacing: 0.6px;
@@ -501,6 +528,9 @@
     font-size: 16px;
     line-height: 150%;
 }
+.footer {
+    width: 100%;
+}
 .contacts-wrapper {
     height: 450px;
     width: 1360px;
@@ -509,7 +539,7 @@
     border-radius: 40px;
     padding: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 100px;
 }
@@ -580,7 +610,7 @@
 .contacts-right {
     display: flex;
     flex-direction: column;
-    width: 530px;
+    width: auto;
     height: auto;
     gap: 14px;
     color: #E1D4C9;
@@ -925,4 +955,98 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 1439px) {
+    .images-container {
+        justify-content: center;
+        gap: 2%;
+        width: 100%;
+    }
+    .images-left-2, .images-right-1 {
+        width: 45.5vw;
+        height: 30vw;
+    }
+    .images-left-1, .images-right-2 {
+        width: 45.5vw;
+        height: 41vw;
+        transition: 0.3s;
+    }
+    .contacts-wrapper {
+        height: auto;
+        width: auto;
+    }
+}
+@media (max-width: 1224px) {
+    .mobile-app-container {
+        flex-direction: column;
+        gap: 0px;
+        transition: 0.5s;
+    }
+    .mobile-app-left h2 {
+        line-height: 120%;
+    }
+    .mobile-app-container div img {
+        top: -22px;
+    }
+    .contacts-wrapper {
+        height: auto;
+        width: auto;
+        flex-direction: column;
+        align-items: start;
+        margin: 70px 40px 40px;
+        padding-left: 60px;
+        padding-bottom: 107px;
+    }
+}
+@media (max-width: 1000px) {
+    .images-container {
+        height: auto;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    .images-left-2, .images-right-1 {
+        display: none;
+    }
+    .images-left-1, .images-right-2 {
+        width: 688px;
+        height: 590px;
+        background-size: 105%;
+    }
+    .mobile-app-container {
+        gap: 50px;
+        transition: 0.5s;
+    }
+}
+@media (max-width: 800px) {
+    .mobile-app-container {
+        gap: 100px;
+        transition: 0.5s;
+    }
+}
+@media (max-width: 768px) {
+    .nav-menu,
+    .menu-cup {
+        opacity: 0;
+    }
+    .enjoy {
+        background-image: url(assets/img/enjoy-tablet.jpg);
+        background-size: auto 100%;
+        transition: 1s;
+    }
+    .enjoy-text {
+        left: 60px;
+        transition: 1s;
+    }
+    .enjoy-button {
+        padding-left: 0px;
+    }
+    .menu-img {
+        opacity: 1;
+    }
+    .button-burger {
+        display: flex;
+    }
 }
