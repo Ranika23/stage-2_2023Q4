@@ -379,7 +379,8 @@
     font-style: italic;
     color: #B0907A;
 }
-.images-container {
+.images-container,
+.images-container2 {
     display: flex;
     justify-content: space-between;
     align-items: start;
@@ -434,6 +435,16 @@
 .images-right-1:hover,
 .images-right-2:hover {
     background-size: 100%; 
+}
+.button-wrapper-about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #665F55;
+    border-radius: 100px;
+    display: none;
 }
 .section-mobile-app {
     display: flex;
@@ -803,7 +814,8 @@
 .container-icons-dessert div {
     background-color: #C1B6AD;
 }
-.images-container {
+.images-container,
+.images-container2 {
     display: flex;
     justify-content: space-between;
     align-items: start;
@@ -924,7 +936,7 @@
     border-radius: 40px;
     padding: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 100px;
 }
@@ -972,12 +984,32 @@
         height: 41vw;
         transition: 0.3s;
     }
-    .contacts-wrapper {
+    .contacts-wrapper,
+    .contacts-wrapper2 {
         height: auto;
         width: auto;
     }
 }
+@media (max-width: 1430px) {
+    .images-container2 {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0 15%;
+    }
+    .wrapper-img-coffee2,
+    .wrapper-img-coffee4,
+    .wrapper-img-coffee6,
+    .wrapper-img-coffee8 {
+        display: none;
+    }
+    .button-wrapper-about{
+        display: flex;
+    }
+}    
 @media (max-width: 1224px) {
+    .images-container2 {
+        padding: 0 10%;
+    }
     .mobile-app-container {
         flex-direction: column;
         gap: 0px;
@@ -989,7 +1021,8 @@
     .mobile-app-container div img {
         top: -22px;
     }
-    .contacts-wrapper {
+    .contacts-wrapper,
+    .contacts-wrapper2 {
         height: auto;
         width: auto;
         flex-direction: column;
@@ -998,14 +1031,24 @@
         padding-left: 60px;
         padding-bottom: 107px;
     }
+    .contacts-wrapper2 {
+        margin: 95px 40px 40px;
+    }
 }
 @media (max-width: 1000px) {
+    .menu-offer h1 {
+        width: 100%;
+        height: auto;
+    }
     .images-container {
         height: auto;
         justify-content: center;
         flex-direction: column;
         align-items: center;
         gap: 40px;
+    }
+    .images-container2 {
+        padding: 0 5%;
     }
     .images-left-2, .images-right-1 {
         display: none;
@@ -1020,6 +1063,11 @@
         transition: 0.5s;
     }
 }
+@media (max-width: 900px) {
+    .images-container2 {
+        padding: 0 13px;
+    }
+}
 @media (max-width: 800px) {
     .mobile-app-container {
         gap: 100px;
@@ -1028,7 +1076,8 @@
 }
 @media (max-width: 768px) {
     .nav-menu,
-    .menu-cup {
+    .menu-cup,
+    .menu-cup2 {
         opacity: 0;
     }
     .enjoy {
@@ -1048,6 +1097,11 @@
     }
     .button-burger {
         display: flex;
+    }
+}
+@media (max-width: 765px) {
+    .images-container2 {
+        padding: 0;
     }
 }
 @media (max-width: 760px) {
@@ -1075,7 +1129,8 @@
         width: 100%;
         top: -44px;
     }
-    .contacts-wrapper {
+    .contacts-wrapper,
+    .contacts-wrapper2 {
         padding-right: 50px;
     }
     .contacts-left {
@@ -1086,37 +1141,6 @@
         letter-spacing: 0.2px;
     }
 }
-/*
-@media (max-width: 680px) {
-    .enjoy {
-        margin: auto 40px;
-        height: 552px;
-    }
-    .enjoy-text {
-        position: static;
-        width: 70%;
-        height: 432px;
-        gap: 39px;
-        padding: 0 20px;
-    }
-    .enjoy-text h1 {
-        font-size: 7vw;
-        line-height: 115%;
-        letter-spacing: 0.5px;
-    }
-    .enjoy-text h1 span {
-        letter-spacing: 3px;
-    }   
-}  
-@media (max-width: 500px) {
-    .enjoy-text {
-        position: static;
-        width: 80%;
-        height: 432px;
-        gap: 39px;
-        padding: 0 20px;
-    }
-} */
 @media (max-width: 480px) {
     .header {
         padding: 20px 16px;
@@ -1221,7 +1245,8 @@
     .section-mobile-app {
         padding: 0px 16px;
     }
-    .contacts-wrapper {
+    .contacts-wrapper,
+    .contacts-wrapper2 {
         margin: 50px 16px 40px;
         height: 526px;
         padding: 61px 16px;
@@ -1260,7 +1285,8 @@
     .mobile-app-left {
         margin-bottom: 50px;
     }
-    .contacts-wrapper {
+    .contacts-wrapper,
+    .contacts-wrapper2 {
         height: 550px;
         padding: 50px 16px;
         gap: 130px;
