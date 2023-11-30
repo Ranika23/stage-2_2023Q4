@@ -551,7 +551,7 @@
     letter-spacing: 0.5px;
     color: #E1D4C9;
 }
-.offer-text span {
+.inter-coffee-time {
     font-family: Inter-Italic;
     letter-spacing: 3px;
     color: #B0907A;
@@ -1048,5 +1048,221 @@
     }
     .button-burger {
         display: flex;
+    }
+}
+@media (max-width: 760px) {
+    .enjoy-text {
+        position: static;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .enjoy-text h1 {
+        font-size: 50px;
+    }
+    .section-about h2 {
+        font-size: 45px;
+        letter-spacing: 0.15px;
+    }
+    .images-left-1, .images-right-2 {
+        width: 90vw;
+        background-size: 140%;
+    }
+    .mobile-app-container h2 {
+        font-size: 45px;
+        letter-spacing: 1.5px;
+    }
+    .mobile-app-container div img {
+        width: 100%;
+        top: -44px;
+    }
+    .contacts-wrapper {
+        padding-right: 50px;
+    }
+    .contacts-left {
+        width: 100%;
+    }
+    .offer-text {
+        font-size: 45px;
+        letter-spacing: 0.2px;
+    }
+}
+/*
+@media (max-width: 680px) {
+    .enjoy {
+        margin: auto 40px;
+        height: 552px;
+    }
+    .enjoy-text {
+        position: static;
+        width: 70%;
+        height: 432px;
+        gap: 39px;
+        padding: 0 20px;
+    }
+    .enjoy-text h1 {
+        font-size: 7vw;
+        line-height: 115%;
+        letter-spacing: 0.5px;
+    }
+    .enjoy-text h1 span {
+        letter-spacing: 3px;
+    }   
+}  
+@media (max-width: 500px) {
+    .enjoy-text {
+        position: static;
+        width: 80%;
+        height: 432px;
+        gap: 39px;
+        padding: 0 20px;
+    }
+} */
+@media (max-width: 480px) {
+    .header {
+        padding: 20px 16px;
+    }
+    .button-burger {
+        right: 16px;
+    }    
+    .enjoy {
+        margin: auto 16px;
+        height: 552px;
+    }
+    .enjoy-text {
+        position: static;
+        width: auto;
+        height: 432px;
+        gap: 39px;
+        padding: 0 16px;
+    }
+    .enjoy-text h1 {
+        font-size: 42px;
+        line-height: 115%;
+        letter-spacing: 0.5px;
+    }
+    .enjoy-text h1 span {
+        letter-spacing: 3px;
+    }   
+    .menu-img {
+        left: 118px;
+    } 
+    .favourites-coffee {
+        padding: 0px 15px;
+    }
+    .favourites-coffee h2 {
+        font-size: 32px;
+    }
+    .slider-container {
+        height: 576px;
+    }
+    .arrow-left, .arrow-right {
+        display: none;
+    }
+    .content-slide-1, 
+    .content-slide-2, 
+    .content-slide-3 {
+        justify-content: start;
+        width: 100%;
+    }
+    .content-slide-1 img, 
+    .content-slide-2 img, 
+    .content-slide-3 img {
+        width: 100%;
+    }
+    .content-slide-1 div, 
+    .content-slide-2 div, 
+    .content-slide-3 div {
+        width: 100%;
+    }
+    .slide-text {
+        margin: 18px 0 15px;
+    }
+    .section-about {
+        padding: 0px 16px;
+    }
+    .section-about h2 {
+        font-size: 32px;
+        letter-spacing: 0.15px;
+    }
+    .column-images-left, 
+    .column-images-left2, 
+    .column-images-right, 
+    .column-images-right2 {
+        width: 100%;
+    }
+    .images-left-1, .images-right-2 {
+        width: 348px;
+        height: 590px;
+        background-size: 209%;
+    }
+    .mobile-app-container h2 {
+        font-size: 32px;
+        letter-spacing: 1.5px;
+    }
+    .mobile-app-container,
+    .mobile-app-left {
+        width: 100%;
+    }
+    .word-intel {
+        letter-spacing: 2px;
+    }
+    .last-word {
+        letter-spacing: 2.5px;
+    }
+    .buttons-container {
+        align-items: start;
+        flex-direction: column;
+        margin-top: -2px;
+    }
+    .mobile-app-container div img {
+        width: 100%;
+        top: -44px;
+    }
+    .section-mobile-app {
+        padding: 0px 16px;
+    }
+    .contacts-wrapper {
+        margin: 50px 16px 40px;
+        height: 526px;
+        padding: 61px 16px;
+    }
+    .offer-text {
+        font-size: 32px;
+        letter-spacing: 0.2px;
+    }
+    .contacts-left {
+        width: 100%;
+        height: 120px;
+    }
+    .inter-coffee-time {
+        letter-spacing: 1.2px;
+    }
+    .letter-coffee-time {
+        letter-spacing: 2px;
+    }
+}
+@media (max-width: 370px) {
+    .enjoy {
+        align-items: start;
+    }
+    .enjoy-text {
+        position: static;
+        width: auto;
+        height: 432px;
+        gap: 20px;
+        padding: 0 16px;
+        margin: 16px 0px;
+    }
+    .images-left-1, .images-right-2 {
+        width: 97%;
+        background-size: 238%;
+    }
+    .mobile-app-left {
+        margin-bottom: 50px;
+    }
+    .contacts-wrapper {
+        height: 550px;
+        padding: 50px 16px;
+        gap: 130px;
     }
 }
