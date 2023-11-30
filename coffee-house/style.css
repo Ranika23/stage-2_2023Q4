@@ -995,6 +995,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0 15%;
+        justify-content: space-around;
     }
     .wrapper-img-coffee2,
     .wrapper-img-coffee4,
@@ -1009,6 +1010,7 @@
 @media (max-width: 1224px) {
     .images-container2 {
         padding: 0 10%;
+        justify-content: space-around;
     }
     .mobile-app-container {
         flex-direction: column;
@@ -1049,6 +1051,7 @@
     }
     .images-container2 {
         padding: 0 5%;
+        justify-content: space-around;
     }
     .images-left-2, .images-right-1 {
         display: none;
@@ -1066,6 +1069,7 @@
 @media (max-width: 900px) {
     .images-container2 {
         padding: 0 13px;
+        justify-content: space-around;
     }
 }
 @media (max-width: 800px) {
@@ -1113,6 +1117,9 @@
     .enjoy-text h1 {
         font-size: 50px;
     }
+    .menu-offer h1 {
+        font-size: 50px;
+    }
     .section-about h2 {
         font-size: 45px;
         letter-spacing: 0.15px;
@@ -1133,6 +1140,9 @@
     .contacts-wrapper2 {
         padding-right: 50px;
     }
+    .images-container2 {
+        justify-content: center;
+    }
     .contacts-left {
         width: 100%;
     }
@@ -1147,7 +1157,11 @@
     }
     .button-burger {
         right: 16px;
-    }    
+    } 
+    .container-icons {
+        justify-content: center;
+        gap: 9px;
+    }   
     .enjoy {
         margin: auto 16px;
         height: 552px;
@@ -1164,12 +1178,25 @@
         line-height: 115%;
         letter-spacing: 0.5px;
     }
+    .menu-offer h1 {
+        font-size: 32px;
+        line-height: 125%;
+    }
+    .offer-italic {
+        letter-spacing: 2px;
+    }
     .enjoy-text h1 span {
         letter-spacing: 3px;
     }   
     .menu-img {
         left: 118px;
     } 
+    .img_coffee-1, 
+    .img_coffee-3, 
+    .img_coffee-5, 
+    .img_coffee-7 {
+        width: 308px;
+    }
     .favourites-coffee {
         padding: 0px 15px;
     }
@@ -1250,6 +1277,9 @@
         margin: 50px 16px 40px;
         height: 526px;
         padding: 61px 16px;
+    }
+    .contacts-wrapper2 {
+        margin: 95px 16px 40px;
     }
     .offer-text {
         font-size: 32px;
