@@ -425,6 +425,10 @@
     border: 1px solid #665F55;
     border-radius: 100px;
     display: none;
+    transition: 1.5s;
+}
+.button-wrapper-about-svg {
+    stroke: #403F3D;
 }
 .section-mobile-app {
     display: flex;
@@ -925,6 +929,14 @@
     .arrow-right div:hover {
         cursor: pointer;
     }
+    .button-wrapper-about:hover {
+        border: solid 1px #C1B6AD;
+        background-color: #665F55;
+        cursor: pointer;
+    }
+    /*.button-wrapper-about:hover .button-wrapper-about-svg {
+        stroke: #C1B6AD;
+    }*/
     .images-left-2:hover,
     .images-left-1:hover,
     .images-right-1:hover,
