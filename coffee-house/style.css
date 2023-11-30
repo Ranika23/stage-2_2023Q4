@@ -66,16 +66,11 @@
     padding: 0;
     color: #403F3D;
     text-decoration: none;
-    cursor: pointer;
     background-image: linear-gradient(to right, #403F3D, #403F3D);
     background-repeat: no-repeat;
     background-size: 10px 0px;
     background-position: center bottom;
     padding-bottom: 5px;
-    transition: 0.5s;
-}
-.nav-link:hover {
-    background-size: 100% 2px;
     transition: 0.5s;
 }
 .menu-cup {
@@ -84,7 +79,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
     transition: 0.5s;
     background-image: linear-gradient(to right, #403F3D, #403F3D);
     background-repeat: no-repeat;
@@ -92,10 +86,6 @@
     background-position: center bottom;
     padding-bottom: 5px;
     letter-spacing: 0.6px;
-    transition: 0.5s;
-}
-.menu-cup:hover {
-    background-size: 100% 2px;
     transition: 0.5s;
 }
 .menu-cup svg {
@@ -192,7 +182,6 @@
     color: #403F3D;
     background: #E1D4C9;
     border: none;
-    cursor: pointer;
     margin-top: 0px;
     padding-left: 24px;
     left: -1px;
@@ -211,12 +200,6 @@
     left: 120px;
     opacity: 0;
     transition: opacity .5s;
-}
-.enjoy-button:hover {
-    padding-left: 0px;
-}
-.enjoy-button:hover .menu-img {
-    opacity: 1;
 }
 .favourites-coffee {
     display: flex;
@@ -289,22 +272,10 @@
     border-radius: 100px;
     transition: 1.5s;
 }
-.arrow-right div {
-    cursor: pointer;
-}
 .arrow-left-icon,
 .arrow-right-icon {
     stroke: #403F3D;
     transition: 1.5s;
-}
-.arrow-left div:hover,
-.arrow-right div:hover {
-    border: solid 1px #C1B6AD;
-    background-color: #665F55;
-}
-.arrow-left div:hover .arrow-left-icon,
-.arrow-right div:hover .arrow-right-icon {
-    stroke: #C1B6AD;
 }
 .wrapper-slides {
     position: relative;
@@ -430,12 +401,6 @@
     background-position: center;
     transition: background-size 1s;
 }
-.images-left-2:hover,
-.images-left-1:hover,
-.images-right-1:hover,
-.images-right-2:hover {
-    background-size: 100%; 
-}
 .button-wrapper-about{
     display: flex;
     justify-content: center;
@@ -505,7 +470,6 @@
     color: #403F3D;
     background-color: #E1D4C9;
     margin-top: 1px;
-    cursor: pointer;
     transition: 2s;
 }
 .button-app-store div,
@@ -514,20 +478,11 @@
     flex-direction: column;
     align-items: start;
 }
-.button-app-store:hover,
-.button-google-play:hover {
-    color: #E1D4C9;
-    background-color: #665F55;
-}
 .button-icon {
     width: 36px;
     height: 36px;
     fill: #403F3D;
     transition: 2s;
-}
-.button-app-store:hover .button-icon,
-.button-google-play:hover .button-icon {
-    fill: #E1D4C9;
 }
 .app-store-text,
 .google-play-text {
@@ -579,6 +534,12 @@
     margin-top: 40px;
     padding: 0;
 }
+.instagram-hover {
+    position: absolute;
+    top: 17px;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
 .socials-links-items {
     position: relative;
     display: flex;
@@ -588,30 +549,12 @@
     height: 60px;
     border: solid 1px #C1B6AD;
     border-radius: 100px;
-    cursor: pointer;
     transition: 1.5s;
-}
-.instagram-hover {
-    position: absolute;
-    top: 17px;
-    opacity: 0;
-    transition: opacity 1.5s;
-}
-.socials-links-items:hover .instagram-hover{
-    opacity: 1;
-}
-.socials-links-items:hover{
-   background-color: #C1B6AD;
 }
 .social-icon {
     fill: #665F55;
     stroke: #E1D4C9;
     transition: 1.5s;
-}
-.socials-links-items:hover .social-icon {
-    fill: #C1B6AD;
-    stroke: #665F55;
-
 }
 .socials-links-items div {
     display: flex;
@@ -655,7 +598,6 @@
 .link-contact-wrapper {
     display: block;
     text-align: center;
-    cursor: pointer;
     background-image: linear-gradient(to right, #E1D4C9, #E1D4C9);
     background-repeat: no-repeat;
     background-size: 10px 0px;
@@ -678,13 +620,7 @@
     line-height: 150%;
     font-size: 16px;
 }
-.link-item:hover {
-    color: #E1D4C9;
-}
-.link-contact-wrapper:hover {
-    background-size: 100% 2px;
-    transition: 0.5s;
-}
+
 
 
 
@@ -782,7 +718,6 @@
 .container-icons-dessert {
     color: #403F3D;
     border: 1px solid #C1B6AD;
-    cursor: pointer;
     transition: 1s;
 }
 .container-icons-tea {
@@ -790,12 +725,6 @@
 }
 .container-icons-dessert {
     width: 124px;
-}
-.container-icons-tea:hover,
-.container-icons-dessert:hover {
-    color: #E1D4C9;
-    border: 1px solid #665F55;
-    background-color: #665F55;
 }
 .container-icons-coffee div,
 .container-icons-tea div,
@@ -918,16 +847,6 @@
     line-height: 24px;
     text-align: start;
 }
-.wrapper-img-coffee1:hover .img_coffee-1,
-.wrapper-img-coffee2:hover .img_coffee-2,
-.wrapper-img-coffee3:hover .img_coffee-3,
-.wrapper-img-coffee4:hover .img_coffee-4,
-.wrapper-img-coffee5:hover .img_coffee-5,
-.wrapper-img-coffee6:hover .img_coffee-6,
-.wrapper-img-coffee7:hover .img_coffee-7,
-.wrapper-img-coffee8:hover .img_coffee-8 {
-    background-size: 100%; 
-}
 .contacts-wrapper2 {
     height: 450px;
     width: 1360px;
@@ -949,25 +868,113 @@
     height: 60px;
     border: solid 1px #C1B6AD;
     border-radius: 100px;
-    cursor: pointer;
     transition: 1.5s;
-}
-.socials-links-items-menu:hover .instagram-hover{
-    opacity: 1;
-}
-.socials-links-items-menu:hover{
-   background-color: #C1B6AD;
-}
-.socials-links-items-menu:hover .social-icon {
-    fill: #C1B6AD;
-    stroke: #665F55;
-
 }
 .socials-links-items-menu div {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+
+@media (hover: hover) {
+    .nav-link:hover {
+        background-size: 100% 2px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .menu-cup:hover {
+        background-size: 100% 2px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .enjoy-button:hover {
+        padding-left: 0px;
+        cursor: pointer;
+    }
+    .enjoy-button:hover .menu-img {
+        opacity: 1;
+    }
+    .arrow-left div:hover,
+    .arrow-right div:hover {
+        border: solid 1px #C1B6AD;
+        background-color: #665F55;
+    }
+    .arrow-left div:hover .arrow-left-icon,
+    .arrow-right div:hover .arrow-right-icon {
+        stroke: #C1B6AD;
+    }
+    .arrow-right div:hover {
+        cursor: pointer;
+    }
+    .images-left-2:hover,
+    .images-left-1:hover,
+    .images-right-1:hover,
+    .images-right-2:hover {
+        background-size: 100%; 
+    }
+    .button-app-store:hover,
+    .button-google-play:hover {
+        color: #E1D4C9;
+        background-color: #665F55;
+        cursor: pointer;
+    }
+    .button-app-store:hover .button-icon,
+    .button-google-play:hover .button-icon {
+        fill: #E1D4C9;
+    }
+    .socials-links-items:hover .instagram-hover{
+        opacity: 1;
+    }
+    .socials-links-items:hover{
+       background-color: #C1B6AD;
+       cursor: pointer;
+    }
+    .socials-links-items:hover .social-icon {
+        fill: #C1B6AD;
+        stroke: #665F55;
+    }
+    .link-item:hover {
+        color: #E1D4C9;
+    }
+    .link-contact-wrapper:hover {
+        background-size: 100% 2px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .wrapper-img-coffee1:hover .img_coffee-1,
+    .wrapper-img-coffee2:hover .img_coffee-2,
+    .wrapper-img-coffee3:hover .img_coffee-3,
+    .wrapper-img-coffee4:hover .img_coffee-4,
+    .wrapper-img-coffee5:hover .img_coffee-5,
+    .wrapper-img-coffee6:hover .img_coffee-6,
+    .wrapper-img-coffee7:hover .img_coffee-7,
+    .wrapper-img-coffee8:hover .img_coffee-8 {
+        background-size: 100%; 
+    }
+    .socials-links-items-menu:hover .instagram-hover{
+        opacity: 1;
+    }
+    .socials-links-items-menu:hover{
+       background-color: #C1B6AD;
+       cursor: pointer;
+    }
+    .socials-links-items-menu:hover .social-icon {
+        fill: #C1B6AD;
+        stroke: #665F55;
+    
+    }
+    .container-icons-tea:hover,
+    .container-icons-dessert:hover {
+        color: #E1D4C9;
+        border: 1px solid #665F55;
+        background-color: #665F55;
+        cursor: pointer;
+    }   
+}
+
+
+
 
 @media (max-width: 1439px) {
     .images-container {
@@ -982,7 +989,6 @@
     .images-left-1, .images-right-2 {
         width: 45.5vw;
         height: 41vw;
-        transition: 0.3s;
     }
     .contacts-wrapper,
     .contacts-wrapper2 {
@@ -996,15 +1002,6 @@
         flex-wrap: wrap;
         padding: 0 15%;
         justify-content: space-around;
-    }
-    .wrapper-img-coffee2,
-    .wrapper-img-coffee4,
-    .wrapper-img-coffee6,
-    .wrapper-img-coffee8 {
-        display: none;
-    }
-    .button-wrapper-about{
-        display: flex;
     }
 }    
 @media (max-width: 1224px) {
@@ -1053,13 +1050,21 @@
         padding: 0 5%;
         justify-content: space-around;
     }
-    .images-left-2, .images-right-1 {
-        display: none;
-    }
-    .images-left-1, .images-right-2 {
+    .images-left-1, 
+    .images-left-2,
+    .images-right-1,
+    .images-right-2 {
         width: 688px;
         height: 590px;
-        background-size: 105%;
+        background-size: 110%;
+    }
+    @media (hover: hover) {
+        .images-left-2:hover, 
+        .images-left-1:hover, 
+        .images-right-1:hover, 
+        .images-right-2:hover {
+            background-size: 100%;
+        }
     }
     .mobile-app-container {
         gap: 50px;
@@ -1096,6 +1101,18 @@
     .enjoy-button {
         padding-left: 0px;
     }
+    .images-left-2, .images-right-1 {
+        display: none;
+    }
+    .wrapper-img-coffee2,
+    .wrapper-img-coffee4,
+    .wrapper-img-coffee6,
+    .wrapper-img-coffee8 {
+        display: none;
+    }
+    .button-wrapper-about{
+        display: flex;
+    }
     .menu-img {
         opacity: 1;
     }
@@ -1126,7 +1143,13 @@
     }
     .images-left-1, .images-right-2 {
         width: 90vw;
-        background-size: 140%;
+        background-size: 147%;
+    }
+    @media (hover: hover) { 
+        .images-left-1:hover, 
+        .images-right-2:hover {
+            background-size: 137%;
+        }
     }
     .mobile-app-container h2 {
         font-size: 45px;
@@ -1241,10 +1264,17 @@
     .column-images-right2 {
         width: 100%;
     }
-    .images-left-1, .images-right-2 {
+    .images-left-1, 
+    .images-right-2 {
         width: 348px;
         height: 590px;
         background-size: 209%;
+    }
+    @media (hover: hover) { 
+        .images-left-1:hover, 
+        .images-right-2:hover {
+            background-size: 199%;
+        }
     }
     .mobile-app-container h2 {
         font-size: 32px;
@@ -1308,9 +1338,16 @@
         padding: 0 16px;
         margin: 16px 0px;
     }
-    .images-left-1, .images-right-2 {
+    .images-left-1, 
+    .images-right-2 {
         width: 97%;
         background-size: 238%;
+    }
+    @media (hover: hover) { 
+        .images-left-1:hover, 
+        .images-right-2:hover {
+            background-size: 228%;
+        }
     }
     .mobile-app-left {
         margin-bottom: 50px;
