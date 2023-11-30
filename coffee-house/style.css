@@ -274,10 +274,11 @@
 .arrow-left,
 .arrow-right {
     padding-bottom: 47px;
+    position: relative;
 }
 .arrow-left div,
 .arrow-right div {
-    position: relative;
+    position: absolute;
     display: flex;  
     align-items: center;
     justify-content: center;
@@ -286,6 +287,13 @@
     border: solid 1px #665F55;
     border-radius: 100px;
     transition: 1.5s;
+}
+.arrow-right div {
+    right: 0px;
+    top: -30px;
+}.arrow-left div {
+    right: -60px;
+    top: -30px;
 }
 .arrow-left-icon,
 .arrow-right-icon {
@@ -323,7 +331,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 31,5%;
+    width: 100%;
 }
 .content-slide-1 div,
 .content-slide-2 div,
@@ -843,7 +851,7 @@
     justify-content: space-between;
     width: 310px;
     height: 196px;
-    padding: 20px 19px 19px;
+    padding: 20px;
     color: #403F3D;
     ;
 }
@@ -1086,15 +1094,23 @@
     .images-right-2 {
         width: 688px;
         height: 590px;
-        background-size: 110%;
+        background-size: 105%;
+        transition: 1s;
+        background-repeat: no-repeat;
     }
     @media (hover: hover) {
         .images-left-2:hover, 
         .images-left-1:hover, 
         .images-right-1:hover, 
         .images-right-2:hover {
-            background-size: 100%;
+            background-size: 95%;
+            background-repeat: no-repeat;
         }
+        .images-left-1:hover .column-images-left,
+        .images-right-2:hover .column-images-right {
+            margin: 0 50px;
+        }
+
     }
     .mobile-app-container {
         gap: 50px;
@@ -1181,6 +1197,16 @@
             background-size: 137%;
         }
     }
+    /*.content-slide-1 img, 
+    .content-slide-2 img, 
+    .content-slide-3 img {
+    width: 480px;
+    }*/
+    .content-slide-1 div, 
+    .content-slide-2 div, 
+    .content-slide-3 div {
+        width: 100%;
+    }
     .mobile-app-container h2 {
         font-size: 45px;
         letter-spacing: 1.5px;
@@ -1202,6 +1228,11 @@
     .offer-text {
         font-size: 45px;
         letter-spacing: 0.2px;
+    }
+}
+@media (max-width: 530px) {
+    .favourites-coffee h2 {
+        font-size: 40px;
     }
 }
 @media (max-width: 480px) {
@@ -1257,7 +1288,7 @@
         font-size: 32px;
     }
     .slider-container {
-        height: 576px;
+        height: 655px;
     }
     .arrow-left, .arrow-right {
         display: none;
@@ -1354,6 +1385,11 @@
     }
     .letter-coffee-time {
         letter-spacing: 2px;
+    }
+}
+@media (max-width: 460px) {
+    .slider-container {
+        height: 665px;
     }
 }
 @media (max-width: 370px) {
