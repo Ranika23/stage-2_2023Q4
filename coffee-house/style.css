@@ -273,6 +273,7 @@
 }
 .arrow-left,
 .arrow-right {
+    z-index: 999;
     padding-bottom: 47px;
     position: relative;
 }
@@ -1134,6 +1135,7 @@
     .menu-cup,
     .menu-cup2 {
         opacity: 0;
+        display: none;
     }
     .enjoy {
         background-image: url(assets/img/enjoy-tablet.jpg);
@@ -1197,11 +1199,6 @@
             background-size: 137%;
         }
     }
-    /*.content-slide-1 img, 
-    .content-slide-2 img, 
-    .content-slide-3 img {
-    width: 480px;
-    }*/
     .content-slide-1 div, 
     .content-slide-2 div, 
     .content-slide-3 div {
@@ -1392,6 +1389,26 @@
         height: 665px;
     }
 }
+@media (max-width: 450px) {
+    .slider-container {
+        height: 640px;
+    }
+}  
+@media (max-width: 420px) {
+    .slider-container {
+        height: 620px;
+    }
+}
+@media (max-width: 400px) {
+    .slider-container {
+        height: 590px;
+    }
+}      
+@media (max-width: 385px) {
+    .slider-container {
+        height: 576px;
+    }
+}    
 @media (max-width: 370px) {
     .enjoy {
         align-items: start;
