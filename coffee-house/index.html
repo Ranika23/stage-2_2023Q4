@@ -68,7 +68,6 @@
         </header>
         <main class="main">
             <section class="enjoy">
-                <!--<img src="assets/img/enjoy-container.png" alt="enjoy-container">-->
                 <div class="enjoy-text">
                     <h1><span>Enjoy</span> premium coffee at our charming cafe</h1>
                     <div>With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a
@@ -88,20 +87,26 @@
                 </a>
                 </div>
             </section>
+
+
+
+
+
+
+
             <section class="favourites-coffee" id="favorite">
                 <h2>Choose your <span>favorite</span> coffee</h2>
                 <div class="slider-container">
                     <div class="controls">
-                        <input id="about-slide1" class="about-slide1" type="radio" name="carousel" value="slide-one"
-                            checked>
-                        <label for="about-slide1" class="control-slide-1">
-                        </label>
-                        <input id="about-slide2" class="about-slide2" type="radio" name="carousel" value="slide-two">
-                        <label for="about-slide2" class="control-slide-2">
-                        </label>
-                        <input id="about-slide3" class="about-slide3" type="radio" name="carousel" value="slide-three">
-                        <label for="about-slide3" class="control-slide-3">
-                        </label>
+                        <div class="control-slide">
+                            <div class="progress-control"></div>
+                        </div>
+                        <div class="control-slide">
+                            <div class="progress-control"></div>
+                        </div>
+                        <div class="control-slide">
+                            <div class="progress-control"></div>
+                        </div>
                     </div>
                     <div class="arrow-left">
                         <div>
@@ -115,7 +120,7 @@
                         </div>
                     </div>
                     <div class="wrapper-slides">
-                        <div class="about-slides">
+                        <div draggable="true" ondragstart="return false" class="about-slides">
                             <div class="slide-1">
                                 <div class="content-slide-1">
                                     <img src="assets/img/coffee-slider-1.png" alt="coffee-slider-1">
@@ -158,6 +163,15 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
             <section class="section-about" id="about">
                 <div class="wrapper-about">
                     <h2>Resource is <span>the perfect and cozy place</span> where you can enjoy a variety of hot
@@ -304,6 +318,6 @@
     </div>
     <script src="products.js"></script>
     <script src="index.js"></script>
-    <script src="home_menu.js"></script>
+    <script src="index_home.js"></script>
 </body>
 </html>
