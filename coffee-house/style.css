@@ -157,7 +157,17 @@
     background-position: center;
     margin: auto 40px;
     border-radius: 40px;
+    overflow: hidden;
     transition: 1s;
+}
+
+.enjoy-video {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    border-radius: 40px;
 }
 
 .enjoy-text {
@@ -173,6 +183,7 @@
     color: #E1D4C9;
     transition: 1s;
 }
+
 .enjoy-text h1 {
     margin: 0;
     font-size: 72px;
@@ -1265,6 +1276,12 @@
         width: 50%;
     }
 }
+@media (max-width: 1270px) {
+    .enjoy-video {
+        width: auto;
+        height: 100%;
+    }
+}
 
 
 @media (max-width: 1224px) {
@@ -1405,9 +1422,9 @@
 }
 @media (max-width: 760px) {
     .enjoy-text {
-        position: static;
         padding-left: 16px;
         padding-right: 16px;
+        width: 80%;
     }
     .enjoy-text h1 {
         font-size: 50px;
@@ -1457,12 +1474,26 @@
         letter-spacing: 0.2px;
     }
 }
+
+@media (max-width: 600px) {
+.enjoy-text {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 90%;
+    left: 40px;
+}
+}
+
 @media (max-width: 530px) {
     .favourites-coffee h2 {
         font-size: 40px;
     }
     .wrapper-slides {
         width: 100%;
+    }
+    .enjoy-text {
+        left: 20px;
+        top: 60px;
     }
 }
 @media (max-width: 480px) {
@@ -1478,11 +1509,12 @@
         height: 552px;
     }
     .enjoy-text {
-        position: static;
         width: auto;
         height: 432px;
         gap: 39px;
         padding: 0 16px;
+        left: 0px;
+        top: 60px;
     }
     .enjoy-text h1 {
         font-size: 42px;
@@ -1652,12 +1684,12 @@
         align-items: start;
     }
     .enjoy-text {
-        position: static;
         width: auto;
         height: 432px;
         gap: 20px;
         padding: 0 16px;
         margin: 16px 0px;
+        top: 20px;
     }
     .images-left-1, 
     .images-right-2 {
