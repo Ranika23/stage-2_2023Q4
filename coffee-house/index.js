@@ -1,4 +1,5 @@
-const PRODUCTS = products();
+//import data from './products.json' assert { type: "json" };
+//console.log(data[0])
 
 
 

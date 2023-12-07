@@ -557,6 +557,7 @@
     justify-content: start;
     align-items: center;
     gap: 100px;
+    transition: 1s;
 }
 .offer-text {
     margin: 0 auto;
@@ -758,11 +759,9 @@
     line-height: 150%;
 }
 .container-icons-coffee {
-    border: 1px solid #665F55;
-    background-color: #665F55;
-    color: #E1D4C9;
     width: 115px;
 }
+.container-icons-coffee,
 .container-icons-tea,
 .container-icons-dessert {
     color: #403F3D;
@@ -784,13 +783,14 @@
     width: 30px;
     height: 30px;
     border-radius: 100px;
-}
-.container-icons-coffee div {
-    background-color: #E1D4C9;
-}
-.container-icons-tea div,
-.container-icons-dessert div {
     background-color: #C1B6AD;
+}
+.container-icons-coffee.activ,
+.container-icons-tea.activ,
+.container-icons-dessert.activ {
+    border: 1px solid #665F55;
+    background-color: #665F55;
+    color: #E1D4C9;
 }
 .images-container,
 .images-container2 {
@@ -826,6 +826,8 @@
     border: 1px solid #C1B6AD;
     width: 310px;
     height: 506px;
+    opacity: 1;
+    transition: 1s;
 }
 .img_coffee-1,
 .img_coffee-2,
@@ -835,12 +837,49 @@
 .img_coffee-6,
 .img_coffee-7,
 .img_coffee-8 {
+    position: absolute;
     width: 310px;
     height: 310px;
     border-radius: 40px;
     background-size: 110%;
     background-position: center;
     transition: background-size 1s;
+    z-index: 1;
+    transition: 1s;
+}
+.img_tea-1,
+.img_tea-2,
+.img_tea-3,
+.img_tea-4,
+.img_tea-5,
+.img_tea-6,
+.img_tea-7,
+.img_tea-8 {
+    position: absolute;
+    width: 310px;
+    height: 310px;
+    border-radius: 40px;
+    background-size: 110%;
+    background-position: center;
+    transition: background-size 1s;
+    transition: 1s;
+}
+.img_dessert-1,
+.img_dessert-2,
+.img_dessert-3,
+.img_dessert-4,
+.img_dessert-5,
+.img_dessert-6,
+.img_dessert-7,
+.img_dessert-8 {
+    position: absolute;
+    width: 310px;
+    height: 310px;
+    border-radius: 40px;
+    background-size: 110%;
+    background-position: center;
+    transition: background-size 1s;
+    transition: 1s;
 }
 .img_coffee-1 {
     background-image: url(assets/img/menu_coffee-1.png);
@@ -866,7 +905,51 @@
 .img_coffee-8 {
     background-image: url(assets/img/menu_coffee-8.png);
 }
+.img_tea-1 {
+    background-image: url(assets/img/tea-1.png);
+}
+.img_tea-3 {
+    background-image: url(assets/img/tea-2.png);
+}
+.img_tea-5 {
+    background-image: url(assets/img/tea-3.png);
+}
+.img_tea-7 {
+    background-image: url(assets/img/tea-4.png);
+}
+.img_dessert-1 {
+    background-image: url(assets/img/dessert-1.png);
+}
+.img_dessert-2 {
+    background-image: url(assets/img/dessert-5.png);
+}
+.img_dessert-3 {
+    background-image: url(assets/img/dessert-2.png);
+}
+.img_dessert-4 {
+    background-image: url(assets/img/dessert-6.png);
+}
+.img_dessert-5 {
+    background-image: url(assets/img/dessert-3.png);
+}
+.img_dessert-6 {
+    background-image: url(assets/img/dessert-7.png);
+}
+.img_dessert-7 {
+    background-image: url(assets/img/dessert-4.png);
+}
+.img_dessert-8 {
+    background-image: url(assets/img/dessert-8.png);
+}
+.img_tea-2,
+.img_tea-4,
+.img_tea-6,
+.img_tea-8 {
+    display: none;
+}
 .description-coffee {
+    position: absolute;
+    bottom: -1px;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -875,7 +958,22 @@
     height: 196px;
     padding: 20px;
     color: #403F3D;
-    ;
+    z-index: 1;
+    transition: 1s;
+}
+.description-tea,
+.description-dessert {
+    position: absolute;
+    bottom: -1px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 310px;
+    height: 196px;
+    padding: 20px;
+    color: #403F3D;
+    transition: 1s;
 }
 .description-wrapper {
     display: flex;
@@ -883,18 +981,21 @@
     align-items: start;
     justify-content: space-between;
     gap: 12px;
+    transition: 1s;
 }
 .title-description,
 .price-description {
     font-size: 24px;
     font-weight: 600;
     line-height: 30px;
+    transition: 1s;
 }
 .text-description {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     text-align: start;
+    transition: 1s;
 }
 .contacts-wrapper2 {
     height: 450px;
@@ -1218,6 +1319,26 @@
     .wrapper-img-coffee8:hover .img_coffee-8 {
         background-size: 100%; 
     }
+    .wrapper-img-coffee1:hover .img_tea-1,
+    .wrapper-img-coffee2:hover .img_tea-2,
+    .wrapper-img-coffee3:hover .img_tea-3,
+    .wrapper-img-coffee4:hover .img_tea-4,
+    .wrapper-img-coffee5:hover .img_tea-5,
+    .wrapper-img-coffee6:hover .img-tea-6,
+    .wrapper-img-coffee7:hover .img_tea-7,
+    .wrapper-img-coffee8:hover .img_tea-8 {
+        background-size: 100%; 
+    }
+    .wrapper-img-coffee1:hover .img_dessert-1,
+    .wrapper-img-coffee2:hover .img_dessert-2,
+    .wrapper-img-coffee3:hover .img_dessert-3,
+    .wrapper-img-coffee4:hover .img_dessert-4,
+    .wrapper-img-coffee5:hover .img_dessert-5,
+    .wrapper-img-coffee6:hover .img_dessert-6,
+    .wrapper-img-coffee7:hover .img_dessert-7,
+    .wrapper-img-coffee8:hover .img_dessert-8 {
+        background-size: 100%; 
+    }
     .socials-links-items-menu:hover .instagram-hover{
         opacity: 1;
     }
@@ -1230,6 +1351,7 @@
         stroke: #665F55;
     
     }
+    .container-icons-coffee:hover,
     .container-icons-tea:hover,
     .container-icons-dessert:hover {
         color: #E1D4C9;
@@ -1237,6 +1359,11 @@
         background-color: #665F55;
         cursor: pointer;
     }   
+    .container-icons-coffee.activ:hover,
+    .container-icons-tea.activ:hover,
+    .container-icons-dessert.activ:hover {
+        cursor: default;
+    }
 }
 
 
@@ -1403,7 +1530,7 @@
     .wrapper-img-coffee4,
     .wrapper-img-coffee6,
     .wrapper-img-coffee8 {
-        display: none;
+        display: none; 
     }
     .button-wrapper-about{
         display: flex;
@@ -1538,6 +1665,18 @@
     .img_coffee-3, 
     .img_coffee-5, 
     .img_coffee-7 {
+        width: 308px;
+    }
+    .img_tea-1, 
+    .img_tea-3, 
+    .img_tea-5, 
+    .img_tea-7 {
+        width: 308px;
+    }
+    .img_dessert-1, 
+    .img_dessert-3, 
+    .img_dessert-5, 
+    .img_dessert-7 {
         width: 308px;
     }
     .favourites-coffee {
