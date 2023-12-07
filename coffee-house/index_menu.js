@@ -18,28 +18,40 @@ const COFFEE_DESCRIPTION = document.querySelectorAll(".description-coffee");
 
 
 // кнопка refresh
+
 BUTTON_REFRESH.addEventListener("click", function() {
-    for (let i = 2; i < 9; i += 2) { // включение 4-х картинок
-        document.querySelector(`.wrapper-img-coffee${i}`).style.display = "flex";
-    }
-    BUTTON_REFRESH.style.display = "none";
+        for (let i = 2; i < 9; i += 2) { // включение 4-х картинок
+            let elem = document.querySelector(`.wrapper-img-coffee${i}`).cloneNode(true);
+            elem.classList.add("refresh-img");
+            document.querySelector(".images-container2").appendChild(elem);
+            elem.style.display = "flex";
+            elem.style.opacity = "0";
+            setTimeout(function() {
+                elem.style.opacity = "1";
+            },200)
+        }
+        BUTTON_REFRESH.classList.add("tea");
 })
+
+function deleteRefreshImg() { // удаление refresh-картинок
+    if (document.querySelector(".images-container2").children.length > 4) {
+
+                for (let i = 2; i < 9; i += 2) { // отключение 4-х картинок
+                    let elemDelet = document.querySelector(`.wrapper-img-coffee${i}.refresh-img`);
+                    document.querySelector(".images-container2").removeChild(elemDelet);
+                BUTTON_REFRESH.classList.remove("tea");
+            }
+    }
+}
 window.addEventListener('resize', function() {
     let w = window.innerWidth;
     if (w > 768) {
-        BUTTON_REFRESH.style.display = "none";
-        for (let i = 2; i < 9; i += 2) { // включение 4-х картинок
-            document.querySelector(`.wrapper-img-coffee${i}`).style.display = "flex";
-        }
-    } else if (w <= 768) {
-        BUTTON_REFRESH.style.display = "flex";
-        for (let i = 2; i < 9; i += 2) { // отключение 4-х картинок
-            document.querySelector(`.wrapper-img-coffee${i}`).style.display = "none";
-        }
+        deleteRefreshImg();
     }
 
-  });
 
+  });
+ 
 let elem;
 let wrap;
 let wrapchild1;
@@ -128,6 +140,8 @@ BUTTON_COFFEE.addEventListener("click", function() {
     BUTTON_DESSERT.classList.remove("activ");
     BUTTON_TEA.classList.remove("activ");
 
+    deleteRefreshImg()
+
     for  (let i = 1; i < 9; i++) {
         document.querySelector(`.img_coffee-${i}`).style.opacity = "1";
         document.querySelector(`.img_tea-${i}`).style.opacity = "0";
@@ -137,9 +151,12 @@ BUTTON_COFFEE.addEventListener("click", function() {
             document.querySelector(`.img_tea-${i}`).style.zIndex = "0";
             document.querySelector(`.img_dessert-${i}`).style.zIndex = "0";
         }, 500)
+
         if (i % 2 === 0) {
-           document.querySelector(`.wrapper-img-coffee${i}`).style.display = "flex";
-     }
+            document.querySelector(`.wrapper-img-coffee${i}`).classList.remove("tea");
+            BUTTON_REFRESH.classList.remove("tea");
+        }
+
     }
 
     for (let i = 0; i < 8; i++) {
@@ -152,10 +169,6 @@ BUTTON_COFFEE.addEventListener("click", function() {
             TEA_DESCRIPTION[i].style.opacity = "0";
         }
     }
-    BUTTON_REFRESH.style.display = "flex"; // включение кнопки refresh
-    for (let i = 2; i < 9; i += 2) { // отключение 4-х картинок
-        document.querySelector(`.wrapper-img-coffee${i}`).style.display = "none";
-    }
 })
 
 
@@ -167,6 +180,8 @@ BUTTON_TEA.addEventListener("click", function() {
     BUTTON_COFFEE.classList.remove("activ");
     BUTTON_DESSERT.classList.remove("activ");
 
+    deleteRefreshImg()
+
     for  (let i = 1; i < 9; i++) {
         document.querySelector(`.img_coffee-${i}`).style.opacity = "0";
         document.querySelector(`.img_tea-${i}`).style.opacity = "1";
@@ -176,10 +191,13 @@ BUTTON_TEA.addEventListener("click", function() {
             document.querySelector(`.img_coffee-${i}`).style.zIndex = "0";
             document.querySelector(`.img_dessert-${i}`).style.zIndex = "0";
         }, 500)
-      if (i % 2 === 0) {
-           document.querySelector(`.wrapper-img-coffee${i}`).style.display = "none";
+
+        if (i % 2 === 0) {
+            document.querySelector(`.wrapper-img-coffee${i}`).classList.add("tea");
+            BUTTON_REFRESH.classList.add("tea");
+        }
     }
-    }
+
 
     for (let i = 0; i < 8; i++) {
         COFFEE_DESCRIPTION[i].style.zIndex = "0";
@@ -191,7 +209,6 @@ BUTTON_TEA.addEventListener("click", function() {
             TEA_DESCRIPTION[i].style.opacity = "1";
         }
     }
-    BUTTON_REFRESH.style.display = "none"; // отключение кнопки refresh
 })
 
 
@@ -200,6 +217,8 @@ BUTTON_DESSERT.addEventListener("click", function() {
     BUTTON_DESSERT.classList.add("activ");
     BUTTON_TEA.classList.remove("activ");
     BUTTON_COFFEE.classList.remove("activ");
+
+    deleteRefreshImg()
 
     for  (let i = 1; i < 9; i++) {
 
@@ -212,7 +231,10 @@ BUTTON_DESSERT.addEventListener("click", function() {
             document.querySelector(`.img_dessert-${i}`).style.zIndex = "1";
         }, 500)
         if (i % 2 === 0) {
-          document.querySelector(`.wrapper-img-coffee${i}`).style.display = "flex";
+            document.querySelector(`.wrapper-img-coffee${i}`).classList.remove("tea");
+            BUTTON_REFRESH.classList.remove("tea");
+
+
         }
     }
     for (let i = 0; i < 8; i++) {
@@ -224,14 +246,6 @@ BUTTON_DESSERT.addEventListener("click", function() {
             TEA_DESCRIPTION[i].style.zIndex = "0";
             TEA_DESCRIPTION[i].style.opacity = "0";
         }
-    }
-    
-    BUTTON_REFRESH.style.display = "flex"; // включение кнопки refresh
-        for (let i = 2; i < 9; i += 2) { // отключение 4-х картинок
-            document.querySelector(`.wrapper-img-coffee${i}`).style.display = "none";
-        }
-
-
-    
+    }  
 
 })

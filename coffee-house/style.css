@@ -457,6 +457,9 @@
     display: none;
     transition: 1.5s;
 }
+.button-wrapper-about.tea{
+    display: none;
+}
 .button-wrapper-about-svg {
     stroke: #403F3D;
 }
@@ -829,6 +832,19 @@
     opacity: 1;
     transition: 1s;
 }
+
+
+.wrapper-img-coffee1.tea,
+.wrapper-img-coffee2.tea,
+.wrapper-img-coffee3.tea,
+.wrapper-img-coffee4.tea,
+.wrapper-img-coffee5.tea,
+.wrapper-img-coffee6.tea,
+.wrapper-img-coffee7.tea,
+.wrapper-img-coffee8.tea {
+    display: none;
+    transition: 1s;
+}
 .img_coffee-1,
 .img_coffee-2,
 .img_coffee-3,
@@ -844,6 +860,7 @@
     background-size: 110%;
     background-position: center;
     transition: background-size 1s;
+    opacity: 1;
     z-index: 1;
     transition: 1s;
 }
@@ -861,6 +878,8 @@
     border-radius: 40px;
     background-size: 110%;
     background-position: center;
+    opacity: 0;
+    z-index: 0;
     transition: background-size 1s;
     transition: 1s;
 }
@@ -878,6 +897,8 @@
     border-radius: 40px;
     background-size: 110%;
     background-position: center;
+    opacity: 0;
+    z-index: 0;
     transition: background-size 1s;
     transition: 1s;
 }
