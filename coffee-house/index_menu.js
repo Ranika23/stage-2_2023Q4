@@ -4,7 +4,6 @@ console.log(data[19].name)
 
 
 document.querySelector(".menu-burger-cup2").addEventListener("click", function() {
-    console.log('hello')
     closeBurger();
 });
 
@@ -84,7 +83,6 @@ for (let indjson = 12; indjson < 16; indjson++) {
     wrapchild1.innerHTML = `${data[indjson].name}`;
     wrapchild2.innerHTML =  `${data[indjson].description}`;
     elem.innerHTML = `$${data[indjson].price}`;
-    console.log(DESSERT_DESCRIPTION[n_img], n_img)
     n_img += 2;
 
 }
@@ -95,7 +93,6 @@ for (let indjson = 16; indjson < 20; indjson++) {
     wrapchild1.innerHTML = `${data[indjson].name}`;
     wrapchild2.innerHTML =  `${data[indjson].description}`;
     elem.innerHTML = `$${data[indjson].price}`;
-    console.log(DESSERT_DESCRIPTION[n_img], n_img)
     n_img += 2;
 }
 
@@ -128,7 +125,6 @@ for (let indjson = 8; indjson < 12; indjson++) {
     wrapchild1.innerHTML = `${data[indjson].name}`;
     wrapchild2.innerHTML =  `${data[indjson].description}`;
     elem.innerHTML = `$${data[indjson].price}`;
-    console.log(TEA_DESCRIPTION[n_img], n_img)
     n_img += 2;
 }
 
@@ -139,8 +135,8 @@ BUTTON_COFFEE.addEventListener("click", function() {
     BUTTON_COFFEE.classList.add("activ");
     BUTTON_DESSERT.classList.remove("activ");
     BUTTON_TEA.classList.remove("activ");
-
-    deleteRefreshImg()
+    addDelClass("coffee", "tea", "dessert"); //удаление/добавление класса для модального окна
+    deleteRefreshImg();
 
     for  (let i = 1; i < 9; i++) {
         document.querySelector(`.img_coffee-${i}`).style.opacity = "1";
@@ -179,7 +175,7 @@ BUTTON_TEA.addEventListener("click", function() {
     BUTTON_TEA.classList.add("activ");
     BUTTON_COFFEE.classList.remove("activ");
     BUTTON_DESSERT.classList.remove("activ");
-
+    addDelClass( "tea", "coffee", "dessert"); //удаление/добавление класса для модального окна
     deleteRefreshImg()
 
     for  (let i = 1; i < 9; i++) {
@@ -217,7 +213,7 @@ BUTTON_DESSERT.addEventListener("click", function() {
     BUTTON_DESSERT.classList.add("activ");
     BUTTON_TEA.classList.remove("activ");
     BUTTON_COFFEE.classList.remove("activ");
-
+    addDelClass( "dessert", "tea", "coffee"); //удаление/добавление класса для модального окна
     deleteRefreshImg()
 
     for  (let i = 1; i < 9; i++) {
@@ -249,3 +245,216 @@ BUTTON_DESSERT.addEventListener("click", function() {
     }  
 
 })
+
+
+
+
+// модальные окна
+
+
+
+
+
+
+let CARD_PRODACT_REFRESH;
+document.querySelector(".button-wrapper-about").addEventListener("click", function() {
+    CARD_PRODACT_REFRESH = document.querySelectorAll('[class*="refresh-img"]');
+    let r = CARD_PRODACT_REFRESH.length;
+    for (let i = 0; i < r; i++) { // открытие модалки Для карточек refresh
+
+    if (CARD_PRODACT_REFRESH != undefined) {
+        CARD_PRODACT_REFRESH[i].addEventListener("click", function() {
+            const CARD_CONTENT_REFRESH = CARD_PRODACT_REFRESH[i].children;
+    
+     //       console.log(CARD_PRODACT[i].children)
+            document.querySelector(".body").classList.add("modal");  // фиксация экрана
+            let classScreen = screen(); // определение расширения (для выбора окна модалки)
+            creatModal (classScreen);  //создание и открытие модалки
+            addImgModal(i);
+            document.querySelector(".modal-background").addEventListener("click", function() {   //закрытие модалки
+                closeModal (); 
+            })
+       
+            })
+    } 
+    }
+
+})
+
+
+const CARD_PRODACT = document.querySelectorAll('[class*="wrapper-img-coffee"]'); // массив карточек товаров
+let n = CARD_PRODACT.length;
+
+for (let i = 0; i < n; i++) { // открытие модалки
+    CARD_PRODACT[i].addEventListener("click", function() {
+      const CARD_CONTENT = CARD_PRODACT[i].children;
+
+ //       console.log(CARD_PRODACT[i].children)
+        document.querySelector(".body").classList.add("modal");  // фиксация экрана
+        let classScreen = screen(); // определение расширения (для выбора окна модалки)
+        creatModal (classScreen);  //создание и открытие модалки
+        addImgModal(i);
+        document.querySelector(".modal-background").addEventListener("click", function() {   //закрытие модалки
+            closeModal (); 
+        })
+   
+        })
+
+   
+}
+
+
+
+
+
+function creatModal (cls) { // создание модалки
+    // window
+        let elem = document.createElement('div'); // фон
+        elem.classList.add("modal-background");
+        elem.classList.add("open");
+    
+        let modal = document.createElement('div'); // модальное окно контур
+        modal.classList.add(`${cls}`);
+    
+        elem.appendChild(modal);
+        document.querySelector(".body-container").appendChild(elem);
+    
+      //  addImgModal()
+    
+    }
+let count = 1;
+    function closeModal () { 
+        // закрытие модалки
+
+    document.querySelector(".modal-background").classList.add("close");
+    setTimeout(function() {
+        document.querySelector(".modal-background").classList.remove("open");
+        document.querySelector(".body-container").removeChild(document.querySelector(".modal-background"));
+    }, 500)
+
+    document.querySelector(".body").classList.remove("modal");
+
+    }
+
+
+
+
+
+function addImgModal(i) {// картинка модального окна
+    let image = document.createElement('div'); 
+    document.querySelector(".modal-background div").appendChild(image);
+   // document.querySelector(".modal-desktop").appendChild(image);
+    image.classList.add("modal-img");
+
+
+
+
+
+
+  if (document.querySelector(".images-container2").classList.contains("coffee")) {  /// картинки для coffee
+       let n = i + 1;
+        if (n % 2 != 0) {
+            let k = Math.floor(n / 2) + 1;
+            image.style.backgroundImage = `url(assets/img/menu_coffee-${k}.png)`;
+
+        } else {
+            if(n === 2) {image.style.backgroundImage = `url(assets/img/menu_coffee-${5}.png)`};
+            if(n === 4) {image.style.backgroundImage = `url(assets/img/menu_coffee-${6}.png)`};
+            if(n === 6) {image.style.backgroundImage = `url(assets/img/menu_coffee-${7}.png)`};
+            if(n === 8) {image.style.backgroundImage = `url(assets/img/menu_coffee-${8}.png)`};
+        }
+       
+        if(CARD_PRODACT_REFRESH != undefined) {
+            if(n === 1) {image.style.backgroundImage = `url(assets/img/menu_coffee-${5}.png)`};
+            if(n === 2) {image.style.backgroundImage = `url(assets/img/menu_coffee-${6}.png)`};
+            if(n === 3) {image.style.backgroundImage = `url(assets/img/menu_coffee-${7}.png)`};
+            if(n === 4) {image.style.backgroundImage = `url(assets/img/menu_coffee-${8}.png)`};
+        }
+    } 
+   
+
+    if (document.querySelector(".images-container2").classList.contains("tea")) {  /// картинки для tea
+        let n = i + 1;
+
+        if (n % 2 != 0) {
+             let k = Math.floor(n / 2) + 1;
+             console.log(k)
+             image.style.backgroundImage = `url(assets/img/tea-${k}.png)`;
+ 
+         } else {
+             if(n === 2) {image.style.backgroundImage = `url(assets/img/tea-${3}.png)`};
+             if(n === 4) {image.style.backgroundImage = `url(assets/img/tea-${4}.png)`};
+         }
+        
+     } 
+
+     if (document.querySelector(".images-container2").classList.contains("dessert")) {  /// картинки для dessert
+        let n = i + 1;
+         if (n % 2 != 0) {
+             let k = Math.floor(n / 2) + 1;
+             console.log(k)
+             image.style.backgroundImage = `url(assets/img/dessert-${k}.png)`;
+ 
+         } else {
+             if(n === 2) {image.style.backgroundImage = `url(assets/img/dessert-${5}.png)`};
+             if(n === 4) {image.style.backgroundImage = `url(assets/img/dessert-${6}.png)`};
+             if(n === 6) {image.style.backgroundImage = `url(assets/img/dessert-${7}.png)`};
+             if(n === 8) {image.style.backgroundImage = `url(assets/img/dessert-${8}.png)`};
+         }
+
+         if(CARD_PRODACT_REFRESH != undefined) {
+            if(n === 1) {image.style.backgroundImage = `url(assets/img/dessert-${5}.png)`};
+            if(n === 2) {image.style.backgroundImage = `url(assets/img/dessert-${6}.png)`};
+            if(n === 3) {image.style.backgroundImage = `url(assets/img/dessert-${7}.png)`};
+            if(n === 4) {image.style.backgroundImage = `url(assets/img/dessert-${8}.png)`};
+        }
+        
+     } 
+
+
+
+}
+
+
+function screen() { // определение разрешения
+    let cls;
+
+        let w = window.innerWidth;
+    
+        if (w <= 730) {
+            cls = "modal-mobile";
+        }
+        if (w <= 850 && w > 730) {
+            cls =  "modal-tablet";
+        }
+        if (w > 850) {
+            cls = "modal-desktop"; 
+        }
+       
+      return cls;
+}
+
+
+function addDelClass(add, remove1, remove2) {   // добавление_удаление класса для модального окна
+    document.querySelector(".images-container2").classList.add(`${add}`);
+    document.querySelector(".images-container2").classList.remove(`${remove1}`);
+    document.querySelector(".images-container2").classList.remove(`${remove2}`);
+};
+
+
+    
+window.addEventListener('resize', function() {  // закрытие модалки при смене разрешения
+    let w = window.innerWidth;
+    if (document.querySelectorAll('[class*="modal-background"]').length > 0) {
+        if (w <= 2000 && document.querySelector(".modal-background").classList.contains("close") === false) {
+
+            closeModal ();
+        }
+    }
+})
+
+/*if (document.querySelector(".images-container2").children.length > 4) {
+    for (let i = 2; i < 9; i += 2) { 
+
+}
+}*/
