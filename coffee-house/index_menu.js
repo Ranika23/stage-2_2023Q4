@@ -270,7 +270,18 @@ document.querySelector(".button-wrapper-about").addEventListener("click", functi
             document.querySelector(".body").classList.add("modal");  // фиксация экрана
             let classScreen = screen(); // определение расширения (для выбора окна модалки)
             creatModal (classScreen);  //создание и открытие модалки
-            addImgModal(i);
+            if(classScreen != "modal-mobile") {
+                addImgModal(i);
+            }
+
+
+
+            let widthPadding = widthModal(classScreen); // определение ширины и padding для description
+            addDescriptModal(widthPadding);
+
+
+
+    
             document.querySelector(".modal-background").addEventListener("click", function() {   //закрытие модалки
                 closeModal (); 
             })
@@ -293,7 +304,19 @@ for (let i = 0; i < n; i++) { // открытие модалки
         document.querySelector(".body").classList.add("modal");  // фиксация экрана
         let classScreen = screen(); // определение расширения (для выбора окна модалки)
         creatModal (classScreen);  //создание и открытие модалки
-        addImgModal(i);
+        console.log(classScreen)
+        if(classScreen != "modal-mobile") {
+            addImgModal(i);
+        }
+
+
+
+        let widthPadding = widthModal(classScreen); // определение ширины и padding для description
+        addDescriptModal(widthPadding);
+
+
+
+
         document.querySelector(".modal-background").addEventListener("click", function() {   //закрытие модалки
             closeModal (); 
         })
@@ -303,7 +326,21 @@ for (let i = 0; i < n; i++) { // открытие модалки
    
 }
 
+function widthModal(width) {   // определение ширины для description
+    let widPadd = [];
 
+
+    if(width === "modal-desktop") {
+        widPadd = ["458px", "20px"];
+    }
+    if(width === "modal-tablet") {
+        widPadd = ["346px", "20px"];
+    }
+    if(width === "modal-mobile") {
+        widPadd = ["310px", "0px"];
+    }
+    return widPadd;
+}
 
 
 
@@ -322,9 +359,8 @@ function creatModal (cls) { // создание модалки
       //  addImgModal()
     
     }
-let count = 1;
-    function closeModal () { 
-        // закрытие модалки
+
+function closeModal () {  // закрытие модалки
 
     document.querySelector(".modal-background").classList.add("close");
     setTimeout(function() {
@@ -340,56 +376,46 @@ let count = 1;
 
 
 
-function addImgModal(i) {// картинка модального окна
+function addImgModal(i) {// добавление картинки модального окна
     let image = document.createElement('div'); 
     document.querySelector(".modal-background div").appendChild(image);
-   // document.querySelector(".modal-desktop").appendChild(image);
     image.classList.add("modal-img");
 
+function ImgforCoffee() {   /// картинки для coffee
+    let n = i + 1;
+    if (n % 2 != 0) {
+        let k = Math.floor(n / 2) + 1;
+        image.style.backgroundImage = `url(assets/img/menu_coffee-${k}.png)`;
 
-
-
-
-
-  if (document.querySelector(".images-container2").classList.contains("coffee")) {  /// картинки для coffee
-       let n = i + 1;
-        if (n % 2 != 0) {
-            let k = Math.floor(n / 2) + 1;
-            image.style.backgroundImage = `url(assets/img/menu_coffee-${k}.png)`;
-
-        } else {
-            if(n === 2) {image.style.backgroundImage = `url(assets/img/menu_coffee-${5}.png)`};
-            if(n === 4) {image.style.backgroundImage = `url(assets/img/menu_coffee-${6}.png)`};
-            if(n === 6) {image.style.backgroundImage = `url(assets/img/menu_coffee-${7}.png)`};
-            if(n === 8) {image.style.backgroundImage = `url(assets/img/menu_coffee-${8}.png)`};
-        }
-       
-        if(CARD_PRODACT_REFRESH != undefined) {
-            if(n === 1) {image.style.backgroundImage = `url(assets/img/menu_coffee-${5}.png)`};
-            if(n === 2) {image.style.backgroundImage = `url(assets/img/menu_coffee-${6}.png)`};
-            if(n === 3) {image.style.backgroundImage = `url(assets/img/menu_coffee-${7}.png)`};
-            if(n === 4) {image.style.backgroundImage = `url(assets/img/menu_coffee-${8}.png)`};
-        }
-    } 
+    } else {
+        if(n === 2) {image.style.backgroundImage = `url(assets/img/menu_coffee-${5}.png)`};
+        if(n === 4) {image.style.backgroundImage = `url(assets/img/menu_coffee-${6}.png)`};
+        if(n === 6) {image.style.backgroundImage = `url(assets/img/menu_coffee-${7}.png)`};
+        if(n === 8) {image.style.backgroundImage = `url(assets/img/menu_coffee-${8}.png)`};
+    }
    
+    if(CARD_PRODACT_REFRESH != undefined) {
+        if(n === 1) {image.style.backgroundImage = `url(assets/img/menu_coffee-${5}.png)`};
+        if(n === 2) {image.style.backgroundImage = `url(assets/img/menu_coffee-${6}.png)`};
+        if(n === 3) {image.style.backgroundImage = `url(assets/img/menu_coffee-${7}.png)`};
+        if(n === 4) {image.style.backgroundImage = `url(assets/img/menu_coffee-${8}.png)`};
+    }
+}
+function ImgforTea() {  /// картинки для tea
+    let n = i + 1;
 
-    if (document.querySelector(".images-container2").classList.contains("tea")) {  /// картинки для tea
-        let n = i + 1;
+    if (n % 2 != 0) {
+         let k = Math.floor(n / 2) + 1;
+         console.log(k)
+         image.style.backgroundImage = `url(assets/img/tea-${k}.png)`;
 
-        if (n % 2 != 0) {
-             let k = Math.floor(n / 2) + 1;
-             console.log(k)
-             image.style.backgroundImage = `url(assets/img/tea-${k}.png)`;
- 
-         } else {
-             if(n === 2) {image.style.backgroundImage = `url(assets/img/tea-${3}.png)`};
-             if(n === 4) {image.style.backgroundImage = `url(assets/img/tea-${4}.png)`};
-         }
-        
-     } 
-
-     if (document.querySelector(".images-container2").classList.contains("dessert")) {  /// картинки для dessert
-        let n = i + 1;
+     } else {
+         if(n === 2) {image.style.backgroundImage = `url(assets/img/tea-${3}.png)`};
+         if(n === 4) {image.style.backgroundImage = `url(assets/img/tea-${4}.png)`};
+     }
+}
+function ImgforDessert() {    /// картинки для dessert
+    let n = i + 1;
          if (n % 2 != 0) {
              let k = Math.floor(n / 2) + 1;
              console.log(k)
@@ -408,12 +434,287 @@ function addImgModal(i) {// картинка модального окна
             if(n === 3) {image.style.backgroundImage = `url(assets/img/dessert-${7}.png)`};
             if(n === 4) {image.style.backgroundImage = `url(assets/img/dessert-${8}.png)`};
         }
-        
+}
+
+
+  if (document.querySelector(".images-container2").classList.contains("coffee")) {  
+    ImgforCoffee();
+    } 
+   
+
+    if (document.querySelector(".images-container2").classList.contains("tea")) {  
+        ImgforTea();
      } 
 
+     if (document.querySelector(".images-container2").classList.contains("dessert")) {  
+        ImgforDessert();
+     } 
+
+}
+
+function addDescriptModal(widthPad) {
+    let description = document.createElement('div');    // карточка модального окна_описание
+    description.style.width = widthPad[0];
+    description.style.paddingLeft = widthPad[1];
+    document.querySelector(".modal-background div").appendChild(description);
+    description.classList.add("modal-description");
+
+
+    descriptionTitle();
+    descriptionSize();
+    descriptionAdditives();
+    descriptionTotal();
+    descriptionAlert();
+    
+    
+    let descriptionButton = document.createElement('button');    // карточка модального окна_описание_TOTAL
+    document.querySelector(".modal-description").appendChild(descriptionButton);
+    descriptionButton.classList.add("modal-description-button");
+    document.querySelector(".modal-description-button").innerHTML = "Close";
+    
+    
+
+  /*  if (document.querySelector(".images-container2").classList.contains("coffee")) {  
+        ImgforCoffee();
+    } 
+    if (document.querySelector(".images-container2").classList.contains("tea")) {  
+        ImgforTea();
+    } 
+    if (document.querySelector(".images-container2").classList.contains("dessert")) {  
+        ImgforDessert();
+    } */
+}
+
+
+function descriptionTitle() {     // карточка модального окна_описание_TITLE
+    let descriptionTitle = document.createElement('div');  
+    document.querySelector(".modal-description").appendChild(descriptionTitle);
+    descriptionTitle.classList.add("modal-description-title");
+    let title = document.createElement('div');    // TITLE
+    title.style.fontSize = "24px";
+    title.style.fontWeight = "600";
+    title.style.lineHeight = "125%";
+    // addTitle();
+    title.innerHTML = "Irish coffee";
+    document.querySelector(".modal-description-title").appendChild(title);
+    
+    let descript = document.createElement('div'); // DESCRIPT
+    descript.style.fontSize = "16px";
+    descript.style.fontWeight = "400";
+    descript.style.lineHeight = "150%";
+    // addDescript();
+    descript.innerHTML = "Fragrant black coffee with Jameson Irish whiskey and whipped milk";
+    document.querySelector(".modal-description-title").appendChild(descript);
+    
+};
+function descriptionSize() {     // карточка модального окна_описание_SIZE
+    let descriptionSize = document.createElement('div');  
+    document.querySelector(".modal-description").appendChild(descriptionSize);
+    descriptionSize.classList.add("modal-description-size");
+   
+
+
+    let title = document.createElement('div');    // TITLE
+    title.style.fontSize = "16px";
+    title.style.fontWeight = "400";
+    title.style.lineHeight = "150%";
+    title.innerHTML = "Size";
+    document.querySelector(".modal-description-size").appendChild(title);
+    
+
+    let tabs = document.createElement('div'); // TABS
+    tabs.classList.add("modal-size-tabs");
+    document.querySelector(".modal-description-size").appendChild(tabs);
+
+    let tabSize1 = document.createElement('div');
+    let tabSize2 = document.createElement('div');
+    let tabSize3 = document.createElement('div');
+    tabSize1.classList.add("tab1-size");
+    tabSize2.classList.add("tab2-size");
+    tabSize3.classList.add("tab3-size");
+    document.querySelector(".modal-size-tabs").appendChild(tabSize1);
+    document.querySelector(".modal-size-tabs").appendChild(tabSize2);
+    document.querySelector(".modal-size-tabs").appendChild(tabSize3);
+
+
+    let LettertabSize1 = document.createElement('div');
+    let LettertabSize2 = document.createElement('div');
+    let LettertabSize3 = document.createElement('div');
+    LettertabSize1.innerHTML = "S";
+    LettertabSize2.innerHTML = "M";
+    LettertabSize3.innerHTML = "L";
+    document.querySelector(".tab1-size").appendChild(LettertabSize1);
+    document.querySelector(".tab2-size").appendChild(LettertabSize2);
+    document.querySelector(".tab3-size").appendChild(LettertabSize3);
+    LettertabSize1.classList.add("tab1-size-letter");
+    LettertabSize2.classList.add("tab2-size-letter");
+    LettertabSize3.classList.add("tab3-size-letter");
+
+
+    let gramsTabSize1 = document.createElement('div');
+    let gramsTabSize2 = document.createElement('div');
+    let gramsTabSize3 = document.createElement('div');
+    if (document.querySelector(".images-container2").classList.contains("coffee")) {  
+        gramsTabSize1.innerHTML = "200 ml";
+        gramsTabSize2.innerHTML = "300 ml";
+        gramsTabSize3.innerHTML = "400 ml";
+    } 
+    if (document.querySelector(".images-container2").classList.contains("tea")) {  
+        gramsTabSize1.innerHTML = "200 ml";
+        gramsTabSize2.innerHTML = "300 ml";
+        gramsTabSize3.innerHTML = "400 ml";
+    } 
+    if (document.querySelector(".images-container2").classList.contains("dessert")) {  
+        gramsTabSize1.innerHTML = "50 g";
+        gramsTabSize2.innerHTML = "100 g";
+        gramsTabSize3.innerHTML = "200 g";
+
+    }
+
+    document.querySelector(".tab1-size").appendChild(gramsTabSize1);
+    document.querySelector(".tab2-size").appendChild(gramsTabSize2);
+    document.querySelector(".tab3-size").appendChild(gramsTabSize3);
 
 
 }
+function descriptionAdditives() {     // карточка модального окна_описание_ADDITIVES
+    let descriptionAdditives = document.createElement('div');  
+    document.querySelector(".modal-description").appendChild(descriptionAdditives);
+    descriptionAdditives.classList.add("modal-description-additives");
+
+    let title = document.createElement('div');    // TITLE
+    title.style.fontSize = "16px";
+    title.style.fontWeight = "400";
+    title.style.lineHeight = "150%";
+    title.innerHTML = "Additives";
+    document.querySelector(".modal-description-additives").appendChild(title);
+    
+
+    let tabs = document.createElement('div'); // TABS
+    tabs.classList.add("modal-additives-tabs");
+    document.querySelector(".modal-description-additives").appendChild(tabs);
+
+    let tabAdditives1 = document.createElement('div');
+    let tabAdditives2 = document.createElement('div');
+    let tabAdditives3 = document.createElement('div');
+    tabAdditives1.classList.add("tab1-additives");
+    tabAdditives2.classList.add("tab2-additives");
+    tabAdditives3.classList.add("tab3-additives");
+    document.querySelector(".modal-additives-tabs").appendChild(tabAdditives1);
+    document.querySelector(".modal-additives-tabs").appendChild(tabAdditives2);
+    document.querySelector(".modal-additives-tabs").appendChild(tabAdditives3);
+
+
+    let LettertabAdditives1 = document.createElement('div');
+    let LettertabAdditives2 = document.createElement('div');
+    let LettertabAdditives3 = document.createElement('div');
+    LettertabAdditives1.innerHTML = "1";
+    LettertabAdditives2.innerHTML = "2";
+    LettertabAdditives3.innerHTML = "3";
+    document.querySelector(".tab1-additives").appendChild(LettertabAdditives1);
+    document.querySelector(".tab2-additives").appendChild(LettertabAdditives2);
+    document.querySelector(".tab3-additives").appendChild(LettertabAdditives3);
+    LettertabAdditives1.classList.add("tab1-additives-letter");
+    LettertabAdditives2.classList.add("tab2-additives-letter");
+    LettertabAdditives3.classList.add("tab3-additives-letter");
+
+
+    let gramsTabAdditives1 = document.createElement('div');
+    let gramsTabAdditives2 = document.createElement('div');
+    let gramsTabAdditives3 = document.createElement('div');
+    if (document.querySelector(".images-container2").classList.contains("coffee")) {  
+        gramsTabAdditives1.innerHTML = "Sugar";
+        gramsTabAdditives2.innerHTML = "Cinnamon";
+        gramsTabAdditives3.innerHTML = "Syrup";
+    } 
+    if (document.querySelector(".images-container2").classList.contains("tea")) {  
+        gramsTabAdditives1.innerHTML = "Sugar";
+        gramsTabAdditives2.innerHTML = "Lemon";
+        gramsTabAdditives3.innerHTML = "Syrup";
+    } 
+    if (document.querySelector(".images-container2").classList.contains("dessert")) {  
+        gramsTabAdditives1.innerHTML = "Berries";
+        gramsTabAdditives2.innerHTML = "Nuts";
+        gramsTabAdditives3.innerHTML = "Jam";
+
+    }
+
+    document.querySelector(".tab1-additives").appendChild(gramsTabAdditives1);
+    document.querySelector(".tab2-additives").appendChild(gramsTabAdditives2);
+    document.querySelector(".tab3-additives").appendChild(gramsTabAdditives3);
+
+}
+function descriptionTotal() {  // карточка модального окна_описание_TOTAL
+    let descriptionTotal = document.createElement('div');    
+    document.querySelector(".modal-description").appendChild(descriptionTotal);
+    descriptionTotal.classList.add("modal-description-total");
+
+    let total = document.createElement('div');
+    let price = document.createElement('div');
+    total.innerHTML = "Total:";
+    price.innerHTML = "$3.50"; // totalPrice()
+
+    document.querySelector(".modal-description-total").appendChild(total);
+    document.querySelector(".modal-description-total").appendChild(price);
+
+} 
+function descriptionAlert() {  // карточка модального окна_описание_TOTAL
+    let descriptionAlert = document.createElement('div');   
+    document.querySelector(".modal-description").appendChild(descriptionAlert);
+    descriptionAlert.classList.add("modal-description-alert");
+
+    let infoImg = document.createElement('div');
+    let infoText = document.createElement('div');
+    infoImg.style.width = "16px";
+    infoImg.style.height = "16px";
+    infoImg.style.backgroundImage = "url(assets/img/info-empty.png)";
+    infoText.innerHTML = "The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount."; 
+    infoText.classList.add("modal-description-alert-text");
+    document.querySelector(".modal-description-alert").appendChild(infoImg);
+    document.querySelector(".modal-description-alert").appendChild(infoText);
+
+
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function screen() { // определение разрешения
