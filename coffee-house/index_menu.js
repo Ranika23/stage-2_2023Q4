@@ -1,5 +1,17 @@
+// menu-burger
+document.querySelector(".menu-burger-cup2").addEventListener("click", function() {
+    closeBurger();
+});
+function closeBurger() {
+    document.querySelector(".menu-burger").classList.remove("open");
+    document.querySelector(".button-burger").classList.remove("open");
+    verticalScroll()
+};
+
+
+
 import data from './products.json' assert { type: "json" };
-console.log(data[19].name)
+
 
 
 
@@ -44,7 +56,7 @@ function deleteRefreshImg() { // удаление refresh-картинок
 }
 window.addEventListener('resize', function () {
     let w = window.innerWidth;
-    if (w > 768) {
+    if (w < 1500) {
         deleteRefreshImg();
     }
 
@@ -263,10 +275,10 @@ document.querySelector(".button-wrapper-about").addEventListener("click", functi
     for (let i = 0; i < r; i++) { // открытие модалки Для карточек refresh
 
         if (CARD_PRODACT_REFRESH != undefined) {
-            CARD_PRODACT_REFRESH[i].addEventListener("click", function () {
+            CARD_PRODACT_REFRESH[i].addEventListener("click", event => {
                 const CARD_CONTENT_REFRESH = CARD_PRODACT_REFRESH[i].children;
 
-                //       console.log(CARD_PRODACT[i].children)
+      
                 document.querySelector(".body").classList.add("modal");  // фиксация экрана
                 let classScreen = screen(); // определение расширения (для выбора окна модалки)
                 creatModal(classScreen);  //создание и открытие модалки
@@ -280,9 +292,20 @@ document.querySelector(".button-wrapper-about").addEventListener("click", functi
                 addDescriptModal(widthPadding, i);
 
 
+                // переключение кнопок 
+                OpenCloseButtonModal()
 
-
-                document.querySelector(".modal-background").addEventListener("click", function () {   //закрытие модалки
+                //условие закрытия модального окна
+                event._isClickProfile = true;
+                document.querySelector(".modal-background div").addEventListener("click", event => {
+                    event._isClickProfile = true;
+                })
+                document.querySelector(".modal-background").addEventListener("click", event => {
+                    if (event._isClickProfile) return;
+                    closeModal();
+                })
+                document.querySelector(".modal-description-button").addEventListener("click", event => {
+                    if (event._isClickProfile) return;
                     closeModal();
                 })
 
@@ -304,7 +327,7 @@ for (let i = 0; i < n; i++) { // открытие модалки
         document.querySelector(".body").classList.add("modal");  // фиксация экрана
         let classScreen = screen(); // определение расширения (для выбора окна модалки)
         creatModal(classScreen);  //создание и открытие модалки
-        console.log(classScreen)
+
         if (classScreen != "modal-mobile") {
             addImgModal(i);
         }
@@ -315,6 +338,8 @@ for (let i = 0; i < n; i++) { // открытие модалки
         addDescriptModal(widthPadding, i);
 
 
+        // переключение кнопок 
+        OpenCloseButtonModal()
 
         //условие закрытия модального окна
         event._isClickProfile = true;
@@ -366,7 +391,7 @@ function creatModal(cls) { // создание модалки
 
 
 };
-//  addImgModal()
+
 
 
 
@@ -416,7 +441,6 @@ function addImgModal(i) {// добавление картинки модальн
 
         if (n % 2 != 0) {
             let k = Math.floor(n / 2) + 1;
-            console.log(k)
             image.style.backgroundImage = `url(assets/img/tea-${k}.png)`;
 
         } else {
@@ -428,7 +452,6 @@ function addImgModal(i) {// добавление картинки модальн
         let n = i + 1;
         if (n % 2 != 0) {
             let k = Math.floor(n / 2) + 1;
-            console.log(k)
             image.style.backgroundImage = `url(assets/img/dessert-${k}.png)`;
 
         } else {
@@ -491,7 +514,7 @@ function addDescriptModal(widthPad, i) {
         let arrCardIndRefresh = [4, 5, 6, 7];
 
         let ind = arrCardInd[indCard];
-        console.log(indCard)
+
         document.querySelector(".modal-description-title").firstChild.innerHTML = `${data[ind].name}`;
         document.querySelector(".modal-description-title").lastChild.innerHTML = `${data[ind].description}`;
         document.querySelector(".modal-description-total").lastChild.innerHTML = `$${data[ind].price}`;
@@ -510,7 +533,7 @@ function addDescriptModal(widthPad, i) {
         let arrCardInd = [8, , 9, , 10, , 11,]; // индексация в json
 
         let ind = arrCardInd[indCard];
-        console.log(indCard)
+       
         document.querySelector(".modal-description-title").firstChild.innerHTML = `${data[ind].name}`;
         document.querySelector(".modal-description-title").lastChild.innerHTML = `${data[ind].description}`;
         document.querySelector(".modal-description-total").lastChild.innerHTML = `$${data[ind].price}`;
@@ -522,7 +545,7 @@ function addDescriptModal(widthPad, i) {
         let arrCardIndRefresh = [16, 17, 18, 19];
 
         let ind = arrCardInd[indCard];
-        console.log(indCard)
+  
         document.querySelector(".modal-description-title").firstChild.innerHTML = `${data[ind].name}`;
         document.querySelector(".modal-description-title").lastChild.innerHTML = `${data[ind].description}`;
         document.querySelector(".modal-description-total").lastChild.innerHTML = `$${data[ind].price}`;
@@ -754,45 +777,6 @@ function descriptionButton() {   // карточка модального окн
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function screen() { // определение разрешения
     let cls;
 
@@ -830,8 +814,147 @@ window.addEventListener('resize', function () {  // закрытие модал�
     }
 })
 
-/*if (document.querySelector(".images-container2").children.length > 4) {
-    for (let i = 2; i < 9; i += 2) { 
+
+
+
+// переключение кнопок модального окна
+
+function OpenCloseButtonModal() {
+    let price = Number(document.querySelector(".modal-description-total").lastChild.innerHTML.slice(1))
+
+
+    document.querySelector(".tab1-size").addEventListener("click", function () {
+        openS(price)
+    })
+    document.querySelector(".tab2-size").addEventListener("click", function () {
+        openM(price)
+    })
+    document.querySelector(".tab3-size").addEventListener("click", function () {
+        openL(price)
+    })
+
+
+
+
+    document.querySelector(".tab1-additives").addEventListener("click", function () {
+        open1();
+
+    })
+    document.querySelector(".tab2-additives").addEventListener("click", function () {
+        open2();
+    })
+    document.querySelector(".tab3-additives").addEventListener("click", function () {
+        open3();
+    })
+
 
 }
-}*/
+function openS(price) {
+    document.querySelector(".tab1-size").classList.add("open");
+    document.querySelector(".tab2-size").classList.remove("open");
+    document.querySelector(".tab3-size").classList.remove("open");
+    document.querySelector(".tab1-size-letter").classList.add("open");
+    document.querySelector(".tab2-size-letter").classList.remove("open");
+    document.querySelector(".tab3-size-letter").classList.remove("open");
+
+    let count = startPrice();
+    let pr = price + 0 + count;
+
+    innerPrice(pr);
+
+}
+function openM(price) {
+    document.querySelector(".tab1-size").classList.remove("open");
+    document.querySelector(".tab2-size").classList.add("open");
+    document.querySelector(".tab3-size").classList.remove("open");
+    document.querySelector(".tab1-size-letter").classList.remove("open");
+    document.querySelector(".tab2-size-letter").classList.add("open");
+    document.querySelector(".tab3-size-letter").classList.remove("open");
+
+    let count = startPrice();
+    let pr = price + 0.5 + count;
+
+    innerPrice(pr);
+
+
+}
+function openL(price) {
+    document.querySelector(".tab1-size").classList.remove("open");
+    document.querySelector(".tab2-size").classList.remove("open");
+    document.querySelector(".tab3-size").classList.add("open");
+    document.querySelector(".tab1-size-letter").classList.remove("open");
+    document.querySelector(".tab2-size-letter").classList.remove("open");
+    document.querySelector(".tab3-size-letter").classList.add("open");
+
+    let count = startPrice();
+    let pr = price + 1 + count;
+
+
+    innerPrice(pr);
+
+}
+
+
+
+function open1() {
+    document.querySelector(".tab1-additives").classList.toggle("open");
+    document.querySelector(".tab1-additives-letter").classList.toggle("open");
+
+    let pr = countForAdditives(1);
+
+    innerPrice(pr);
+
+}
+function open2() {
+    document.querySelector(".tab2-additives").classList.toggle("open");
+    document.querySelector(".tab2-additives-letter").classList.toggle("open");
+
+    let pr = countForAdditives(2);
+
+    innerPrice(pr);
+}
+function open3() {
+    document.querySelector(".tab3-additives").classList.toggle("open");
+    document.querySelector(".tab3-additives-letter").classList.toggle("open");
+
+    let pr = countForAdditives(3);
+
+    innerPrice(pr);
+}
+
+
+
+function startPrice() {  // фиксация выбора additives
+    let count = 0;
+    for (let i = 1; i < 4; i++) {
+        if (document.querySelector(`.tab${i}-additives`).classList.contains("open")) {
+            count += 0.5;
+        }
+    }
+    return count;
+}
+
+function countForAdditives(n) {  // счетчик для additives
+    let pr = Number(document.querySelector(".modal-description-total").lastChild.innerHTML.slice(1));
+    if (document.querySelector(`.tab${n}-additives`).classList.contains("open")) {
+        pr += 0.5;
+    } else {
+        pr -= 0.5;
+    }
+    return pr;
+}
+
+function innerPrice(pr) {  // прорисовка результата price
+    if (String(pr * 100)[2] === "0" && String(pr * 100)[1] === "0") {
+        document.querySelector(".modal-description-total").lastChild.innerHTML = `$${pr}.00`;
+
+    }
+    if (String(pr * 100)[2] === "0" && String(pr * 100)[1] != "0") {
+        document.querySelector(".modal-description-total").lastChild.innerHTML = `$${pr}0`;
+
+    }
+    if (String(pr * 100)[2] != "0" && String(pr * 100)[1] != "0") {
+        document.querySelector(".modal-description-total").lastChild.innerHTML = `$${pr}`;
+
+    }
+}

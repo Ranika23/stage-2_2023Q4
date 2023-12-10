@@ -1,7 +1,12 @@
 // menu-burger
-document.querySelector(".menu-burger-cup a").addEventListener("click", function() {
+document.querySelector(".menu-burger-cup").addEventListener("click", function() {
     closeBurger();
 });
+function closeBurger() {
+    document.querySelector(".menu-burger").classList.remove("open");
+    document.querySelector(".button-burger").classList.remove("open");
+    verticalScroll()
+};
 
 
 // carousel
@@ -147,10 +152,10 @@ function swipeMove (event) {
 function swipeEnd () {
    
     if (-positionDiff >= widthCarousel * 0.3) {
-        console.log(-positionDiff, ">=", widthCarousel * 0.3)
+      
         nextImg()
     } else if (positionDiff >= widthCarousel * 0.3) {
-        console.log(console.log(positionDiff, ">=", widthCarousel * 0.3))
+       
         prevImg()
     }
     positionX1 = null;
@@ -172,10 +177,10 @@ function mouseMove (event) {
 function mouseEnd () {
    
     if (positionDiff <= widthCarousel * 0.3) {
-        console.log(positionDiff)
+      
         nextImg()
     } else if (positionDiff >= widthCarousel * 0.3) {
-        console.log(positionDiff)
+     
         prevImg()
     }
     positionX1 = null;
