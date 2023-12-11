@@ -1,3 +1,4 @@
+
 // menu-burger
 
 document.querySelector(".menu-burger").style.height = `${window.screen.height - 100}px`; // высота меню
@@ -51,6 +52,7 @@ window.addEventListener('resize', function() {
         closeBurger();
         verticalScroll()
     }
-    
+    let h = this.window.innerHeight;
+    document.querySelector(".menu-burger").style.height = `${h - 100}px`; 
   });
 
