@@ -263,6 +263,40 @@ BUTTON_DESSERT.addEventListener("click", function () {
 
 // модальные окна
 
+// фиксация экрана
+function bodyFixModal() {
+
+    setTimeout( function() {
+        let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+  
+        document.querySelector(".body").classList.add("modal"); 
+        document.querySelector(".body").style.top = '-' + scrollPosition + 'px';
+  
+    }, 15 ); 
+  }
+  
+// отмена фиксации экрана
+  function bodyClosefixModal() {
+  
+      let scroll = document.querySelector(".body").style.top;
+      let scrollPosition = Number(scroll.slice(0, scroll.length - 2))
+
+  
+  document.querySelector(".body").style.top = '';
+  document.querySelector(".body").classList.remove("modal"); 
+  
+
+     document.querySelectorAll("*").forEach((element) => element.style.scrollBehavior = "auto")
+   
+      
+      window.scroll(0, -scrollPosition);
+      document.querySelectorAll("*").forEach((element) => element.style.removeProperty('scroll-behavior'))
+
+  
+  }
+
+  
+
 
 
 
@@ -279,7 +313,16 @@ document.querySelector(".button-wrapper-about").addEventListener("click", functi
                 const CARD_CONTENT_REFRESH = CARD_PRODACT_REFRESH[i].children;
 
       
-                document.querySelector(".body").classList.add("modal");  // фиксация экрана
+             
+             
+             //   document.querySelector(".body").classList.add("modal");  // фиксация экрана
+             bodyFixModal();
+             
+             
+             
+             
+             
+             
                 let classScreen = screen(); // определение расширения (для выбора окна модалки)
                 creatModal(classScreen);  //создание и открытие модалки
                 if (classScreen != "modal-mobile") {
@@ -324,7 +367,17 @@ for (let i = 0; i < n; i++) { // открытие модалки
 
         const CARD_CONTENT = CARD_PRODACT[i].children;
 
-        document.querySelector(".body").classList.add("modal");  // фиксация экрана
+
+
+
+
+          //   document.querySelector(".body").classList.add("modal");  // фиксация экрана
+          bodyFixModal();
+        
+        
+        
+        
+        
         let classScreen = screen(); // определение расширения (для выбора окна модалки)
         creatModal(classScreen);  //создание и открытие модалки
 
@@ -403,8 +456,8 @@ function closeModal() {  // закрытие модалки
         document.querySelector(".body-container").removeChild(document.querySelector(".modal-background"));
     }, 500)
 
-    document.querySelector(".body").classList.remove("modal");
-
+   // document.querySelector(".body").classList.remove("modal");
+   bodyClosefixModal();
 }
 
 

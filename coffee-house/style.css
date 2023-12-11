@@ -15,7 +15,7 @@
 }
 * {
     box-sizing: border-box;
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
 }
 .body {
     width: 100%;
@@ -43,6 +43,8 @@
 
     position: fixed;
     overflow-y: hidden;
+    left: 0;
+    width: 100%;
 }
 .header {
     position: relative;
