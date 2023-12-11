@@ -1,4 +1,3 @@
-
 // menu-burger
 
 document.querySelector(".menu-burger").style.height = `${window.screen.height - 100}px`; // высота меню

@@ -1,4 +1,13 @@
 // menu-burger
+function verticalScroll() {
+    if (document.querySelector(".button-burger").classList.contains("open")) {
+        bodyFixModal();
+    } else {
+        bodyClosefixModal();
+    }
+}
+
+
 document.querySelector(".menu-burger-cup2").addEventListener("click", function() {
     closeBurger();
 });

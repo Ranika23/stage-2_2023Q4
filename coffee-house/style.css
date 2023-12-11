@@ -376,6 +376,11 @@
     align-items: center;
     text-align: center;
 }
+.content-slide-1 img,
+.content-slide-2 img,
+.content-slide-3 img {
+    cursor: none;
+}
 .slide-text {
     font-size: 24px;
     font-weight: 600;
@@ -1304,6 +1309,11 @@
     .enjoy-button:hover .menu-img {
         opacity: 1;
     }
+    .content-slide-1 img,
+.content-slide-2 img,
+.content-slide-3 img {
+    cursor: default;
+}
     .arrow-left div:hover,
     .arrow-right div:hover {
         border: solid 1px #C1B6AD;
