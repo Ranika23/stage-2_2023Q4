@@ -129,7 +129,7 @@ CAROUSEL.addEventListener('touchmove', swipeMove, false);
 CAROUSEL.addEventListener('touchend', swipeEnd);
 CAROUSEL.addEventListener('mousedown', mouseStart, false);
 CAROUSEL.addEventListener('mousemove', mouseMove, false);
-CAROUSEL.addEventListener('mouseup', mouseEnd);
+CAROUSEL.addEventListener('mouseup', mouseEnd,false);
 
 let positionX1 = null;
 let positionDiff = null;
@@ -146,24 +146,31 @@ function swipeMove (event) {
     let positionX2 = event.touches[0].clientX;
     positionDiff = positionX2 - positionX1;
     CAROUSEL_LINE.style.left = `${-widthCarousel * countImg + positionDiff}px`;
-
+    CAROUSEL.addEventListener('touchend', swipeEnd);
 }
 
 function swipeEnd () {
    
-    if (-positionDiff >= widthCarousel * 0.3) {
-      
-        nextImg()
-    } else if (positionDiff >= widthCarousel * 0.3) {
+    if (-positionDiff >= widthCarousel * 0.4) {
+           nextImg()
+   
+   ;
+       } else if (positionDiff >= widthCarousel * 0.4) {
+           prevImg()
        
-        prevImg()
-    }
+   
+       } else if((-positionDiff <= widthCarousel * 0.4) && positionDiff <= widthCarousel * 0.4) {
+           CAROUSEL_LINE.style.left = `${-widthCarousel * countImg}px`;
+          
+       }
+
     positionX1 = null;
-    CAROUSEL_LINE.style.left = `${-widthCarousel * countImg}px`;
+    positionDiff = null;
 }
 
 // for mouse
 function mouseStart(event) {
+    CAROUSEL.addEventListener('mousedown', mouseStart, false);
     positionX1 = event.clientX;
 }
 function mouseMove (event) {
@@ -172,19 +179,27 @@ function mouseMove (event) {
     }
     let positionX2 = event.clientX;
     positionDiff = positionX2 - positionX1;
+    console.log(positionDiff)
     CAROUSEL_LINE.style.left = `${-widthCarousel * countImg + positionDiff}px`;
+    CAROUSEL.addEventListener('mouseout', mouseEnd);
 }
 function mouseEnd () {
-   
-    if (positionDiff <= widthCarousel * 0.3) {
-      
+    if (-positionDiff >= widthCarousel * 0.4) {
         nextImg()
-    } else if (positionDiff >= widthCarousel * 0.3) {
-     
+
+;
+    } else if (positionDiff >= widthCarousel * 0.4) {
         prevImg()
+    
+
+    } else if((-positionDiff <= widthCarousel * 0.4) && positionDiff <= widthCarousel * 0.4) {
+        CAROUSEL_LINE.style.left = `${-widthCarousel * countImg}px`;
+       
     }
+
     positionX1 = null;
-    CAROUSEL_LINE.style.left = `${-widthCarousel * countImg}px`;
+    positionDiff = null;
+
 }
 
 
