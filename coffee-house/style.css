@@ -15,7 +15,7 @@
 }
 * {
     box-sizing: border-box;
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
 }
 .body {
     width: 100%;
@@ -43,6 +43,8 @@
 
     position: fixed;
     overflow-y: hidden;
+    left: 0;
+    width: 100%;
 }
 .header {
     position: relative;
@@ -373,6 +375,11 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+.content-slide-1 img,
+.content-slide-2 img,
+.content-slide-3 img {
+    cursor: none;
 }
 .slide-text {
     font-size: 24px;
@@ -1302,6 +1309,11 @@
     .enjoy-button:hover .menu-img {
         opacity: 1;
     }
+    .content-slide-1 img,
+.content-slide-2 img,
+.content-slide-3 img {
+    cursor: default;
+}
     .arrow-left div:hover,
     .arrow-right div:hover {
         border: solid 1px #C1B6AD;
