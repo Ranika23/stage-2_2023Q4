@@ -1,4 +1,34 @@
 // menu-burger
+
+function verticalScroll() {
+    if (document.querySelector(".button-burger").classList.contains("open")) {
+        bodyFixModal();
+    } else {
+        bodyClosefixModal();
+    }
+}
+function bodyFixModal() {
+
+    setTimeout(function () {
+        document.querySelector(".body").classList.add("modal");
+        document.querySelector(".body").style.top = '0 px';
+
+    }, 15);
+}
+
+// отмена фиксации экрана
+function bodyClosefixModal() {
+
+
+    document.querySelector(".body").style.top = '';
+    document.querySelector(".body").classList.remove("modal");
+
+
+    window.scroll(0, 0);
+
+
+}
+
 document.querySelector(".menu-burger-cup").addEventListener("click", function() {
     closeBurger();
 });
@@ -179,7 +209,6 @@ function mouseMove (event) {
     }
     let positionX2 = event.clientX;
     positionDiff = positionX2 - positionX1;
-    console.log(positionDiff)
     CAROUSEL_LINE.style.left = `${-widthCarousel * countImg + positionDiff}px`;
     CAROUSEL.addEventListener('mouseout', mouseEnd);
 }
