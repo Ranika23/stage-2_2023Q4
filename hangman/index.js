@@ -83,3 +83,39 @@ for (let i = 0; i < ARR_BUTTON.length; i += 1) {
   GAME_KEYBOARD.append(game_keyboard_button);
   game_keyboard_button.innerHTML = `${letter}`;
 }
+
+//question-and-answer list
+const QUEST_ANSER = {
+  0: ['провоз', 'Для пассажира проезд, а для багажа?'],
+  1: [
+    'счетчик',
+    'Прибор, который обязан был включить советский таксист при посадке пассажира',
+  ],
+  2: ['парашют', 'Что нужно, чтобы спуститься с небес на землю'],
+  3: ['рундук', 'Короб для багажа под нижней полкой поезда'],
+  4: ['транспорт', 'Превращает человека в пассажира'],
+  5: ['перевес', 'Излишек багажа пассажира самолёта'],
+  6: ['трап', 'Лестница для прилетевших'],
+  7: ['экипаж', 'коллектив самолета'],
+  8: ['штурвал', '"баранка" капитана корабля'],
+  9: ['авиамодель', 'Миниатюрная копия самолета или вертолета'],
+};
+
+// random word choice
+function randomWord() {
+  let num = Math.floor(Math.random() * 10);
+  return QUEST_ANSER[num];
+}
+
+//add word
+let newWord = randomWord()[0];
+wordAdd(newWord);
+
+function wordAdd(newWord) {
+  for (let i = 0; i < newWord.length; i += 1) {
+    let char_elem = document.createElement('div');
+    char_elem.className = 'game-word__char';
+    GAME_WORD.append(char_elem);
+    char_elem.style.borderBottom = '5px solid black';
+  }
+}
