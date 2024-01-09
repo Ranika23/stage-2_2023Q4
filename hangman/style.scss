@@ -1,0 +1,90 @@
+@font-face {
+  font-family: Inter-Regular;
+  font-weight: 400;
+  src: url(assets/fonts/Inter-Regular.ttf);
+}
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+.body {
+  width: 100%;
+  margin: 0;
+  background: #ffffff;
+  .body-container {
+    overflow: clip;
+    max-width: 1440px;
+    // height: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    //flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-family: Inter-Regular;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 150%;
+    background: #d8ffe0;
+  }
+}
+.hangman {
+  height: 100vh;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  .hangman__img {
+    width: 26vw;
+    height: 43vw;
+    border-bottom: solid 20px black;
+    padding-bottom: 2px;
+  }
+  .hangman__title {
+    width: 26vw;
+    height: auto;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 2.5em;
+  }
+}
+.game-board {
+  height: 100vh;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .game-board__hint {
+    width: auto;
+    height: 100px;
+  }
+}
+.game-word {
+  width: auto;
+  height: 100px;
+  display: grid;
+}
+.game-keyboard {
+  width: auto;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+  .game-keyboard__button {
+    width: 60px;
+    height: 50px;
+    background: #2f6db9;
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 900;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
