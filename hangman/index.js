@@ -38,9 +38,26 @@ GAME_WORD.className = 'game-word';
 GAME_BOARD.append(GAME_WORD);
 
 // game-board__hint
-const GAME_BOARD_HINT = document.createElement('h2');
+const GAME_BOARD_HINT = document.createElement('div');
 GAME_BOARD_HINT.className = 'game-board__hint';
 GAME_BOARD.append(GAME_BOARD_HINT);
+
+// game-board__incorrect-container
+const GAME_BOARD_INCORRECT_CONTAINER = document.createElement('div');
+GAME_BOARD_INCORRECT_CONTAINER.className = 'game-board__incorrect-container';
+GAME_BOARD.append(GAME_BOARD_INCORRECT_CONTAINER);
+
+// game-board__incorrect-guesses
+const GAME_BOARD_INCORRECT = document.createElement('div');
+GAME_BOARD_INCORRECT.className = 'game-board__incorrect-guesses';
+GAME_BOARD_INCORRECT_CONTAINER.append(GAME_BOARD_INCORRECT);
+GAME_BOARD_INCORRECT.innerText = 'неверная догадка: ';
+
+// game-board__incorrect-counter
+const GAME_BOARD_COUNTER = document.createElement('div');
+GAME_BOARD_COUNTER.className = 'game-board__incorrect-counter';
+GAME_BOARD_INCORRECT_CONTAINER.append(GAME_BOARD_COUNTER);
+GAME_BOARD_COUNTER.innerText = '0 / 6';
 
 // game-keyboard
 const GAME_KEYBOARD = document.createElement('div');
@@ -86,19 +103,19 @@ for (let i = 0; i < ARR_BUTTON.length; i += 1) {
 
 //question-and-answer list
 const QUEST_ANSER = {
-  0: ['провоз', 'Для пассажира проезд, а для багажа?'],
+  0: ['провоз', 'Подсказка: Для пассажира проезд, а для багажа?'],
   1: [
     'счетчик',
-    'Прибор, который обязан был включить советский таксист при посадке пассажира',
+    'Подсказка: Прибор, который обязан был включить советский таксист при посадке пассажира.',
   ],
-  2: ['парашют', 'Что нужно, чтобы спуститься с небес на землю'],
-  3: ['рундук', 'Короб для багажа под нижней полкой поезда'],
-  4: ['транспорт', 'Превращает человека в пассажира'],
-  5: ['перевес', 'Излишек багажа пассажира самолёта'],
-  6: ['трап', 'Лестница для прилетевших'],
-  7: ['экипаж', 'коллектив самолета'],
-  8: ['штурвал', '"баранка" капитана корабля'],
-  9: ['авиамодель', 'Миниатюрная копия самолета или вертолета'],
+  2: ['парашют', 'Подсказка: Что нужно, чтобы спуститься с небес на землю.'],
+  3: ['рундук', 'Подсказка: Короб для багажа под нижней полкой поезда.'],
+  4: ['транспорт', 'Подсказка: Превращает человека в пассажира.'],
+  5: ['перевес', 'Подсказка: Излишек багажа пассажира самолёта.'],
+  6: ['трап', 'Подсказка: Лестница для прилетевших.'],
+  7: ['экипаж', 'Подсказка: "Коллектив" самолета.'],
+  8: ['штурвал', 'Подсказка: "Баранка" капитана корабля.'],
+  9: ['авиамодель', 'Подсказка: Миниатюрная копия самолета или вертолета.'],
 };
 
 // random word choice
@@ -108,14 +125,20 @@ function randomWord() {
 }
 
 //add word
-let newWord = randomWord()[0];
-wordAdd(newWord);
+let newWord = randomWord();
+addWord(newWord[0]);
+addHint(newWord[1]);
 
-function wordAdd(newWord) {
+function addWord(newWord) {
   for (let i = 0; i < newWord.length; i += 1) {
     let char_elem = document.createElement('div');
     char_elem.className = 'game-word__char';
     GAME_WORD.append(char_elem);
     char_elem.style.borderBottom = '5px solid black';
   }
+}
+
+//add hint
+function addHint(newHint) {
+  GAME_BOARD_HINT.innerText = `${newHint}`;
 }

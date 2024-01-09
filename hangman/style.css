@@ -60,7 +60,38 @@
 }
 .game-board .game-board__hint {
   width: auto;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: 2em;
+}
+.game-board .game-board__incorrect-container {
+  width: auto;
   height: 100px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 10px;
+}
+.game-board .game-board__incorrect-guesses {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: 2em;
+}
+.game-board .game-board__incorrect-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: 2em;
+  color: red;
 }
 
 .game-word {
