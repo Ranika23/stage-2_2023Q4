@@ -136,4 +136,8 @@
   justify-content: center;
 }
 
+.game-keyboard__button:disabled {
+  background: #879bb5;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -66,36 +66,42 @@ GAME_BOARD.append(GAME_KEYBOARD);
 
 // game-keyboard__button
 const ARR_BUTTON = [
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
+  'А',
+  'Б',
+  'В',
+  'Г',
+  'Д',
+  'Е',
+  'Ж',
+  'З',
+  'И',
+  'Й',
+  'К',
+  'Л',
+  'М',
+  'Н',
+  'О',
+  'П',
+  'Р',
+  'С',
+  'Т',
+  'У',
+  'Ф',
+  'Х',
+  'Ц',
+  'Ч',
+  'Ш',
+  'Щ',
+  'Ъ',
+  'Ы',
+  'Ь',
+  'Э',
+  'Ю',
+  'Я',
 ];
 for (let i = 0; i < ARR_BUTTON.length; i += 1) {
   let letter = ARR_BUTTON[i];
-  let game_keyboard_button = document.createElement('div');
+  let game_keyboard_button = document.createElement('button');
   game_keyboard_button.className = 'game-keyboard__button';
   GAME_KEYBOARD.append(game_keyboard_button);
   game_keyboard_button.innerHTML = `${letter}`;
@@ -142,3 +148,33 @@ function addWord(newWord) {
 function addHint(newHint) {
   GAME_BOARD_HINT.innerText = `${newHint}`;
 }
+//open char
+function openChar(char) {
+  let setLetters = newWord[0];
+  for (let i = 0; i < setLetters.length; i += 1) {
+    if (setLetters[i].toUpperCase() === char) {
+      GAME_WORD.children[i].innerHTML = `${char}`;
+      GAME_WORD.children[i].style.borderBottom = 'none';
+    }
+  }
+}
+// disabled button
+function disabledButton(char) {
+  let lettersKeyboard = GAME_KEYBOARD.children;
+  for (let i = 0; i < lettersKeyboard.length; i += 1) {
+    if (
+      lettersKeyboard[i].innerHTML === char &&
+      newWord[0].indexOf(char.toLowerCase()) !== -1
+    ) {
+      lettersKeyboard[i].setAttribute('disabled', '');
+    }
+  }
+}
+//EventListener virtual_keyboard
+GAME_KEYBOARD.addEventListener('click', event => {
+  let char = event.target.innerText;
+  if (char.length === 1) {
+    openChar(char);
+    disabledButton(char);
+  }
+});
