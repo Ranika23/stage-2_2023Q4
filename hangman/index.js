@@ -65,43 +65,43 @@ GAME_KEYBOARD.className = 'game-keyboard';
 GAME_BOARD.append(GAME_KEYBOARD);
 
 // game-keyboard__button
-const OBJ_BUTTON = {
-  0: ['А', 'f'],
-  1: ['Б', ','],
-  2: ['В', 'd'],
-  3: ['Г', 'u'],
-  4: ['Д', 'l'],
-  5: ['Е', 't'],
-  6: ['Ж', ';'],
-  7: ['З', 'p'],
-  8: ['И', 'b'],
-  9: ['Й', 'q'],
-  10: ['К', 'r'],
-  11: ['Л', 'k'],
-  12: ['М', 'v'],
-  13: ['Н', 'y'],
-  14: ['О', 'j'],
-  15: ['П', 'g'],
-  16: ['Р', 'h'],
-  17: ['С', 'c'],
-  18: ['Т', 'n'],
-  19: ['У', 'e'],
-  20: ['Ф', 'a'],
-  21: ['Х', '['],
-  22: ['Ц', 'w'],
-  23: ['Ч', 'x'],
-  24: ['Ш', 'i'],
-  25: ['Щ', 'o'],
-  26: ['Ъ', ']'],
-  27: ['Ы', 's'],
-  28: ['Ь', 'm'],
-  29: ['Э', `'`],
-  30: ['Ю', '.'],
-  31: ['Я', 'z'],
-};
-//console.log(OBJ_BUTTON);
-for (let key in OBJ_BUTTON) {
-  let letter = OBJ_BUTTON[key][0];
+const ARR_BUTTON = [
+  'А',
+  'Б',
+  'В',
+  'Г',
+  'Д',
+  'Е',
+  'Ж',
+  'З',
+  'И',
+  'Й',
+  'К',
+  'Л',
+  'М',
+  'Н',
+  'О',
+  'П',
+  'Р',
+  'С',
+  'Т',
+  'У',
+  'Ф',
+  'Х',
+  'Ц',
+  'Ч',
+  'Ш',
+  'Щ',
+  'Ъ',
+  'Ы',
+  'Ь',
+  'Э',
+  'Ю',
+  'Я',
+];
+
+for (let i = 0; i < ARR_BUTTON.length; i += 1) {
+  let letter = ARR_BUTTON[i];
   let game_keyboard_button = document.createElement('button');
   game_keyboard_button.className = 'game-keyboard__button';
   GAME_KEYBOARD.append(game_keyboard_button);
@@ -171,6 +171,7 @@ function disabledButton(char) {
     }
   }
 }
+//let c = 0;
 //EventListener virtual_keyboard
 GAME_KEYBOARD.addEventListener('click', event => {
   let char = event.target.innerText;
@@ -178,16 +179,82 @@ GAME_KEYBOARD.addEventListener('click', event => {
     openChar(char);
     disabledButton(char);
   }
+  const checkKeyboard = `qwertyuiop[]asdfghjkl;''zxcvbnm,./йцукенгшщзхъфывапролджэячсмитьбюё`;
+  if (
+    newWord[0].indexOf(char.toLowerCase()) === -1 &&
+    checkKeyboard.indexOf(char.toLowerCase()) >= 0
+  ) {
+    countIncorrect();
+  }
 });
 //EventListener keyboard
 document.addEventListener('keydown', event => {
   let button = event.key;
-  for (let key in OBJ_BUTTON) {
-    let engSymbol = OBJ_BUTTON[key][1];
-    if (engSymbol === button || engSymbol.toUpperCase() === button) {
-      let char = OBJ_BUTTON[key][0];
+  for (let i = 0; i < ARR_BUTTON.length; i += 1) {
+    let engSymbol = ARR_BUTTON[i];
+    if (engSymbol === button.toUpperCase()) {
+      let char = ARR_BUTTON[i];
       openChar(char);
       disabledButton(char);
     }
   }
+  const checkKeyboard = `qwertyuiop[]asdfghjkl;''zxcvbnm,./йцукенгшщзхъфывапролджэячсмитьбюё`;
+  if (
+    newWord[0].indexOf(button.toLowerCase()) === -1 &&
+    checkKeyboard.indexOf(button.toLowerCase()) >= 0
+  ) {
+    countIncorrect();
+  }
 });
+
+//body parts
+const HANGMAN_BODY = document.createElement('div');
+HANGMAN_BODY.className = 'hangman-body';
+HANGMAN.prepend(HANGMAN_BODY);
+
+//body parts head
+const HANGMAN_BODY_HEAD = document.createElement('div');
+HANGMAN_BODY_HEAD.className = 'hangman-body__head';
+HANGMAN_BODY.prepend(HANGMAN_BODY_HEAD);
+
+//body parts left-hand
+const HANGMAN_BODY_LEFT_HAND = document.createElement('img');
+HANGMAN_BODY_LEFT_HAND.className = 'hangman-body__left-hand';
+HANGMAN_BODY.append(HANGMAN_BODY_LEFT_HAND);
+HANGMAN_BODY_LEFT_HAND.src = 'assets/img/hand-one.svg';
+
+//body parts body
+const HANGMAN_BODY_BODY = document.createElement('img');
+HANGMAN_BODY_BODY.className = 'hangman-body__body';
+HANGMAN_BODY.append(HANGMAN_BODY_BODY);
+HANGMAN_BODY_BODY.src = 'assets/img/body.svg';
+
+//body parts right-hand
+const HANGMAN_BODY_RIGHT_HAND = document.createElement('img');
+HANGMAN_BODY_RIGHT_HAND.className = 'hangman-body__right-hand';
+HANGMAN_BODY.append(HANGMAN_BODY_RIGHT_HAND);
+HANGMAN_BODY_RIGHT_HAND.src = 'assets/img/hand-two.svg';
+
+//body parts left-leg
+const HANGMAN_BODY_LEFT_LEG = document.createElement('img');
+HANGMAN_BODY_LEFT_LEG.className = 'hangman-body__left-leg';
+HANGMAN_BODY.append(HANGMAN_BODY_LEFT_LEG);
+HANGMAN_BODY_LEFT_LEG.src = 'assets/img/leg-one.svg';
+
+//body parts right-leg
+const HANGMAN_BODY_RIGHT_LEG = document.createElement('img');
+HANGMAN_BODY_RIGHT_LEG.className = 'hangman-body__right-leg';
+HANGMAN_BODY.append(HANGMAN_BODY_RIGHT_LEG);
+HANGMAN_BODY_RIGHT_LEG.src = 'assets/img/leg-two.svg';
+
+//add body parts
+/*function addBodyParts() {
+  HANGMAN_BODY.children;
+}*/
+
+// add counter incorrect guesses
+let countIncorrectGuesses = 0;
+function countIncorrect() {
+  countIncorrectGuesses += 1;
+  GAME_BOARD_COUNTER.innerHTML = `${countIncorrectGuesses} / 6`;
+}
