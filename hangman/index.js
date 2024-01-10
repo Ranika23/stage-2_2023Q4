@@ -163,15 +163,12 @@ function openChar(char) {
 function disabledButton(char) {
   let lettersKeyboard = GAME_KEYBOARD.children;
   for (let i = 0; i < lettersKeyboard.length; i += 1) {
-    if (
-      lettersKeyboard[i].innerHTML === char &&
-      newWord[0].indexOf(char.toLowerCase()) !== -1
-    ) {
+    if (lettersKeyboard[i].innerHTML === char) {
       lettersKeyboard[i].setAttribute('disabled', '');
     }
   }
 }
-//let c = 0;
+
 //EventListener virtual_keyboard
 GAME_KEYBOARD.addEventListener('click', event => {
   let char = event.target.innerText;
@@ -179,31 +176,35 @@ GAME_KEYBOARD.addEventListener('click', event => {
     openChar(char);
     disabledButton(char);
   }
-  const checkKeyboard = `qwertyuiop[]asdfghjkl;''zxcvbnm,./йцукенгшщзхъфывапролджэячсмитьбюё`;
+  const checkKeyboardRus = `йцукенгшщзхъфывапролджэячсмитьбюё`;
   if (
     newWord[0].indexOf(char.toLowerCase()) === -1 &&
-    checkKeyboard.indexOf(char.toLowerCase()) >= 0
+    checkKeyboardRus.indexOf(char.toLowerCase()) >= 0
   ) {
+    disabledButton(char);
     countIncorrect();
   }
 });
 //EventListener keyboard
 document.addEventListener('keydown', event => {
   let button = event.key;
-  for (let i = 0; i < ARR_BUTTON.length; i += 1) {
-    let engSymbol = ARR_BUTTON[i];
-    if (engSymbol === button.toUpperCase()) {
+  const checkKeyboardRus = `йцукенгшщзхъфывапролджэячсмитьбюё`;
+  if (checkKeyboardRus.indexOf(button.toLowerCase()) >= 0) {
+    for (let i = 0; i < ARR_BUTTON.length; i += 1) {
+      //let engSymbol = ARR_BUTTON[i];
       let char = ARR_BUTTON[i];
-      openChar(char);
-      disabledButton(char);
+      if (
+        char === button.toUpperCase() &&
+        GAME_KEYBOARD.children[ARR_BUTTON.indexOf(event.key.toUpperCase())]
+          .disabled === false
+      ) {
+        if (newWord[0].indexOf(char.toLowerCase()) === -1) {
+          countIncorrect();
+        }
+        openChar(char);
+        disabledButton(char);
+      }
     }
-  }
-  const checkKeyboard = `qwertyuiop[]asdfghjkl;''zxcvbnm,./йцукенгшщзхъфывапролджэячсмитьбюё`;
-  if (
-    newWord[0].indexOf(button.toLowerCase()) === -1 &&
-    checkKeyboard.indexOf(button.toLowerCase()) >= 0
-  ) {
-    countIncorrect();
   }
 });
 
@@ -259,3 +260,5 @@ function countIncorrect() {
   GAME_BOARD_COUNTER.innerHTML = `${countIncorrectGuesses} / 6`;
   addBodyParts(countIncorrectGuesses);
 }
+
+//const checkKeyboardEng = `qwertyuiop[]asdfghjkl;''zxcvbnm,./`;
