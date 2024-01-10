@@ -248,13 +248,14 @@ HANGMAN_BODY.append(HANGMAN_BODY_RIGHT_LEG);
 HANGMAN_BODY_RIGHT_LEG.src = 'assets/img/leg-two.svg';
 
 //add body parts
-/*function addBodyParts() {
-  HANGMAN_BODY.children;
-}*/
+function addBodyParts(partsBody) {
+  HANGMAN_BODY.children[partsBody - 1].style.opacity = '1';
+}
 
 // add counter incorrect guesses
 let countIncorrectGuesses = 0;
 function countIncorrect() {
   countIncorrectGuesses += 1;
   GAME_BOARD_COUNTER.innerHTML = `${countIncorrectGuesses} / 6`;
+  addBodyParts(countIncorrectGuesses);
 }
