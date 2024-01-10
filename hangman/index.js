@@ -65,42 +65,43 @@ GAME_KEYBOARD.className = 'game-keyboard';
 GAME_BOARD.append(GAME_KEYBOARD);
 
 // game-keyboard__button
-const ARR_BUTTON = [
-  'А',
-  'Б',
-  'В',
-  'Г',
-  'Д',
-  'Е',
-  'Ж',
-  'З',
-  'И',
-  'Й',
-  'К',
-  'Л',
-  'М',
-  'Н',
-  'О',
-  'П',
-  'Р',
-  'С',
-  'Т',
-  'У',
-  'Ф',
-  'Х',
-  'Ц',
-  'Ч',
-  'Ш',
-  'Щ',
-  'Ъ',
-  'Ы',
-  'Ь',
-  'Э',
-  'Ю',
-  'Я',
-];
-for (let i = 0; i < ARR_BUTTON.length; i += 1) {
-  let letter = ARR_BUTTON[i];
+const OBJ_BUTTON = {
+  0: ['А', 'f'],
+  1: ['Б', ','],
+  2: ['В', 'd'],
+  3: ['Г', 'u'],
+  4: ['Д', 'l'],
+  5: ['Е', 't'],
+  6: ['Ж', ';'],
+  7: ['З', 'p'],
+  8: ['И', 'b'],
+  9: ['Й', 'q'],
+  10: ['К', 'r'],
+  11: ['Л', 'k'],
+  12: ['М', 'v'],
+  13: ['Н', 'y'],
+  14: ['О', 'j'],
+  15: ['П', 'g'],
+  16: ['Р', 'h'],
+  17: ['С', 'c'],
+  18: ['Т', 'n'],
+  19: ['У', 'e'],
+  20: ['Ф', 'a'],
+  21: ['Х', '['],
+  22: ['Ц', 'w'],
+  23: ['Ч', 'x'],
+  24: ['Ш', 'i'],
+  25: ['Щ', 'o'],
+  26: ['Ъ', ']'],
+  27: ['Ы', 's'],
+  28: ['Ь', 'm'],
+  29: ['Э', `'`],
+  30: ['Ю', '.'],
+  31: ['Я', 'z'],
+};
+//console.log(OBJ_BUTTON);
+for (let key in OBJ_BUTTON) {
+  let letter = OBJ_BUTTON[key][0];
   let game_keyboard_button = document.createElement('button');
   game_keyboard_button.className = 'game-keyboard__button';
   GAME_KEYBOARD.append(game_keyboard_button);
@@ -176,5 +177,17 @@ GAME_KEYBOARD.addEventListener('click', event => {
   if (char.length === 1) {
     openChar(char);
     disabledButton(char);
+  }
+});
+//EventListener keyboard
+document.addEventListener('keydown', event => {
+  let button = event.key;
+  for (let key in OBJ_BUTTON) {
+    let engSymbol = OBJ_BUTTON[key][1];
+    if (engSymbol === button || engSymbol.toUpperCase() === button) {
+      let char = OBJ_BUTTON[key][0];
+      openChar(char);
+      disabledButton(char);
+    }
   }
 });
