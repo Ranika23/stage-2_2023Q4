@@ -144,11 +144,19 @@ function addWord(newWord) {
     char_elem.style.borderBottom = '5px solid black';
   }
 }
-
+// remove word
+function removeWord() {
+  GAME_WORD.innerHTML = '';
+}
 //add hint
 function addHint(newHint) {
   GAME_BOARD_HINT.innerText = `${newHint}`;
 }
+// remove hint
+function removeHint() {
+  GAME_BOARD_HINT.innerHTML = '';
+}
+
 //open char
 function openChar(char) {
   let setLetters = newWord[0];
@@ -172,7 +180,7 @@ function disabledButton(char) {
 function enabledButton() {
   let lettersKeyboard = GAME_KEYBOARD.children;
   for (let i = 0; i < lettersKeyboard.length; i += 1) {
-    lettersKeyboard[i].disabled = 'false';
+    lettersKeyboard[i].removeAttribute('disabled');
   }
 }
 
@@ -182,6 +190,7 @@ GAME_KEYBOARD.addEventListener('click', event => {
   if (char.length === 1) {
     openChar(char);
     disabledButton(char);
+    startModal();
   }
   const checkKeyboardRus = `йцукенгшщзхъфывапролджэячсмитьбюё`;
   if (
@@ -261,6 +270,13 @@ HANGMAN_BODY_RIGHT_LEG.src = 'assets/img/leg-two.svg';
 function addBodyParts(partsBody) {
   HANGMAN_BODY.children[partsBody - 1].style.opacity = '1';
 }
+//remove body parts
+function removeBodyParts() {
+  const arrBodyPart = HANGMAN_BODY.children;
+  for (let i = 0; i < arrBodyPart.length; i += 1) {
+    arrBodyPart[i].style.opacity = '0';
+  }
+}
 
 // add counter incorrect guesses
 let countIncorrectGuesses = 0;
@@ -283,17 +299,19 @@ BODY.append(MODAL_BACKGROUND);
 
 //start modal__game over
 function gameOver() {
-  GAME_BOARD_COUNTER.innerHTML[0] = 0;
+  GAME_BOARD_COUNTER.innerText = '0 / 6';
+  countIncorrectGuesses = 0;
   enabledButton();
+  MODAL.innerHTML = '';
+  removeBodyParts();
 }
 function startModal() {
-  console.log(GAME_BOARD_COUNTER.innerHTML[0]);
   if (GAME_BOARD_COUNTER.innerHTML[0] === '6') {
     modalEndGame();
     const MESSAGE = document.querySelector('.modal-desktop__message');
     MESSAGE.style.color = 'rgb(151, 15, 15)';
     MESSAGE.innerText = 'Слово не угадано! Рискнете еще раз?';
-    gameOver();
+    closePlayAgain();
   }
   let setLetters = newWord[0];
   let count = 0;
@@ -305,7 +323,7 @@ function startModal() {
         const MESSAGE = document.querySelector('.modal-desktop__message');
         MESSAGE.style.color = 'rgb(32, 136, 103)';
         MESSAGE.innerText = 'Поздравляем! Вы угадали!';
-        gameOver();
+        closePlayAgain();
       }
     }
   }
@@ -332,4 +350,24 @@ function modalEndGame() {
   PLAY_AGAIN.classList = 'modal-desktop__button';
   PLAY_AGAIN.innerText = `PLAY AGAIN`;
   MODAL.append(PLAY_AGAIN);
+}
+
+// close modal
+function closeModal() {
+  MODAL_BACKGROUND.classList.remove('open');
+  MODAL_BACKGROUND.classList.add('close');
+}
+// play-again
+function closePlayAgain() {
+  document
+    .querySelector('.modal-desktop__button')
+    .addEventListener('click', () => {
+      gameOver();
+      closeModal();
+      removeWord();
+      removeHint();
+      newWord = randomWord();
+      addWord(newWord[0]);
+      addHint(newWord[1]);
+    });
 }
