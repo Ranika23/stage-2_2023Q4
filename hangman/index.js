@@ -168,6 +168,13 @@ function disabledButton(char) {
     }
   }
 }
+// enabled button
+function enabledButton() {
+  let lettersKeyboard = GAME_KEYBOARD.children;
+  for (let i = 0; i < lettersKeyboard.length; i += 1) {
+    lettersKeyboard[i].disabled = 'false';
+  }
+}
 
 //EventListener virtual_keyboard
 GAME_KEYBOARD.addEventListener('click', event => {
@@ -183,6 +190,7 @@ GAME_KEYBOARD.addEventListener('click', event => {
   ) {
     disabledButton(char);
     countIncorrect();
+    startModal();
   }
 });
 //EventListener keyboard
@@ -203,6 +211,7 @@ document.addEventListener('keydown', event => {
         }
         openChar(char);
         disabledButton(char);
+        startModal();
       }
     }
   }
@@ -218,17 +227,17 @@ const HANGMAN_BODY_HEAD = document.createElement('div');
 HANGMAN_BODY_HEAD.className = 'hangman-body__head';
 HANGMAN_BODY.prepend(HANGMAN_BODY_HEAD);
 
-//body parts left-hand
-const HANGMAN_BODY_LEFT_HAND = document.createElement('img');
-HANGMAN_BODY_LEFT_HAND.className = 'hangman-body__left-hand';
-HANGMAN_BODY.append(HANGMAN_BODY_LEFT_HAND);
-HANGMAN_BODY_LEFT_HAND.src = 'assets/img/hand-one.svg';
-
 //body parts body
 const HANGMAN_BODY_BODY = document.createElement('img');
 HANGMAN_BODY_BODY.className = 'hangman-body__body';
 HANGMAN_BODY.append(HANGMAN_BODY_BODY);
 HANGMAN_BODY_BODY.src = 'assets/img/body.svg';
+
+//body parts left-hand
+const HANGMAN_BODY_LEFT_HAND = document.createElement('img');
+HANGMAN_BODY_LEFT_HAND.className = 'hangman-body__left-hand';
+HANGMAN_BODY.append(HANGMAN_BODY_LEFT_HAND);
+HANGMAN_BODY_LEFT_HAND.src = 'assets/img/hand-one.svg';
 
 //body parts right-hand
 const HANGMAN_BODY_RIGHT_HAND = document.createElement('img');
@@ -262,3 +271,65 @@ function countIncorrect() {
 }
 
 //const checkKeyboardEng = `qwertyuiop[]asdfghjkl;''zxcvbnm,./`;
+
+// modal
+const MODAL_BACKGROUND = document.createElement('div');
+MODAL_BACKGROUND.className = 'modal-background';
+MODAL_BACKGROUND.classList.add('close');
+const MODAL = document.createElement('div');
+MODAL.className = 'modal-desktop';
+MODAL_BACKGROUND.append(MODAL);
+BODY.append(MODAL_BACKGROUND);
+
+//start modal__game over
+function gameOver() {
+  GAME_BOARD_COUNTER.innerHTML[0] = 0;
+  enabledButton();
+}
+function startModal() {
+  console.log(GAME_BOARD_COUNTER.innerHTML[0]);
+  if (GAME_BOARD_COUNTER.innerHTML[0] === '6') {
+    modalEndGame();
+    const MESSAGE = document.querySelector('.modal-desktop__message');
+    MESSAGE.style.color = 'rgb(151, 15, 15)';
+    MESSAGE.innerText = 'Слово не угадано! Рискнете еще раз?';
+    gameOver();
+  }
+  let setLetters = newWord[0];
+  let count = 0;
+  for (let i = 0; i < setLetters.length; i += 1) {
+    if (GAME_WORD.children[i].style.borderBottom === 'none') {
+      count += 1;
+      if (count === setLetters.length) {
+        modalEndGame();
+        const MESSAGE = document.querySelector('.modal-desktop__message');
+        MESSAGE.style.color = 'rgb(32, 136, 103)';
+        MESSAGE.innerText = 'Поздравляем! Вы угадали!';
+        gameOver();
+      }
+    }
+  }
+}
+
+//modal end game
+function modalEndGame() {
+  MODAL_BACKGROUND.classList.add('open');
+  MODAL_BACKGROUND.classList.remove('close');
+  const MESSAGE = document.createElement('div');
+  MESSAGE.classList = 'modal-desktop__message';
+  MODAL.append(MESSAGE);
+
+  const WORD_SECRET = document.createElement('div');
+  WORD_SECRET.classList = 'modal-desktop__word-secret';
+  WORD_SECRET.innerText = `секретное слово: `;
+  const WORD_SECRET_SPAN = document.createElement('span');
+  WORD_SECRET_SPAN.innerText = `${newWord[0].toUpperCase()}`;
+  WORD_SECRET_SPAN.classList = 'modal-desktop__word-secret-span';
+  MODAL.append(WORD_SECRET);
+  WORD_SECRET.append(WORD_SECRET_SPAN);
+
+  const PLAY_AGAIN = document.createElement('button');
+  PLAY_AGAIN.classList = 'modal-desktop__button';
+  PLAY_AGAIN.innerText = `PLAY AGAIN`;
+  MODAL.append(PLAY_AGAIN);
+}

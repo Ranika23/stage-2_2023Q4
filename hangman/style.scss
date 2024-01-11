@@ -180,3 +180,104 @@
 .game-keyboard__button:disabled {
   background: #879bb5;
 }
+
+//modal
+.modal-background.open {
+  display: block;
+  opacity: 1;
+  z-index: 999;
+  animation: inBlock 0.5s ease-in;
+}
+.modal-background.close {
+  display: none;
+  opacity: 0;
+  animation: fromBlock 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fromBlock {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+@keyframes inBlock {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+.modal-background:before {
+  position: absolute;
+  content: '';
+  background: rgba(64, 63, 61, 0.8);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+.modal-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  width: 800px;
+  height: auto;
+  border-radius: 40px;
+  padding: 50px;
+  background-color: #e1d4c9;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  opacity: 1;
+  color: rgb(57, 57, 57);
+  .modal-desktop__message {
+    width: 80%;
+    height: auto;
+    font-size: 3em;
+    text-align: center;
+    line-height: 1.5em;
+  }
+  .modal-desktop__word-secret {
+    width: 100%;
+    height: auto;
+    font-size: 2em;
+    text-align: center;
+  }
+  .modal-desktop__word-secret-span {
+    width: 100%;
+    height: auto;
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: center;
+    color: rgb(69, 69, 69);
+  }
+  .modal-desktop__button {
+    width: 60%;
+    height: auto;
+    font-size: 2em;
+    text-align: center;
+    border: 1px solid rgb(66, 66, 66);
+    border-radius: 10px;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgb(205, 250, 235);
+    color: rgb(57, 57, 57);
+  }
+}
