@@ -133,10 +133,14 @@ function randomWord() {
 
 //add word
 let newWord = randomWord();
+let arrRandomWord = [];
+
 addWord(newWord[0]);
 addHint(newWord[1]);
 
 function addWord(newWord) {
+  arrRandomWord.push(newWord);
+  console.log(newWord.toUpperCase());
   for (let i = 0; i < newWord.length; i += 1) {
     let char_elem = document.createElement('div');
     char_elem.className = 'game-word__char';
@@ -184,8 +188,19 @@ function enabledButton() {
   }
 }
 
+//disabled keyboard
+function disabledKeyboard() {
+  let lettersKeyboard = GAME_KEYBOARD.children;
+  for (let i = 0; i < lettersKeyboard.length; i += 1) {
+    lettersKeyboard[i].setAttribute('disabled', '');
+  }
+}
+
 //EventListener virtual_keyboard
 GAME_KEYBOARD.addEventListener('click', event => {
+  if (countIncorrectGuesses === 6) {
+    disabledKeyboard();
+  }
   let char = event.target.innerText;
   if (char.length === 1) {
     openChar(char);
@@ -204,6 +219,9 @@ GAME_KEYBOARD.addEventListener('click', event => {
 });
 //EventListener keyboard
 document.addEventListener('keydown', event => {
+  if (countIncorrectGuesses === 6) {
+    disabledKeyboard();
+  }
   let button = event.key;
   const checkKeyboardRus = `йцукенгшщзхъфывапролджэячсмитьбюё`;
   if (checkKeyboardRus.indexOf(button.toLowerCase()) >= 0) {
@@ -282,7 +300,7 @@ function removeBodyParts() {
 let countIncorrectGuesses = 0;
 function countIncorrect() {
   countIncorrectGuesses += 1;
-  GAME_BOARD_COUNTER.innerHTML = `${countIncorrectGuesses} / 6`;
+  GAME_BOARD_COUNTER.innerText = `${countIncorrectGuesses} / 6`;
   addBodyParts(countIncorrectGuesses);
 }
 
@@ -311,6 +329,7 @@ function startModal() {
     const MESSAGE = document.querySelector('.modal-desktop__message');
     MESSAGE.style.color = 'rgb(151, 15, 15)';
     MESSAGE.innerText = 'Слово не угадано! Рискнете еще раз?';
+    disabledKeyboard();
     closePlayAgain();
   }
   let setLetters = newWord[0];
@@ -323,10 +342,23 @@ function startModal() {
         const MESSAGE = document.querySelector('.modal-desktop__message');
         MESSAGE.style.color = 'rgb(32, 136, 103)';
         MESSAGE.innerText = 'Поздравляем! Вы угадали!';
+        disabledKeyboard();
         closePlayAgain();
       }
     }
   }
+}
+// start finish modal
+function finishModal() {
+  if (arrRandomWord.length === 10) {
+    modalEndGame();
+    const MESSAGE = document.querySelector('.modal-desktop__message');
+    const WORD = document.querySelector('.modal-desktop__word-secret');
+    MESSAGE.style.color = 'rgb(151, 15, 15)';
+    MESSAGE.innerText = 'Вы исчерпали весь лимит новых слов.';
+    WORD.innerText = '';
+  }
+  disabledKeyboard();
 }
 
 //modal end game
@@ -357,6 +389,21 @@ function closeModal() {
   MODAL_BACKGROUND.classList.remove('open');
   MODAL_BACKGROUND.classList.add('close');
 }
+function nextRandomWord() {
+  newWord = randomWord();
+  if (arrRandomWord.length < 10) {
+    if (arrRandomWord.indexOf(newWord[0]) === -1) {
+      addWord(newWord[0]);
+      addHint(newWord[1]);
+    } else {
+      nextRandomWord();
+    }
+  } else {
+    finishModal();
+    const AGAIN_DISABLED = document.querySelector('.modal-desktop__button');
+    AGAIN_DISABLED.setAttribute('disabled', '');
+  }
+}
 // play-again
 function closePlayAgain() {
   document
@@ -366,8 +413,6 @@ function closePlayAgain() {
       closeModal();
       removeWord();
       removeHint();
-      newWord = randomWord();
-      addWord(newWord[0]);
-      addHint(newWord[1]);
+      nextRandomWord();
     });
 }

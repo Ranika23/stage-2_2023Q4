@@ -280,4 +280,7 @@
     background-color: rgb(205, 250, 235);
     color: rgb(57, 57, 57);
   }
+  .modal-desktop__button:disabled {
+    color: rgb(161, 157, 157);
+  }
 }
