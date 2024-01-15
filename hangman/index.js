@@ -25,7 +25,7 @@ HANGMAN.prepend(HANGMAN_IMG);
 const HANGMAN_TITLE = document.createElement('h1');
 HANGMAN_TITLE.className = 'hangman__title';
 HANGMAN.append(HANGMAN_TITLE);
-HANGMAN_TITLE.innerHTML = 'HANGMAN GAME';
+HANGMAN_TITLE.innerText = 'HANGMAN GAME';
 
 // game-board
 const GAME_BOARD = document.createElement('div');
@@ -110,7 +110,7 @@ for (let i = 0; i < ARR_BUTTON.length; i += 1) {
   let game_keyboard_button = document.createElement('button');
   game_keyboard_button.className = 'game-keyboard__button';
   GAME_KEYBOARD.append(game_keyboard_button);
-  game_keyboard_button.innerHTML = `${letter}`;
+  game_keyboard_button.innerText = `${letter}`;
 }
 
 //question-and-answer list
@@ -171,7 +171,7 @@ function openChar(char) {
   let setLetters = newWord[0];
   for (let i = 0; i < setLetters.length; i += 1) {
     if (setLetters[i].toUpperCase() === char) {
-      GAME_WORD.children[i].innerHTML = `${char}`;
+      GAME_WORD.children[i].innerText = `${char}`;
       GAME_WORD.children[i].style.borderBottom = 'none';
     }
   }
@@ -273,31 +273,31 @@ HANGMAN_BODY.prepend(HANGMAN_BODY_HEAD);
 const HANGMAN_BODY_BODY = document.createElement('img');
 HANGMAN_BODY_BODY.className = 'hangman-body__body';
 HANGMAN_BODY.append(HANGMAN_BODY_BODY);
-HANGMAN_BODY_BODY.src = 'assets/img/body.svg';
+HANGMAN_BODY_BODY.src = 'assets/img/body.png';
 
 //body parts left-hand
 const HANGMAN_BODY_LEFT_HAND = document.createElement('img');
 HANGMAN_BODY_LEFT_HAND.className = 'hangman-body__left-hand';
 HANGMAN_BODY.append(HANGMAN_BODY_LEFT_HAND);
-HANGMAN_BODY_LEFT_HAND.src = 'assets/img/hand-one.svg';
+HANGMAN_BODY_LEFT_HAND.src = 'assets/img/hand-one.png';
 
 //body parts right-hand
 const HANGMAN_BODY_RIGHT_HAND = document.createElement('img');
 HANGMAN_BODY_RIGHT_HAND.className = 'hangman-body__right-hand';
 HANGMAN_BODY.append(HANGMAN_BODY_RIGHT_HAND);
-HANGMAN_BODY_RIGHT_HAND.src = 'assets/img/hand-two.svg';
+HANGMAN_BODY_RIGHT_HAND.src = 'assets/img/hand-two.png';
 
 //body parts left-leg
 const HANGMAN_BODY_LEFT_LEG = document.createElement('img');
 HANGMAN_BODY_LEFT_LEG.className = 'hangman-body__left-leg';
 HANGMAN_BODY.append(HANGMAN_BODY_LEFT_LEG);
-HANGMAN_BODY_LEFT_LEG.src = 'assets/img/leg-one.svg';
+HANGMAN_BODY_LEFT_LEG.src = 'assets/img/leg-one.png';
 
 //body parts right-leg
 const HANGMAN_BODY_RIGHT_LEG = document.createElement('img');
 HANGMAN_BODY_RIGHT_LEG.className = 'hangman-body__right-leg';
 HANGMAN_BODY.append(HANGMAN_BODY_RIGHT_LEG);
-HANGMAN_BODY_RIGHT_LEG.src = 'assets/img/leg-two.svg';
+HANGMAN_BODY_RIGHT_LEG.src = 'assets/img/leg-two.png';
 
 //add body parts
 function addBodyParts(partsBody) {
@@ -342,6 +342,8 @@ function startModal() {
   if (GAME_BOARD_COUNTER.innerHTML[0] === '6') {
     modalEndGame();
     const MESSAGE = document.querySelector('.modal-desktop__message');
+    const MODAL = document.querySelector('.modal-desktop');
+    MODAL.style.backgroundColor = '#e1d4c9';
     MESSAGE.style.color = 'rgb(151, 15, 15)';
     MESSAGE.innerText = 'Слово не угадано! Рискнете еще раз?';
     disabledKeyboard();
@@ -355,6 +357,8 @@ function startModal() {
       if (count === setLetters.length) {
         modalEndGame();
         const MESSAGE = document.querySelector('.modal-desktop__message');
+        const MODAL = document.querySelector('.modal-desktop');
+        MODAL.style.backgroundColor = '#bddfc4';
         MESSAGE.style.color = 'rgb(32, 136, 103)';
         MESSAGE.innerText = 'Поздравляем! Вы угадали!';
         disabledKeyboard();
@@ -369,6 +373,8 @@ function finishModal() {
     modalEndGame();
     const MESSAGE = document.querySelector('.modal-desktop__message');
     const WORD = document.querySelector('.modal-desktop__word-secret');
+    const MODAL = document.querySelector('.modal-desktop');
+    MODAL.style.backgroundColor = '#e1d4c9';
     MESSAGE.style.color = 'rgb(151, 15, 15)';
     MESSAGE.innerText = 'Вы исчерпали весь лимит новых слов.';
     WORD.innerText = '';
