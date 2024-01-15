@@ -1,0 +1,448 @@
+@font-face {
+  font-family: Inter-Regular;
+  font-weight: 400;
+  src: url(assets/fonts/Inter-Regular.ttf);
+}
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.body {
+  width: 100%;
+  margin: 0;
+  background: #d8ffe0;
+}
+.body .body-container {
+  overflow: clip;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  font-family: Inter-Regular;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 150%;
+  background: #d8ffe0;
+}
+
+.hangman {
+  position: relative;
+  height: auto;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hangman .hangman__img {
+  position: relative;
+  width: 20vw;
+  height: 36vw;
+  border-bottom: solid 20px black;
+  padding-bottom: 2px;
+  background-image: url(assets/img/gallows.png);
+  background-size: 100% 100%;
+}
+.hangman .hangman__title {
+  width: 26vw;
+  height: auto;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 2.5em;
+  line-height: 1.5em;
+}
+
+.hangman-body {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 58% 4% 58%;
+  grid-template-rows: 50% 50% 50%;
+  grid-template-areas: "head head head" "handL body handR" "legL legL legR";
+  align-items: center;
+  justify-items: center;
+  width: 40%;
+  height: 50%;
+  top: 27%;
+  right: -1%;
+}
+.hangman-body .hangman-body__head {
+  grid-area: head;
+  width: 70%;
+  height: 80%;
+  border: 5px solid grey;
+  border-radius: 100%;
+  opacity: 0;
+}
+.hangman-body .hangman-body__left-hand {
+  grid-area: handL;
+  opacity: 0;
+  width: 90%;
+}
+.hangman-body .hangman-body__body {
+  grid-area: body;
+  opacity: 0;
+  height: 100%;
+}
+.hangman-body .hangman-body__right-hand {
+  grid-area: handR;
+  opacity: 0;
+  width: 90%;
+}
+.hangman-body .hangman-body__left-leg {
+  grid-area: legL;
+  opacity: 0;
+  width: 90%;
+}
+.hangman-body .hangman-body__right-leg {
+  grid-area: legR;
+  opacity: 0;
+  width: 90%;
+}
+
+.game-board {
+  height: 100vh;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.game-board .game-board__hint {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: 2em;
+  padding: 20px 20px 20px 50px;
+  gap: 15px;
+  font-style: italic;
+}
+.game-board .game-board__hint-span {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  line-height: 1.5em;
+  text-align: start;
+  font-size: 2rem;
+  font-style: normal;
+}
+.game-board .game-board__incorrect-container {
+  width: auto;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.game-board .game-board__incorrect-guesses {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: 1.5em;
+}
+.game-board .game-board__incorrect-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: 2em;
+  color: red;
+}
+
+.game-word {
+  width: auto;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.game-word .game-word__char {
+  width: 40px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 5px solid black;
+  font-size: 2.5em;
+  font-weight: 900;
+}
+
+.game-keyboard {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+}
+.game-keyboard .game-keyboard__button {
+  width: 60px;
+  height: 50px;
+  background: #2f6db9;
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: 900;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-keyboard__button:disabled {
+  background: #879bb5;
+}
+
+.modal-background.open {
+  display: block;
+  opacity: 1;
+  z-index: 999;
+  animation: inBlock 0.5s ease-in;
+}
+
+.modal-background.close {
+  display: none;
+  opacity: 0;
+  animation: fromBlock 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fromBlock {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+@keyframes inBlock {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+.modal-background:before {
+  position: absolute;
+  content: "";
+  background: rgba(64, 63, 61, 0.8);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.modal-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  width: 800px;
+  height: auto;
+  border-radius: 40px;
+  padding: 50px;
+  background-color: #e1d4c9;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  opacity: 1;
+  color: rgb(57, 57, 57);
+}
+.modal-desktop .modal-desktop__message {
+  width: 80%;
+  height: auto;
+  font-size: 3em;
+  text-align: center;
+  line-height: 1.5em;
+}
+.modal-desktop .modal-desktop__word-secret {
+  width: 100%;
+  height: auto;
+  font-size: 2em;
+  text-align: center;
+}
+.modal-desktop .modal-desktop__word-secret-span {
+  width: 100%;
+  height: auto;
+  font-size: 1.5em;
+  font-weight: 900;
+  text-align: center;
+  color: rgb(69, 69, 69);
+}
+.modal-desktop .modal-desktop__button {
+  width: 60%;
+  height: auto;
+  font-size: 2em;
+  text-align: center;
+  border: 1px solid rgb(66, 66, 66);
+  border-radius: 10px;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: rgb(205, 250, 235);
+  color: rgb(57, 57, 57);
+}
+.modal-desktop .modal-desktop__button:disabled {
+  color: rgb(161, 157, 157);
+}
+
+@media ((max-width: 1000px)) {
+  .body .body-container {
+    flex-direction: column;
+    gap: 0px;
+    padding: 30px;
+  }
+  .hangman {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 50px;
+  }
+  .hangman .hangman__title {
+    font-size: 5vw;
+  }
+  .hangman-body .hangman-body__head {
+    border: 4px solid grey;
+  }
+  .game-board {
+    height: auto;
+    width: 100%;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+  .game-board .game-word {
+    height: auto;
+  }
+  .game-board .game-board__hint {
+    height: auto;
+    padding: 20px 20px 0 20px;
+  }
+  .game-board .game-board__incorrect-container {
+    height: auto;
+  }
+  .game-board .game-keyboard {
+    padding: 0;
+  }
+}
+@media ((max-width: 870px)) {
+  .body .body-container {
+    padding: 16px;
+  }
+  .hangman-body .hangman-body__head {
+    border: 3px solid grey;
+  }
+  .game-board {
+    padding: 30px 0;
+  }
+  .game-board .game-word {
+    height: auto;
+  }
+  .game-board .game-board__hint {
+    height: auto;
+    font-size: 4vw;
+  }
+  .game-board .game-board__hint-span {
+    height: auto;
+    font-size: 4vw;
+  }
+  .game-board .game-board__incorrect-container {
+    height: auto;
+  }
+  .game-board .game-keyboard {
+    padding: 0;
+  }
+  .game-board .game-board__incorrect-counter {
+    font-size: 4vw;
+  }
+  .game-word {
+    padding: 0 10px;
+  }
+  .game-word .game-word__char {
+    height: 60px;
+    font-size: 5vw;
+  }
+  .modal-desktop {
+    width: 600px;
+  }
+}
+@media ((max-width: 660px)) {
+  .modal-desktop {
+    width: 400px;
+  }
+  .modal-desktop .modal-desktop__message {
+    font-size: 2.5em;
+  }
+  .modal-desktop .modal-desktop__button {
+    width: 80%;
+  }
+}
+@media ((max-width: 600px)) {
+  .hangman-body .hangman-body__head {
+    border: 2px solid grey;
+  }
+  .game-board .game-board__hint {
+    font-size: 5vw;
+  }
+  .game-board .game-board__hint-span {
+    font-size: 5vw;
+  }
+  .game-board .game-board__incorrect-guesses {
+    font-size: 4vw;
+  }
+  .game-board .game-board__incorrect-counter {
+    font-size: 5vw;
+  }
+}
+@media ((max-width: 470px)) {
+  .hangman-body .hangman-body__head {
+    border: 1px solid grey;
+  }
+  .game-keyboard .game-keyboard__button {
+    width: 14vw;
+    height: 10vw;
+    font-size: 5vw;
+  }
+  .modal-desktop {
+    width: 300px;
+    padding: 30px 16px;
+  }
+  .modal-desktop .modal-desktop__message {
+    font-size: 2.5em;
+  }
+  .modal-desktop .modal-desktop__word-secret-span {
+    font-size: 1em;
+  }
+  .modal-desktop .modal-desktop__button {
+    width: 90%;
+    font-size: 20px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
