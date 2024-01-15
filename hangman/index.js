@@ -16,10 +16,10 @@ HANGMAN.className = 'hangman';
 BODY_CONTAINER.prepend(HANGMAN);
 
 // hangman-img
-const HANGMAN_IMG = document.createElement('img');
+const HANGMAN_IMG = document.createElement('div');
 HANGMAN_IMG.className = 'hangman__img';
 HANGMAN.prepend(HANGMAN_IMG);
-HANGMAN_IMG.src = 'assets/img/gallows.png';
+//HANGMAN_IMG.src = 'assets/img/gallows.png';
 
 // hangman-title
 const HANGMAN_TITLE = document.createElement('h1');
@@ -40,7 +40,12 @@ GAME_BOARD.append(GAME_WORD);
 // game-board__hint
 const GAME_BOARD_HINT = document.createElement('div');
 GAME_BOARD_HINT.className = 'game-board__hint';
+const GAME_BOARD_HINT_SPAN = document.createElement('span');
+GAME_BOARD_HINT_SPAN.className = 'game-board__hint-span';
+GAME_BOARD_HINT.innerText = `подсказка:`;
+
 GAME_BOARD.append(GAME_BOARD_HINT);
+GAME_BOARD_HINT.append(GAME_BOARD_HINT_SPAN);
 
 // game-board__incorrect-container
 const GAME_BOARD_INCORRECT_CONTAINER = document.createElement('div');
@@ -51,7 +56,7 @@ GAME_BOARD.append(GAME_BOARD_INCORRECT_CONTAINER);
 const GAME_BOARD_INCORRECT = document.createElement('div');
 GAME_BOARD_INCORRECT.className = 'game-board__incorrect-guesses';
 GAME_BOARD_INCORRECT_CONTAINER.append(GAME_BOARD_INCORRECT);
-GAME_BOARD_INCORRECT.innerText = 'неверная догадка: ';
+GAME_BOARD_INCORRECT.innerText = 'неуспешная попытка: ';
 
 // game-board__incorrect-counter
 const GAME_BOARD_COUNTER = document.createElement('div');
@@ -110,19 +115,19 @@ for (let i = 0; i < ARR_BUTTON.length; i += 1) {
 
 //question-and-answer list
 const QUEST_ANSER = {
-  0: ['провоз', 'Подсказка: Для пассажира проезд, а для багажа?'],
+  0: ['провоз', 'Для пассажира проезд, а для багажа?'],
   1: [
     'счетчик',
-    'Подсказка: Прибор, который обязан был включить советский таксист при посадке пассажира.',
+    'Прибор, который обязан был включить советский таксист при посадке пассажира.',
   ],
-  2: ['парашют', 'Подсказка: Что нужно, чтобы спуститься с небес на землю.'],
-  3: ['рундук', 'Подсказка: Короб для багажа под нижней полкой поезда.'],
-  4: ['транспорт', 'Подсказка: Превращает человека в пассажира.'],
-  5: ['перевес', 'Подсказка: Излишек багажа пассажира самолёта.'],
-  6: ['трап', 'Подсказка: Лестница для прилетевших.'],
-  7: ['экипаж', 'Подсказка: "Коллектив" самолета.'],
-  8: ['штурвал', 'Подсказка: "Баранка" капитана корабля.'],
-  9: ['авиамодель', 'Подсказка: Миниатюрная копия самолета или вертолета.'],
+  2: ['парашют', 'Что нужно, чтобы спуститься с небес на землю.'],
+  3: ['рундук', 'Короб для багажа под нижней полкой поезда.'],
+  4: ['транспорт', 'Превращает человека в пассажира.'],
+  5: ['перевес', 'Излишек багажа пассажира самолёта.'],
+  6: ['трап', 'Лестница для прилетевших.'],
+  7: ['экипаж', '"Коллектив" самолета.'],
+  8: ['штурвал', '"Баранка" капитана корабля.'],
+  9: ['авиамодель', 'Миниатюрная копия самолета или вертолета.'],
 };
 
 // random word choice
@@ -154,11 +159,11 @@ function removeWord() {
 }
 //add hint
 function addHint(newHint) {
-  GAME_BOARD_HINT.innerText = `${newHint}`;
+  GAME_BOARD_HINT_SPAN.innerText = ` ${newHint}`;
 }
 // remove hint
 function removeHint() {
-  GAME_BOARD_HINT.innerHTML = '';
+  GAME_BOARD_HINT_SPAN.innerHTML = '';
 }
 
 //open char
@@ -217,12 +222,22 @@ GAME_KEYBOARD.addEventListener('click', event => {
     startModal();
   }
 });
+function openAlertHint(button) {
+  const arrEngLetters = `qwertyuiop[]asdfghjkl;''zxcvbnm,./`;
+  if (arrEngLetters.indexOf(button) !== -1) {
+    alert(`   
+    Кто-то нажал английскую letter !
+    
+    Для игры подойдут только русские буквы !`);
+  }
+}
 //EventListener keyboard
 document.addEventListener('keydown', event => {
   if (countIncorrectGuesses === 6) {
     disabledKeyboard();
   }
   let button = event.key;
+  openAlertHint(button);
   const checkKeyboardRus = `йцукенгшщзхъфывапролджэячсмитьбюё`;
   if (checkKeyboardRus.indexOf(button.toLowerCase()) >= 0) {
     for (let i = 0; i < ARR_BUTTON.length; i += 1) {
@@ -247,7 +262,7 @@ document.addEventListener('keydown', event => {
 //body parts
 const HANGMAN_BODY = document.createElement('div');
 HANGMAN_BODY.className = 'hangman-body';
-HANGMAN.prepend(HANGMAN_BODY);
+HANGMAN_IMG.prepend(HANGMAN_BODY);
 
 //body parts head
 const HANGMAN_BODY_HEAD = document.createElement('div');
