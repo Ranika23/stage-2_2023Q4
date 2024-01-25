@@ -48,17 +48,17 @@ gameBoard.append(emptyCorner);
 
 
 
-//top clues  
+//top clues
 const topClues = document.createElement('div');
 topClues.className = 'top-clues';
 gameBoard.append(topClues);
-//left clues cells 
+//left clues cells
 for (let i = 1; i <= 3 * sizeImage; i += 1) {
   const cellClues = document.createElement('div');
   cellClues.className = 'cell-clues';
   topClues.prepend(cellClues);
 }
-(function addLeftClues() {
+(function addTopClues() {
   const arrTopClues = topClues.children;
   arrTopClues[7].innerText = 1;
   arrTopClues[8].innerText = 1;
@@ -66,7 +66,7 @@ for (let i = 1; i <= 3 * sizeImage; i += 1) {
   arrTopClues[12].innerText = 1;
   arrTopClues[13].innerText = 2;
 }
-)()
+)();
 
 
 
@@ -77,11 +77,11 @@ for (let i = 1; i <= 3 * sizeImage; i += 1) {
 
 
 
-//left clues  
+//left clues
 const leftClues = document.createElement('div');
 leftClues.className = 'left-clues';
 gameBoard.append(leftClues);
-//left clues cells 
+//left clues cells
 for (let i = 1; i <= 3 * sizeImage; i += 1) {
   const cellClues = document.createElement('div');
   cellClues.className = 'cell-clues';
@@ -121,12 +121,12 @@ for (let i = 1; i <= sizeImage ** 2; i += 1) {
   gameField.prepend(cellField)
 }
 
-// matrix 
+// matrix
 const arr = new Array(sizeImage).fill(0);
 const matrix = [];
 arr.forEach(() => matrix.push(arr))
 
-// matrix image 
+// matrix image
 const matrixImage = [];
 for (let i = 0; i < matrix.length; i += 1) {
   const elemMatr = [];
@@ -158,10 +158,48 @@ for (let i = 0; i < matrix.length; i += 1) {
 gameField.addEventListener('click', (event) => {
   const cell = event.target;
   cell.classList.toggle('click');
+  const countClick = countClickCell();
+  const countFill = countFillCells();
+  let result;
+  if (countClick === countFill) result = getResultGame();
+  if (result) console.log('WIN'); // ===> WIN
 })
+function countClickCell() { // count click cells
+  const arrayGameField = gameField.children;
+  let count = 0;
+  for (let i = 0; i < arrayGameField.length; i += 1) {
+    const cell = arrayGameField[i];
+    if (cell.classList.contains('click')) {
+      count += 1;
+    }
+  }
+  return count;
+}
+function countFillCells() { // count fill cells
+  const arrTopClues = topClues.children;
+  let countFillCells = 0;
+  for (let i = 0; i < arrTopClues.length; i += 1) {
+    const contentCell = Number(arrTopClues[i].innerText)
+    countFillCells += contentCell;
+  }
+  return countFillCells;
+}
+function getResultGame() { // get result game
+  const arrayGameField = gameField.children;
+  let flag = true;
+  for (let i = 0; i < matrixImage.length; i += 1) {
+    for (let y = 0; y < matrixImage[i].length; y += 1) {
+      const cell = sizeImage * i + y;
+      const getResult = arrayGameField[cell].classList.contains('click');
+      if (matrixImage[i][y] === 1 && !getResult) {
+        flag = false;
+      }
+    }
+  }
+  return flag;
+}
 
-
-// game field with image 
+// game field with image
 /*const arrayGameField = gameField.children;
 for (let i = 0; i < matrixImage.length; i += 1) {
   for (let y = 0; y < matrixImage[i].length; y += 1) {
