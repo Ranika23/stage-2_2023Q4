@@ -1,0 +1,90 @@
+@font-face {
+  font-family: Inter-Regular;
+  font-weight: 400;
+  src: url(assets/fonts/Inter-Regular.ttf);
+}
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.body {
+  width: 100%;
+  margin: 0;
+  background: #d8ffe0;
+}
+.body-container {
+  overflow: clip;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  font-family: Inter-Regular;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 150%;
+  background: #d8ffe0;
+}
+.game-board {
+  width: 69vw;
+  height: auto;
+  border: 3px solid black;
+  /*display: grid;
+  grid-template-columns: repeat(2, 150px);
+  grid-template-rows: repeat(2, 150px);*/
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.empty-corner {
+  width: 92px;
+  height: 92px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.left-clues,
+.top-clues {
+  display: grid;
+  grid-template-columns: repeat(3, 30px);
+  grid-template-rows: repeat(3, 30px);
+}
+.left-clues {
+  width: auto;
+  height: auto;
+  grid-template-columns: repeat(3, 30px);
+  grid-template-rows: repeat(5, 30px);
+  border-right: 2px solid black;
+}
+.top-clues {
+  width: auto;
+  height: auto;
+  grid-template-columns: repeat(5, 30px);
+  grid-template-rows: repeat(3, 30px);
+  border-bottom: 2px solid black;
+}
+.cell-clues {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid rgb(108, 100, 100);
+  background-color: #e7f2ea;
+}
+
+.game-field {
+  width: auto;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 30px);
+  grid-template-rows: repeat(5, 30px);
+}
+.cell-field {
+  /*width: 30px;
+  height: 30px;*/
+  border: 0.5px solid rgb(108, 100, 100);
+  background-color: #e7f2ea;
+}
