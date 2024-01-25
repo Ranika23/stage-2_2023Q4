@@ -2,6 +2,7 @@ import {countClickCell, countFillCells, getResultGame} from './modules/resultGam
 import {creatEmptyCorner, creatGameBoard} from './modules/gameBoard.js';
 import {creatTopClues, creatLeftClues} from './modules/gameClues.js';
 import {sizeImage, creatGameField, creatCellField, getMatrixField} from './modules/gameField.js';
+import {creatModal, openModal} from './modules/modal.js';
 
 // body
 const body = document.querySelector('body');
@@ -38,7 +39,10 @@ gameField.addEventListener('click', (event) => {
   const countFill = countFillCells(topClues);
   let result;
   if (countClick === countFill) result = getResultGame(gameField, matrixImage, sizeImage);
-  if (result) console.log('WIN'); // ===> WIN
+  if (result) {  // ===> WIN
+    creatModal();
+    openModal();
+  }
 })
 
 
