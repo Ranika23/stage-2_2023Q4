@@ -14,6 +14,12 @@ body.prepend(bodyContainer);
 const gameBoard = document.createElement('div');
 gameBoard.className = 'game-board';
 bodyContainer.prepend(gameBoard);
+
+
+
+
+
+
 // empty corner
 const emptyCorner = document.createElement('div');
 emptyCorner.className = 'empty-corner';
@@ -21,17 +27,38 @@ gameBoard.append(emptyCorner);
 
 
 
-//top clues
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//top clues  
 const topClues = document.createElement('div');
 topClues.className = 'top-clues';
 gameBoard.append(topClues);
-//left clues cells
+//left clues cells 
 for (let i = 1; i <= 3 * sizeImage; i += 1) {
   const cellClues = document.createElement('div');
   cellClues.className = 'cell-clues';
   topClues.prepend(cellClues);
 }
-(function addLeftClues() { // fill cells
+(function addLeftClues() {
   const arrTopClues = topClues.children;
   arrTopClues[7].innerText = 1;
   arrTopClues[8].innerText = 1;
@@ -43,17 +70,24 @@ for (let i = 1; i <= 3 * sizeImage; i += 1) {
 
 
 
-//left clues
+
+
+
+
+
+
+
+//left clues  
 const leftClues = document.createElement('div');
 leftClues.className = 'left-clues';
 gameBoard.append(leftClues);
-//left clues cells
+//left clues cells 
 for (let i = 1; i <= 3 * sizeImage; i += 1) {
   const cellClues = document.createElement('div');
   cellClues.className = 'cell-clues';
   leftClues.prepend(cellClues);
 }
-(function addLeftClues() {  //fill cells
+(function addLeftClues() {
   const arrLeftClues = leftClues.children;
   arrLeftClues[2].innerText = 2;
   arrLeftClues[4].innerText = 1;
@@ -64,6 +98,9 @@ for (let i = 1; i <= 3 * sizeImage; i += 1) {
   arrLeftClues[13].innerText = 1;
   arrLeftClues[14].innerText = 1;  
 })()
+
+
+
 
 
 
@@ -84,12 +121,12 @@ for (let i = 1; i <= sizeImage ** 2; i += 1) {
   gameField.prepend(cellField)
 }
 
-// matrix
+// matrix 
 const arr = new Array(sizeImage).fill(0);
 const matrix = [];
 arr.forEach(() => matrix.push(arr))
 
-// matrix image
+// matrix image 
 const matrixImage = [];
 for (let i = 0; i < matrix.length; i += 1) {
   const elemMatr = [];
@@ -117,7 +154,14 @@ for (let i = 0; i < matrix.length; i += 1) {
 
 }
 
-// game field with image
+// listener for cells
+gameField.addEventListener('click', (event) => {
+  const cell = event.target;
+  cell.classList.toggle('click');
+})
+
+
+// game field with image 
 /*const arrayGameField = gameField.children;
 for (let i = 0; i < matrixImage.length; i += 1) {
   for (let y = 0; y < matrixImage[i].length; y += 1) {
