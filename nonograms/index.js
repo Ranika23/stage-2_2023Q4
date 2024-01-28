@@ -3,6 +3,11 @@ import {creatEmptyCorner, creatGameBoard} from './modules/gameBoard.js';
 import {creatTopClues, creatLeftClues} from './modules/gameClues.js';
 import {sizeImage, creatGameField, creatCellField, getMatrixField} from './modules/gameField.js';
 import {creatModal, openModal} from './modules/modal.js';
+import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu.js';
+import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/levels.js';
+import {creatLevelsEasyMenu, openEasyLevelsMenu} from './modules/easy-level.js';
+import {creatLevelsMiddleMenu, openMiddleLevelsMenu} from './modules/middle-level.js';
+import {creatLevelsHardMenu, openHardLevelsMenu} from './modules/hard-level.js';
 
 // body
 const body = document.querySelector('body');
@@ -12,6 +17,54 @@ body.className = 'body';
 const bodyContainer = document.createElement('div');
 bodyContainer.className = 'body-container';
 body.prepend(bodyContainer);
+
+
+
+// menu-burger
+addButtonMenu(bodyContainer); // menu-button
+creatMenu();
+creatLevelsMenu();
+creatLevelsEasyMenu();
+creatLevelsMiddleMenu();
+creatLevelsHardMenu();
+const menuButton = document.querySelector('.menu-icon');
+const buttonLevels = document.querySelector('.menu-window__levels');
+menuButton.addEventListener('click', () => {
+  openMenu();
+
+ 
+})
+buttonLevels.addEventListener('click', () => {
+  closeMenu();
+  openLevelsMenu();
+})
+
+const levelsMenu = document.querySelector('.menu-levels');
+
+levelsMenu.addEventListener('click', (event) => {
+  const button = event.target;
+  const arrLevelsMenu = document.querySelector('.menu-levels').children;
+  for (let i = 0; i < arrLevelsMenu.length; i+= 1) {
+    if (arrLevelsMenu[i] === button) {
+      if (i === 0) {
+        closeLevelsMenu();
+        openEasyLevelsMenu();
+        openMiddleLevelsMenu
+      } else if (i === 1) {
+        closeLevelsMenu();
+        openMiddleLevelsMenu();
+        openHardLevelsMenu();
+      } else if (i === 2) {
+        closeLevelsMenu();
+        openHardLevelsMenu();
+      }
+    }
+  }
+})
+
+
+
+
 
 
 
