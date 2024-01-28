@@ -1,6 +1,6 @@
 import {countClickCell, countFillCells, getResultGame} from './modules/resultGame.js';
 import {creatEmptyCorner, creatGameBoard} from './modules/gameBoard.js';
-import {creatTopClues, creatLeftClues} from './modules/gameClues.js';
+import {creatTopClues, creatLeftClues, addLeftClues, fillLeftClues, addTopClues, fillTopClues} from './modules/gameClues.js';
 import {sizeImage, creatGameField, creatCellField, getMatrixField} from './modules/gameField.js';
 import {creatModal, openModal} from './modules/modal.js';
 import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu.js';
@@ -17,6 +17,9 @@ body.className = 'body';
 const bodyContainer = document.createElement('div');
 bodyContainer.className = 'body-container';
 body.prepend(bodyContainer);
+
+
+
 
 
 
@@ -40,7 +43,6 @@ buttonLevels.addEventListener('click', () => {
 })
 
 const levelsMenu = document.querySelector('.menu-levels');
-
 levelsMenu.addEventListener('click', (event) => {
   const button = event.target;
   const arrLevelsMenu = document.querySelector('.menu-levels').children;
@@ -66,11 +68,12 @@ levelsMenu.addEventListener('click', (event) => {
 
 
 
-
-
-
+//без изменений
 creatGameBoard(bodyContainer); // game board
 creatEmptyCorner();            // empty corner
+
+
+
 
 creatTopClues(sizeImage);      // top clues
 creatLeftClues(sizeImage);     // left clues
@@ -78,6 +81,17 @@ creatLeftClues(sizeImage);     // left clues
 creatGameField();              // game field
 creatCellField(sizeImage);     // cells field
 const matrixImage = getMatrixField(sizeImage);      // matrix field
+
+const arrClues = addLeftClues(matrixImage); // matrix clues
+fillLeftClues(arrClues);                    // fill clues-board
+
+const arrTopClues = addTopClues(matrixImage);
+fillTopClues(arrTopClues);                    // fill clues-board
+
+
+
+
+
 
 
 
