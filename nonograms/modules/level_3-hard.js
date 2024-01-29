@@ -6,15 +6,15 @@ export function creatLevelsHardMenu() {
 
   for (let i = 0; i <= 5; i += 1) {
     if (i === 0) {
-      const easyImg = document.createElement('div');
-      easyImg.className = 'menu-levels__title';
-      easyImg.innerText = `Hard level 5x5`;
-      levelsHardMenu.append(easyImg);
+      const hardImg = document.createElement('div');
+      hardImg.className = 'menu-levels__title';
+      hardImg.innerText = `Hard level 5x5`;
+      levelsHardMenu.append(hardImg);
     }
-    const easyImg = document.createElement('div');
-    easyImg.className = 'menu-levels__img';
-    easyImg.innerText = `???`;
-    levelsHardMenu.append(easyImg);
+    const hardImg = document.createElement('div');
+    hardImg.className = 'menu-levels__img';
+    hardImg.innerText = `???`;
+    levelsHardMenu.append(hardImg);
   }
 
   menuBackground.prepend(levelsHardMenu);
@@ -27,18 +27,20 @@ export function openHardLevelsMenu() {
 
   menuHardLevels.style.opacity = '1';
   menuHardLevels.style.zIndex = '99999';
+  menuHardLevels.style.display = 'flex';
   menuBackground.classList.add('open');
   menuBackground.classList.remove('close');
 }
 export function closeHardLevelsMenu() {
   const menuBackground = document.querySelector('.menu-background');
-  const menuHardLevels = document.querySelector('.menu-levels__easy');
+  const menuHardLevels = document.querySelector('.menu-levels__hard');
   const menuButton = document.querySelector('.menu-icon');
   
   menuButton.style.opacity = '1';
 
   menuHardLevels.style.opacity = '0';
   menuHardLevels.style.zIndex = '9';
+  menuHardLevels.style.display = 'none';
   menuBackground.classList.add('close');
   menuBackground.classList.remove('open');
 }

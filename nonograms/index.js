@@ -1,13 +1,14 @@
-import {countClickCell, countFillCells, getResultGame} from './modules/resultGame.js';
-import {creatEmptyCorner, creatGameBoard} from './modules/gameBoard.js';
-import {creatTopClues, creatLeftClues, addLeftClues, fillLeftClues, addTopClues, fillTopClues} from './modules/gameClues.js';
-import {sizeImage, creatGameField, creatCellField, getMatrixField} from './modules/gameField.js';
-import {creatModal, openModal} from './modules/modal.js';
-import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu.js';
-import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/levels.js';
-import {creatLevelsEasyMenu, openEasyLevelsMenu} from './modules/easy-level.js';
-import {creatLevelsMiddleMenu, openMiddleLevelsMenu} from './modules/middle-level.js';
-import {creatLevelsHardMenu, openHardLevelsMenu} from './modules/hard-level.js';
+import {countClickCell, countFillCells, getResultGame} from './modules/game-result.js';
+import {creatGameBoard} from './modules/board_contain.js';
+import {creatLeftClues, addLeftClues, fillLeftClues} from './modules/clues-left.js';
+import {creatTopClues, addTopClues, fillTopClues} from './modules/clues-top.js';
+import {creatGameField, getFillMatrixField} from './modules/board_field.js';
+import {creatModal, openModal} from './modules/game_over-modal.js';
+import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu_main.js';
+import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/menu_levels.js';
+import {creatLevelsEasyMenu, openEasyLevelsMenu, closeEasyLevelsMenu} from './modules/level_1-easy.js';
+import {creatLevelsMiddleMenu, openMiddleLevelsMenu, closeMiddleLevelsMenu} from './modules/level_2-middle.js';
+import {creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu} from './modules/level_3-hard.js';
 
 // body
 const body = document.querySelector('body');
@@ -42,22 +43,31 @@ buttonLevels.addEventListener('click', () => {
   openLevelsMenu();
 })
 
+
+
+// open menu images
 const levelsMenu = document.querySelector('.menu-levels');
 levelsMenu.addEventListener('click', (event) => {
   const button = event.target;
+
   const arrLevelsMenu = document.querySelector('.menu-levels').children;
   for (let i = 0; i < arrLevelsMenu.length; i+= 1) {
     if (arrLevelsMenu[i] === button) {
+      console.log('button', i)
       if (i === 0) {
         closeLevelsMenu();
+        closeMiddleLevelsMenu();
+        closeHardLevelsMenu();
         openEasyLevelsMenu();
-        openMiddleLevelsMenu
       } else if (i === 1) {
         closeLevelsMenu();
+        closeHardLevelsMenu();
+        closeEasyLevelsMenu();
         openMiddleLevelsMenu();
-        openHardLevelsMenu();
       } else if (i === 2) {
         closeLevelsMenu();
+        closeMiddleLevelsMenu();
+        closeEasyLevelsMenu();
         openHardLevelsMenu();
       }
     }
@@ -66,40 +76,62 @@ levelsMenu.addEventListener('click', (event) => {
 
 
 
-
-
-//без изменений
-creatGameBoard(bodyContainer); // game board
-creatEmptyCorner();            // empty corner
-
-
-
-
-creatTopClues(sizeImage);      // top clues
-creatLeftClues(sizeImage);     // left clues
-
-creatGameField();              // game field
-creatCellField(sizeImage);     // cells field
-const matrixImage = getMatrixField(sizeImage);      // matrix field
-
-const arrClues = addLeftClues(matrixImage); // matrix clues
-fillLeftClues(arrClues);                    // fill clues-board
-
-const arrTopClues = addTopClues(matrixImage);
-fillTopClues(arrTopClues);                    // fill clues-board
+// open images level-easy
+document.querySelector('.menu-levels__easy').addEventListener('click', (event) => {
+  const numberImg = event.target.classList[1];
+  const sizeImage = 5;
+  if (numberImg !== undefined) {
+    startGame(event, numberImg, sizeImage);
+  }
+})
 
 
 
+// function start game
+function startGame(event, numberImg, sizeImage) {
+  closeEasyLevelsMenu();
+
+
+
+  creatGameBoard(bodyContainer); // game board 
+  const matrixImage = getFillMatrixField(sizeImage, numberImg);      // matrix image-field
+
+
+
+  const arrTopClues = addTopClues(matrixImage)[0];  // array top-clues
+  const rowTopClues = addTopClues(matrixImage)[1];  // max counter rows in top-container
+  creatTopClues(sizeImage, rowTopClues);            // creat top-clues container+cells
+
+  const arrLeftClues = addLeftClues(matrixImage)[0];    // array left-clues
+  const columnLeftClues = addLeftClues(matrixImage)[1]; // max counter columns in left-container
+  creatLeftClues(sizeImage, columnLeftClues);           // creat left-clues container+c
+
+
+
+  creatGameField(sizeImage);              // creat game field-container + cell-item
+
+
+
+  fillTopClues(arrTopClues, rowTopClues);         // fill cells top-clues
+  fillLeftClues(arrLeftClues, columnLeftClues);   // fill cells left-clues
+
+  
+
+ // playGame(matrixImage, sizeImage);   // click right mouse button (black cell)
+  const gameField = document.querySelector('.game-field');
+  gameField.addEventListener('click', (event) => {
+    playGame(matrixImage, sizeImage, event)
+  })
+}
 
 
 
 
 
-// listener for cells
-const gameField = document.querySelector('.game-field');
-const topClues = document.querySelector('.top-clues');
-
-gameField.addEventListener('click', (event) => {
+// listener right mouse button (black cell)
+function playGame(matrixImage, sizeImage, event) {
+  const gameField = document.querySelector('.game-field');
+  const topClues = document.querySelector('.top-clues');
   const cell = event.target;
   cell.classList.toggle('click');
   const countClick = countClickCell(gameField);
@@ -110,17 +142,7 @@ gameField.addEventListener('click', (event) => {
     creatModal();
     openModal();
   }
-})
+}
 
 
-// game field with image
-/*const arrayGameField = gameField.children;
-for (let i = 0; i < matrixImage.length; i += 1) {
-  for (let y = 0; y < matrixImage[i].length; y += 1) {
-    const cell = sizeImage * i + y;
-    if (matrixImage[i][y] === 1) {
-      arrayGameField[cell].style.background = 'black';
-    }
-  }
-}*/
 
