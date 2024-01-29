@@ -241,9 +241,14 @@
   border: 0.5px solid rgb(195 187 187);
   background: #e7f2ea;
 }
-.cell-field.click {
+.cell-field.left-click {
   background: black;
 }
+.cell-field.right-click {
+  background-image: url(assets/img/cross.png);
+  background-size: 90%;
+}
+
 
 /* modal */
 .modal-background.open {

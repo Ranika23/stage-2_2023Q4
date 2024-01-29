@@ -3,7 +3,7 @@ export function countClickCell(gameField) { // count click cells
   let count = 0;
   for (let i = 0; i < arrayGameField.length; i += 1) {
     const cell = arrayGameField[i];
-    if (cell.classList.contains('click')) {
+    if (cell.classList.contains('left-click')) {
       count += 1;
     }
   }
@@ -26,7 +26,7 @@ export function getResultGame(gameField, matrixImage, sizeImage) { // get result
   for (let i = 0; i < matrixImage.length; i += 1) {
     for (let y = 0; y < matrixImage[i].length; y += 1) {
       const cell = sizeImage * i + y;
-      const getResult = arrayGameField[cell].classList.contains('click');
+      const getResult = arrayGameField[cell].classList.contains('left-click');
       if (matrixImage[i][y] === 1 && !getResult) {
         flag = false;
       }

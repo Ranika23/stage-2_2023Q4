@@ -120,8 +120,14 @@ function startGame(event, numberImg, sizeImage) {
  // playGame(matrixImage, sizeImage);   // click right mouse button (black cell)
   const gameField = document.querySelector('.game-field');
   gameField.addEventListener('click', (event) => {
-    playGame(matrixImage, sizeImage, event)
+    clickLeftMouse(matrixImage, sizeImage, event)
   })
+
+ // playGame(matrixImage, sizeImage);   // click right mouse button (black cell)
+  gameField.addEventListener('contextmenu', (event) => {
+    clickRigthMouse(matrixImage, sizeImage, event)
+  })
+   
 }
 
 
@@ -129,11 +135,12 @@ function startGame(event, numberImg, sizeImage) {
 
 
 // listener right mouse button (black cell)
-function playGame(matrixImage, sizeImage, event) {
+function clickLeftMouse(matrixImage, sizeImage, event) {
   const gameField = document.querySelector('.game-field');
   const topClues = document.querySelector('.top-clues');
   const cell = event.target;
-  cell.classList.toggle('click');
+  if (cell.classList.contains('right-click')) cell.classList.remove('right-click');
+  cell.classList.toggle('left-click');
   const countClick = countClickCell(gameField);
   const countFill = countFillCells(topClues);
   let result;
@@ -142,6 +149,15 @@ function playGame(matrixImage, sizeImage, event) {
     creatModal();
     openModal();
   }
+}
+
+// listener right mouse button (black cell)
+function clickRigthMouse(matrixImage, sizeImage, event) {
+  event.preventDefault();
+
+  const cell = event.target;
+  if (cell.classList.contains('left-click')) cell.classList.remove('left-click');
+  cell.classList.toggle('right-click');
 }
 
 
