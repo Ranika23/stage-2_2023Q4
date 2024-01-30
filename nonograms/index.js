@@ -20,15 +20,18 @@ const bodyContainer = document.createElement('div');
 bodyContainer.className = 'body-container';
 body.prepend(bodyContainer);
 
-
+const menuBackground = document.createElement('div');
+menuBackground.className = 'menu-background';
+menuBackground.classList.add('close');
+body.prepend(menuBackground);
 
 
 
 
 // menu-burger
 addButtonMenu(bodyContainer); // menu-button
-creatMenu();
-creatLevelsMenu();
+creatMenu(bodyContainer);
+creatLevelsMenu(bodyContainer);
 creatLevelsEasyMenu();
 creatLevelsMiddleMenu();
 creatLevelsHardMenu();
@@ -36,11 +39,11 @@ const menuButton = document.querySelector('.menu-icon');
 const buttonLevels = document.querySelector('.menu-window__levels');
 menuButton.addEventListener('click', () => {
   openMenu();
+  closeLevelsMenu();
 
  
 })
 buttonLevels.addEventListener('click', () => {
-  closeMenu();
   openLevelsMenu();
 })
 
@@ -49,6 +52,8 @@ buttonLevels.addEventListener('click', () => {
 // open menu images
 const levelsMenu = document.querySelector('.menu-levels');
 levelsMenu.addEventListener('click', (event) => {
+  closeMenu();
+  closeLevelsMenu();
   const button = event.target;
 
   const arrLevelsMenu = document.querySelector('.menu-levels').children;
@@ -56,17 +61,14 @@ levelsMenu.addEventListener('click', (event) => {
     if (arrLevelsMenu[i] === button) {
       console.log('button', i)
       if (i === 0) {
-        closeLevelsMenu();
         closeMiddleLevelsMenu();
         closeHardLevelsMenu();
         openEasyLevelsMenu();
       } else if (i === 1) {
-        closeLevelsMenu();
         closeHardLevelsMenu();
         closeEasyLevelsMenu();
         openMiddleLevelsMenu();
       } else if (i === 2) {
-        closeLevelsMenu();
         closeMiddleLevelsMenu();
         closeEasyLevelsMenu();
         openHardLevelsMenu();
@@ -125,11 +127,11 @@ function startGame(event, numberImg, sizeImage) {
     getWinCondition(matrixImage, sizeImage);
   })
 
- // playGame(matrixImage, sizeImage);   // click right mouse button (black cell)
+  // click right mouse button (black cell)
   gameField.addEventListener('contextmenu', (event) => {
+    console.log('123')
     clickRigthMouse(event);
   })
-   
 }
 
 

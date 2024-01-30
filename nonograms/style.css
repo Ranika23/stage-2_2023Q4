@@ -91,56 +91,76 @@
 }
 
 .menu-window {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50vw;
-  height: auto;
-  border-radius: 40px;
-  padding: 30px;
-  background-color: #e1d4c9;
-  position: fixed;
-  /*left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);*/
-  top: 20px;
-  right: 20px;
-  z-index: 99999;
-  opacity: 1;
-  color: rgb(57, 57, 57);
-  font-size: 8vw;
-  text-align: center;
-}
-.menu-window__levels {
-  width: 90%;
-  border-radius: 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
-.menu-levels {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 50px;
-  width: 50vw;
+  gap: 30px;
+  width: 180px;
   height: auto;
   border-radius: 40px;
-  padding: 40px 30px;
+  padding: 30px;
   background-color: #e1d4c9;
-  position: fixed;
-  /*left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);*/
-  top: 20px;
+  top: -200px;
   right: 90px;
   z-index: 99999;
   opacity: 1;
   color: rgb(57, 57, 57);
   font-size: 8vw;
-  opacity: 0;
   text-align: center;
 }
+
+
+.menu-window.close {
+  top: -200px;
+  z-index: 9;
+  transition: 1s;
+}
+.menu-window.open {
+  top: 30px;
+  z-index: 99999;
+  transition: 1s;
+}
+.menu-levels {
+  position: absolute;
+  top: -270px;
+  right: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  width: 180px;
+  height: auto;
+  border-radius: 40px;
+  padding: 40px 30px;
+  background-color: #e1d4c9;
+  z-index: 99999;
+  opacity: 1;
+  color: rgb(57, 57, 57);
+  font-size: 8vw;
+  text-align: center;
+}
+.menu-levels.close {
+  top: -270px;
+  z-index: 9;
+  transition: 1s;
+}
+.menu-levels.open {
+  top: 220px;
+  z-index: 99999;
+  transition: 1s;
+}
+
+.menu-window__levels,
+.menu-window__reset {
+  width: 90%;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .menu-levels__button {
   width: 90%;
   border-radius: 10px;
@@ -151,7 +171,7 @@
 .menu-levels__easy,
 .menu-levels__middle,
 .menu-levels__hard {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;

@@ -5,42 +5,34 @@ export function addButtonMenu(bodyContainer) {
 }
 
 // creat modal
-export function creatMenu() {
-  const menuBackground = document.createElement('div');
-  menuBackground.className = 'menu-background';
-  menuBackground.classList.add('close');
+export function creatMenu(bodyContainer) {
+
 
   const menuWindow = document.createElement('div');
   menuWindow.className = 'menu-window';
-  //menuWindow.innerText = `Great!\n\nYou have solved the nonogram!`;
-  menuBackground.append(menuWindow);
+  menuWindow.classList.add('close');
 
   const menuLevel = document.createElement('button');
   menuLevel.className = 'menu-window__levels';
   menuLevel.innerText = `Levels`;
   menuWindow.append(menuLevel);
 
+  const menuReset = document.createElement('button');
+  menuReset.className = 'menu-window__reset';
+  menuReset.innerText = `Reset Game`;
+  menuWindow.append(menuReset);
 
-  const body = document.querySelector('.body');
-  body.prepend(menuBackground);
+  bodyContainer.prepend(menuWindow);
 }
 
 // start modal
 export function openMenu() {
-  const menuBackground = document.querySelector('.menu-background');
-  const menuButton = document.querySelector('.menu-icon');
   const menuWindow = document.querySelector('.menu-window');
-  menuButton.style.opacity = '0';
-  menuBackground.classList.add('open');
-  menuBackground.classList.remove('close');
-
-  menuWindow.style.opacity = '1';
-  menuWindow.style.zIndex = '99999';
+  menuWindow.classList.toggle('open');
+  menuWindow.classList.toggle('close');
 }
 export function closeMenu() {
-  const menuBackground = document.querySelector('.menu-background');
-  const menuButton = document.querySelector('.menu-icon');
-  menuBackground.classList.add('close');
-  menuBackground.classList.remove('open');
-  menuButton.style.opacity = '1';
+  const menuWindow = document.querySelector('.menu-window');
+  menuWindow.classList.add('close');
+  menuWindow.classList.remove('open');
 }

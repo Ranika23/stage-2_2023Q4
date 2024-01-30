@@ -1,5 +1,7 @@
 export function creatLevelsEasyMenu() {
   const menuBackground = document.querySelector('.menu-background');
+
+
   const levelsEasyMenu = document.createElement('div');
   levelsEasyMenu.className = 'menu-levels__easy';
   menuBackground.append(levelsEasyMenu);

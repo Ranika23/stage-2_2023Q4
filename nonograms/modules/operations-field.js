@@ -10,7 +10,7 @@ export function clickLeftMouse(event) {
 // click right mouse button (black cell)
 export function clickRigthMouse(event) {
   event.preventDefault();
-
+console.log('ok')
   const cell = event.target;
   if (cell.classList.contains('left-click')) cell.classList.remove('left-click');
   cell.classList.toggle('right-click');
