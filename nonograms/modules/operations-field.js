@@ -16,10 +16,14 @@ console.log('ok')
   cell.classList.toggle('right-click');
 }
 
-export function cleanField() {
+export function cleanCellField() {
   const arrGameField = document.querySelector('.game-field').children;
   for (let i = 0; i < arrGameField.length; i += 1) {
     if (arrGameField[i].classList.contains('left-click')) arrGameField[i].classList.remove('left-click');
     if (arrGameField[i].classList.contains('right-click')) arrGameField[i].classList.remove('right-click');
   }
+}
+
+export function cleanBoard() {
+  if (document.querySelector('.game-board') !== null) document.querySelector('.game-board').remove();
 }

@@ -9,7 +9,7 @@ import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/menu_l
 import {creatLevelsEasyMenu, openEasyLevelsMenu, closeEasyLevelsMenu} from './modules/level_1-easy.js';
 import {creatLevelsMiddleMenu, openMiddleLevelsMenu, closeMiddleLevelsMenu} from './modules/level_2-middle.js';
 import {creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu} from './modules/level_3-hard.js';
-import {clickLeftMouse, clickRigthMouse, cleanField} from './modules/operations-field.js';
+import {clickLeftMouse, clickRigthMouse, cleanCellField, cleanBoard} from './modules/operations-field.js';
 
 // body
 const body = document.querySelector('body');
@@ -47,7 +47,7 @@ buttonLevels.addEventListener('click', () => {
   openLevelsMenu();
 })
 buttonReset.addEventListener('click', () => {
-  cleanField();
+  cleanCellField();
   openMenu();
 })
 
@@ -95,6 +95,9 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
 
 // function start game
 function startGame(event, numberImg, sizeImage) {
+  cleanBoard();
+
+
   closeEasyLevelsMenu();
   document.querySelector('.menu-window__reset').disabled = false;
 
