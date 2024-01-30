@@ -15,3 +15,11 @@ console.log('ok')
   if (cell.classList.contains('left-click')) cell.classList.remove('left-click');
   cell.classList.toggle('right-click');
 }
+
+export function cleanField() {
+  const arrGameField = document.querySelector('.game-field').children;
+  for (let i = 0; i < arrGameField.length; i += 1) {
+    if (arrGameField[i].classList.contains('left-click')) arrGameField[i].classList.remove('left-click');
+    if (arrGameField[i].classList.contains('right-click')) arrGameField[i].classList.remove('right-click');
+  }
+}

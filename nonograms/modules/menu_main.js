@@ -20,6 +20,7 @@ export function creatMenu(bodyContainer) {
   const menuReset = document.createElement('button');
   menuReset.className = 'menu-window__reset';
   menuReset.innerText = `Reset Game`;
+  menuReset.setAttribute("disabled", "disabled");
   menuWindow.append(menuReset);
 
   bodyContainer.prepend(menuWindow);
