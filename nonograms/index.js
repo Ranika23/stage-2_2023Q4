@@ -9,6 +9,7 @@ import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/menu_l
 import {creatLevelsEasyMenu, openEasyLevelsMenu, closeEasyLevelsMenu} from './modules/level_1-easy.js';
 import {creatLevelsMiddleMenu, openMiddleLevelsMenu, closeMiddleLevelsMenu} from './modules/level_2-middle.js';
 import {creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu} from './modules/level_3-hard.js';
+import {clickLeftMouse, clickRigthMouse} from './modules/operations-field.js';
 
 // body
 const body = document.querySelector('body');
@@ -117,32 +118,30 @@ function startGame(event, numberImg, sizeImage) {
 
   
 
- // playGame(matrixImage, sizeImage);   // click right mouse button (black cell)
+ // click right mouse button (black cell)
   const gameField = document.querySelector('.game-field');
   gameField.addEventListener('click', (event) => {
-    clickLeftMouse(matrixImage, sizeImage, event)
+    clickLeftMouse(event);
+    getWinCondition(matrixImage, sizeImage);
   })
 
  // playGame(matrixImage, sizeImage);   // click right mouse button (black cell)
   gameField.addEventListener('contextmenu', (event) => {
-    clickRigthMouse(matrixImage, sizeImage, event)
+    clickRigthMouse(event);
   })
    
 }
 
 
+// get a win condition
+function getWinCondition(matrixImage, sizeImage) {
 
-
-
-// listener right mouse button (black cell)
-function clickLeftMouse(matrixImage, sizeImage, event) {
   const gameField = document.querySelector('.game-field');
   const topClues = document.querySelector('.top-clues');
-  const cell = event.target;
-  if (cell.classList.contains('right-click')) cell.classList.remove('right-click');
-  cell.classList.toggle('left-click');
+  
   const countClick = countClickCell(gameField);
   const countFill = countFillCells(topClues);
+
   let result;
   if (countClick === countFill) result = getResultGame(gameField, matrixImage, sizeImage);
   if (result) {  // ===> WIN
@@ -150,15 +149,3 @@ function clickLeftMouse(matrixImage, sizeImage, event) {
     openModal();
   }
 }
-
-// listener right mouse button (black cell)
-function clickRigthMouse(matrixImage, sizeImage, event) {
-  event.preventDefault();
-
-  const cell = event.target;
-  if (cell.classList.contains('left-click')) cell.classList.remove('left-click');
-  cell.classList.toggle('right-click');
-}
-
-
-
