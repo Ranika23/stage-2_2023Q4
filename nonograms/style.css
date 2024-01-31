@@ -126,7 +126,7 @@
 .menu-levels {
   position: absolute;
   top: -270px;
-  right: 90px;
+  right: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,7 +149,7 @@
   transition: 1s;
 }
 .menu-levels.open {
-  top: 220px;
+  top: 98px;
   z-index: 99999;
   transition: 1s;
 }

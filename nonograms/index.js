@@ -79,25 +79,40 @@ creatLevelsMiddleMenu();
 creatLevelsHardMenu();
 
 const menuButton = document.querySelector('.menu-icon');
+const menu = document.querySelector('.menu-window');
 const buttonLevels = document.querySelector('.menu-window__levels');
 const buttonReset = document.querySelector('.menu-window__reset');
 const buttonSaveGame = document.querySelector('.menu-window__save');
 const buttonLastGame = document.querySelector('.menu-window__last-game');
-menuButton.addEventListener('click', () => {
+menuButton.addEventListener('click', (event) => {
   openMenu();
+  closeLevelsMenu();
+  event._isClickMenu = true;
+})
+menu.addEventListener("click", event => {
+  event._isClickMenu = true;
+})
+document.body.addEventListener("click", event => {
+  if (event._isClickMenu) return;
+  closeMenu()
   closeLevelsMenu();
 })
 buttonLevels.addEventListener('click', () => {
   openLevelsMenu();
 })
 buttonReset.addEventListener('click', () => {
+  document.querySelector('.menu-window__reset').disabled = true;
   endTime();
   cleanCellField();
   openMenu();
+  closeLevelsMenu();
+
 })
 
 
 buttonLastGame.addEventListener('click', () => {
+  openMenu();
+  closeLevelsMenu();
   clearInterval(interval);
   endTime();
   
@@ -219,6 +234,8 @@ function startGame(numberImg, sizeImage) {
   const gameField = document.querySelector('.game-field');
 
   buttonSaveGame.addEventListener('click', () => {
+    openMenu();
+    closeLevelsMenu();
     saveLastGame(matrixImage, sizeImage);
     getInitStateButtons();
   })
