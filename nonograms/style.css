@@ -22,7 +22,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  flex-direction: column;
+  gap: 20px;
   font-family: Inter-Regular;
   font-size: 16px;
   font-style: normal;
@@ -339,4 +340,12 @@
   color: rgb(57, 57, 57);
   font-size: 8vw;
   text-align: center;
+}
+
+.container-watch {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

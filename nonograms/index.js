@@ -10,6 +10,40 @@ import {creatLevelsEasyMenu, openEasyLevelsMenu, closeEasyLevelsMenu} from './mo
 import {creatLevelsMiddleMenu, openMiddleLevelsMenu, closeMiddleLevelsMenu} from './modules/level_2-middle.js';
 import {creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu} from './modules/level_3-hard.js';
 import {clickLeftMouse, clickRigthMouse, cleanCellField, cleanBoard} from './modules/operations-field.js';
+import {addContainWatch, resetTime, cleanWatch} from './modules/stop-watch.js';
+
+
+// start TIME
+let interval = 0;
+let minutes = 0;
+let seconds = 0;
+let counterClick = 0;
+function startTime() {
+  const containerWatch = document.querySelector('.container-watch');
+  console.log(seconds)
+  seconds += 1;
+  if (seconds === 60) {
+    minutes += 1;
+    seconds = 0;
+  }
+  if (seconds < 10) {
+    if (minutes < 10) containerWatch.innerText = `0${minutes} : 0${seconds}`;
+    else containerWatch.innerText = `${minutes} : 0${seconds}`;
+  }
+  else if (seconds > 9) {
+    if (minutes < 10) containerWatch.innerText = `0${minutes} : ${seconds}`;
+    else containerWatch.innerText = `${minutes} : ${seconds}`;
+  }
+}
+function endTime() {
+  clearInterval(interval);
+  resetTime();
+  counterClick = 0;
+  minutes = 0;
+  seconds = 0;
+}
+
+
 
 // body
 const body = document.querySelector('body');
@@ -47,6 +81,7 @@ buttonLevels.addEventListener('click', () => {
   openLevelsMenu();
 })
 buttonReset.addEventListener('click', () => {
+  endTime();
   cleanCellField();
   openMenu();
 })
@@ -97,6 +132,11 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
 function startGame(event, numberImg, sizeImage) {
   cleanBoard();
 
+  cleanWatch();
+  addContainWatch(bodyContainer);
+  endTime();
+
+
 
   closeEasyLevelsMenu();
   document.querySelector('.menu-window__reset').disabled = false;
@@ -127,19 +167,33 @@ function startGame(event, numberImg, sizeImage) {
 
   
 
- // click right mouse button (black cell)
+ // click left mouse button (black cell)
   const gameField = document.querySelector('.game-field');
+
+  
   gameField.addEventListener('click', (event) => {
+
+    counterClick += 1;
+    if (counterClick === 1) {
+    interval = setInterval(startTime, 1000);
+    }
+
     clickLeftMouse(event);
     getWinCondition(matrixImage, sizeImage);
+    
   })
 
   // click right mouse button (black cell)
   gameField.addEventListener('contextmenu', (event) => {
+
+    counterClick += 1;
+    if (counterClick === 1) {
+    interval = setInterval(startTime, 1000);
+    }
+
     clickRigthMouse(event);
   })
 }
-
 
 // get a win condition
 function getWinCondition(matrixImage, sizeImage) {
