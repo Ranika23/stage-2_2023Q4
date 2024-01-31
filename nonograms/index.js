@@ -209,5 +209,6 @@ function getWinCondition(matrixImage, sizeImage) {
   if (result) {  // ===> WIN
     creatModal();
     openModal();
+    endTime();
   }
 }

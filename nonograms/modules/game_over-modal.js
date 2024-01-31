@@ -6,7 +6,10 @@ export function creatModal() {
 
   const modal = document.createElement('div');
   modal.className = 'modal';
-  modal.innerText = `Great!\n\nYou have solved the nonogram!`;
+
+  const watchInner = document.querySelector('.container-watch').innerText;
+  const timeGame = Number(watchInner.slice(0,3)) * 60 + Number(watchInner.slice(5));
+  modal.innerText = `Great!\n\nYou have solved the nonogram in ${timeGame} seconds!`;
   modalBackground.append(modal);
 
   const body = document.querySelector('.body');
