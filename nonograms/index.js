@@ -11,6 +11,9 @@ import {creatLevelsMiddleMenu, openMiddleLevelsMenu, closeMiddleLevelsMenu} from
 import {creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu} from './modules/level_3-hard.js';
 import {clickLeftMouse, clickRigthMouse, cleanCellField, cleanBoard} from './modules/operations-field.js';
 import {addContainWatch, resetTime, cleanWatch} from './modules/stop-watch.js';
+import {addSoundClick, addSoundClose, addSoundWinGame} from './modules/get-sound.js';
+
+
 
 
 // start TIME
@@ -177,7 +180,7 @@ function startGame(event, numberImg, sizeImage) {
     if (counterClick === 1) {
     interval = setInterval(startTime, 1000);
     }
-
+    addSoundClick(event);
     clickLeftMouse(event);
     getWinCondition(matrixImage, sizeImage);
     
@@ -190,7 +193,7 @@ function startGame(event, numberImg, sizeImage) {
     if (counterClick === 1) {
     interval = setInterval(startTime, 1000);
     }
-
+    addSoundClose(event);
     clickRigthMouse(event);
   })
 }
@@ -207,6 +210,7 @@ function getWinCondition(matrixImage, sizeImage) {
   let result;
   if (countClick === countFill) result = getResultGame(gameField, matrixImage, sizeImage);
   if (result) {  // ===> WIN
+    addSoundWinGame();
     creatModal();
     openModal();
     endTime();

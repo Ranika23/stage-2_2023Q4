@@ -1,6 +1,5 @@
 // click right mouse button (black cell)
 export function clickLeftMouse(event) {
-
   const cell = event.target;
   if (cell.classList.contains('right-click')) cell.classList.remove('right-click');
   cell.classList.toggle('left-click');
