@@ -24,5 +24,5 @@ export function cleanCellField() {
 }
 
 export function cleanBoard() {
-  if (document.querySelector('.game-board') !== null) document.querySelector('.game-board').remove();
+  if (document.querySelector('.game-board-container') !== null) document.querySelector('.game-board-container').remove();
 }

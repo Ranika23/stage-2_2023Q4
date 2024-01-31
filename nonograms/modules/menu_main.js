@@ -19,9 +19,21 @@ export function creatMenu(bodyContainer) {
 
   const menuReset = document.createElement('button');
   menuReset.className = 'menu-window__reset';
-  menuReset.innerText = `Reset Game`;
+  menuReset.innerText = `Reset game`;
   menuReset.setAttribute("disabled", "disabled");
   menuWindow.append(menuReset);
+
+  const menuSaveGame = document.createElement('button');
+  menuSaveGame.className = 'menu-window__save';
+  menuSaveGame.innerText = `Save game`;
+  menuSaveGame.setAttribute("disabled", "disabled");
+  menuWindow.append(menuSaveGame);
+
+  const menuLastGame = document.createElement('button');
+  menuLastGame.className = 'menu-window__last-game';
+  menuLastGame.innerText = `continue last game`;
+  menuLastGame.setAttribute("disabled", "disabled");
+  menuWindow.append(menuLastGame);
 
   bodyContainer.prepend(menuWindow);
 }

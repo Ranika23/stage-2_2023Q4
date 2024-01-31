@@ -103,7 +103,7 @@
   border-radius: 40px;
   padding: 30px;
   background-color: #e1d4c9;
-  top: -200px;
+  top: -350px;
   right: 90px;
   z-index: 99999;
   opacity: 1;
@@ -114,7 +114,7 @@
 
 
 .menu-window.close {
-  top: -200px;
+  top: -350px;
   z-index: 9;
   transition: 1s;
 }
@@ -155,7 +155,9 @@
 }
 
 .menu-window__levels,
-.menu-window__reset {
+.menu-window__reset,
+.menu-window__save,
+.menu-window__last-game {
   width: 90%;
   border-radius: 10px;
   font-size: 20px;
@@ -206,6 +208,10 @@
   cursor: pointer;
 }
 /*game-board */
+.game-board-container{
+  width: auto;
+  height: auto;
+}
 .game-board {
   width: 69vw;
   height: 69vw;

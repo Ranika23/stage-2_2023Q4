@@ -12,6 +12,8 @@ import {creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu} from './mo
 import {clickLeftMouse, clickRigthMouse, cleanCellField, cleanBoard} from './modules/operations-field.js';
 import {addContainWatch, resetTime, cleanWatch} from './modules/stop-watch.js';
 import {addSoundClick, addSoundClose, addSoundWinGame} from './modules/get-sound.js';
+import {enableButtons, getInitStateButtons} from './modules/disabled-button.js';
+import {saveLastGame, getLastGame} from './modules/local-storage.js';
 
 
 
@@ -57,6 +59,7 @@ const bodyContainer = document.createElement('div');
 bodyContainer.className = 'body-container';
 body.prepend(bodyContainer);
 
+
 //menu-background for modal of levels
 const menuBackground = document.createElement('div');
 menuBackground.className = 'menu-background';
@@ -69,13 +72,17 @@ body.prepend(menuBackground);
 // menu-burger
 addButtonMenu(bodyContainer); // menu-button
 creatMenu(bodyContainer);
+getInitStateButtons();
 creatLevelsMenu(bodyContainer);
 creatLevelsEasyMenu();
 creatLevelsMiddleMenu();
 creatLevelsHardMenu();
+
 const menuButton = document.querySelector('.menu-icon');
 const buttonLevels = document.querySelector('.menu-window__levels');
 const buttonReset = document.querySelector('.menu-window__reset');
+const buttonSaveGame = document.querySelector('.menu-window__save');
+const buttonLastGame = document.querySelector('.menu-window__last-game');
 menuButton.addEventListener('click', () => {
   openMenu();
   closeLevelsMenu();
@@ -87,6 +94,42 @@ buttonReset.addEventListener('click', () => {
   endTime();
   cleanCellField();
   openMenu();
+})
+
+
+buttonLastGame.addEventListener('click', () => {
+  clearInterval(interval);
+  endTime();
+  
+  let [matrixImage, sizeImage, gameField] = getLastGame();
+
+  minutes = Number(localStorage.getItem('minutes'));
+  seconds = Number(localStorage.getItem('seconds'));
+
+  gameField.addEventListener('click', (event) => {
+    counterClick += 1;
+    if (counterClick === 1) {
+    interval = setInterval(startTime, 1000);
+    enableButtons();
+    }
+    addSoundClick(event);
+    clickLeftMouse(event);
+    getWinCondition(matrixImage, sizeImage);
+
+    
+  })
+
+  // click right mouse button (black cell)
+  gameField.addEventListener('contextmenu', (event) => {
+    counterClick += 1;
+    if (counterClick === 1) {
+    interval = setInterval(startTime, 1000);
+    enableButtons();
+    }
+    addSoundClose(event);
+    clickRigthMouse(event);
+  })
+ 
 })
 
 
@@ -119,20 +162,22 @@ levelsMenu.addEventListener('click', (event) => {
 })
 
 
-
+startGame('1', 5); // on page loading
 // open images level-easy
 document.querySelector('.menu-levels__easy').addEventListener('click', (event) => {
+  console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const sizeImage = 5;
   if (numberImg !== undefined) {
-    startGame(event, numberImg, sizeImage);
+    startGame(numberImg, sizeImage);
   }
 })
 
 
 
 // function start game
-function startGame(event, numberImg, sizeImage) {
+function startGame(numberImg, sizeImage) {
+ 
   cleanBoard();
 
   cleanWatch();
@@ -142,13 +187,13 @@ function startGame(event, numberImg, sizeImage) {
 
 
   closeEasyLevelsMenu();
-  document.querySelector('.menu-window__reset').disabled = false;
 
 
 
+  console.log(sizeImage, numberImg)
   creatGameBoard(bodyContainer); // game board 
   const matrixImage = getFillMatrixField(sizeImage, numberImg);      // matrix image-field
-
+  console.log(matrixImage)
 
 
   const arrTopClues = addTopClues(matrixImage)[0];  // array top-clues
@@ -173,16 +218,21 @@ function startGame(event, numberImg, sizeImage) {
  // click left mouse button (black cell)
   const gameField = document.querySelector('.game-field');
 
-  
+  buttonSaveGame.addEventListener('click', () => {
+    saveLastGame(matrixImage, sizeImage);
+    getInitStateButtons();
+  })
   gameField.addEventListener('click', (event) => {
 
     counterClick += 1;
     if (counterClick === 1) {
     interval = setInterval(startTime, 1000);
+    enableButtons();
     }
     addSoundClick(event);
     clickLeftMouse(event);
     getWinCondition(matrixImage, sizeImage);
+
     
   })
 
@@ -192,6 +242,7 @@ function startGame(event, numberImg, sizeImage) {
     counterClick += 1;
     if (counterClick === 1) {
     interval = setInterval(startTime, 1000);
+    enableButtons();
     }
     addSoundClose(event);
     clickRigthMouse(event);
