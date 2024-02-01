@@ -210,11 +210,23 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
   getColorLoadPage();
 })
 
-// open images level-easy
+// open images level-middle
 document.querySelector('.menu-levels__middle').addEventListener('click', (event) => {
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const sizeImage = 10;
+  console.log('numberImg' ,numberImg)
+  if (numberImg !== undefined) {
+    startGame(numberImg, sizeImage);
+  }
+  getColorLoadPage();
+})
+
+// open images level-hard
+document.querySelector('.menu-levels__hard').addEventListener('click', (event) => {
+  console.log(event.target.classList)
+  const numberImg = event.target.classList[1];
+  const sizeImage = 15;
   console.log('numberImg' ,numberImg)
   if (numberImg !== undefined) {
     startGame(numberImg, sizeImage);

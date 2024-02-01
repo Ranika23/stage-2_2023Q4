@@ -68,7 +68,6 @@ export function addTopClues(matrixImage) { // включение количес�
 
 // заполнение поля подсказками (из массива arrClues)
 export function fillTopClues(sizeImage, arrTopClues, row) {
-  console.log(arrTopClues, row)
   getSizeCellTop(sizeImage, row);
   const arrClues = document.querySelector('.top-clues').children;
   let cell = 0;
@@ -92,6 +91,11 @@ function getSizeCellTop(sizeImage, row) {
     topClues.style.height = `${7 + 10 * row}%`;
   }
   else if(sizeImage === 10) {
+    gameBoard.style.height = `${40 + 5 * row}vw`;
+    emptyCorner.style.height = `${9 + 5 * row}%`;
+    topClues.style.height = `${9 + 5 * row}%`;
+  }
+  else if(sizeImage === 15) {
     gameBoard.style.height = `${40 + 5 * row}vw`;
     emptyCorner.style.height = `${9 + 5 * row}%`;
     topClues.style.height = `${9 + 5 * row}%`;

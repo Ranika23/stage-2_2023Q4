@@ -77,6 +77,13 @@ else if (sizeImage === 10) {
   else if (numberImg === '5') matrixImage = getMiddleImg_5(matrix);
 }
 
+else if (sizeImage === 15) {
+  if (numberImg === '1') matrixImage = getHardImg_1(matrix);
+  //else if (numberImg === '2') matrixImage = getHardImg_2(matrix);
+  //else if (numberImg === '3') matrixImage = getHardImg_3(matrix);
+  //else if (numberImg === '4') matrixImage = getHardImg_4(matrix);
+  //else if (numberImg === '5') matrixImage = getHardImg_5(matrix);
+}
 
 
 return matrixImage;
@@ -276,6 +283,34 @@ function getMiddleImg_5(matrix) { // Five image 10x10
       else if (i === 7 && (y === 2 || y === 7)) elemMatr.push(1);
       else if (i === 8 && (y === 1 || y === 3 || y === 4 || y === 5 || y === 6)) elemMatr.push(1);
       else if (i === 9 && (y === 0 || y === 1)) elemMatr.push(1);
+      else elemMatr.push(0);
+    }
+    matrixImage.push(elemMatr);
+  }
+    return matrixImage;
+}
+
+function getHardImg_1(matrix) { // Five image 10x10
+  const matrixImage = [];
+  for (let i = 0; i < matrix.length; i += 1) {
+    const elemMatr = [];
+    for (let y = 0; y < matrix[i].length; y += 1) {
+      
+      if (i === 0 && (y === 9 || y === 10 || y === 11)) elemMatr.push(1);
+      else if (i === 1 && (y >= 8 && y <= 12)) elemMatr.push(1);
+      else if (i === 2 && (y === 7 || y === 8 || y === 9 || y === 10 || y === 12 || y === 13 || y === 14)) elemMatr.push(1);
+      else if (i === 3 && (y >= 7 && y <= 13)) elemMatr.push(1);
+      else if (i === 4 && (y >= 8 && y <= 12)) elemMatr.push(1);
+      else if (i === 5 && (y >= 9 && y <= 11)) elemMatr.push(1);
+      else if (i === 6 && (y >= 8 && y <= 12)) elemMatr.push(1);
+      else if (i === 7 && (y === 0 || (y >= 6 && y <= 13))) elemMatr.push(1);
+      else if (i === 8 && (y === 0 || y === 1 || y === 2 || y === 5 || y === 6 || y === 7 || y === 11 || y === 12 || y === 13)) elemMatr.push(1);
+      else if (i === 9 && (y !== 7 && y !== 11 && y !== 14)) elemMatr.push(1);
+      else if (i === 10 && (y !== 0 && y !== 6 && y !== 11 && y !== 14)) elemMatr.push(1);
+      else if (i === 11 && (y !== 0 && y !== 9 && y !== 10 && y !== 13 && y !== 14)) elemMatr.push(1);
+      else if (i === 12 && (y >= 2 && y <= 11)) elemMatr.push(1);
+      else if (i === 13 && (y === 4 || y === 5 || y === 7 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 14 && (y >= 6 && y <= 11)) elemMatr.push(1);
       else elemMatr.push(0);
     }
     matrixImage.push(elemMatr);

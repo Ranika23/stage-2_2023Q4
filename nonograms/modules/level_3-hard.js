@@ -4,16 +4,18 @@ export function creatLevelsHardMenu() {
   levelsHardMenu.className = 'menu-levels__hard';
   menuBackground.append(levelsHardMenu);
 
-  for (let i = 0; i <= 5; i += 1) {
+  for (let i = 0; i < 5; i += 1) {
     if (i === 0) {
       const hardImg = document.createElement('div');
       hardImg.className = 'menu-levels__title';
-      hardImg.innerText = `Hard level 5x5`;
+      hardImg.innerText = `Hard level 15x15`;
       levelsHardMenu.append(hardImg);
     }
-    const hardImg = document.createElement('div');
+    const arrTitleImg = ['Question', 'Music', 'Clown', 'Clock', 'Leaf']
+    const hardImg = document.createElement('button');
     hardImg.className = 'menu-levels__img';
-    hardImg.innerText = `???`;
+    hardImg.classList.add(`${i + 1}`);
+    hardImg.innerText = `${arrTitleImg[i]}`;
     levelsHardMenu.append(hardImg);
   }
 

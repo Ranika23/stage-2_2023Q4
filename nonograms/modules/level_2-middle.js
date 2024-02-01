@@ -16,7 +16,6 @@ export function creatLevelsMiddleMenu() {
     middleImg.className = 'menu-levels__img';
     middleImg.classList.add(`${i + 1}`);
     middleImg.innerText = `${arrTitleImg[i]}`;
-    //middleImg.innerText = `???`;
     levelsMiddleMenu.append(middleImg);
   }
 
