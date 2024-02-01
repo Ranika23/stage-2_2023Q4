@@ -2,7 +2,7 @@ import {countClickCell, countFillCells, getResultGame} from './modules/game-resu
 import {creatGameBoard} from './modules/board_contain.js';
 import {creatLeftClues, addLeftClues, fillLeftClues} from './modules/clues-left.js';
 import {creatTopClues, addTopClues, fillTopClues} from './modules/clues-top.js';
-import {creatGameField, getFillMatrixField} from './modules/board_field.js';
+import {creatGameField, getFillMatrixField, addLineField} from './modules/board_field.js';
 import {creatModal, openModal} from './modules/game_over-modal.js';
 import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu_main.js';
 import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/menu_levels.js';
@@ -264,6 +264,7 @@ function startGame(numberImg, sizeImage) {
   fillLeftClues(sizeImage, arrLeftClues, columnLeftClues);   // fill cells left-clues
 
   
+  addLineField(sizeImage);
 
 
  // click left mouse button (black cell)

@@ -23,6 +23,35 @@ function creatCellField(sizeImage) {
   }
 }
 
+export function addLineField(sizeImage) {
+  console.log('line', sizeImage)
+  const gameBoard = document.querySelector('.game-board');
+  if (sizeImage === 10) {
+    const horizLine = document.createElement('div');
+    horizLine.className = 'game-field__horiz-line';
+
+    const verticLine = document.createElement('div');
+    verticLine.className = 'game-field__vertic-line';
+
+
+    // position horizont line
+    const heightTopClues = document.querySelector('.top-clues').offsetHeight;
+    const heightBoard = document.querySelector('.game-field').offsetHeight;
+    console.log(heightTopClues, heightBoard)
+    horizLine.style.top = `${heightBoard / 2 + heightTopClues}px`;
+    gameBoard.append(horizLine);
+
+    // position horizont line
+    const widthLeftClues = document.querySelector('.left-clues').offsetWidth;
+    const widthBoard = document.querySelector('.game-field').offsetWidth;
+
+    verticLine.style.left = `${widthBoard / 2 + widthLeftClues}px`;
+
+
+    gameBoard.append(horizLine);
+    gameBoard.append(verticLine);
+  }
+}
 
 // matrix МАТРИЦА ПУСТАЯ: ОСНОВА ДЛЯ ИГРОВОГО ПОЛЯ
 export function getFillMatrixField(sizeImage, numberImg) {
