@@ -6,9 +6,12 @@
 
 //left clues   ЛЕВЫЕ ПОДСКАЗКИ
 export function creatLeftClues(sizeImage, column) {
+  console.log('creatLeftClues(sizeImage', sizeImage)
   const leftClues = document.createElement('div');
   leftClues.className = 'left-clues';
   leftClues.style.gridTemplateColumns = `repeat(${column}, ${100/column}%)`;
+  leftClues.style.gridTemplateRows = `repeat(${sizeImage}, ${100/sizeImage}%)`;
+  console.log(`repeat(${sizeImage}, ${100/sizeImage}%)`)
   const gameBoard = document.querySelector('.game-board')
   gameBoard.append(leftClues);
   //left clues cells ЯЧЕЙКИ ЛЕВОЙ ПОДСКАЗКИ
@@ -36,7 +39,6 @@ export function addLeftClues(matrixImage) { // включение количес
   for (let i = 0; i < matrixImage.length; i += 1) {
     let countLine = 0;
     const arrLine = [];
-    console.log(matrixImage[i])
 
     for (let y = 0; y < matrixImage[i].length; y += 1) {
       if (matrixImage[i].indexOf(1) === -1) {
@@ -63,20 +65,20 @@ export function addLeftClues(matrixImage) { // включение количес
 
 
   }
-  console.log('result',result, max)
+  //console.log('result',result, max)
  for (let i = 0; i < result.length; i += 1) {  // матрица для поля левой подсказки
     for (let y = 0; y <= max; y += 1) {
       if (result[i].length < max) result[i].unshift(0);
     }
   }
-  console.log('maxLeft', max)
+  //console.log('maxLeft', max)
   return [result,max];
 }
 
 // заполнение поля подсказками (из массива arrClues)
-export function fillLeftClues(arrClues,column) {
+export function fillLeftClues(sizeImage, arrClues,column) {
 
- getSizeCellLeft(column);
+ getSizeCellLeft(sizeImage, column);
   const arrLeftClues = document.querySelector('.left-clues').children;
   for (let i = 0; i < arrClues.length; i += 1) {
     for (let y = 0; y < arrClues[i].length; y += 1) {
@@ -94,23 +96,29 @@ export function fillLeftClues(arrClues,column) {
   arrLeftClues[13].innerText = 1;
   arrLeftClues[14].innerText = 1; */
 }
-function getSizeCellLeft(column) {
+function getSizeCellLeft(sizeImage, column) {
   const gameBoard = document.querySelector('.game-board');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
   const leftClues = document.querySelector('.left-clues');
   const gameField = document.querySelector('.game-field');
 
-  gameBoard.style.width = `${43.5 + 8.5 * column}vw`;
-  emptyCorner.style.width = `${5+ 12 * column}%`;
-  leftClues.style.width = `${5 + 12 * column}%`;
+  if(sizeImage === 5) {
+    gameBoard.style.width = `${43.5 + 8.5 * column}vw`;
+    emptyCorner.style.width = `${sizeImage+ 12 * column}%`;
+    leftClues.style.width = `${sizeImage + 12 * column}%`;
+  }
+  else if(sizeImage === 10) {
+    gameBoard.style.width = `${38.5 + 8.5 * column}vw`;
+    emptyCorner.style.width = `${sizeImage + 3.5 * column}%`;
+    leftClues.style.width = `${sizeImage + 3.5 * column}%`;
+  }
+
 
   const widthEmptyCorner = emptyCorner.style.width;
 
-  //console.log(widthEmptyCorner.slice(0, widthEmptyCorner.length - 1));
   const widthTopClues = `${100 - Number(widthEmptyCorner.slice(0, widthEmptyCorner.length - 1))}%`;
   topClues.style.width = widthTopClues;
-  //leftClues.style.height = widthTopField;
   gameField.style.width = widthTopClues;
 }
 

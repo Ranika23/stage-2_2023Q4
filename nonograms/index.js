@@ -210,6 +210,18 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
   getColorLoadPage();
 })
 
+// open images level-easy
+document.querySelector('.menu-levels__middle').addEventListener('click', (event) => {
+  console.log(event.target.classList)
+  const numberImg = event.target.classList[1];
+  //const sizeImage = 10;
+  console.log('numberImg' ,numberImg)
+  if (numberImg !== undefined) {
+    //startGame(numberImg, sizeImage);
+  }
+  getColorLoadPage();
+})
+
 
 
 // function start game
@@ -221,10 +233,8 @@ function startGame(numberImg, sizeImage) {
   addContainWatch(bodyContainer);
   endTime();
 
-
-
   closeEasyLevelsMenu();
-
+  closeMiddleLevelsMenu();
 
 
   console.log(sizeImage, numberImg)
@@ -237,6 +247,9 @@ function startGame(numberImg, sizeImage) {
   const rowTopClues = addTopClues(matrixImage)[1];  // max counter rows in top-container
   creatTopClues(sizeImage, rowTopClues);            // creat top-clues container+cells
 
+  console.log('arrTopClues', arrTopClues)
+  console.log('rowTopClues', rowTopClues)
+
   const arrLeftClues = addLeftClues(matrixImage)[0];    // array left-clues
   const columnLeftClues = addLeftClues(matrixImage)[1]; // max counter columns in left-container
   creatLeftClues(sizeImage, columnLeftClues);           // creat left-clues container+c
@@ -247,8 +260,8 @@ function startGame(numberImg, sizeImage) {
 
 
 
-  fillTopClues(arrTopClues, rowTopClues);         // fill cells top-clues
-  fillLeftClues(arrLeftClues, columnLeftClues);   // fill cells left-clues
+  fillTopClues(sizeImage, arrTopClues, rowTopClues);         // fill cells top-clues
+  fillLeftClues(sizeImage, arrLeftClues, columnLeftClues);   // fill cells left-clues
 
   
 

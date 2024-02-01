@@ -11,9 +11,12 @@ export function creatLevelsMiddleMenu() {
       middleImg.innerText = `Middle level 5x5`;
       levelsMiddleMenu.append(middleImg);
     }
-    const middleImg = document.createElement('div');
+    const arrTitleImg = ['1', '2', '3', '4', '5']
+    const middleImg = document.createElement('button');
     middleImg.className = 'menu-levels__img';
-    middleImg.innerText = `???`;
+    middleImg.classList.add(`${i + 1}`);
+    middleImg.innerText = `${arrTitleImg[i]}`;
+    //middleImg.innerText = `???`;
     levelsMiddleMenu.append(middleImg);
   }
 

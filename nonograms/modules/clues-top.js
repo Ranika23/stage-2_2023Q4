@@ -1,9 +1,10 @@
 //creat top-clues container   ВЕРХНИЕ ПОДСКАЗКИ_КОНТЕЙНЕР+ячейки
 export function creatTopClues(sizeImage, row) {
-
+console.log('creatTopClues', sizeImage, row)
   const topClues = document.createElement('div');
   topClues.className = 'top-clues';
   topClues.style.gridTemplateRows = `repeat(${row}, ${100/row}%)`;
+  topClues.style.gridTemplateColumns = `repeat(${sizeImage}, ${100/sizeImage}%)`
 
   
   const gameBoard = document.querySelector('.game-board');
@@ -26,7 +27,6 @@ export function creatTopClues(sizeImage, row) {
 }
 
 export function addTopClues(matrixImage) { // включение количества закрашенных ячеек в массив
-  console.log(matrixImage)
   const result = [];
   let max = 0;
   for (let i = 0; i < matrixImage.length; i += 1) {
@@ -67,8 +67,9 @@ export function addTopClues(matrixImage) { // включение количес�
 }
 
 // заполнение поля подсказками (из массива arrClues)
-export function fillTopClues(arrTopClues, row) {
-  getSizeCellTop(row);
+export function fillTopClues(sizeImage, arrTopClues, row) {
+  console.log(arrTopClues, row)
+  getSizeCellTop(sizeImage, row);
   const arrClues = document.querySelector('.top-clues').children;
   let cell = 0;
   for (let i = 0; i < arrTopClues[i].length; i += 1) {
@@ -78,22 +79,29 @@ export function fillTopClues(arrTopClues, row) {
     }
   }
 }
-function getSizeCellTop(row) {
+function getSizeCellTop(sizeImage, row) {
   const gameBoard = document.querySelector('.game-board');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
   const leftClues = document.querySelector('.left-clues');
   const gameField = document.querySelector('.game-field');
 
-  gameBoard.style.height = `${39 + 10 * row}vw`;
-  emptyCorner.style.height = `${7 + 10 * row}%`;
-  topClues.style.height = `${7 + 10 * row}%`;
+  if(sizeImage === 5) {
+    gameBoard.style.height = `${39 + 10 * row}vw`;
+    emptyCorner.style.height = `${7 + 10 * row}%`;
+    topClues.style.height = `${7 + 10 * row}%`;
+  }
+  else if(sizeImage === 10) {
+    gameBoard.style.height = `${40 + 5 * row}vw`;
+    emptyCorner.style.height = `${9 + 5 * row}%`;
+    topClues.style.height = `${9 + 5 * row}%`;
+  }
 
   const heightEmptyCorner = emptyCorner.style.height;
 
-  console.log(heightEmptyCorner.slice(0, heightEmptyCorner.length - 1));
-  const heightLEftField = `${100 - Number(heightEmptyCorner.slice(0, heightEmptyCorner.length - 1))}%`;
-  leftClues.style.height = heightLEftField;
-  gameField.style.height = heightLEftField;
+  //console.log(heightEmptyCorner.slice(0, heightEmptyCorner.length - 1));
+  const heightLeftField = `${100 - Number(heightEmptyCorner.slice(0, heightEmptyCorner.length - 1))}%`;
+  leftClues.style.height = heightLeftField;
+  gameField.style.height = heightLeftField;
 }
 

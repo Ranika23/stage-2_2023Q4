@@ -239,7 +239,7 @@
   width: 38%;
   height: 63%;
   /*grid-template-columns: repeat(3, 33.3%);*/
-  grid-template-rows: repeat(5, 20%);
+  /*grid-template-rows: repeat(5, 20%);*/
   border-right: 2px solid black;
   justify-content: end;
 }
@@ -265,8 +265,8 @@
   width: 62%;
   height: 63%;
   display: grid;
-  grid-template-columns: repeat(5, 20%);
-  grid-template-rows: repeat(5, 20%);
+  /*grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(5, 20%);*/
 }
 .cell-field {
   /*width: 30px;

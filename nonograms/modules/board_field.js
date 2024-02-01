@@ -14,45 +14,51 @@ function creatCellField(sizeImage) {
     const cellField = document.createElement('div');
     cellField.className = 'cell-field';
     const gameField = document.querySelector('.game-field');
-    gameField.prepend(cellField)
+    gameField.prepend(cellField);
+    gameField.style.gridTemplateColumns = `repeat(${sizeImage}, ${100/sizeImage}%)`;
+    gameField.style.gridTemplateRows = `repeat(${sizeImage}, ${100/sizeImage}%)`;
   }
 }
 
 
 // matrix МАТРИЦА ПУСТАЯ: ОСНОВА ДЛЯ ИГРОВОГО ПОЛЯ
 export function getFillMatrixField(sizeImage, numberImg) {
+  console.log('sizeImage', sizeImage)
 const arr = new Array(sizeImage).fill(0);
 const matrix = [];
 arr.forEach(() => matrix.push(arr));
+console.log('matrix', matrix)
 let matrixImage;
+if (sizeImage === 5) {
+  if (numberImg === '1') {
+    //console.log(numberImg)
+    matrixImage = getEasyImg_1(matrix);
+  }
+  if (numberImg === '2') {
+    //console.log(numberImg)
+    matrixImage = getEasyImg_2(matrix);
+  }
+  if (numberImg === '3') {
+    //console.log(numberImg)
+    matrixImage = getEasyImg_3(matrix);
+  }
+  if (numberImg === '4') {
+    //console.log(numberImg)
+    matrixImage = getEasyImg_4(matrix);
+  }
+  if (numberImg === '5') {
+    //console.log(numberImg)
+    matrixImage = getEasyImg_5(matrix);
+  }
+}
 
-if (numberImg === '1') {
-  console.log(numberImg)
-  matrixImage = getImg_1(matrix);
-}
-if (numberImg === '2') {
-  console.log(numberImg)
-  matrixImage = getImg_2(matrix);
-}
-if (numberImg === '3') {
-  console.log(numberImg)
-  matrixImage = getImg_3(matrix);
-}
-if (numberImg === '4') {
-  console.log(numberImg)
-  matrixImage = getImg_4(matrix);
-}
-if (numberImg === '5') {
-  console.log(numberImg)
-  matrixImage = getImg_5(matrix);
-}
 
 return matrixImage;
 }
 
 
 // matrix image МАТРИЦА ЧИСЛОВАЯ 1 === 1 ЧЕРНЫЙ ПИКСЕЛЬ 
-function getImg_1(matrix) { // First image 5x5
+function getEasyImg_1(matrix) { // First image 5x5
 const matrixImage = [];
 for (let i = 0; i < matrix.length; i += 1) {
   const elemMatr = [];
@@ -77,10 +83,10 @@ for (let i = 0; i < matrix.length; i += 1) {
     }
   }
   matrixImage.push(elemMatr);
-}console.log(matrixImage)
+}
   return matrixImage;
 }
-function getImg_2(matrix) { // Two image 5x5
+function getEasyImg_2(matrix) { // Two image 5x5
   const matrixImage = [];
   for (let i = 0; i < matrix.length; i += 1) {
     const elemMatr = [];
@@ -108,7 +114,7 @@ function getImg_2(matrix) { // Two image 5x5
   }
     return matrixImage;
 }
-function getImg_3(matrix) { // Two image 5x5
+function getEasyImg_3(matrix) { // Three image 5x5
   const matrixImage = [];
   for (let i = 0; i < matrix.length; i += 1) {
     const elemMatr = [];
@@ -136,7 +142,7 @@ function getImg_3(matrix) { // Two image 5x5
   }
     return matrixImage;
 }
-function getImg_4(matrix) { // Two image 5x5
+function getEasyImg_4(matrix) { // Four image 5x5
   const matrixImage = [];
   for (let i = 0; i < matrix.length; i += 1) {
     const elemMatr = [];
@@ -164,7 +170,7 @@ function getImg_4(matrix) { // Two image 5x5
   }
     return matrixImage;
 }
-function getImg_5(matrix) { // Two image 5x5
+function getEasyImg_5(matrix) { // Five image 5x5
   const matrixImage = [];
   for (let i = 0; i < matrix.length; i += 1) {
     const elemMatr = [];
@@ -192,3 +198,4 @@ function getImg_5(matrix) { // Two image 5x5
   }
     return matrixImage;
 }
+
