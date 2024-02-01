@@ -31,7 +31,7 @@ export function creatMenu(bodyContainer) {
 
   const menuLastGame = document.createElement('button');
   menuLastGame.className = 'menu-window__last-game';
-  menuLastGame.innerText = `continue last game`;
+  menuLastGame.innerText = `Continue last game`;
   menuLastGame.setAttribute("disabled", "disabled");
   menuWindow.append(menuLastGame);
 

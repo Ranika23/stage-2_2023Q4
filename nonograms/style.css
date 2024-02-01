@@ -98,10 +98,10 @@
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-  width: 180px;
+  width: 160px;
   height: auto;
   border-radius: 40px;
-  padding: 30px;
+  padding: 30px 20px;
   background-color: #e1d4c9;
   top: -350px;
   right: 90px;
@@ -131,11 +131,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 50px;
+  gap: 10px;
   width: 180px;
   height: auto;
   border-radius: 40px;
-  padding: 40px 30px;
+  padding: 40px 20px;
   background-color: #e1d4c9;
   z-index: 99999;
   opacity: 1;
@@ -158,6 +158,7 @@
 .menu-window__reset,
 .menu-window__save,
 .menu-window__last-game {
+  height: 50px;
   width: 90%;
   border-radius: 10px;
   font-size: 20px;
@@ -165,6 +166,7 @@
 }
 
 .menu-levels__button {
+  height: 50px;
   width: 90%;
   border-radius: 10px;
   font-size: 20px;
@@ -178,7 +180,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
   width: 80vw;
   height: auto;
   border-radius: 40px;
@@ -199,9 +201,11 @@
   letter-spacing: 1px;
   width: 90%;
   font-size: 30px;
+  margin-bottom: 10px;
 }
 .menu-levels__img {
   width: 90%;
+  height: 50px;
   border: 1px solid black;
   border-radius: 10px;
   font-size: 20px;
@@ -227,6 +231,7 @@
   height: 37%;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
+  background: #e7f2ea;
 }
 
 .left-clues {
@@ -251,6 +256,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 500;
   border: 0.5px solid rgb(195 187 187);
   background: #e7f2ea;
 }
@@ -266,7 +272,7 @@
   /*width: 30px;
   height: 30px;*/
   border: 0.5px solid rgb(195 187 187);
-  background: #e7f2ea;
+  background: white;
 }
 .cell-field.left-click {
   background: black;
@@ -351,7 +357,41 @@
 .container-watch {
   width: 200px;
   height: 50px;
+  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.change-color {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 30px;
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgb(171 235 235);
+}
+.change-color__line {
+  position: absolute;
+  left: 0px;
+  width: 0%;
+  height: 100%;
+  background-color: rgb(93, 125, 125);
+  border-radius: 30px;
+  transition: 0.6s;
+}
+.change-color__slider {
+  position: absolute;
+  left: 0px;
+  width: 26px;
+  height: 26px;
+  background-color: rgb(171 235 235);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.5s;
 }

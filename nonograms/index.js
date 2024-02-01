@@ -14,6 +14,7 @@ import {addContainWatch, resetTime, cleanWatch} from './modules/stop-watch.js';
 import {addSoundClick, addSoundClose, addSoundWinGame} from './modules/get-sound.js';
 import {enableButtons, getInitStateButtons} from './modules/disabled-button.js';
 import {saveLastGame, getLastGame} from './modules/local-storage.js';
+import {creatChangeColorButton, changeColorTheme , getColorLoadPage} from './modules/dark_light.js';
 
 
 
@@ -59,15 +60,11 @@ const bodyContainer = document.createElement('div');
 bodyContainer.className = 'body-container';
 body.prepend(bodyContainer);
 
-
 //menu-background for modal of levels
 const menuBackground = document.createElement('div');
 menuBackground.className = 'menu-background';
 menuBackground.classList.add('close');
 body.prepend(menuBackground);
-
-
-
 
 // menu-burger
 addButtonMenu(bodyContainer); // menu-button
@@ -110,6 +107,13 @@ buttonReset.addEventListener('click', () => {
 })
 
 
+
+
+
+
+
+
+// save last game
 buttonLastGame.addEventListener('click', () => {
   openMenu();
   closeLevelsMenu();
@@ -178,6 +182,23 @@ levelsMenu.addEventListener('click', (event) => {
 
 
 startGame('1', 5); // on page loading
+
+
+//button change color
+const changeColorButton = creatChangeColorButton(bodyContainer);
+changeColorButton.addEventListener("click", () => {
+  changeColorTheme();
+})
+getColorLoadPage();
+
+
+
+
+
+
+
+
+
 // open images level-easy
 document.querySelector('.menu-levels__easy').addEventListener('click', (event) => {
   console.log(event.target.classList)
@@ -186,13 +207,14 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
   if (numberImg !== undefined) {
     startGame(numberImg, sizeImage);
   }
+  getColorLoadPage();
 })
 
 
 
 // function start game
 function startGame(numberImg, sizeImage) {
- 
+
   cleanBoard();
 
   cleanWatch();
