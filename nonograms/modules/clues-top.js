@@ -80,7 +80,7 @@ export function fillTopClues(sizeImage, arrTopClues, row) {
   }
 }
 function getSizeCellTop(sizeImage, row) {
-  const gameBoard = document.querySelector('.game-board');
+  const gameBoard = document.querySelector('.game-board-container');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
   const leftClues = document.querySelector('.left-clues');

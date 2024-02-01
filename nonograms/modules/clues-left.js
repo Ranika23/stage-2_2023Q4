@@ -97,7 +97,7 @@ export function fillLeftClues(sizeImage, arrClues,column) {
   arrLeftClues[14].innerText = 1; */
 }
 function getSizeCellLeft(sizeImage, column) {
-  const gameBoard = document.querySelector('.game-board');
+  const gameBoard = document.querySelector('.game-board-container');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
   const leftClues = document.querySelector('.left-clues');

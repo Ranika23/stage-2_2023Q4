@@ -5,6 +5,7 @@ export function creatGameField(sizeImage) {
   const gameBoard = document.querySelector('.game-board');
   gameBoard.append(gameField);
 
+
   creatCellField(sizeImage);
 }
 
@@ -14,9 +15,11 @@ function creatCellField(sizeImage) {
     const cellField = document.createElement('div');
     cellField.className = 'cell-field';
     const gameField = document.querySelector('.game-field');
+
     gameField.prepend(cellField);
     gameField.style.gridTemplateColumns = `repeat(${sizeImage}, ${100/sizeImage}%)`;
     gameField.style.gridTemplateRows = `repeat(${sizeImage}, ${100/sizeImage}%)`;
+
   }
 }
 
@@ -49,6 +52,13 @@ if (sizeImage === 5) {
   if (numberImg === '5') {
     //console.log(numberImg)
     matrixImage = getEasyImg_5(matrix);
+  }
+}
+
+if (sizeImage === 10) {
+  if (numberImg === '1') {
+    //console.log(numberImg)
+    matrixImage = getMiddleImg_1(matrix);
   }
 }
 
@@ -199,3 +209,45 @@ function getEasyImg_5(matrix) { // Five image 5x5
     return matrixImage;
 }
 
+
+
+function getMiddleImg_1(matrix) { // First image 5x5
+  const matrixImage = [];
+  for (let i = 0; i < matrix.length; i += 1) {
+    const elemMatr = [];
+    for (let y = 0; y < matrix[i].length; y += 1) {
+      
+      if (i === 0 && (y === 2 || y === 3 || y === 4 || y === 5 || y === 6 || y === 7)) {
+        elemMatr.push(1);
+      }
+      else if (i === 1 && (y === 1 || y === 2 || y === 7 || y === 8)) {
+        elemMatr.push(1);
+      }
+      else if (i === 2 && (y === 1 || y === 2 || y === 7 || y === 8)) {
+        elemMatr.push(1);
+      }
+      else if (i === 3 && (y === 7 || y === 8)) {
+        elemMatr.push(1);
+      }
+      else if (i === 4 && (y === 6 || y === 7 || y === 8)) {
+        elemMatr.push(1);
+      } 
+      else if (i === 5 && (y === 4 || y === 5 || y === 6 || y === 7)) {
+        elemMatr.push(1)
+      }
+      else if (i === 6 && (y === 4 || y === 5)) {
+        elemMatr.push(1)
+      }
+      else if (i === 8 && (y === 4 || y === 5)) {
+        elemMatr.push(1)
+      }
+      else if (i === 9 && (y === 4 || y === 5)) {
+        elemMatr.push(1)
+      }else {
+        elemMatr.push(0);
+      }
+    }
+    matrixImage.push(elemMatr);
+  }
+    return matrixImage;
+  }

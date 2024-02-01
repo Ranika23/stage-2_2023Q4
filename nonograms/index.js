@@ -214,10 +214,10 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
 document.querySelector('.menu-levels__middle').addEventListener('click', (event) => {
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
-  //const sizeImage = 10;
+  const sizeImage = 10;
   console.log('numberImg' ,numberImg)
   if (numberImg !== undefined) {
-    //startGame(numberImg, sizeImage);
+    startGame(numberImg, sizeImage);
   }
   getColorLoadPage();
 })
@@ -264,6 +264,7 @@ function startGame(numberImg, sizeImage) {
   fillLeftClues(sizeImage, arrLeftClues, columnLeftClues);   // fill cells left-clues
 
   
+
 
  // click left mouse button (black cell)
   const gameField = document.querySelector('.game-field');
