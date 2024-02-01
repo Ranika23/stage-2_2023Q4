@@ -1,7 +1,7 @@
 import {countClickCell, countFillCells, getResultGame} from './modules/game-result.js';
 import {creatGameBoard} from './modules/board_contain.js';
-import {creatLeftClues, addLeftClues, fillLeftClues} from './modules/clues-left.js';
-import {creatTopClues, addTopClues, fillTopClues} from './modules/clues-top.js';
+import {creatLeftClues, addLeftClues, fillLeftClues, getSizeCellLeft} from './modules/clues-left.js';
+import {creatTopClues, addTopClues, fillTopClues, getSizeCellTop} from './modules/clues-top.js';
 import {creatGameField, getFillMatrixField, addLineField} from './modules/board_field.js';
 import {creatModal, openModal} from './modules/game_over-modal.js';
 import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu_main.js';
@@ -120,7 +120,11 @@ buttonLastGame.addEventListener('click', () => {
   clearInterval(interval);
   endTime();
   
-  let [matrixImage, sizeImage, gameField] = getLastGame();
+  let [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues] = getLastGame();
+
+console.log(rowTopClues, columnLeftClues)
+  getSizeCellTop(sizeImage, rowTopClues);
+  getSizeCellLeft(sizeImage, columnLeftClues);
 
   minutes = Number(localStorage.getItem('minutes'));
   seconds = Number(localStorage.getItem('seconds'));
@@ -272,10 +276,12 @@ function startGame(numberImg, sizeImage) {
 
 
 
-  fillTopClues(sizeImage, arrTopClues, rowTopClues);         // fill cells top-clues
-  fillLeftClues(sizeImage, arrLeftClues, columnLeftClues);   // fill cells left-clues
+  fillTopClues(sizeImage, arrTopClues);         // fill cells top-clues
+  fillLeftClues(sizeImage, arrLeftClues);   // fill cells left-clues
 
-  
+  getSizeCellTop(sizeImage, rowTopClues)
+  getSizeCellLeft(sizeImage, columnLeftClues);
+
   addLineField(sizeImage);
 
 
@@ -283,9 +289,9 @@ function startGame(numberImg, sizeImage) {
   const gameField = document.querySelector('.game-field');
 
   buttonSaveGame.addEventListener('click', () => {
-    openMenu();
+   closeMenu();
     closeLevelsMenu();
-    saveLastGame(matrixImage, sizeImage);
+    saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues);
     getInitStateButtons();
   })
   gameField.addEventListener('click', (event) => {

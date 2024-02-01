@@ -212,11 +212,6 @@
   cursor: pointer;
 }
 /*game-board */
-.game-board-container{
-  width: 69vw;
-  height: 69vw;
-
-}
 .game-board {
   position: relative;
   width: 100%;
@@ -229,8 +224,6 @@
 
 }
 .empty-corner {
-  width: 38%;
-  height: 37%;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
   background: #e7f2ea;
@@ -238,19 +231,12 @@
 
 .left-clues {
   display: grid;
-  width: 38%;
-  height: 63%;
-  /*grid-template-columns: repeat(3, 33.3%);*/
-  /*grid-template-rows: repeat(5, 20%);*/
   border-right: 2px solid black;
   justify-content: end;
 }
 .top-clues {
   display: grid;
-  width: 62%;
-  height: 37%;
   grid-template-columns: repeat(5, 20%);
-  /*grid-template-rows: repeat(3, 33.3%);*/
   border-bottom: 2px solid black;
   align-content: end;
 }
@@ -264,8 +250,8 @@
 }
 
 .game-field {
-  width: 62%;
-  height: 63%;
+  /*width: 62%;
+  height: 63%;*/
   display: grid;
   /*grid-template-columns: repeat(5, 20%);
   grid-template-rows: repeat(5, 20%);*/

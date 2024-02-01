@@ -140,7 +140,7 @@ function changeLightPage() {
   menuLevelsMiddle.forEach((item) => item.style.color = 'black');
   menuLevelsHard.forEach((item) => item.style.color = 'black');
   
-  gameBoard.style.borderColor = '#e1d4c9'; 
+  gameBoard.style.borderColor = 'rgb(78 119 112)'; 
   emptyCorner.style.background = '#e7f2ea';
   cellsClues.forEach((item) => item.style.background = '#e7f2ea');
   cellsClues.forEach((item) => item.style.color = 'black');

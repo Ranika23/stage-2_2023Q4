@@ -76,9 +76,9 @@ export function addLeftClues(matrixImage) { // включение количес
 }
 
 // заполнение поля подсказками (из массива arrClues)
-export function fillLeftClues(sizeImage, arrClues,column) {
+export function fillLeftClues(sizeImage, arrClues) {
 
- getSizeCellLeft(sizeImage, column);
+ //getSizeCellLeft(sizeImage, column);
   const arrLeftClues = document.querySelector('.left-clues').children;
   for (let i = 0; i < arrClues.length; i += 1) {
     for (let y = 0; y < arrClues[i].length; y += 1) {
@@ -96,7 +96,8 @@ export function fillLeftClues(sizeImage, arrClues,column) {
   arrLeftClues[13].innerText = 1;
   arrLeftClues[14].innerText = 1; */
 }
-function getSizeCellLeft(sizeImage, column) {
+export function getSizeCellLeft(sizeImage, column) {
+  console.log('Left sizeImage, column', sizeImage, column)
   const gameBoard = document.querySelector('.game-board-container');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
@@ -116,8 +117,8 @@ function getSizeCellLeft(sizeImage, column) {
     console.log(emptyCorner.style.width, leftClues.style.width)
   }
   else if(sizeImage === 15) {
-    gameBoard.style.width = `${40.1 + 5 * column}vw`;
-    const width = 100 / (10 + column);
+    gameBoard.style.width = `${42.1 + 5 * column}vw`;
+    const width = 100 / (15 + column);
     emptyCorner.style.width = `${width * column}%`;
     leftClues.style.width = `${width * column}%`;
     console.log(emptyCorner.style.width, leftClues.style.width)
