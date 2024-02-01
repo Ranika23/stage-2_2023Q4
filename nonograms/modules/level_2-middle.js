@@ -4,14 +4,14 @@ export function creatLevelsMiddleMenu() {
   levelsMiddleMenu.className = 'menu-levels__middle';
   menuBackground.append(levelsMiddleMenu);
 
-  for (let i = 0; i <= 5; i += 1) {
+  for (let i = 0; i < 5; i += 1) {
     if (i === 0) {
       const middleImg = document.createElement('div');
       middleImg.className = 'menu-levels__title';
-      middleImg.innerText = `Middle level 5x5`;
+      middleImg.innerText = `Middle level 10x10`;
       levelsMiddleMenu.append(middleImg);
     }
-    const arrTitleImg = ['1', '2', '3', '4', '5']
+    const arrTitleImg = ['Question', 'Music', 'Clown', 'Clock', 'Leaf']
     const middleImg = document.createElement('button');
     middleImg.className = 'menu-levels__img';
     middleImg.classList.add(`${i + 1}`);

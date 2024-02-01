@@ -109,9 +109,13 @@ function getSizeCellLeft(sizeImage, column) {
     leftClues.style.width = `${sizeImage + 12 * column}%`;
   }
   else if(sizeImage === 10) {
-    gameBoard.style.width = `${38.5 + 8.5 * column}vw`;
-    emptyCorner.style.width = `${sizeImage + 3.5 * column}%`;
-    leftClues.style.width = `${sizeImage + 3.5 * column}%`;
+    gameBoard.style.width = `${40.1 + 5 * column}vw`;
+
+    const width = 100 / (10 + column);
+
+    emptyCorner.style.width = `${width * column}%`;
+    leftClues.style.width = `${width * column}%`;
+    console.log(emptyCorner.style.width, leftClues.style.width)
   }
 
 

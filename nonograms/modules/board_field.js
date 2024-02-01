@@ -62,34 +62,21 @@ arr.forEach(() => matrix.push(arr));
 console.log('matrix', matrix)
 let matrixImage;
 if (sizeImage === 5) {
-  if (numberImg === '1') {
-    //console.log(numberImg)
-    matrixImage = getEasyImg_1(matrix);
-  }
-  if (numberImg === '2') {
-    //console.log(numberImg)
-    matrixImage = getEasyImg_2(matrix);
-  }
-  if (numberImg === '3') {
-    //console.log(numberImg)
-    matrixImage = getEasyImg_3(matrix);
-  }
-  if (numberImg === '4') {
-    //console.log(numberImg)
-    matrixImage = getEasyImg_4(matrix);
-  }
-  if (numberImg === '5') {
-    //console.log(numberImg)
-    matrixImage = getEasyImg_5(matrix);
-  }
+  if (numberImg === '1') matrixImage = getEasyImg_1(matrix);
+  else if (numberImg === '2') matrixImage = getEasyImg_2(matrix);
+  else if (numberImg === '3') matrixImage = getEasyImg_3(matrix);
+  else if (numberImg === '4') matrixImage = getEasyImg_4(matrix);
+  else if (numberImg === '5') matrixImage = getEasyImg_5(matrix);
 }
 
-if (sizeImage === 10) {
-  if (numberImg === '1') {
-    //console.log(numberImg)
-    matrixImage = getMiddleImg_1(matrix);
-  }
+else if (sizeImage === 10) {
+  if (numberImg === '1') matrixImage = getMiddleImg_1(matrix);
+  else if (numberImg === '2') matrixImage = getMiddleImg_2(matrix);
+  else if (numberImg === '3') matrixImage = getMiddleImg_3(matrix);
+  else if (numberImg === '4') matrixImage = getMiddleImg_4(matrix);
+  else if (numberImg === '5') matrixImage = getMiddleImg_5(matrix);
 }
+
 
 
 return matrixImage;
@@ -103,23 +90,12 @@ for (let i = 0; i < matrix.length; i += 1) {
   const elemMatr = [];
   for (let y = 0; y < matrix[i].length; y += 1) {
     
-    if (i === 0 && (y === 0 || y === 2 || y === 4)) {
-      elemMatr.push(1);
-    }
-    else if (i === 1) {
-      elemMatr.push(1);
-    }
-    else if (i === 2 && (y === 1 || y === 2 || y === 3)) {
-      elemMatr.push(1);
-    }
-    else if (i === 3 && (y === 1 || y === 3)) {
-      elemMatr.push(1);
-    }
-    else if (i === 4 && (y === 1 || y === 2 || y === 3)) {
-      elemMatr.push(1);
-    } else {
-      elemMatr.push(0);
-    }
+    if (i === 0 && (y === 0 || y === 2 || y === 4)) elemMatr.push(1);
+    else if (i === 1) elemMatr.push(1);
+    else if (i === 2 && (y === 1 || y === 2 || y === 3)) elemMatr.push(1);
+    else if (i === 3 && (y === 1 || y === 3)) elemMatr.push(1);
+    else if (i === 4 && (y === 1 || y === 2 || y === 3)) elemMatr.push(1);
+    else elemMatr.push(0);
   }
   matrixImage.push(elemMatr);
 }
@@ -131,23 +107,12 @@ function getEasyImg_2(matrix) { // Two image 5x5
     const elemMatr = [];
     for (let y = 0; y < matrix[i].length; y += 1) {
       
-      if (i === 0) {
-        elemMatr.push(1);
-      }
-      else if (i === 1 && y === 0) {
-        elemMatr.push(1);
-      }
-      else if (i === 2) {
-        elemMatr.push(1);
-      }
-      else if (i === 3 && y === 4) {
-        elemMatr.push(1);
-      }
-      else if (i === 4) {
-        elemMatr.push(1);
-      } else {
-        elemMatr.push(0);
-      }
+      if (i === 0) elemMatr.push(1);
+      else if (i === 1 && y === 0) elemMatr.push(1);
+      else if (i === 2) elemMatr.push(1);
+      else if (i === 3 && y === 4) elemMatr.push(1);
+      else if (i === 4) elemMatr.push(1);
+      else elemMatr.push(0);
     }
     matrixImage.push(elemMatr);
   }
@@ -159,23 +124,12 @@ function getEasyImg_3(matrix) { // Three image 5x5
     const elemMatr = [];
     for (let y = 0; y < matrix[i].length; y += 1) {
       
-      if (i === 0) {
-        elemMatr.push(1);
-      }
-      else if (i === 1 && (y === 0 ||  y === 2 || y === 4)) {
-        elemMatr.push(1);
-      }
-      else if (i === 2) {
-        elemMatr.push(1);
-      }
-      else if (i === 3 && y === 0) {
-        elemMatr.push(1);
-      }
-      else if (i === 4 && y === 0) {
-        elemMatr.push(1);
-      } else {
-        elemMatr.push(0);
-      }
+      if (i === 0) elemMatr.push(1);
+      else if (i === 1 && (y === 0 ||  y === 2 || y === 4)) elemMatr.push(1);
+      else if (i === 2) elemMatr.push(1);
+      else if (i === 3 && y === 0) elemMatr.push(1);
+      else if (i === 4 && y === 0) elemMatr.push(1);
+      else elemMatr.push(0);
     }
     matrixImage.push(elemMatr);
   }
@@ -187,23 +141,12 @@ function getEasyImg_4(matrix) { // Four image 5x5
     const elemMatr = [];
     for (let y = 0; y < matrix[i].length; y += 1) {
       
-      if (i === 0 && (y === 0 || y === 3 || y === 4)) {
-        elemMatr.push(1);
-      }
-      else if (i === 1 && (y === 0 ||  y === 1 || y === 2 || y === 3)) {
-        elemMatr.push(1);
-      }
-      else if (i === 2 && (y === 1 ||  y === 3)) {
-        elemMatr.push(1);
-      }
-      else if (i === 3 && (y === 1 ||  y === 2 || y === 3 || y === 4)) {
-        elemMatr.push(1);
-      }
-      else if (i === 4 && (y === 0 ||  y === 1 || y === 4)) {
-        elemMatr.push(1);
-      } else {
-        elemMatr.push(0);
-      }
+      if (i === 0 && (y === 0 || y === 3 || y === 4)) elemMatr.push(1);
+      else if (i === 1 && (y === 0 ||  y === 1 || y === 2 || y === 3)) elemMatr.push(1);
+      else if (i === 2 && (y === 1 ||  y === 3)) elemMatr.push(1);
+      else if (i === 3 && (y === 1 ||  y === 2 || y === 3 || y === 4)) elemMatr.push(1);
+      else if (i === 4 && (y === 0 ||  y === 1 || y === 4)) elemMatr.push(1);
+      else elemMatr.push(0);
     }
     matrixImage.push(elemMatr);
   }
@@ -215,23 +158,12 @@ function getEasyImg_5(matrix) { // Five image 5x5
     const elemMatr = [];
     for (let y = 0; y < matrix[i].length; y += 1) {
       
-      if (i === 0 && (y === 1 || y === 2)) {
-        elemMatr.push(1);
-      }
-      else if (i === 1 && y === 2) {
-        elemMatr.push(1);
-      }
-      else if (i === 2) {
-        elemMatr.push(1);
-      }
-      else if (i === 3 && (y === 0 ||  y === 2 || y === 4)) {
-        elemMatr.push(1);
-      }
-      else if (i === 4 && (y === 0 ||  y === 1 || y === 2)) {
-        elemMatr.push(1);
-      } else {
-        elemMatr.push(0);
-      }
+      if (i === 0 && (y === 1 || y === 2)) elemMatr.push(1);
+      else if (i === 1 && y === 2) elemMatr.push(1);
+      else if (i === 2) elemMatr.push(1);
+      else if (i === 3 && (y === 0 ||  y === 2 || y === 4)) elemMatr.push(1);
+      else if (i === 4 && (y === 0 ||  y === 1 || y === 2)) elemMatr.push(1); 
+      else elemMatr.push(0);
     }
     matrixImage.push(elemMatr);
   }
@@ -240,43 +172,113 @@ function getEasyImg_5(matrix) { // Five image 5x5
 
 
 
-function getMiddleImg_1(matrix) { // First image 5x5
+function getMiddleImg_1(matrix) { // First image 10x10
   const matrixImage = [];
   for (let i = 0; i < matrix.length; i += 1) {
     const elemMatr = [];
     for (let y = 0; y < matrix[i].length; y += 1) {
       
-      if (i === 0 && (y === 2 || y === 3 || y === 4 || y === 5 || y === 6 || y === 7)) {
-        elemMatr.push(1);
-      }
-      else if (i === 1 && (y === 1 || y === 2 || y === 7 || y === 8)) {
-        elemMatr.push(1);
-      }
-      else if (i === 2 && (y === 1 || y === 2 || y === 7 || y === 8)) {
-        elemMatr.push(1);
-      }
-      else if (i === 3 && (y === 7 || y === 8)) {
-        elemMatr.push(1);
-      }
-      else if (i === 4 && (y === 6 || y === 7 || y === 8)) {
-        elemMatr.push(1);
-      } 
-      else if (i === 5 && (y === 4 || y === 5 || y === 6 || y === 7)) {
-        elemMatr.push(1)
-      }
-      else if (i === 6 && (y === 4 || y === 5)) {
-        elemMatr.push(1)
-      }
-      else if (i === 8 && (y === 4 || y === 5)) {
-        elemMatr.push(1)
-      }
-      else if (i === 9 && (y === 4 || y === 5)) {
-        elemMatr.push(1)
-      }else {
-        elemMatr.push(0);
-      }
+      if (i === 0 && (y === 2 || y === 3 || y === 4 || y === 5 || y === 6 || y === 7)) elemMatr.push(1);
+      else if (i === 1 && (y === 1 || y === 2 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 2 && (y === 1 || y === 2 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 3 && (y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 4 && (y === 6 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 5 && (y === 4 || y === 5 || y === 6 || y === 7)) elemMatr.push(1);
+      else if (i === 6 && (y === 4 || y === 5)) elemMatr.push(1);
+      else if (i === 8 && (y === 4 || y === 5)) elemMatr.push(1);
+      else if (i === 9 && (y === 4 || y === 5)) elemMatr.push(1);
+      else elemMatr.push(0);
     }
     matrixImage.push(elemMatr);
   }
     return matrixImage;
+}
+function getMiddleImg_2(matrix) { // Two image 10x10
+  const matrixImage = [];
+  for (let i = 0; i < matrix.length; i += 1) {
+    const elemMatr = [];
+    for (let y = 0; y < matrix[i].length; y += 1) {
+      
+      if (i === 0 && (y === 6 || y === 7 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 1 && (y === 3 || y === 4 || y === 5 || y === 9)) elemMatr.push(1);
+      else if (i === 2 && (y === 3 || y === 7 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 3 && (y === 3 || y === 4 || y === 5 || y === 6 || y === 9)) elemMatr.push(1);
+      else if (i === 4 && (y === 3 || y === 9)) elemMatr.push(1);
+      else if (i === 5 && (y === 3 || y === 7 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 6 && (y === 1 || y === 2 || y === 3 || y === 6 || y === 7 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 7 && (y === 0 || y === 1 || y === 2 || y === 3 || y === 6 || y === 7 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 8 && (y === 0 || y === 1 || y === 2 || y === 3 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 9 && (y === 1 || y === 2)) elemMatr.push(1);
+      else elemMatr.push(0);
+    }
+    matrixImage.push(elemMatr);
   }
+    return matrixImage;
+}
+function getMiddleImg_3(matrix) { // Three image 10x10
+  const matrixImage = [];
+  for (let i = 0; i < matrix.length; i += 1) {
+    const elemMatr = [];
+    for (let y = 0; y < matrix[i].length; y += 1) {
+      
+      if (i === 0 && (y === 3 || y === 4 || y === 5 || y === 6)) elemMatr.push(1);
+      else if (i === 1 && (y === 2 || y === 5 || y === 6 || y === 7)) elemMatr.push(1);
+      else if (i === 2) elemMatr.push(1);
+      else if (i === 3 && (y === 1 || y === 3 || y === 6 || y === 8)) elemMatr.push(1);
+      else if (i === 4 && (y === 0 || y === 4 || y === 5 || y === 9)) elemMatr.push(1);
+      else if (i === 5 && (y === 0 || y === 4 || y === 5 || y === 9)) elemMatr.push(1);
+      else if (i === 6 && (y === 1 || y === 6 || y === 8)) elemMatr.push(1);
+      else if (i === 7 && (y === 1 || y === 4 || y === 5 || y === 8)) elemMatr.push(1);
+      else if (i === 8 && (y === 2 || y === 7)) elemMatr.push(1);
+      else if (i === 9 && (y >= 1 && y <= 8)) elemMatr.push(1);
+      else elemMatr.push(0);
+
+    }
+    matrixImage.push(elemMatr);
+  }
+    return matrixImage;
+}
+function getMiddleImg_4(matrix) { // Four image 10x10
+  const matrixImage = [];
+  for (let i = 0; i < matrix.length; i += 1) {
+    const elemMatr = [];
+    for (let y = 0; y < matrix[i].length; y += 1) {
+      
+      if (i === 0 && (y === 1 || y === 2 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 1 && (y === 0 || y === 1 || y === 3 || y === 4 || y === 5 || y === 6 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 2 && (y === 0 || y === 2 || y === 3 || y === 4 || y === 6 || y === 7 || y === 9)) elemMatr.push(1);
+      else if (i === 3 && (y === 1 || y === 2 || y === 3 || y === 4 || y === 6 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 4 && (y === 1 || y === 2 || y === 3 || y === 4 || y === 6 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 5 && (y === 1 || y === 2 || y === 3 || y === 5 || y === 6 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 6 && (y === 1 || y === 2 || y === 4 || y === 5 || y === 6 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 7 && (y >= 2 && y <= 7)) elemMatr.push(1);
+      else if (i === 8 && (y >= 3 && y <= 6)) elemMatr.push(1);
+      else if (i === 9 && (y === 2 || y === 3 || y === 6 || y === 7)) elemMatr.push(1);
+      else elemMatr.push(0);
+    }
+    matrixImage.push(elemMatr);
+  }
+    return matrixImage;
+}
+function getMiddleImg_5(matrix) { // Five image 10x10
+  const matrixImage = [];
+  for (let i = 0; i < matrix.length; i += 1) {
+    const elemMatr = [];
+    for (let y = 0; y < matrix[i].length; y += 1) {
+      
+      if (i === 0 && (y >= 4)) elemMatr.push(1);
+      else if (i === 1 && (y === 3 || y === 5 || y === 7 || y === 9)) elemMatr.push(1);
+      else if (i === 2 && (y === 2 || y === 3 || y === 5 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 3 && (y === 1 || y === 3 || y === 5 || y === 6 || y === 8)) elemMatr.push(1);
+      else if (i === 4 && (y === 1 || y === 3 || y === 5 || y === 6 || y === 7 || y === 8)) elemMatr.push(1);
+      else if (i === 5 && (y === 1 || y === 3 || y === 4 || y === 8)) elemMatr.push(1);
+      else if (i === 6 && (y >= 1 && y <= 8)) elemMatr.push(1);
+      else if (i === 7 && (y === 2 || y === 7)) elemMatr.push(1);
+      else if (i === 8 && (y === 1 || y === 3 || y === 4 || y === 5 || y === 6)) elemMatr.push(1);
+      else if (i === 9 && (y === 0 || y === 1)) elemMatr.push(1);
+      else elemMatr.push(0);
+    }
+    matrixImage.push(elemMatr);
+  }
+    return matrixImage;
+}
