@@ -44,9 +44,9 @@ export function addLineField(sizeImage, columns, rows) {
   if (sizeImage === 5) {
 
     const widthCell = 100 / (5 + columns);
-    verticlBorder.style.left = `${widthCell * columns}%`;
+    verticlBorder.style.left = `${widthCell * columns - 0.4}%`;
     const heigthCell = 100 / (5 + rows);
-    horizBorder.style.top = `${heigthCell * (rows)}%`;
+    horizBorder.style.top = `${heigthCell * rows - 0.4}%`;
 
     gameBoard.append(verticlBorder);
     gameBoard.append(horizBorder);
@@ -54,12 +54,12 @@ export function addLineField(sizeImage, columns, rows) {
 
   else if (sizeImage === 10) {
     const widthCell = 100 / (10 + columns);
-    verticlLine.style.left = `${widthCell * (columns + 5)}%`;
-    verticlBorder.style.left = `${widthCell * (columns)}%`;
+    verticlLine.style.left = `${widthCell * (columns + 5) - 0.4}%`;
+    verticlBorder.style.left = `${widthCell * columns - 0.4}%`;
 
     const heigthCell = 100 / (10 + rows);
-    horizLine.style.top = `${heigthCell * (rows + 5)}%`;
-    horizBorder.style.top = `${heigthCell * (rows)}%`;
+    horizLine.style.top = `${heigthCell * (rows + 5) - 0.4}%`;
+    horizBorder.style.top = `${heigthCell * rows - 0.4}%`;
 
     gameBoard.append(verticlLine);
     gameBoard.append(horizLine);
@@ -70,14 +70,14 @@ export function addLineField(sizeImage, columns, rows) {
   else if (sizeImage === 15) {
 
     const widthCell = 100 / (15 + columns);
-    verticlLine.style.left = `${widthCell * (columns + 5)}%`;
-    verticlLine_2.style.left = `${widthCell * (columns + 10)}%`;
-    verticlBorder.style.left = `${widthCell * (columns)}%`;
+    verticlLine.style.left = `${widthCell * (columns + 5) - 0.4}%`;
+    verticlLine_2.style.left = `${widthCell * (columns + 10) - 0.4}%`;
+    verticlBorder.style.left = `${widthCell * columns  - 0.4}%`;
 
     const heigthCell = 100 / (15 + rows);
-    horizLine.style.top = `${heigthCell * (rows + 5)}%`;
-    horizLine_2.style.top = `${heigthCell * (rows + 10)}%`;
-    horizBorder.style.top = `${heigthCell * (rows)}%`;
+    horizLine.style.top = `${heigthCell * (rows + 5) - 0.4}%`;
+    horizLine_2.style.top = `${heigthCell * (rows + 10) - 0.4}%`;
+    horizBorder.style.top = `${heigthCell * rows - 0.4}%`;
 
     gameBoard.append(verticlLine);
     gameBoard.append(horizLine);

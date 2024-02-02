@@ -125,6 +125,8 @@ buttonLastGame.addEventListener('click', () => {
 console.log(rowTopClues, columnLeftClues)
   getSizeCellTop(sizeImage, rowTopClues);
   getSizeCellLeft(sizeImage, columnLeftClues);
+  getColorLoadPage();
+
 
   minutes = Number(localStorage.getItem('minutes'));
   seconds = Number(localStorage.getItem('seconds'));
