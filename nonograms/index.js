@@ -282,7 +282,7 @@ function startGame(numberImg, sizeImage) {
   getSizeCellTop(sizeImage, rowTopClues)
   getSizeCellLeft(sizeImage, columnLeftClues);
 
-  addLineField(sizeImage);
+  addLineField(sizeImage, columnLeftClues, rowTopClues);
 
 
  // click left mouse button (black cell)

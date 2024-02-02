@@ -86,32 +86,29 @@ export function getSizeCellTop(sizeImage, row) {
   const leftClues = document.querySelector('.left-clues');
   const gameField = document.querySelector('.game-field');
 
+
   if(sizeImage === 5) {
-    gameBoard.style.height = `${39 + 10 * row}vw`;
-    emptyCorner.style.height = `${7 + 10 * row}%`;
-    topClues.style.height = `${7 + 10 * row}%`;
+    const heigthCell = 100 / (5 + row);
+    gameBoard.style.height = `${6 * (row + 5)}vw`;
+    emptyCorner.style.height = `${heigthCell * row}%`;
+    topClues.style.height = `${heigthCell * row}%`;
   }
   else if(sizeImage === 10) {
-    gameBoard.style.height = `${40 + 5 * row}vw`;
-    emptyCorner.style.height = `${9 + 5 * row}%`;
-    topClues.style.height = `${9 + 5 * row}%`;
+    const heigthCell = 100 / (10 + row);
+    gameBoard.style.height = `${5 * (row + 10)}vw`;
+    emptyCorner.style.height = `${heigthCell * row}%`;
+    topClues.style.height = `${heigthCell * row}%`;
   }
   else if(sizeImage === 15) {
     console.log('Top 15', sizeImage, row)
-    gameBoard.style.height = `${42 + 5 * row}vw`;
-
-    const height = 100 / (15 + row);
-    emptyCorner.style.height = `${height * row}%`;
-    topClues.style.height = `${height * row}%`;
-    //console.log(emptyCorner.style.width, leftClues.style.width)
-
-   // emptyCorner.style.height = `${11 + 5 * row}%`;
-   // topClues.style.height = `${11 + 5 * row}%`;
+    const heigthCell = 100 / (15 + row);
+    gameBoard.style.height = `${4 * (row + 15)}vw`;
+    emptyCorner.style.height = `${heigthCell * row}%`;
+    topClues.style.height = `${heigthCell * row}%`;
   }
 
   const heightEmptyCorner = emptyCorner.style.height;
 
-  //console.log(heightEmptyCorner.slice(0, heightEmptyCorner.length - 1));
   const heightLeftField = `${100 - Number(heightEmptyCorner.slice(0, heightEmptyCorner.length - 1))}%`;
   leftClues.style.height = heightLeftField;
   gameField.style.height = heightLeftField;

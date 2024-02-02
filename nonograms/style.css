@@ -224,20 +224,20 @@
 
 }
 .empty-corner {
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
+  /*border-right: 2px solid black;
+  border-bottom: 2px solid black;*/
   background: #e7f2ea;
 }
 
 .left-clues {
   display: grid;
-  border-right: 2px solid black;
+  /*border-right: 2px solid black;*/
   justify-content: end;
 }
 .top-clues {
   display: grid;
   grid-template-columns: repeat(5, 20%);
-  border-bottom: 2px solid black;
+  /*border-bottom: 2px solid black;*/
   align-content: end;
 }
 .cell-clues {
@@ -256,7 +256,7 @@
   /*grid-template-columns: repeat(5, 20%);
   grid-template-rows: repeat(5, 20%);*/
 }
-.game-field__horiz-line {
+/*.game-field__horiz-line {
   position: absolute;
   left: 0;
   width: 100%;
@@ -269,6 +269,42 @@
   width: 2px;
   height: 100%;
   background-color: #5b5757;
+}*/
+.verticl-border {
+  position: absolute;
+  height: 100%;
+  width: 2.5px;
+  background-color: black;
+}
+.verticl-line {
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background-color: #888d88;
+}
+.verticl-line-2 {
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background-color: #888d88;
+}
+.horiz-border {
+  position: absolute;
+  height: 2.5px;
+  width: 100%;
+  background-color: black;
+}
+.horiz-line {
+  position: absolute;
+  height: 2.5px;
+  width: 100%;
+  background-color: #888d88;
+}
+.horiz-line-2 {
+  position: absolute;
+  height: 2.5px;
+  width: 100%;
+  background-color: #888d88;
 }
 .cell-field {
   /*width: 30px;

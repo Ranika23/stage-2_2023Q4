@@ -105,22 +105,23 @@ export function getSizeCellLeft(sizeImage, column) {
   const gameField = document.querySelector('.game-field');
 
   if(sizeImage === 5) {
-    gameBoard.style.width = `${43.5 + 8.5 * column}vw`;
-    emptyCorner.style.width = `${sizeImage+ 12 * column}%`;
-    leftClues.style.width = `${sizeImage + 12 * column}%`;
+    const widthCell = 100 / (5 + column);
+    gameBoard.style.width = `${6 * (column + 5)}vw`;
+    emptyCorner.style.width = `${widthCell * column}%`;
+    leftClues.style.width = `${widthCell * column}%`;
   }
   else if(sizeImage === 10) {
-    gameBoard.style.width = `${40.1 + 5 * column}vw`;
-    const width = 100 / (10 + column);
-    emptyCorner.style.width = `${width * column}%`;
-    leftClues.style.width = `${width * column}%`;
+    const widthCell = 100 / (10 + column);
+    gameBoard.style.width = `${5 * (column + 10)}vw`;
+    emptyCorner.style.width = `${widthCell * column}%`;
+    leftClues.style.width = `${widthCell * column}%`;
     console.log(emptyCorner.style.width, leftClues.style.width)
   }
   else if(sizeImage === 15) {
-    gameBoard.style.width = `${42.1 + 5 * column}vw`;
-    const width = 100 / (15 + column);
-    emptyCorner.style.width = `${width * column}%`;
-    leftClues.style.width = `${width * column}%`;
+    const widthCell = 100 / (15 + column);
+    gameBoard.style.width = `${4 * (column + 15)}vw`;
+    emptyCorner.style.width = `${widthCell * column}%`;
+    leftClues.style.width = `${widthCell * column}%`;
     console.log(emptyCorner.style.width, leftClues.style.width)
   }
 

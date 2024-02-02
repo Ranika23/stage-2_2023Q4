@@ -23,33 +23,68 @@ function creatCellField(sizeImage) {
   }
 }
 
-export function addLineField(sizeImage) {
-  console.log('line', sizeImage)
+export function addLineField(sizeImage, columns, rows) {
   const gameBoard = document.querySelector('.game-board');
-  if (sizeImage === 10) {
-    const horizLine = document.createElement('div');
-    horizLine.className = 'game-field__horiz-line';
 
-    const verticLine = document.createElement('div');
-    verticLine.className = 'game-field__vertic-line';
+  const verticlBorder = document.createElement('div');
+  verticlBorder.className = 'verticl-border';
+  const horizBorder = document.createElement('div');
+  horizBorder.className = 'horiz-border';
 
+  const verticlLine = document.createElement('div');
+  verticlLine.className = 'verticl-line';
+  const horizLine = document.createElement('div');
+  horizLine.className = 'horiz-line';
 
-    // position horizont line
-    const heightTopClues = document.querySelector('.top-clues').offsetHeight;
-    const heightBoard = document.querySelector('.game-field').offsetHeight;
-    console.log(heightTopClues, heightBoard)
-    horizLine.style.top = `${heightBoard / 2 + heightTopClues}px`;
+  const verticlLine_2 = document.createElement('div');
+  verticlLine_2.className = 'verticl-line-2';
+  const horizLine_2 = document.createElement('div');
+  horizLine_2.className = 'horiz-line-2';
+
+  if (sizeImage === 5) {
+
+    const widthCell = 100 / (5 + columns);
+    verticlBorder.style.left = `${widthCell * columns}%`;
+    const heigthCell = 100 / (5 + rows);
+    horizBorder.style.top = `${heigthCell * (rows)}%`;
+
+    gameBoard.append(verticlBorder);
+    gameBoard.append(horizBorder);
+  }
+
+  else if (sizeImage === 10) {
+    const widthCell = 100 / (10 + columns);
+    verticlLine.style.left = `${widthCell * (columns + 5)}%`;
+    verticlBorder.style.left = `${widthCell * (columns)}%`;
+
+    const heigthCell = 100 / (10 + rows);
+    horizLine.style.top = `${heigthCell * (rows + 5)}%`;
+    horizBorder.style.top = `${heigthCell * (rows)}%`;
+
+    gameBoard.append(verticlLine);
     gameBoard.append(horizLine);
+    gameBoard.append(verticlBorder);
+    gameBoard.append(horizBorder);
+  }
 
-    // position horizont line
-    const widthLeftClues = document.querySelector('.left-clues').offsetWidth;
-    const widthBoard = document.querySelector('.game-field').offsetWidth;
+  else if (sizeImage === 15) {
 
-    verticLine.style.left = `${widthBoard / 2 + widthLeftClues}px`;
+    const widthCell = 100 / (15 + columns);
+    verticlLine.style.left = `${widthCell * (columns + 5)}%`;
+    verticlLine_2.style.left = `${widthCell * (columns + 10)}%`;
+    verticlBorder.style.left = `${widthCell * (columns)}%`;
 
+    const heigthCell = 100 / (15 + rows);
+    horizLine.style.top = `${heigthCell * (rows + 5)}%`;
+    horizLine_2.style.top = `${heigthCell * (rows + 10)}%`;
+    horizBorder.style.top = `${heigthCell * (rows)}%`;
 
+    gameBoard.append(verticlLine);
     gameBoard.append(horizLine);
-    gameBoard.append(verticLine);
+    gameBoard.append(verticlLine_2);
+    gameBoard.append(horizLine_2);
+    gameBoard.append(verticlBorder);
+    gameBoard.append(horizBorder);
   }
 }
 
