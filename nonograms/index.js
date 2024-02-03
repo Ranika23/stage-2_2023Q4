@@ -17,6 +17,8 @@ import {saveLastGame, getLastGame} from './modules/local-storage.js';
 import {creatChangeColorButton, changeColorTheme , getColorLoadPage} from './modules/dark_light.js';
 import {creatScoreButton, creatScoreTable, openScoreTable, saveWinGame, fillScoreTable, closeScoreTable} from './modules/score-table.js';
 import {randomNumber} from './modules/random-game.js';
+import {creatSolutionButton, getSolution} from './modules/solution-game.js';
+
 
 
 
@@ -84,6 +86,9 @@ const buttonReset = document.querySelector('.menu-window__reset');
 const buttonSaveGame = document.querySelector('.menu-window__save');
 const buttonLastGame = document.querySelector('.menu-window__last-game');
 const buttonRandomGame = document.querySelector('.menu-window__random-game');
+const solutionButton = creatSolutionButton(bodyContainer);
+let countClickSolution = 0;
+
 menuButton.addEventListener('click', (event) => {
   openMenu();
   closeLevelsMenu();
@@ -107,6 +112,7 @@ buttonReset.addEventListener('click', () => {
   cleanCellField();
   openMenu();
   closeLevelsMenu();
+  countClickSolution = 0;
 
 })
 
@@ -132,32 +138,45 @@ buttonLastGame.addEventListener('click', () => {
   getSizeCellLeft(sizeImage, columnLeftClues);
   getColorLoadPage();
 
-
+    //button solution
+    solutionButton.addEventListener("click", () => {
+    countClickSolution += 1;
+    cleanCellField();
+    getSolution(gameField, matrixImage, sizeImage);
+    clearInterval(interval);
+    //endTime();
+})
   minutes = Number(localStorage.getItem('minutes'));
   seconds = Number(localStorage.getItem('seconds'));
 
   gameField.addEventListener('click', (event) => {
-    counterClick += 1;
-    if (counterClick === 1) {
-    interval = setInterval(startTime, 1000);
-    enableButtons();
+    if (countClickSolution === 0) {
+      counterClick += 1;
+      if (counterClick === 1) {
+      interval = setInterval(startTime, 1000);
+      enableButtons();
+      }
+      addSoundClick(event);
+      clickLeftMouse(event);
+      getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution);
     }
-    addSoundClick(event);
-    clickLeftMouse(event);
-    getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin);
 
-    
+
   })
 
   // click right mouse button (black cell)
   gameField.addEventListener('contextmenu', (event) => {
-    counterClick += 1;
-    if (counterClick === 1) {
-    interval = setInterval(startTime, 1000);
-    enableButtons();
+
+    if (countClickSolution === 0) {
+      counterClick += 1;
+      if (counterClick === 1) {
+      interval = setInterval(startTime, 1000);
+      enableButtons();
+      }
+      addSoundClose(event);
+      clickRigthMouse(event);
     }
-    addSoundClose(event);
-    clickRigthMouse(event);
+
   })
  
 })
@@ -324,36 +343,51 @@ function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
     saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues, nameImgWin, levelWin);
     getInitStateButtons();
   })
-  gameField.addEventListener('click', (event) => {
 
-    counterClick += 1;
-    if (counterClick === 1) {
-    interval = setInterval(startTime, 1000);
-    enableButtons();
+//button solution
+solutionButton.addEventListener("click", () => {
+  countClickSolution += 1;
+  cleanCellField();
+  getSolution(gameField, matrixImage, sizeImage);
+  clearInterval(interval);
+  //endTime();
+})
+
+
+
+  gameField.addEventListener('click', (event) => {
+    if (countClickSolution === 0) {
+      counterClick += 1;
+      if (counterClick === 1) {
+      interval = setInterval(startTime, 1000);
+      enableButtons();
+      }
+      addSoundClick(event);
+      clickLeftMouse(event);
+      getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution);
     }
-    addSoundClick(event);
-    clickLeftMouse(event);
-    getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin);
 
     
   })
 
   // click right mouse button (black cell)
   gameField.addEventListener('contextmenu', (event) => {
-
-    counterClick += 1;
-    if (counterClick === 1) {
-    interval = setInterval(startTime, 1000);
-    enableButtons();
+    if (countClickSolution === 0) {
+      counterClick += 1;
+      if (counterClick === 1) {
+      interval = setInterval(startTime, 1000);
+      enableButtons();
+      }
+      addSoundClose(event);
+      clickRigthMouse(event);
     }
-    addSoundClose(event);
-    clickRigthMouse(event);
+
   })
 }
 
 // get a win condition
 let countWin = 0;
-function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin) {
+function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution) {
 
   const gameField = document.querySelector('.game-field');
   const topClues = document.querySelector('.top-clues');
@@ -362,7 +396,7 @@ function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin) {
   const countFill = countFillCells(topClues);
 
   let result;
-  if (countClick === countFill) result = getResultGame(gameField, matrixImage, sizeImage);
+  if (countClick === countFill && countClickSolution === 0) result = getResultGame(gameField, matrixImage, sizeImage);
   if (result) {  // ===> WIN
     countWin += 1;
     addSoundWinGame();

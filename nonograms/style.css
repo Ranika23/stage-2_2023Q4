@@ -19,7 +19,7 @@
   min-height: 100vh;
   margin: 0 auto;
   padding: 40px;
-  padding-top: 21vh;
+  padding-top: 30vh;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -501,4 +501,17 @@
   width: 30%;
   height: auto;
   border: 1px solid black;
+}
+.solution-button {
+  position: absolute;
+  top: 24vh;
+  left: 26vw;
+  display: flex;
+  align-items: center;
+  width: 150px;
+  justify-content: center;
+  height: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 1px solid rgb(171 235 235);
 }
