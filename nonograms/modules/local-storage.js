@@ -1,4 +1,4 @@
-export function saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues) {
+export function saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues, nameImgWin, levelWin) {
   const watchInner = document.querySelector('.container-watch').innerText;
   console.log(watchInner)
   const gameBoard = document.querySelector('.game-board');
@@ -10,6 +10,7 @@ export function saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClue
   localStorage.setItem('time', watchInner);
   localStorage.setItem('rowTopClues', rowTopClues);
   localStorage.setItem('columnLeftClues', columnLeftClues);
+  localStorage.setItem('infScoreTable', JSON.stringify([nameImgWin, levelWin]));
 }
 
 export function getLastGame() {
@@ -20,11 +21,12 @@ export function getLastGame() {
   const time = localStorage.getItem('time');
   const rowTopClues = Number(localStorage.getItem('rowTopClues'));
   const columnLeftClues = Number(localStorage.getItem('columnLeftClues'));
+  const infScoreTable = JSON.parse(localStorage.getItem('infScoreTable'));
 
   gameBoardCont.innerHTML = saveGame;
   const gameField = document.querySelector('.game-field');
 
   document.querySelector('.container-watch').innerText = `${time}`;
 
-  return [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues];
+  return [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues, infScoreTable];
   }

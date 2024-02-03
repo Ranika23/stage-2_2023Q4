@@ -14,6 +14,8 @@ export function creatModal() {
 
   const body = document.querySelector('.body');
   body.prepend(modalBackground);
+
+  return timeGame;
 }
 
 // start modal

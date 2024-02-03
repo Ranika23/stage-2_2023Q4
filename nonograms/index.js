@@ -15,6 +15,7 @@ import {addSoundClick, addSoundClose, addSoundWinGame} from './modules/get-sound
 import {enableButtons, getInitStateButtons} from './modules/disabled-button.js';
 import {saveLastGame, getLastGame} from './modules/local-storage.js';
 import {creatChangeColorButton, changeColorTheme , getColorLoadPage} from './modules/dark_light.js';
+import {creatScoreButton, creatScoreTable, openScoreTable, saveWinGame, fillScoreTable} from './modules/score-table.js';
 
 
 
@@ -120,9 +121,10 @@ buttonLastGame.addEventListener('click', () => {
   clearInterval(interval);
   endTime();
   
-  let [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues] = getLastGame();
+  let [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues, infScoreTable] = getLastGame();
+  const nameImgWin = infScoreTable[0];
+  const levelWin = infScoreTable[1];
 
-console.log(rowTopClues, columnLeftClues)
   getSizeCellTop(sizeImage, rowTopClues);
   getSizeCellLeft(sizeImage, columnLeftClues);
   getColorLoadPage();
@@ -139,7 +141,7 @@ console.log(rowTopClues, columnLeftClues)
     }
     addSoundClick(event);
     clickLeftMouse(event);
-    getWinCondition(matrixImage, sizeImage);
+    getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin);
 
     
   })
@@ -187,7 +189,8 @@ levelsMenu.addEventListener('click', (event) => {
 })
 
 
-startGame('1', 5); // on page loading
+startGame('1', 5, 'TOWER', 'easy 5x5'); // on page loading
+
 
 
 //button change color
@@ -197,7 +200,12 @@ changeColorButton.addEventListener("click", () => {
 })
 getColorLoadPage();
 
-
+//button change color
+const buttonScore = creatScoreButton(bodyContainer);
+creatScoreTable(bodyContainer);
+buttonScore.addEventListener("click", () => {
+  openScoreTable();
+})
 
 
 
@@ -209,9 +217,11 @@ getColorLoadPage();
 document.querySelector('.menu-levels__easy').addEventListener('click', (event) => {
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
+  const nameImgWin = event.target.classList[2];
   const sizeImage = 5;
+  const levelWin = 'easy 5x5';
   if (numberImg !== undefined) {
-    startGame(numberImg, sizeImage);
+    startGame(numberImg, sizeImage, nameImgWin, levelWin);
   }
   getColorLoadPage();
 })
@@ -220,10 +230,12 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
 document.querySelector('.menu-levels__middle').addEventListener('click', (event) => {
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
+  const nameImgWin = event.target.classList[2];
   const sizeImage = 10;
+  const levelWin = 'middle 10x10';
   console.log('numberImg' ,numberImg)
   if (numberImg !== undefined) {
-    startGame(numberImg, sizeImage);
+    startGame(numberImg, sizeImage, nameImgWin, levelWin);
   }
   getColorLoadPage();
 })
@@ -232,10 +244,12 @@ document.querySelector('.menu-levels__middle').addEventListener('click', (event)
 document.querySelector('.menu-levels__hard').addEventListener('click', (event) => {
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
+  const nameImgWin = event.target.classList[2];
   const sizeImage = 15;
+  const levelWin = 'hard 15x15';
   console.log('numberImg' ,numberImg)
   if (numberImg !== undefined) {
-    startGame(numberImg, sizeImage);
+    startGame(numberImg, sizeImage, nameImgWin, levelWin);
   }
   getColorLoadPage();
 })
@@ -243,7 +257,7 @@ document.querySelector('.menu-levels__hard').addEventListener('click', (event) =
 
 
 // function start game
-function startGame(numberImg, sizeImage) {
+function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
 
   cleanBoard();
 
@@ -293,7 +307,7 @@ function startGame(numberImg, sizeImage) {
   buttonSaveGame.addEventListener('click', () => {
    closeMenu();
     closeLevelsMenu();
-    saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues);
+    saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues, nameImgWin, levelWin);
     getInitStateButtons();
   })
   gameField.addEventListener('click', (event) => {
@@ -305,7 +319,7 @@ function startGame(numberImg, sizeImage) {
     }
     addSoundClick(event);
     clickLeftMouse(event);
-    getWinCondition(matrixImage, sizeImage);
+    getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin);
 
     
   })
@@ -324,7 +338,8 @@ function startGame(numberImg, sizeImage) {
 }
 
 // get a win condition
-function getWinCondition(matrixImage, sizeImage) {
+let countWin = 0;
+function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin) {
 
   const gameField = document.querySelector('.game-field');
   const topClues = document.querySelector('.top-clues');
@@ -335,9 +350,15 @@ function getWinCondition(matrixImage, sizeImage) {
   let result;
   if (countClick === countFill) result = getResultGame(gameField, matrixImage, sizeImage);
   if (result) {  // ===> WIN
+    countWin += 1;
     addSoundWinGame();
-    creatModal();
+    const timeWin = creatModal();
     openModal();
+    const timeInner = document.querySelector('.container-watch').innerText;
+    console.log(timeInner);
     endTime();
+    saveWinGame(countWin, nameImgWin, levelWin, timeInner, timeWin);  
+
   }
 }
+fillScoreTable();

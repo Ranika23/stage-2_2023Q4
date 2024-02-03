@@ -15,6 +15,7 @@ export function creatLevelsMiddleMenu() {
     const middleImg = document.createElement('button');
     middleImg.className = 'menu-levels__img';
     middleImg.classList.add(`${i + 1}`);
+    middleImg.classList.add(`${arrTitleImg[i]}`);
     middleImg.innerText = `${arrTitleImg[i]}`;
     levelsMiddleMenu.append(middleImg);
   }

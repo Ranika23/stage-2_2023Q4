@@ -15,6 +15,7 @@ export function creatLevelsHardMenu() {
     const hardImg = document.createElement('button');
     hardImg.className = 'menu-levels__img';
     hardImg.classList.add(`${i + 1}`);
+    hardImg.classList.add(`${arrTitleImg[i]}`);
     hardImg.innerText = `${arrTitleImg[i]}`;
     levelsHardMenu.append(hardImg);
   }

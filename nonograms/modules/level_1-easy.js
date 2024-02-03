@@ -17,6 +17,7 @@ export function creatLevelsEasyMenu() {
     const easyImg = document.createElement('button');
     easyImg.className = 'menu-levels__img';
     easyImg.classList.add(`${i + 1}`);
+    easyImg.classList.add(`${arrTitleImg[i]}`);
     easyImg.innerText = `${arrTitleImg[i]}`;
     levelsEasyMenu.append(easyImg);
   }
