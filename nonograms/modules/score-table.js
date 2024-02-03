@@ -45,6 +45,12 @@ export function openScoreTable() {
   scoreTable.classList.toggle('close');
 }
 
+export function closeScoreTable() {
+  const scoreTable = document.querySelector('.score-table');
+  scoreTable.classList.remove('open');
+  scoreTable.classList.add('close');
+}
+
 export function saveWinGame(countWin, image, level, timeInner, time) {
 
   let arrSaveWinGame;

@@ -35,6 +35,11 @@ export function creatMenu(bodyContainer) {
   menuLastGame.setAttribute("disabled", "disabled");
   menuWindow.append(menuLastGame);
 
+  const randomGame = document.createElement('button');
+  randomGame.className = 'menu-window__random-game';
+  randomGame.innerText = `Random game`;
+  menuWindow.append(randomGame);
+
   bodyContainer.prepend(menuWindow);
 }
 

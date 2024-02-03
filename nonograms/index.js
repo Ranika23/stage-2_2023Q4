@@ -15,7 +15,8 @@ import {addSoundClick, addSoundClose, addSoundWinGame} from './modules/get-sound
 import {enableButtons, getInitStateButtons} from './modules/disabled-button.js';
 import {saveLastGame, getLastGame} from './modules/local-storage.js';
 import {creatChangeColorButton, changeColorTheme , getColorLoadPage} from './modules/dark_light.js';
-import {creatScoreButton, creatScoreTable, openScoreTable, saveWinGame, fillScoreTable} from './modules/score-table.js';
+import {creatScoreButton, creatScoreTable, openScoreTable, saveWinGame, fillScoreTable, closeScoreTable} from './modules/score-table.js';
+import {randomNumber} from './modules/random-game.js';
 
 
 
@@ -82,9 +83,11 @@ const buttonLevels = document.querySelector('.menu-window__levels');
 const buttonReset = document.querySelector('.menu-window__reset');
 const buttonSaveGame = document.querySelector('.menu-window__save');
 const buttonLastGame = document.querySelector('.menu-window__last-game');
+const buttonRandomGame = document.querySelector('.menu-window__random-game');
 menuButton.addEventListener('click', (event) => {
   openMenu();
   closeLevelsMenu();
+  closeScoreTable();
   event._isClickMenu = true;
 })
 menu.addEventListener("click", event => {
@@ -92,7 +95,7 @@ menu.addEventListener("click", event => {
 })
 document.body.addEventListener("click", event => {
   if (event._isClickMenu) return;
-  closeMenu()
+  closeMenu();
   closeLevelsMenu();
 })
 buttonLevels.addEventListener('click', () => {
@@ -157,6 +160,17 @@ buttonLastGame.addEventListener('click', () => {
     clickRigthMouse(event);
   })
  
+})
+
+
+//random game
+buttonRandomGame.addEventListener('click', () => {
+  openMenu();
+  closeLevelsMenu();
+  closeScoreTable();
+  let [numberImg, sizeImage, nameImgWin, levelWin] = randomNumber();
+  console.log(numberImg, sizeImage, nameImgWin, levelWin)
+  startGame(numberImg, sizeImage, nameImgWin, levelWin);
 })
 
 
