@@ -226,8 +226,9 @@ function getMiddleImg_1(matrix) { // First image 10x10
       else if (i === 3 && (y === 7 || y === 8)) elemMatr.push(1);
       else if (i === 4 && (y === 6 || y === 7 || y === 8)) elemMatr.push(1);
       else if (i === 5 && (y === 4 || y === 5 || y === 6 || y === 7)) elemMatr.push(1);
-      else if (i === 6 && (y === 4 || y === 5)) elemMatr.push(1);
-      else if (i === 8 && (y === 4 || y === 5)) elemMatr.push(1);
+      else if (i === 6 && (y === 0 || y === 4 || y === 5 || y === 9)) elemMatr.push(1);
+      else if (i === 7 && (y === 0 || y === 1 || y === 8 || y === 9)) elemMatr.push(1);
+      else if (i === 8 && (y === 0 || y === 4 || y === 5 || y === 9)) elemMatr.push(1);
       else if (i === 9 && (y === 4 || y === 5)) elemMatr.push(1);
       else elemMatr.push(0);
     }
