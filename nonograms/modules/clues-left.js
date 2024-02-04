@@ -85,6 +85,7 @@ export function fillLeftClues(sizeImage, arrClues) {
       const cell = i * arrClues[i].length + y;
       //console.log(cell)
       if (arrClues[i][y] > 0) arrLeftClues[cell].innerText = arrClues[i][y];
+      else arrLeftClues[cell].style.opacity = '0.4';
     }
   }
   /*arrLeftClues[2].innerText = 2;
@@ -98,31 +99,38 @@ export function fillLeftClues(sizeImage, arrClues) {
 }
 export function getSizeCellLeft(sizeImage, column) {
   console.log('Left sizeImage, column', sizeImage, column)
-  const gameBoard = document.querySelector('.game-board-container');
+  //const gameBoard = document.querySelector('.game-board-container');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
   const leftClues = document.querySelector('.left-clues');
   const gameField = document.querySelector('.game-field');
+  //const widthBody = window.innerWidth;
 
+  
   if(sizeImage === 5) {
     const widthCell = 100 / (5 + column);
-    gameBoard.style.width = `${6 * (column + 5)}vw`;
     emptyCorner.style.width = `${widthCell * column}%`;
     leftClues.style.width = `${widthCell * column}%`;
+
+    //if(widthBody <= 600) gameBoard.style.width = `${6 * (column + 5)}vw`;
+   // else gameBoard.style.width = `${40 * (column + 5)}px`;
+
   }
   else if(sizeImage === 10) {
     const widthCell = 100 / (10 + column);
-    gameBoard.style.width = `${5 * (column + 10)}vw`;
     emptyCorner.style.width = `${widthCell * column}%`;
     leftClues.style.width = `${widthCell * column}%`;
-    console.log(emptyCorner.style.width, leftClues.style.width)
+    
+    //if(widthBody <= 600) gameBoard.style.width = `${6 * (column + 10)}vw`;
+    //else gameBoard.style.width = `${40 * (column + 10)}px`;
   }
   else if(sizeImage === 15) {
     const widthCell = 100 / (15 + column);
-    gameBoard.style.width = `${4 * (column + 15)}vw`;
     emptyCorner.style.width = `${widthCell * column}%`;
     leftClues.style.width = `${widthCell * column}%`;
-    console.log(emptyCorner.style.width, leftClues.style.width)
+
+    //if(widthBody <= 600) gameBoard.style.width = `${6 * (column + 15)}vw`;
+    //else gameBoard.style.width = `${40 * (column + 15)}px`;
   }
 
 
@@ -132,4 +140,6 @@ export function getSizeCellLeft(sizeImage, column) {
   topClues.style.width = widthTopClues;
   gameField.style.width = widthTopClues;
 }
+
+
 

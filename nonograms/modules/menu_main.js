@@ -14,30 +14,30 @@ export function creatMenu(bodyContainer) {
 
   const menuLevel = document.createElement('button');
   menuLevel.className = 'menu-window__levels';
-  menuLevel.innerText = `Levels`;
+  menuLevel.innerText = `LEVELS`;
   menuWindow.append(menuLevel);
 
   const menuReset = document.createElement('button');
   menuReset.className = 'menu-window__reset';
-  menuReset.innerText = `Reset game`;
+  menuReset.innerText = `RESET GAME`;
   menuReset.setAttribute("disabled", "disabled");
   menuWindow.append(menuReset);
 
   const menuSaveGame = document.createElement('button');
   menuSaveGame.className = 'menu-window__save';
-  menuSaveGame.innerText = `Save game`;
+  menuSaveGame.innerText = `SAVE GAME`;
   menuSaveGame.setAttribute("disabled", "disabled");
   menuWindow.append(menuSaveGame);
 
   const menuLastGame = document.createElement('button');
   menuLastGame.className = 'menu-window__last-game';
-  menuLastGame.innerText = `Continue last game`;
+  menuLastGame.innerText = `CONTINUE LAST GAME`;
   menuLastGame.setAttribute("disabled", "disabled");
   menuWindow.append(menuLastGame);
 
   const randomGame = document.createElement('button');
   randomGame.className = 'menu-window__random-game';
-  randomGame.innerText = `Random game`;
+  randomGame.innerText = `RANDOM GAME`;
   menuWindow.append(randomGame);
 
   bodyContainer.prepend(menuWindow);

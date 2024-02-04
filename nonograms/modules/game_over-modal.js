@@ -24,3 +24,8 @@ export function openModal() {
   modalBackground.classList.add('open');
   modalBackground.classList.remove('close');
 }
+export function closeModal() {
+  const modalBackground = document.querySelector('.modal-background');
+  modalBackground.classList.remove('open');
+  modalBackground.classList.add('close');
+}

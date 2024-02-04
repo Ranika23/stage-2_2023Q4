@@ -74,37 +74,45 @@ export function fillTopClues(sizeImage, arrTopClues) {
   for (let i = 0; i < arrTopClues[i].length; i += 1) {
     for (let y = 0; y < arrTopClues.length; y += 1) {
       if (arrTopClues[y][i] > 0) arrClues[cell].innerText = arrTopClues[y][i];
+      else arrClues[cell].style.opacity = '0.4';
       cell += 1;
     }
   }
 }
 export function getSizeCellTop(sizeImage, row) {
   console.log('Top sizeImage, row', sizeImage, row)
-  const gameBoard = document.querySelector('.game-board-container');
+  //const gameBoard = document.querySelector('.game-board-container');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
   const leftClues = document.querySelector('.left-clues');
   const gameField = document.querySelector('.game-field');
-
+ // const widthBody = window.innerWidth;
 
   if(sizeImage === 5) {
     const heigthCell = 100 / (5 + row);
-    gameBoard.style.height = `${6 * (row + 5)}vw`;
     emptyCorner.style.height = `${heigthCell * row}%`;
     topClues.style.height = `${heigthCell * row}%`;
+
+    //if(widthBody <= 600) gameBoard.style.height = `${6 * (row + 5)}vw`;
+    //else gameBoard.style.height = `${40 * (row + 5)}px`;
+
   }
   else if(sizeImage === 10) {
     const heigthCell = 100 / (10 + row);
-    gameBoard.style.height = `${5 * (row + 10)}vw`;
     emptyCorner.style.height = `${heigthCell * row}%`;
     topClues.style.height = `${heigthCell * row}%`;
+
+   // if(widthBody <= 600) gameBoard.style.height = `${6 * (row + 10)}vw`;
+   // else gameBoard.style.height = `${40 * (row + 10)}px`;
   }
   else if(sizeImage === 15) {
     console.log('Top 15', sizeImage, row)
     const heigthCell = 100 / (15 + row);
-    gameBoard.style.height = `${4 * (row + 15)}vw`;
     emptyCorner.style.height = `${heigthCell * row}%`;
     topClues.style.height = `${heigthCell * row}%`;
+
+   // if(widthBody <= 600) gameBoard.style.height = `${6 * (row + 15)}vw`;
+   // else gameBoard.style.height = `${40 * (row + 15)}px`;
   }
 
   const heightEmptyCorner = emptyCorner.style.height;
@@ -113,4 +121,5 @@ export function getSizeCellTop(sizeImage, row) {
   leftClues.style.height = heightLeftField;
   gameField.style.height = heightLeftField;
 }
+
 

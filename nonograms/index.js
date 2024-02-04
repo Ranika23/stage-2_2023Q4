@@ -1,9 +1,9 @@
 import {countClickCell, countFillCells, getResultGame} from './modules/game-result.js';
-import {creatGameBoard} from './modules/board_contain.js';
+import {creatGameBoard, getWidthHeightBoard} from './modules/board_contain.js';
 import {creatLeftClues, addLeftClues, fillLeftClues, getSizeCellLeft} from './modules/clues-left.js';
 import {creatTopClues, addTopClues, fillTopClues, getSizeCellTop} from './modules/clues-top.js';
 import {creatGameField, getFillMatrixField, addLineField} from './modules/board_field.js';
-import {creatModal, openModal} from './modules/game_over-modal.js';
+import {creatModal, openModal, closeModal} from './modules/game_over-modal.js';
 import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu_main.js';
 import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/menu_levels.js';
 import {creatLevelsEasyMenu, openEasyLevelsMenu, closeEasyLevelsMenu} from './modules/level_1-easy.js';
@@ -54,7 +54,6 @@ function endTime() {
 }
 
 
-
 // body
 const body = document.querySelector('body');
 body.className = 'body';
@@ -69,6 +68,7 @@ const menuBackground = document.createElement('div');
 menuBackground.className = 'menu-background';
 menuBackground.classList.add('close');
 body.prepend(menuBackground);
+
 
 // menu-burger
 addButtonMenu(bodyContainer); // menu-button
@@ -98,11 +98,7 @@ menuButton.addEventListener('click', (event) => {
 menu.addEventListener("click", event => {
   event._isClickMenu = true;
 })
-document.body.addEventListener("click", event => {
-  if (event._isClickMenu) return;
-  closeMenu();
-  closeLevelsMenu();
-})
+
 buttonLevels.addEventListener('click', () => {
   openLevelsMenu();
 })
@@ -131,21 +127,29 @@ buttonLastGame.addEventListener('click', () => {
   endTime();
   
   let [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues, infScoreTable] = getLastGame();
+
+  localStorage.setItem('saveRowsColumnSize', JSON.stringify([rowTopClues, columnLeftClues, sizeImage]));
+
   const nameImgWin = infScoreTable[0];
   const levelWin = infScoreTable[1];
 
   getSizeCellTop(sizeImage, rowTopClues);
   getSizeCellLeft(sizeImage, columnLeftClues);
+  const widthBody = window.innerWidth;
+  //const widthBoard = document.querySelector('.game-board-container').clientWidth;
+
+  getWidthHeightBoard(widthBody, sizeImage, columnLeftClues, rowTopClues);  
   getColorLoadPage();
 
     //button solution
-    solutionButton.addEventListener("click", () => {
+  solutionButton.addEventListener("click", () => {
     countClickSolution += 1;
     cleanCellField();
     getSolution(gameField, matrixImage, sizeImage);
     clearInterval(interval);
+    document.querySelector('.menu-window__reset').disabled = false;
     //endTime();
-})
+  })
   minutes = Number(localStorage.getItem('minutes'));
   seconds = Number(localStorage.getItem('seconds'));
 
@@ -158,7 +162,7 @@ buttonLastGame.addEventListener('click', () => {
       }
       addSoundClick(event);
       clickLeftMouse(event);
-      getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution);
+      countClickSolution = getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution);
     }
 
 
@@ -190,12 +194,14 @@ buttonRandomGame.addEventListener('click', () => {
   let [numberImg, sizeImage, nameImgWin, levelWin] = randomNumber();
   console.log(numberImg, sizeImage, nameImgWin, levelWin)
   startGame(numberImg, sizeImage, nameImgWin, levelWin);
+  getColorLoadPage();
 })
 
 
 // open menu images
 const levelsMenu = document.querySelector('.menu-levels');
 levelsMenu.addEventListener('click', (event) => {
+  event._isClickMenu = true;
   closeMenu();
   closeLevelsMenu();
   const button = event.target;
@@ -226,12 +232,7 @@ startGame('1', 5, 'TOWER', 'easy 5x5'); // on page loading
 
 
 
-//button change color
-const changeColorButton = creatChangeColorButton(bodyContainer);
-changeColorButton.addEventListener("click", () => {
-  changeColorTheme();
-})
-getColorLoadPage();
+
 
 //button change color
 const buttonScore = creatScoreButton(bodyContainer);
@@ -242,12 +243,18 @@ buttonScore.addEventListener("click", () => {
 
 
 
-
+//button change color
+const changeColorButton = creatChangeColorButton(bodyContainer);
+changeColorButton.addEventListener("click", () => {
+  changeColorTheme();
+})
+getColorLoadPage();
 
 
 
 // open images level-easy
 document.querySelector('.menu-levels__easy').addEventListener('click', (event) => {
+  event._isClickMenu = true;
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const nameImgWin = event.target.classList[2];
@@ -261,6 +268,7 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
 
 // open images level-middle
 document.querySelector('.menu-levels__middle').addEventListener('click', (event) => {
+  event._isClickMenu = true;
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const nameImgWin = event.target.classList[2];
@@ -275,6 +283,7 @@ document.querySelector('.menu-levels__middle').addEventListener('click', (event)
 
 // open images level-hard
 document.querySelector('.menu-levels__hard').addEventListener('click', (event) => {
+  event._isClickMenu = true;
   console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const nameImgWin = event.target.classList[2];
@@ -288,6 +297,14 @@ document.querySelector('.menu-levels__hard').addEventListener('click', (event) =
 })
 
 
+document.body.addEventListener("click", event => {
+  if (event._isClickMenu) return;
+  closeMenu();
+  closeLevelsMenu();
+  closeEasyLevelsMenu();
+  closeMiddleLevelsMenu();
+
+})
 
 // function start game
 function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
@@ -300,6 +317,7 @@ function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
 
   closeEasyLevelsMenu();
   closeMiddleLevelsMenu();
+  closeHardLevelsMenu();
 
 
   console.log(sizeImage, numberImg)
@@ -319,10 +337,9 @@ function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
   const columnLeftClues = addLeftClues(matrixImage)[1]; // max counter columns in left-container
   creatLeftClues(sizeImage, columnLeftClues);           // creat left-clues container+c
 
-
+  localStorage.setItem('saveRowsColumnSize', JSON.stringify([rowTopClues, columnLeftClues, sizeImage]));
 
   creatGameField(sizeImage);              // creat game field-container + cell-item
-
 
 
   fillTopClues(sizeImage, arrTopClues);         // fill cells top-clues
@@ -330,6 +347,10 @@ function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
 
   getSizeCellTop(sizeImage, rowTopClues)
   getSizeCellLeft(sizeImage, columnLeftClues);
+
+  const widthBody = window.innerWidth;
+  getWidthHeightBoard(widthBody, sizeImage, columnLeftClues, rowTopClues);  
+
 
   addLineField(sizeImage, columnLeftClues, rowTopClues);
 
@@ -350,6 +371,7 @@ solutionButton.addEventListener("click", () => {
   cleanCellField();
   getSolution(gameField, matrixImage, sizeImage);
   clearInterval(interval);
+  document.querySelector('.menu-window__reset').disabled = false;
   //endTime();
 })
 
@@ -364,7 +386,7 @@ solutionButton.addEventListener("click", () => {
       }
       addSoundClick(event);
       clickLeftMouse(event);
-      getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution);
+      countClickSolution = getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution);
     }
 
     
@@ -383,6 +405,7 @@ solutionButton.addEventListener("click", () => {
     }
 
   })
+
 }
 
 // get a win condition
@@ -401,12 +424,37 @@ function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClic
     countWin += 1;
     addSoundWinGame();
     const timeWin = creatModal();
-    openModal();
+    countClickSolution += 1;
+    setTimeout(openModal, 1000);
+    setTimeout(closeModal, 4000);
     const timeInner = document.querySelector('.container-watch').innerText;
     console.log(timeInner);
-    endTime();
+    clearInterval(interval);
     saveWinGame(countWin, nameImgWin, levelWin, timeInner, timeWin);  
 
   }
+  return countClickSolution;
 }
 fillScoreTable();
+
+// close  menu-burger > 768px
+window.addEventListener('resize', function () {
+  let [row, column, size] = JSON.parse(localStorage.getItem('saveRowsColumnSize'));
+  //const gameBoard = document.querySelector('.game-board-container');
+  let width = window.innerWidth;
+  //const widthBoard = document.querySelector('.game-board-container').clientWidth;
+  getWidthHeightBoard(width, size, column, row);  
+
+
+
+  /*if (width > 500) {
+    gameBoard.style.width = `${25 * (column + size)}px`;
+    gameBoard.style.height = `${25 * (row + size)}px`;
+
+  } else if (width <= 500) {
+    gameBoard.style.width = `${5 * (column + size)}vw`;
+    gameBoard.style.height = `${5 * (row + size)}vw`;
+  }*/
+  //let h = this.window.innerHeight;
+  //document.querySelector(".menu-burger").style.height = `${h - 100}px`;
+});

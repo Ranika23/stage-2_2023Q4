@@ -15,21 +15,22 @@
 }
 .body-container {
   overflow: clip;
-  max-width: 1440px;
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   padding: 40px;
-  padding-top: 30vh;
+  padding-top: 130px;
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
   font-family: Inter-Regular;
   font-size: 16px;
   font-style: normal;
   line-height: 150%;
-  background: #d8ffe0;
+  /*background: #d8ffe0;*/
+  background-image: url(assets/img/background.jpg);
+  background-size: cover;
 }
 /* menu */
 .menu-icon {
@@ -73,7 +74,7 @@
   }
   1% {
     display: block;
-    opacity: 0;
+    opacity: 1;
   }
   100% {
     display: block;
@@ -98,46 +99,46 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 30px;
+  gap: 5px;
   width: 160px;
   height: auto;
   border-radius: 40px;
   padding: 30px 20px;
-  background-color: #e1d4c9;
+  /*background-color: none;*/
   top: -350px;
-  right: 90px;
+  right: 300px;
   z-index: 99999;
   opacity: 1;
   color: rgb(57, 57, 57);
-  font-size: 8vw;
   text-align: center;
 }
 
 
 .menu-window.close {
+  right: 300px;
   top: -440px;
   z-index: 9;
   transition: 1s;
 }
 .menu-window.open {
-  top: 30px;
+  top: 60px;
+  right: 0px;
   z-index: 99999;
   transition: 1s;
 }
 .menu-levels {
   position: absolute;
-  top: -270px;
-  right: 280px;
+  top: -440px;
+  right: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
-  width: 180px;
+  gap: 5px;
+  width: 160px;
   height: auto;
   border-radius: 40px;
   padding: 40px 20px;
-  background-color: #e1d4c9;
   z-index: 99999;
   opacity: 1;
   color: rgb(57, 57, 57);
@@ -145,12 +146,14 @@
   text-align: center;
 }
 .menu-levels.close {
-  top: -270px;
+  top: -440px;
+  right: 400px;
   z-index: 9;
   transition: 1s;
 }
 .menu-levels.open {
-  top: 98px;
+  top: 50px;
+  right: 120px;
   z-index: 99999;
   transition: 1s;
 }
@@ -160,18 +163,21 @@
 .menu-window__save,
 .menu-window__last-game,
 .menu-window__random-game {
-  height: 50px;
-  width: 90%;
+  height: 60px;
+  width: 95%;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 13px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-levels__button {
-  height: 50px;
-  width: 90%;
+  height: 60px;
+  width: 95%;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 13px;
   cursor: pointer;
 }
 
@@ -214,6 +220,10 @@
   cursor: pointer;
 }
 /*game-board */
+/*.game-board-container {
+  width: 6vw;
+  height: 367px;
+}*/
 .game-board {
   position: relative;
   width: 100%;
@@ -229,6 +239,7 @@
   /*border-right: 2px solid black;
   border-bottom: 2px solid black;*/
   background: #e7f2ea;
+  opacity: 0.4;
 }
 
 .left-clues {
@@ -249,6 +260,7 @@
   font-weight: 500;
   border: 0.5px solid rgb(195 187 187);
   background: #e7f2ea;
+  font-size: 2vmin;
 }
 
 .game-field {
@@ -275,7 +287,7 @@
 .verticl-border {
   position: absolute;
   height: 100%;
-  width: 4px;
+  width: 3px;
   background-color: #473d3d;
 }
 .verticl-line {
@@ -292,7 +304,7 @@
 }
 .horiz-border {
   position: absolute;
-  height: 4px;
+  height: 3px;
   width: 100%;
   background-color: #473d3d;
 }
@@ -353,10 +365,6 @@
     display: none;
     opacity: 0;
   }
-  1% {
-    display: block;
-    opacity: 0;
-  }
   100% {
     display: block;
     opacity: 1;
@@ -397,7 +405,7 @@
 .container-watch {
   width: 200px;
   height: 50px;
-  font-size: 30px;
+  font-size: 4vmin;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -447,6 +455,7 @@
   border-radius: 30px;
   cursor: pointer;
   border: 1px solid rgb(171 235 235); 
+  background-color: white;
 }
 .score-table {
   position: absolute;
@@ -504,14 +513,21 @@
 }
 .solution-button {
   position: absolute;
-  top: 24vh;
-  left: 26vw;
+  top: 90px;
+  /*left: 26vw;*/
   display: flex;
   align-items: center;
-  width: 150px;
+  width: 85px;
   justify-content: center;
   height: 30px;
   border-radius: 30px;
   cursor: pointer;
   border: 1px solid rgb(171 235 235);
+  background-color: white;
 }
+/*@media (min-width: 700px) {
+  .game-board-container {
+    width: 420px;
+    height: 367px;
+  }
+}*/

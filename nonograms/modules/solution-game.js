@@ -2,7 +2,7 @@ export function creatSolutionButton(bodyContainer) {
   const buttonSolution = document.createElement('button');
   buttonSolution.className = 'solution-button'; 
   bodyContainer.prepend(buttonSolution);
-  buttonSolution.innerText = 'Solution';
+  buttonSolution.innerText = 'SOLUTION';
 
   return buttonSolution;
 }

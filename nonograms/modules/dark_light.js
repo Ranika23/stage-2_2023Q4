@@ -49,11 +49,16 @@ function changeDarkPage() {
   const sliderButton = document.querySelector('.change-color__slider');
   const lineButton = document.querySelector('.change-color__line');
 
+  const scoreButton = document.querySelector('.score-button');
+  const scoreTable = document.querySelector('.score-table');
+
+  const solutionButton = document.querySelector('.solution-button');
+
   const menuIcon = document.querySelector('.menu-icon');
 
-  const menuWindow = document.querySelector('.menu-window');
+  //const menuWindow = document.querySelector('.menu-window');
   const buttonMenuWindow = document.querySelector('.menu-window').childNodes;
-  const menuLevels = document.querySelector('.menu-levels');
+  //const menuLevels = document.querySelector('.menu-levels');
   const buttonMenuLevels = document.querySelector('.menu-levels').childNodes;
   const modalLevels = document.querySelector('.menu-background').childNodes;
   const menuLevelsEasy = document.querySelector('.menu-levels__easy').childNodes;
@@ -67,17 +72,27 @@ function changeDarkPage() {
   const containerWatch = document.querySelector('.container-watch');
 
 
-  bodyContainer.style.background = '#657b6a';
+
+  bodyContainer.style.backgroundImage = 'url("assets/img/background-dark.jpg")';
+  bodyContainer.style.backgroundSize = 'cover';
 
   slider.style.borderColor = 'rgb(112 133 133)';
   sliderButton.style.backgroundColor = 'rgb(112 133 133)';
   lineButton.style.backgroundColor = 'rgb(168 197 197)';
 
+  scoreButton.style.backgroundColor = 'rgb(112, 133, 133)';
+  scoreButton.style.color = 'white';
+  scoreTable.style.backgroundColor = 'rgb(112, 133, 133)';
+  scoreTable.style.color = 'white';
+
+  solutionButton.style.backgroundColor = 'rgb(112, 133, 133)';
+  solutionButton.style.color = 'white';
+
   menuIcon.style.backgroundImage = "url('assets/img/menu-black.png')";
 
-  menuWindow.style.backgroundColor = 'rgb(115 108 102)';
+  //menuWindow.style.backgroundColor = 'rgb(115 108 102)';
   buttonMenuWindow.forEach((item) => item.style.backgroundColor = 'rgb(197 187 178)');
-  menuLevels.style.backgroundColor = 'rgb(115 108 102)';
+  //menuLevels.style.backgroundColor = 'rgb(115 108 102)';
   buttonMenuLevels.forEach((item) => item.style.backgroundColor = 'rgb(197 187 178)');
   modalLevels.forEach((item) => item.style.backgroundColor = 'rgb(127 118 112)');
   menuLevelsEasy.forEach((item) => item.style.backgroundColor = '#514c48');
@@ -93,6 +108,7 @@ function changeDarkPage() {
   cellsClues.forEach((item) => item.style.color = '#e7f2ea');
 
   containerWatch.style.color = '#e7f2ea';
+
 }
 
 function changeLightPage() {
@@ -103,11 +119,16 @@ function changeLightPage() {
   const sliderButton = document.querySelector('.change-color__slider');
   const lineButton = document.querySelector('.change-color__line');
 
+  const scoreButton = document.querySelector('.score-button');
+  const scoreTable = document.querySelector('.score-table');
+
+  const solutionButton = document.querySelector('.solution-button');
+
   const menuIcon = document.querySelector('.menu-icon');
 
-  const menuWindow = document.querySelector('.menu-window');
+  //const menuWindow = document.querySelector('.menu-window');
   const buttonMenuWindow = document.querySelector('.menu-window').childNodes;
-  const menuLevels = document.querySelector('.menu-levels');
+  //const menuLevels = document.querySelector('.menu-levels');
   const buttonMenuLevels = document.querySelector('.menu-levels').childNodes;
   const modalLevels = document.querySelector('.menu-background').childNodes;
   const menuLevelsEasy = document.querySelector('.menu-levels__easy').childNodes;
@@ -121,16 +142,27 @@ function changeLightPage() {
   const containerWatch = document.querySelector('.container-watch');
 
 
-  bodyContainer.style.background = '#d8ffe0';
+  //bodyContainer.style.background = '#d8ffe0';
+  bodyContainer.style.backgroundImage = 'url("assets/img/background.jpg")';
+  bodyContainer.style.backgroundSize = 'cover';
+
   slider.style.borderColor = 'rgb(171 235 235)';
   sliderButton.style.backgroundColor = 'rgb(171 235 235)';
   lineButton.style.backgroundColor = 'rgb(93, 125, 125)';
 
+  scoreButton.style.backgroundColor = 'white';
+  scoreButton.style.color = 'black';
+  scoreTable.style.backgroundColor = '#e1d4c9';
+  scoreTable.style.color = 'rgb(57, 57, 57)';
+
+  solutionButton.style.backgroundColor = 'white';
+  solutionButton.style.color = 'black';
+
   menuIcon.style.backgroundImage = "url('assets/img/menu.png')";
 
-  menuWindow.style.backgroundColor = '#e1d4c9';
+  //menuWindow.style.backgroundColor = 'none';
   buttonMenuWindow.forEach((item) => item.style.backgroundColor = 'rgb(240, 240, 240)');
-  menuLevels.style.backgroundColor = '#e1d4c9';
+  //menuLevels.style.backgroundColor = '#e1d4c9';
   buttonMenuLevels.forEach((item) => item.style.backgroundColor = 'rgb(240, 240, 240)');
   modalLevels.forEach((item) => item.style.backgroundColor = '#e1d4c9');
   menuLevelsEasy.forEach((item) => item.style.backgroundColor = 'rgb(240, 240, 240)');

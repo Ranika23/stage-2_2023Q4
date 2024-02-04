@@ -48,6 +48,7 @@ export function addLineField(sizeImage, columns, rows) {
     const heigthCell = 100 / (5 + rows);
     horizBorder.style.top = `${heigthCell * rows - 0.4}%`;
 
+
     gameBoard.append(verticlBorder);
     gameBoard.append(horizBorder);
   }
