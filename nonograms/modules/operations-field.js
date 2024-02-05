@@ -9,7 +9,6 @@ export function clickLeftMouse(event) {
 // click right mouse button (black cell)
 export function clickRigthMouse(event) {
   event.preventDefault();
-console.log('ok')
   const cell = event.target;
   if (cell.classList.contains('left-click')) cell.classList.remove('left-click');
   cell.classList.toggle('right-click');
@@ -25,4 +24,16 @@ export function cleanCellField() {
 
 export function cleanBoard() {
   if (document.querySelector('.game-board-container') !== null) document.querySelector('.game-board-container').remove();
+}
+
+export function getSolution(gameField, matrixImage, sizeImage) {
+  const arrayGameField = gameField.children;
+  for (let i = 0; i < matrixImage.length; i += 1) {
+    for (let y = 0; y < matrixImage[i].length; y += 1) {
+      const cell = sizeImage * i + y;
+      if (matrixImage[i][y] === 1) {
+        arrayGameField[cell].classList.add('left-click');
+      }
+    }
+  }
 }

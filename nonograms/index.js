@@ -1,23 +1,23 @@
-import {countClickCell, countFillCells, getResultGame} from './modules/game-result.js';
-import {creatGameBoard, getWidthHeightBoard} from './modules/board_contain.js';
-import {creatLeftClues, addLeftClues, fillLeftClues, getSizeCellLeft} from './modules/clues-left.js';
-import {creatTopClues, addTopClues, fillTopClues, getSizeCellTop} from './modules/clues-top.js';
-import {creatGameField, getFillMatrixField, addLineField} from './modules/board_field.js';
-import {creatModal, openModal, closeModal} from './modules/game_over-modal.js';
-import {addButtonMenu, creatMenu, openMenu, closeMenu} from './modules/menu_main.js';
-import {creatLevelsMenu, openLevelsMenu, closeLevelsMenu} from './modules/menu_levels.js';
-import {creatLevelsEasyMenu, openEasyLevelsMenu, closeEasyLevelsMenu} from './modules/level_1-easy.js';
-import {creatLevelsMiddleMenu, openMiddleLevelsMenu, closeMiddleLevelsMenu} from './modules/level_2-middle.js';
-import {creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu} from './modules/level_3-hard.js';
-import {clickLeftMouse, clickRigthMouse, cleanCellField, cleanBoard} from './modules/operations-field.js';
-import {addContainWatch, resetTime, cleanWatch} from './modules/stop-watch.js';
-import {addSoundClick, addSoundClose, addSoundWinGame} from './modules/get-sound.js';
-import {enableButtons, getInitStateButtons} from './modules/disabled-button.js';
-import {saveLastGame, getLastGame} from './modules/local-storage.js';
-import {creatChangeColorButton, changeColorTheme , getColorLoadPage} from './modules/dark_light.js';
-import {creatScoreButton, creatScoreTable, openScoreTable, saveWinGame, fillScoreTable, closeScoreTable} from './modules/score-table.js';
-import {randomNumber} from './modules/random-game.js';
-import {creatSolutionButton, getSolution} from './modules/solution-game.js';
+import { countClickCell, countFillCells, getResultGame } from './modules/game-result.js';
+import { creatGameBoard, getWidthHeightBoard } from './modules/board_contain.js';
+import { creatLeftClues, addLeftClues, fillLeftClues, getSizeCellLeft } from './modules/clues-left.js';
+import { creatTopClues, addTopClues, fillTopClues, getSizeCellTop } from './modules/clues-top.js';
+import { creatGameField, getFillMatrixField, addLineField } from './modules/board_field.js';
+import { creatModal, openModal, closeModal } from './modules/game_over-modal.js';
+import { addButtonMenu, creatMenu, openMenu, closeMenu } from './modules/menu_main.js';
+import { creatLevelsMenu, openLevelsMenu, closeLevelsMenu } from './modules/menu_levels.js';
+import { creatLevelsEasyMenu, openEasyLevelsMenu, closeEasyLevelsMenu } from './modules/level_1-easy.js';
+import { creatLevelsMiddleMenu, openMiddleLevelsMenu, closeMiddleLevelsMenu } from './modules/level_2-middle.js';
+import { creatLevelsHardMenu, openHardLevelsMenu, closeHardLevelsMenu } from './modules/level_3-hard.js';
+import { clickLeftMouse, clickRigthMouse, cleanCellField, cleanBoard, getSolution } from './modules/operations-field.js';
+import { addContainWatch, resetTime, cleanWatch } from './modules/stop-watch.js';
+import { addSoundClick, addSoundClose, addSoundWinGame } from './modules/get-sound.js';
+import { enableButtons, getInitStateButtons } from './modules/disabled-button.js';
+import { saveLastGame, getLastGame } from './modules/local-storage.js';
+import { creatChangeColorButton, changeColorTheme, getColorLoadPage } from './modules/dark_light.js';
+import { creatScoreButton, creatScoreTable, openScoreTable, saveWinGame, fillScoreTable, closeScoreTable } from './modules/score-table.js';
+import { randomNumber } from './modules/random-game.js';
+import { creatSolutionButton, creatResetButton } from './modules/button-body.js';
 
 
 
@@ -30,7 +30,6 @@ let seconds = 0;
 let counterClick = 0;
 function startTime() {
   const containerWatch = document.querySelector('.container-watch');
-  console.log(seconds)
   seconds += 1;
   if (seconds === 60) {
     minutes += 1;
@@ -82,11 +81,11 @@ creatLevelsHardMenu();
 const menuButton = document.querySelector('.menu-icon');
 const menu = document.querySelector('.menu-window');
 const buttonLevels = document.querySelector('.menu-window__levels');
-const buttonReset = document.querySelector('.menu-window__reset');
 const buttonSaveGame = document.querySelector('.menu-window__save');
 const buttonLastGame = document.querySelector('.menu-window__last-game');
 const buttonRandomGame = document.querySelector('.menu-window__random-game');
 const solutionButton = creatSolutionButton(bodyContainer);
+const buttonReset = creatResetButton(bodyContainer);
 let countClickSolution = 0;
 
 menuButton.addEventListener('click', (event) => {
@@ -125,7 +124,7 @@ buttonLastGame.addEventListener('click', () => {
   closeLevelsMenu();
   clearInterval(interval);
   endTime();
-  
+
   let [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues, infScoreTable] = getLastGame();
 
   localStorage.setItem('saveRowsColumnSize', JSON.stringify([rowTopClues, columnLeftClues, sizeImage]));
@@ -138,10 +137,10 @@ buttonLastGame.addEventListener('click', () => {
   const widthBody = window.innerWidth;
   //const widthBoard = document.querySelector('.game-board-container').clientWidth;
 
-  getWidthHeightBoard(widthBody, sizeImage, columnLeftClues, rowTopClues);  
+  getWidthHeightBoard(widthBody, sizeImage, columnLeftClues, rowTopClues);
   getColorLoadPage();
 
-    //button solution
+  //button solution
   solutionButton.addEventListener("click", () => {
     countClickSolution += 1;
     cleanCellField();
@@ -157,8 +156,8 @@ buttonLastGame.addEventListener('click', () => {
     if (countClickSolution === 0) {
       counterClick += 1;
       if (counterClick === 1) {
-      interval = setInterval(startTime, 1000);
-      enableButtons();
+        interval = setInterval(startTime, 1000);
+        enableButtons();
       }
       addSoundClick(event);
       clickLeftMouse(event);
@@ -174,15 +173,15 @@ buttonLastGame.addEventListener('click', () => {
     if (countClickSolution === 0) {
       counterClick += 1;
       if (counterClick === 1) {
-      interval = setInterval(startTime, 1000);
-      enableButtons();
+        interval = setInterval(startTime, 1000);
+        enableButtons();
       }
       addSoundClose(event);
       clickRigthMouse(event);
     }
 
   })
- 
+
 })
 
 
@@ -192,7 +191,6 @@ buttonRandomGame.addEventListener('click', () => {
   closeLevelsMenu();
   closeScoreTable();
   let [numberImg, sizeImage, nameImgWin, levelWin] = randomNumber();
-  console.log(numberImg, sizeImage, nameImgWin, levelWin)
   startGame(numberImg, sizeImage, nameImgWin, levelWin);
   getColorLoadPage();
 })
@@ -207,9 +205,8 @@ levelsMenu.addEventListener('click', (event) => {
   const button = event.target;
 
   const arrLevelsMenu = document.querySelector('.menu-levels').children;
-  for (let i = 0; i < arrLevelsMenu.length; i+= 1) {
+  for (let i = 0; i < arrLevelsMenu.length; i += 1) {
     if (arrLevelsMenu[i] === button) {
-      console.log('button', i)
       if (i === 0) {
         closeMiddleLevelsMenu();
         closeHardLevelsMenu();
@@ -237,7 +234,8 @@ startGame('1', 5, 'TOWER', 'easy 5x5'); // on page loading
 //button change color
 const buttonScore = creatScoreButton(bodyContainer);
 creatScoreTable(bodyContainer);
-buttonScore.addEventListener("click", () => {
+buttonScore.addEventListener("click", (event) => {
+  event._isClickMenu = true;
   openScoreTable();
 })
 
@@ -255,7 +253,6 @@ getColorLoadPage();
 // open images level-easy
 document.querySelector('.menu-levels__easy').addEventListener('click', (event) => {
   event._isClickMenu = true;
-  console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const nameImgWin = event.target.classList[2];
   const sizeImage = 5;
@@ -269,12 +266,10 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
 // open images level-middle
 document.querySelector('.menu-levels__middle').addEventListener('click', (event) => {
   event._isClickMenu = true;
-  console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const nameImgWin = event.target.classList[2];
   const sizeImage = 10;
   const levelWin = 'middle 10x10';
-  console.log('numberImg' ,numberImg)
   if (numberImg !== undefined) {
     startGame(numberImg, sizeImage, nameImgWin, levelWin);
   }
@@ -284,12 +279,10 @@ document.querySelector('.menu-levels__middle').addEventListener('click', (event)
 // open images level-hard
 document.querySelector('.menu-levels__hard').addEventListener('click', (event) => {
   event._isClickMenu = true;
-  console.log(event.target.classList)
   const numberImg = event.target.classList[1];
   const nameImgWin = event.target.classList[2];
   const sizeImage = 15;
   const levelWin = 'hard 15x15';
-  console.log('numberImg' ,numberImg)
   if (numberImg !== undefined) {
     startGame(numberImg, sizeImage, nameImgWin, levelWin);
   }
@@ -303,6 +296,7 @@ document.body.addEventListener("click", event => {
   closeLevelsMenu();
   closeEasyLevelsMenu();
   closeMiddleLevelsMenu();
+  closeScoreTable()
 
 })
 
@@ -319,19 +313,12 @@ function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
   closeMiddleLevelsMenu();
   closeHardLevelsMenu();
 
-
-  console.log(sizeImage, numberImg)
   creatGameBoard(bodyContainer); // game board 
   const matrixImage = getFillMatrixField(sizeImage, numberImg);      // matrix image-field
-  console.log(matrixImage)
-
 
   const arrTopClues = addTopClues(matrixImage)[0];  // array top-clues
   const rowTopClues = addTopClues(matrixImage)[1];  // max counter rows in top-container
   creatTopClues(sizeImage, rowTopClues);            // creat top-clues container+cells
-
-  console.log('arrTopClues', arrTopClues)
-  console.log('rowTopClues', rowTopClues)
 
   const arrLeftClues = addLeftClues(matrixImage)[0];    // array left-clues
   const columnLeftClues = addLeftClues(matrixImage)[1]; // max counter columns in left-container
@@ -349,31 +336,31 @@ function startGame(numberImg, sizeImage, nameImgWin, levelWin) {
   getSizeCellLeft(sizeImage, columnLeftClues);
 
   const widthBody = window.innerWidth;
-  getWidthHeightBoard(widthBody, sizeImage, columnLeftClues, rowTopClues);  
+  getWidthHeightBoard(widthBody, sizeImage, columnLeftClues, rowTopClues);
 
 
   addLineField(sizeImage, columnLeftClues, rowTopClues);
 
 
- // click left mouse button (black cell)
+  // click left mouse button (black cell)
   const gameField = document.querySelector('.game-field');
 
   buttonSaveGame.addEventListener('click', () => {
-   closeMenu();
+    closeMenu();
     closeLevelsMenu();
     saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues, nameImgWin, levelWin);
     getInitStateButtons();
   })
 
-//button solution
-solutionButton.addEventListener("click", () => {
-  countClickSolution += 1;
-  cleanCellField();
-  getSolution(gameField, matrixImage, sizeImage);
-  clearInterval(interval);
-  document.querySelector('.menu-window__reset').disabled = false;
-  //endTime();
-})
+  //button solution
+  solutionButton.addEventListener("click", () => {
+    countClickSolution += 1;
+    cleanCellField();
+    getSolution(gameField, matrixImage, sizeImage);
+    clearInterval(interval);
+    document.querySelector('.menu-window__reset').disabled = false;
+    //endTime();
+  })
 
 
 
@@ -381,15 +368,15 @@ solutionButton.addEventListener("click", () => {
     if (countClickSolution === 0) {
       counterClick += 1;
       if (counterClick === 1) {
-      interval = setInterval(startTime, 1000);
-      enableButtons();
+        interval = setInterval(startTime, 1000);
+        enableButtons();
       }
       addSoundClick(event);
       clickLeftMouse(event);
       countClickSolution = getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClickSolution);
     }
 
-    
+
   })
 
   // click right mouse button (black cell)
@@ -397,8 +384,8 @@ solutionButton.addEventListener("click", () => {
     if (countClickSolution === 0) {
       counterClick += 1;
       if (counterClick === 1) {
-      interval = setInterval(startTime, 1000);
-      enableButtons();
+        interval = setInterval(startTime, 1000);
+        enableButtons();
       }
       addSoundClose(event);
       clickRigthMouse(event);
@@ -414,7 +401,7 @@ function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClic
 
   const gameField = document.querySelector('.game-field');
   const topClues = document.querySelector('.top-clues');
-  
+
   const countClick = countClickCell(gameField);
   const countFill = countFillCells(topClues);
 
@@ -426,11 +413,10 @@ function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClic
     const timeWin = creatModal();
     countClickSolution += 1;
     setTimeout(openModal, 1000);
-    setTimeout(closeModal, 4000);
+    setTimeout(closeModal, 5000);
     const timeInner = document.querySelector('.container-watch').innerText;
-    console.log(timeInner);
     clearInterval(interval);
-    saveWinGame(countWin, nameImgWin, levelWin, timeInner, timeWin);  
+    saveWinGame(countWin, nameImgWin, levelWin, timeInner, timeWin);
 
   }
   return countClickSolution;
@@ -440,21 +426,6 @@ fillScoreTable();
 // close  menu-burger > 768px
 window.addEventListener('resize', function () {
   let [row, column, size] = JSON.parse(localStorage.getItem('saveRowsColumnSize'));
-  //const gameBoard = document.querySelector('.game-board-container');
   let width = window.innerWidth;
-  //const widthBoard = document.querySelector('.game-board-container').clientWidth;
-  getWidthHeightBoard(width, size, column, row);  
-
-
-
-  /*if (width > 500) {
-    gameBoard.style.width = `${25 * (column + size)}px`;
-    gameBoard.style.height = `${25 * (row + size)}px`;
-
-  } else if (width <= 500) {
-    gameBoard.style.width = `${5 * (column + size)}vw`;
-    gameBoard.style.height = `${5 * (row + size)}vw`;
-  }*/
-  //let h = this.window.innerHeight;
-  //document.querySelector(".menu-burger").style.height = `${h - 100}px`;
+  getWidthHeightBoard(width, size, column, row);
 });

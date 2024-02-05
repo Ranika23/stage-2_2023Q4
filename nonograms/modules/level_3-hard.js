@@ -38,7 +38,7 @@ export function closeHardLevelsMenu() {
   const menuBackground = document.querySelector('.menu-background');
   const menuHardLevels = document.querySelector('.menu-levels__hard');
   const menuButton = document.querySelector('.menu-icon');
-  
+
   menuButton.style.opacity = '1';
 
   menuHardLevels.style.opacity = '0';

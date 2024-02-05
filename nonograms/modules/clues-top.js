@@ -1,12 +1,11 @@
 //creat top-clues container   ВЕРХНИЕ ПОДСКАЗКИ_КОНТЕЙНЕР+ячейки
 export function creatTopClues(sizeImage, row) {
-console.log('creatTopClues', sizeImage, row)
   const topClues = document.createElement('div');
   topClues.className = 'top-clues';
-  topClues.style.gridTemplateRows = `repeat(${row}, ${100/row}%)`;
-  topClues.style.gridTemplateColumns = `repeat(${sizeImage}, ${100/sizeImage}%)`
+  topClues.style.gridTemplateRows = `repeat(${row}, ${100 / row}%)`;
+  topClues.style.gridTemplateColumns = `repeat(${sizeImage}, ${100 / sizeImage}%)`
 
-  
+
   const gameBoard = document.querySelector('.game-board');
   gameBoard.append(topClues);
   //left clues cells ЯЧЕЙКИ ЛЕВОЙ ПОДСКАЗКИ
@@ -15,15 +14,6 @@ console.log('creatTopClues', sizeImage, row)
     cellClues.className = 'cell-clues';
     topClues.prepend(cellClues);
   }
-  /*(function addTopClues() {
-    const arrTopClues = topClues.children;
-    arrTopClues[7].innerText = 1;
-    arrTopClues[8].innerText = 1;
-    arrTopClues[11].innerText = 5;
-    arrTopClues[12].innerText = 1;
-    arrTopClues[13].innerText = 2;
-  }
-  )();*/
 }
 
 export function addTopClues(matrixImage) { // включение количества закрашенных ячеек в массив
@@ -62,13 +52,12 @@ export function addTopClues(matrixImage) { // включение количес�
       if (result[i].length < max) result[i].unshift(0);
     }
   }
-  return [result,max];
+  return [result, max];
 
 }
 
 // заполнение поля подсказками (из массива arrClues)
 export function fillTopClues(sizeImage, arrTopClues) {
-  //getSizeCellTop(sizeImage, row);
   const arrClues = document.querySelector('.top-clues').children;
   let cell = 0;
   for (let i = 0; i < arrTopClues[i].length; i += 1) {
@@ -80,39 +69,26 @@ export function fillTopClues(sizeImage, arrTopClues) {
   }
 }
 export function getSizeCellTop(sizeImage, row) {
-  console.log('Top sizeImage, row', sizeImage, row)
-  //const gameBoard = document.querySelector('.game-board-container');
   const emptyCorner = document.querySelector('.empty-corner');
   const topClues = document.querySelector('.top-clues');
   const leftClues = document.querySelector('.left-clues');
   const gameField = document.querySelector('.game-field');
- // const widthBody = window.innerWidth;
 
-  if(sizeImage === 5) {
+  if (sizeImage === 5) {
     const heigthCell = 100 / (5 + row);
     emptyCorner.style.height = `${heigthCell * row}%`;
     topClues.style.height = `${heigthCell * row}%`;
 
-    //if(widthBody <= 600) gameBoard.style.height = `${6 * (row + 5)}vw`;
-    //else gameBoard.style.height = `${40 * (row + 5)}px`;
-
   }
-  else if(sizeImage === 10) {
+  else if (sizeImage === 10) {
     const heigthCell = 100 / (10 + row);
     emptyCorner.style.height = `${heigthCell * row}%`;
     topClues.style.height = `${heigthCell * row}%`;
-
-   // if(widthBody <= 600) gameBoard.style.height = `${6 * (row + 10)}vw`;
-   // else gameBoard.style.height = `${40 * (row + 10)}px`;
   }
-  else if(sizeImage === 15) {
-    console.log('Top 15', sizeImage, row)
+  else if (sizeImage === 15) {
     const heigthCell = 100 / (15 + row);
     emptyCorner.style.height = `${heigthCell * row}%`;
     topClues.style.height = `${heigthCell * row}%`;
-
-   // if(widthBody <= 600) gameBoard.style.height = `${6 * (row + 15)}vw`;
-   // else gameBoard.style.height = `${40 * (row + 15)}px`;
   }
 
   const heightEmptyCorner = emptyCorner.style.height;

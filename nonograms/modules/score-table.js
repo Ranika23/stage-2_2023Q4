@@ -1,6 +1,6 @@
 export function creatScoreButton(bodyContainer) {
   const buttonScore = document.createElement('button');
-  buttonScore.className = 'score-button'; 
+  buttonScore.className = 'score-button';
   bodyContainer.prepend(buttonScore);
   buttonScore.innerText = 'SCORE';
 
@@ -54,14 +54,13 @@ export function closeScoreTable() {
 export function saveWinGame(countWin, image, level, timeInner, time) {
 
   let arrSaveWinGame;
-  
+
   if (JSON.parse(localStorage.getItem('counterWin')) === null) arrSaveWinGame = [];
   else {
     arrSaveWinGame = JSON.parse(localStorage.getItem('counterWin'));
-    console.log(JSON.parse(localStorage.getItem('counterWin'))[countWin - 1]['countWin'])
     countWin += JSON.parse(localStorage.getItem('counterWin'))[countWin - 1]['countWin'];
-  } 
-  arrSaveWinGame.push({'countWin' : countWin, 'image' : image, 'level' : level, 'timeInner' : timeInner, 'time' : time});
+  }
+  arrSaveWinGame.push({ 'countWin': countWin, 'image': image, 'level': level, 'timeInner': timeInner, 'time': time });
   localStorage.setItem('counterWin', JSON.stringify(arrSaveWinGame));
   refillScoreTable();
 }
@@ -70,7 +69,6 @@ export function fillScoreTable() {
 
 
   const scoreTableLine = document.querySelectorAll('.score-table__line');
-  console.log(JSON.parse(localStorage.getItem('counterWin')))
   if (JSON.parse(localStorage.getItem('counterWin')) !== null) {
     const arrInfGame = JSON.parse(localStorage.getItem('counterWin'));
     sortArr(arrInfGame);
@@ -94,10 +92,7 @@ function refillScoreTable() {
     const arrNewList = arrInfGame.slice(1, 6);
 
     localStorage.setItem('counterWin', JSON.stringify(arrNewList));
-
-    console.log(arrNewList)
     sortArr(arrNewList);
-    console.log(arrNewList)
     for (let i = 0; i < arrNewList.length; i += 1) {
       scoreTableLine[i + 1].children[0].innerText = arrNewList[i].image;
       scoreTableLine[i + 1].children[1].innerText = arrNewList[i].level;
@@ -107,7 +102,7 @@ function refillScoreTable() {
 }
 
 function sortArr(arrNewList) {
-  arrNewList.sort(function(a, b) {
+  arrNewList.sort(function (a, b) {
     return a.time - b.time;
   });
 }

@@ -40,7 +40,7 @@ export function closeEasyLevelsMenu() {
   const menuBackground = document.querySelector('.menu-background');
   const menuEasyLevels = document.querySelector('.menu-levels__easy');
   const menuButton = document.querySelector('.menu-icon');
-  
+
   menuButton.style.opacity = '1';
 
   menuEasyLevels.style.opacity = '0';

@@ -1,11 +1,10 @@
 export function saveLastGame(matrixImage, sizeImage, rowTopClues, columnLeftClues, nameImgWin, levelWin) {
   const watchInner = document.querySelector('.container-watch').innerText;
-  console.log(watchInner)
   const gameBoard = document.querySelector('.game-board');
   localStorage.setItem('gameBoard', gameBoard.outerHTML);
   localStorage.setItem('matrixImage', JSON.stringify(matrixImage));
   localStorage.setItem('sizeImage', sizeImage);
-  localStorage.setItem('minutes', Number(watchInner.slice(0,3)));
+  localStorage.setItem('minutes', Number(watchInner.slice(0, 3)));
   localStorage.setItem('seconds', Number(watchInner.slice(5)));
   localStorage.setItem('time', watchInner);
   localStorage.setItem('rowTopClues', rowTopClues);
@@ -29,4 +28,4 @@ export function getLastGame() {
   document.querySelector('.container-watch').innerText = `${time}`;
 
   return [matrixImage, sizeImage, gameField, rowTopClues, columnLeftClues, infScoreTable];
-  }
+}

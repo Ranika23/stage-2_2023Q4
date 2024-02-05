@@ -38,7 +38,7 @@ export function closeMiddleLevelsMenu() {
   const menuBackground = document.querySelector('.menu-background');
   const menuMiddleLevels = document.querySelector('.menu-levels__middle');
   const menuButton = document.querySelector('.menu-icon');
-  
+
   menuButton.style.opacity = '1';
 
   menuMiddleLevels.style.opacity = '0';

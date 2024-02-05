@@ -1,7 +1,14 @@
 export function addButtonMenu(bodyContainer) {
-  const gameBoard = document.createElement('div');
-  gameBoard.className = 'menu-icon';
-  bodyContainer.prepend(gameBoard);
+  const menuIcon = document.createElement('div');
+  menuIcon.className = 'menu-icon';
+  bodyContainer.prepend(menuIcon);
+
+  const line1 = document.createElement('span');
+  line1.className = 'menu-icon__line1';
+  menuIcon.prepend(line1);
+  const line2 = document.createElement('span');
+  line2.className = 'menu-icon__line2';
+  menuIcon.prepend(line2);
 }
 
 // creat modal
@@ -16,12 +23,6 @@ export function creatMenu(bodyContainer) {
   menuLevel.className = 'menu-window__levels';
   menuLevel.innerText = `LEVELS`;
   menuWindow.append(menuLevel);
-
-  const menuReset = document.createElement('button');
-  menuReset.className = 'menu-window__reset';
-  menuReset.innerText = `RESET GAME`;
-  menuReset.setAttribute("disabled", "disabled");
-  menuWindow.append(menuReset);
 
   const menuSaveGame = document.createElement('button');
   menuSaveGame.className = 'menu-window__save';
@@ -46,8 +47,10 @@ export function creatMenu(bodyContainer) {
 // start modal
 export function openMenu() {
   const menuWindow = document.querySelector('.menu-window');
+  const menuIcon = document.querySelector('.menu-icon');
   menuWindow.classList.toggle('open');
   menuWindow.classList.toggle('close');
+  menuIcon.classList.toggle('open');
 }
 export function closeMenu() {
   const menuWindow = document.querySelector('.menu-window');

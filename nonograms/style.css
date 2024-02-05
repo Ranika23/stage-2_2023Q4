@@ -25,7 +25,7 @@
   align-items: center;
   flex-direction: column;
   font-family: Inter-Regular;
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   line-height: 150%;
   /*background: #d8ffe0;*/
@@ -36,12 +36,43 @@
 .menu-icon {
   top: 20px;
   position: absolute;
-  background-image: url(assets/img/menu.png);
-  height: 70px;
-  width: 70px;
-  right: 20px;
-  background-size: 100%;
+  height: 40px;
+  width: 50px;
+  right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999999;
   cursor: pointer;
+}
+.menu-icon__line1,
+.menu-icon__line2 {
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 2.5px;
+
+  transition: .5s;
+}
+.menu-icon span:nth-child(1) {
+  transform: translateY(-5px);
+  right: 0;
+
+}
+.menu-icon span:nth-child(2) {
+  transform: translateY(5px);
+  left: 10px;
+}
+.menu-icon.open span:nth-child(1) {
+  transform: translateY(0) translateX(0) rotate(-45deg);
+  width: 50%;
+  right: 1px;
+}
+.menu-icon.open span:nth-child(2) {
+  transform: translateY(0) translateX(-0) rotate(45deg);
+  width: 50%;
+  left: 7px;
 }
 
 .menu-background.close {
@@ -104,12 +135,11 @@
   height: auto;
   border-radius: 40px;
   padding: 30px 20px;
-  /*background-color: none;*/
+  font-weight: 600;
   top: -350px;
   right: 300px;
   z-index: 99999;
   opacity: 1;
-  color: rgb(57, 57, 57);
   text-align: center;
 }
 
@@ -121,7 +151,7 @@
   transition: 1s;
 }
 .menu-window.open {
-  top: 60px;
+  top: 40px;
   right: 0px;
   z-index: 99999;
   transition: 1s;
@@ -139,9 +169,9 @@
   height: auto;
   border-radius: 40px;
   padding: 40px 20px;
+  font-weight: 600;
   z-index: 99999;
   opacity: 1;
-  color: rgb(57, 57, 57);
   font-size: 8vw;
   text-align: center;
 }
@@ -152,14 +182,13 @@
   transition: 1s;
 }
 .menu-levels.open {
-  top: 50px;
+  top: 30px;
   right: 120px;
   z-index: 99999;
   transition: 1s;
 }
 
 .menu-window__levels,
-.menu-window__reset,
 .menu-window__save,
 .menu-window__last-game,
 .menu-window__random-game {
@@ -167,6 +196,7 @@
   width: 95%;
   border-radius: 10px;
   font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -176,6 +206,7 @@
 .menu-levels__button {
   height: 60px;
   width: 95%;
+  font-weight: 600;
   border-radius: 10px;
   font-size: 13px;
   cursor: pointer;
@@ -190,17 +221,16 @@
   flex-direction: column;
   gap: 20px;
   width: 80vw;
+  font-weight: 600;
   height: auto;
   border-radius: 40px;
   padding: 40px 30px;
-  background-color: #e1d4c9;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 99999;
   opacity: 1;
-  color: rgb(57, 57, 57);
   font-size: 8vw;
   opacity: 0;
   text-align: center;
@@ -214,7 +244,6 @@
 .menu-levels__img {
   width: 90%;
   height: 50px;
-  border: 1px solid black;
   border-radius: 10px;
   font-size: 20px;
   cursor: pointer;
@@ -228,7 +257,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border: 4px solid black;
+  border: 3px solid black;
   display: flex;
   flex-wrap: wrap;
   align-items: start;
@@ -260,7 +289,7 @@
   font-weight: 500;
   border: 0.5px solid rgb(195 187 187);
   background: #e7f2ea;
-  font-size: 2vmin;
+  font-size: 2.4vmin;
 }
 
 .game-field {
@@ -293,13 +322,13 @@
 .verticl-line {
   position: absolute;
   height: 100%;
-  width: 3px;
+  width: 2px;
   background-color: #6f756f;
 }
 .verticl-line-2 {
   position: absolute;
   height: 100%;
-  width: 3px;
+  width: 2px;
   background-color: #6f756f;
 }
 .horiz-border {
@@ -310,13 +339,13 @@
 }
 .horiz-line {
   position: absolute;
-  height: 3px;
+  height: 2px;
   width: 100%;
   background-color: #6f756f;
 }
 .horiz-line-2 {
   position: absolute;
-  height: 3px;
+  height: 2px;
   width: 100%;
   background-color: #6f756f;
 }
@@ -331,7 +360,7 @@
 }
 .cell-field.right-click {
   background-image: url(assets/img/cross.png);
-  background-size: 90%;
+  background-size: 100%;
 }
 
 
@@ -390,14 +419,12 @@
   height: auto;
   border-radius: 40px;
   padding: 30px;
-  background-color: #e1d4c9;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 99999;
   opacity: 1;
-  color: rgb(57, 57, 57);
   font-size: 8vw;
   text-align: center;
 }
@@ -406,6 +433,7 @@
   width: 200px;
   height: 50px;
   font-size: 4vmin;
+  font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -414,11 +442,11 @@
 .change-color {
   position: absolute;
   top: 50px;
-  left: 50px;
+  left: 160px;
   display: flex;
   align-items: center;
-  width: 50px;
-  height: 30px;
+  width: 40px;
+  height: 20px;
   border-radius: 30px;
   overflow: hidden;
   cursor: pointer;
@@ -436,8 +464,8 @@
 .change-color__slider {
   position: absolute;
   left: 0px;
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   background-color: rgb(171 235 235);
   border-radius: 50%;
   cursor: pointer;
@@ -445,15 +473,18 @@
 }
 .score-button {
   position: absolute;
-  top: 90px;
+  top: 50px;
   left: 50px;
   display: flex;
   align-items: center;
-  width: 70px;
+  width: 90px;
   justify-content: center;
-  height: 30px;
-  border-radius: 30px;
+  height: 35px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
+  opacity: 0.8;
   border: 1px solid rgb(171 235 235); 
   background-color: white;
 }
@@ -474,7 +505,7 @@
   z-index: 99999;
   opacity: 1;
   color: rgb(57, 57, 57);
-  font-size: 5vw;
+  font-size: 25px;
   text-align: center;
 }
 .score-table.close {
@@ -487,6 +518,13 @@
   z-index: 99999;
   transition: 1s;
 }
+.score-table__title {
+  height: 35px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .score-table__inf {
   display: flex;
   justify-content: center;
@@ -495,6 +533,7 @@
   width: 100%;
   height: auto;
   font-size: 12px;
+  gap: 10px;
 }
 .score-table__line {
   display: flex;
@@ -502,6 +541,7 @@
   align-items: center;
   width: 100%;
   height: auto;
+  gap: 2px;
 }
 .score-table__line-cell {
   display: flex;
@@ -510,17 +550,22 @@
   width: 30%;
   height: auto;
   border: 1px solid black;
+  border-radius: 4px;
 }
-.solution-button {
+.solution-button,
+.menu-window__reset {
   position: absolute;
   top: 90px;
   /*left: 26vw;*/
   display: flex;
   align-items: center;
-  width: 85px;
+  width: 90px;
   justify-content: center;
-  height: 30px;
-  border-radius: 30px;
+  height: 35px;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 12px;
+  opacity: 0.8;
   cursor: pointer;
   border: 1px solid rgb(171 235 235);
   background-color: white;
