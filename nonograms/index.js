@@ -110,6 +110,7 @@ buttonReset.addEventListener('click', () => {
   openMenu();
   closeLevelsMenu();
   countClickSolution = 0;
+  countWin = 0;
 })
 
 
@@ -196,6 +197,7 @@ buttonRandomGame.addEventListener('click', () => {
   startGame(numberImg, sizeImage, nameImgWin, levelWin);
   getColorLoadPage();
   countClickSolution = 0;
+  countWin = 0;
 })
 
 
@@ -243,7 +245,7 @@ buttonScore.addEventListener("click", (event) => {
   closeMenu();
   closeLevelsMenu();
 })
-fillScoreTable();
+
 
 
 //button change color
@@ -270,6 +272,7 @@ document.querySelector('.menu-levels__easy').addEventListener('click', (event) =
   }
   getColorLoadPage();
   countClickSolution = 0;
+  countWin = 0;
 })
 
 // open images level-middle
@@ -287,6 +290,7 @@ document.querySelector('.menu-levels__middle').addEventListener('click', (event)
   }
   getColorLoadPage();
   countClickSolution = 0;
+  countWin = 0;
 })
 
 // open images level-hard
@@ -304,6 +308,7 @@ document.querySelector('.menu-levels__hard').addEventListener('click', (event) =
   }
   getColorLoadPage();
   countClickSolution = 0;
+  countWin = 0;
 })
 
 
@@ -433,6 +438,7 @@ function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClic
     setTimeout(closeModal, 5000);
     const timeInner = document.querySelector('.container-watch').innerText;
     clearInterval(interval);
+    console.log(countWin)
     saveWinGame(countWin, nameImgWin, levelWin, timeInner, timeWin);
     fillScoreTable();
     document.querySelector('.solution-button').disabled = true;
@@ -441,7 +447,7 @@ function getWinCondition(matrixImage, sizeImage, nameImgWin, levelWin, countClic
   return countClickSolution;
 }
 
-
+fillScoreTable();
 // change size field
 window.addEventListener('resize', function () {
   let [row, column, size] = JSON.parse(localStorage.getItem('saveRowsColumnSize'));
