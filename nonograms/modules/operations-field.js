@@ -36,4 +36,5 @@ export function getSolution(gameField, matrixImage, sizeImage) {
       }
     }
   }
+  document.querySelector('.menu-window__save').disabled = true;
 }

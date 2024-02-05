@@ -135,13 +135,14 @@
   border-radius: 40px;
   padding: 30px 20px;
   font-weight: 600;
-  top: -350px;
   right: 300px;
+  top: -440px;
   z-index: 99999;
   opacity: 1;
   text-align: center;
+  z-index: 9;
+  transition: 1s;
 }
-
 
 .menu-window.close {
   right: 300px;
@@ -202,6 +203,13 @@
   align-items: center;
 }
 
+.menu-window__levels:disabled,
+.menu-window__save:disabled,
+.menu-window__last-game:disabled,
+.menu-window__random-game:disabled {
+  color: rgb(158, 175, 175) !important;
+  cursor: default;
+}
 .menu-levels__button {
   height: 60px;
   width: 95%;
@@ -387,16 +395,16 @@
   align-items: center;
   justify-content: center;
   width: 80vw;
-  height: auto;
+  height: 90vh;
   border-radius: 40px;
   padding: 30px;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99999;
+  z-index: 9999999;
   opacity: 1;
-  font-size: 8vw;
+  font-size: 7vw;
   text-align: center;
 }
 
@@ -544,18 +552,34 @@
   left: 50vw;
   margin-left: 10px;
 }
+.solution-button:disabled {
+  color: rgb(158, 175, 175) !important;
+  cursor: default;
+}
 .menu-window__reset {
   left: 50vw;
   margin-left: -110px;
 }
+.menu-window__reset:disabled {
+  color: rgb(158, 175, 175) !important;
+  cursor: default;
+}
 
 /*hover for all contents*/
 @media (hover: hover) {
+  .menu-window__levels:disabled:hover,
+  .menu-window__save:disabled:hover,
+  .menu-window__last-game:disabled:hover,
+  .menu-window__random-game:disabled:hover,
+  .menu-window__reset:disabled:hover {
+    box-shadow:0 0 0 rgb(171 235 235);
+  }
+  .solution-button:disabled:hover {
+    box-shadow:0 0 0 rgb(171 235 235);
+  }
   .score-button:hover,
   .solution-button:hover, 
   .menu-window__reset:hover {
-    width: 100px;
-    height: 40px;
     box-shadow:0 0 10px rgb(171 235 235);
   }
   .change-color:hover {
@@ -602,5 +626,46 @@
   }
   .menu-levels.open {
     right: 180px;
+  }
+}
+@media (min-width: 1000px) {
+  .menu-window {
+    flex-direction: row;
+    width: auto;
+    gap: 10px;
+    padding: 0;
+  }
+  .menu-window.close {
+    top: 40px;
+    right: 100px;
+    z-index: 99999;
+  }
+  .menu-window.open {
+    top: 40px;
+    right: 100px;
+    z-index: 99999;
+  }
+  .menu-window__levels, 
+  .menu-window__save, 
+  .menu-window__last-game, 
+  .menu-window__random-game {
+    height: 38px;
+    opacity: 0.8;
+  }
+  .menu-icon {
+    display: none;
+  }
+  .menu-levels {
+    width: auto;
+  }
+  .menu-levels.open {
+    right: 540px;
+    top: 50px;
+  }
+  .menu-levels.close {
+    right: 800px;
+  }
+  .menu-levels__button {
+    width: 300px;
   }
 }

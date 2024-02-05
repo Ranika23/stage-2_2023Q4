@@ -34,10 +34,10 @@ export function getWidthHeightBoard(widthBody, sizeImage, column, row) {
     gameBoard.style.width = `${4.2 * (column + 15)}vmin`;
     gameBoard.style.height = `${4.2 * (row + 15)}vmin`;
   }
-  if (sizeImage === 15 && widthBody <= 800) {
+  /*if (sizeImage === 15 && widthBody <= 800) {
     gameBoard.style.width = `${6 * (column + 15)}vmin`;
     gameBoard.style.height = `${6 * (row + 15)}vmin`;
-  }
+  }*/
 
   if (sizeImage === 5 && widthBody > 600) {
     gameBoard.style.width = `${46 * (column + 5)}px`;

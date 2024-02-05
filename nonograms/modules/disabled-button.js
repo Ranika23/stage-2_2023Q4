@@ -8,6 +8,6 @@ export function enableButtons() {
 export function getInitStateButtons() {
   if(localStorage.getItem('gameBoard') !== null) {
     document.querySelector('.menu-window__last-game').disabled = false;
-    document.querySelector('.menu-window__save').disabled = false;
+    //document.querySelector('.menu-window__save').disabled = false;
   } 
 }
