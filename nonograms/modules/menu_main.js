@@ -54,6 +54,9 @@ export function openMenu() {
 }
 export function closeMenu() {
   const menuWindow = document.querySelector('.menu-window');
+  const menuIcon = document.querySelector('.menu-icon');
   menuWindow.classList.add('close');
   menuWindow.classList.remove('open');
+  menuIcon.classList.remove('open');
+
 }

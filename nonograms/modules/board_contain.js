@@ -47,9 +47,9 @@ export function getWidthHeightBoard(widthBody, sizeImage, column, row) {
   }
 
 
-  const solutionButton = document.querySelector('.solution-button');
-  const resetButton = document.querySelector('.menu-window__reset');
-  const widthBoard = document.querySelector('.game-board-container').clientWidth;
-  solutionButton.style.left = `${(widthBody - widthBoard) / 2 + widthBoard - solutionButton.clientWidth}px`;
-  resetButton.style.left = `${(widthBody - widthBoard) / 2}px`;
+  //const solutionButton = document.querySelector('.solution-button');
+ // const resetButton = document.querySelector('.menu-window__reset');
+  //const widthBoard = document.querySelector('.game-board-container').clientWidth;
+  //solutionButton.style.left = `${(widthBody - widthBoard) / 2 + widthBoard - solutionButton.clientWidth}px`;
+  //resetButton.style.left = `${(widthBody - widthBoard) / 2}px`;
 }
