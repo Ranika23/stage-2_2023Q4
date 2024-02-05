@@ -34,6 +34,10 @@ export function getWidthHeightBoard(widthBody, sizeImage, column, row) {
     gameBoard.style.width = `${4.2 * (column + 15)}vmin`;
     gameBoard.style.height = `${4.2 * (row + 15)}vmin`;
   }
+  if (sizeImage === 15 && widthBody <= 800) {
+    gameBoard.style.width = `${6 * (column + 15)}vmin`;
+    gameBoard.style.height = `${6 * (row + 15)}vmin`;
+  }
 
   if (sizeImage === 5 && widthBody > 600) {
     gameBoard.style.width = `${46 * (column + 5)}px`;
@@ -45,11 +49,9 @@ export function getWidthHeightBoard(widthBody, sizeImage, column, row) {
     gameBoard.style.width = `${22 * (column + 15)}px`;
     gameBoard.style.height = `${22 * (row + 15)}px`;
   }
+  if (sizeImage === 15 && widthBody > 800) {
+    gameBoard.style.width = `${28 * (column + 15)}px`;
+    gameBoard.style.height = `${28 * (row + 15)}px`;
+  }
 
-
-  //const solutionButton = document.querySelector('.solution-button');
- // const resetButton = document.querySelector('.menu-window__reset');
-  //const widthBoard = document.querySelector('.game-board-container').clientWidth;
-  //solutionButton.style.left = `${(widthBody - widthBoard) / 2 + widthBoard - solutionButton.clientWidth}px`;
-  //resetButton.style.left = `${(widthBody - widthBoard) / 2}px`;
 }
