@@ -1,31 +1,38 @@
+interface NewsSourse {
+    id: string;
+    name: string;
+    description: string;
+    url: string;
+    category: string;
+    language: string;
+    country: string;
+}
 export interface NewsSoursesResponce {
     status: string;
-    sources: {
-        id: string;
-        name: string;
-        description: string;
-        url: string;
-        category: string;
-        language: string;
-        country: string;
-    };
+    sources: NewsSourse[];
 }
-export interface NewEverything {
+
+interface everythingArticles {
+    source: {
+        id: string | null;
+        name: string;
+    };
+    author: string;
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string;
+    content: string;
+}
+export interface NewsEverything {
     status: string;
     totalResults: string;
-    articles: [
-        {
-            sourse: {
-                id: string;
-                name: string;
-            };
-            author: string;
-            title: string;
-            description: string;
-            url: string;
-            urlToImage: string;
-            publishedAt: string;
-            content: string;
-        },
-    ];
+    articles: [everythingArticles[]];
+}
+
+export interface Errors {
+    status: string;
+    code: string;
+    message: string;
 }
