@@ -11,12 +11,12 @@ export interface NewsSoursesResponce {
     status: string;
     sources: NewsSourse[];
 }
-
+interface Src {
+    id: string | null;
+    name: string;
+}
 interface everythingArticles {
-    source: {
-        id: string | null;
-        name: string;
-    };
+    source: Src;
     author: string;
     title: string;
     description: string;
@@ -28,7 +28,7 @@ interface everythingArticles {
 export interface NewsEverything {
     status: string;
     totalResults: string;
-    articles: [everythingArticles[]];
+    articles: everythingArticles;
 }
 
 export interface Errors {
