@@ -9,7 +9,7 @@ interface NewsSourse {
 }
 export interface NewsSoursesResponce {
     status: string;
-    sources: NewsSourse[];
+    sources: NewsSourse;
 }
 interface Src {
     id: string | null;
