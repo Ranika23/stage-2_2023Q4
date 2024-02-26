@@ -1,7 +1,6 @@
 import AppLoader from './appLoader';
 export type MyCallback<T> = (data?: T) => void;
 
-type HTMLElement = { currentTarget: HTMLInputElement; target: Element | null };
 class AppController extends AppLoader {
     getSources<T>(callback: MyCallback<T>) {
         super.getResp(
@@ -12,9 +11,9 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews<T>(e: HTMLElement, callback: MyCallback<T>) {
-        let target = e.target;
-        const newsContainer = e.currentTarget;
+    getNews<T>(e: Event, callback: MyCallback<T>) {
+        let target = e.target as Element | null;
+        const newsContainer = e.currentTarget as HTMLInputElement;
 
         while (target !== newsContainer) {
             if (target === null) throw Error('Element is Error');
