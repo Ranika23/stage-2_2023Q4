@@ -1,5 +1,5 @@
 export type MyCallback<T> = (data: T) => void;
-export type Endpoint = string | unknown;
+export type Endpoint = string;
 
 class Loader {
     baseLink?: string;
@@ -11,7 +11,7 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: string | unknown; options: object },
+        { endpoint, options = {} }: { endpoint: Endpoint; options?: object },
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -29,7 +29,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: object, endpoint: Endpoint) {
+    makeUrl(endpoint: Endpoint, options?: object) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -41,7 +41,7 @@ class Loader {
     }
 
     load<T>(method: string, endpoint: Endpoint, callback: MyCallback<T>, options = {}) {
-        fetch(this.makeUrl(options, endpoint), { method })
+        fetch(this.makeUrl(endpoint, options), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
             .then((data) => callback(data))
