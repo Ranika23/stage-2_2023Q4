@@ -1,8 +1,10 @@
 .sources {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 200px;
+    margin: 10px 73px;
+    background-color: azure;
     align-items: center;
     font:
         300 1em 'Fira Sans',
@@ -32,4 +34,32 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+@media (max-width: 500px) {
+    .sources {
+        margin: 10px 20px;
+        height: 185px;
+    }
+    .source__item {
+        font-size: 15px;
+        padding: 1em 0;
+        text-align: center;
+    }
+}
+@media (max-width: 380px) {
+    .sources {
+        margin: 10px 0px;
+        height: 165px;
+    }
+    .source__item {
+        font-size: 13px;
+        padding: 1em 0;
+        text-align: center;
+    }
+}
+@media (min-width: 1250px) {
+    .sources {
+        width: 25vw;
+        height: auto;
+    }
 }
