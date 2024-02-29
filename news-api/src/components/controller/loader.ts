@@ -20,8 +20,12 @@ class Loader {
     }
 
     errorHandler(res: Response) {
+        enum Errors {
+            statusOne = 401,
+            statusTwo = 404,
+        }
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === Errors.statusOne || res.status === Errors.statusTwo)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
