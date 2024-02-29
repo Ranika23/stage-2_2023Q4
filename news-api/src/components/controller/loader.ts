@@ -2,8 +2,8 @@ export type MyCallback<T> = (data: T) => void;
 export type Endpoint = string;
 
 class Loader {
-    baseLink?: string;
-    options: object;
+    private baseLink?: string;
+    private options: object;
 
     constructor(baseLink: string, options: object) {
         this.baseLink = baseLink;
