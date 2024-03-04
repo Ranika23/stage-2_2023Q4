@@ -9,13 +9,13 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: News[]) {
-        const values = Object(data)?.articles ? Object(data)?.articles : [];
+    drawNews(data: Partial<News[]>) {
+        const values = Object(data).articles ? Object(data).articles : [];
         Object(this).news.draw(values);
     }
 
-    drawSources(data: Sources[]) {
-        const values = Object(data)?.sources ? Object(data)?.sources : [];
+    drawSources(data: Partial<Sources[]>) {
+        const values = Object(data).sources ? Object(data).sources : [];
         Object(this).sources.draw(values);
     }
 }
