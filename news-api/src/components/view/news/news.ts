@@ -1,19 +1,22 @@
 import './news.css';
 import { NewsEverything } from '../../../types/index';
 
+function Errors(): void {
+    throw Error('Element is null');
+}
+
 class News {
     draw(data: NewsEverything[]) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp: HTMLFormElement | null = document.querySelector('#newsItemTemp');
-
         news.forEach((item, idx) => {
             if (newsItemTemp === null) throw Error('Element is null');
             const newsClone = newsItemTemp.content.cloneNode(true);
 
             if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');
-            if (Object(item).urlToImage === undefined) throw Error('Element is null');
+            if (Object(item).urlToImage === undefined) Errors();
 
             newsClone.querySelector('.news__meta-photo').style.backgroundImage = `url(${
                 Object(item).urlToImage || 'img/news_placeholder.jpg'
@@ -33,7 +36,7 @@ class News {
             fragment.append(newsClone);
         });
         const elemNews: HTMLFormElement | null = document.querySelector('.news');
-        if (elemNews === null) throw Error('Element is null');
+        if (elemNews === null) Errors();
         else {
             elemNews.innerHTML = '';
             elemNews.appendChild(fragment);
