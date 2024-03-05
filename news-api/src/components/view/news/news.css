@@ -1,6 +1,8 @@
 .news {
     display: flex;
     flex-direction: column;
+    width: auto;
+    height: auto;
 }
 .news__item {
     display: flex;
@@ -175,19 +177,14 @@
     .news {
         flex-direction: row;
         flex-wrap: wrap;
-        width: 65vw;
     }
     .news__item {
         max-width: 1100px;
+        width: 50vh;
     }
 }
 @media (min-width: 1730px) {
-    .news {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
     .news__item {
         max-width: 500px;
-        margin: 1rem;
     }
 }

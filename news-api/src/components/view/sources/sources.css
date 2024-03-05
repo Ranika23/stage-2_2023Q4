@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     width: auto;
-    height: 200px;
+    height: auto;
     margin: 10px 73px;
     align-items: center;
     justify-content: center;
@@ -70,31 +70,36 @@
     box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
     transform: translateY(-0.25em);
 }
+@media (max-width: 780px) {
+    .buttons-char {
+        margin: 10px 10px;
+        font:
+            300 1em 'Fira Sans',
+            sans-serif;
+    }
+    .source__char {
+        width: 50px;
+        padding: 0.5em 1em;
+    }
+    .sources {
+        margin: 10px 16px;
+    }
+}
 @media (max-width: 500px) {
     .sources {
         margin: 10px 20px;
-        height: 185px;
     }
     .source__item {
-        font-size: 15px;
-        padding: 1em 0;
+        font-size: 13px;
         text-align: center;
     }
 }
 @media (max-width: 380px) {
     .sources {
         margin: 10px 0px;
-        height: 165px;
     }
     .source__item {
-        font-size: 13px;
-        padding: 1em 0;
+        font-size: 10px;
         text-align: center;
-    }
-}
-@media (min-width: 1250px) {
-    .sources {
-        width: auto;
-        height: auto;
     }
 }
