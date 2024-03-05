@@ -99,8 +99,3 @@ footer .copyright:before {
         font-weight: 700;
     }
 }
-@media (min-width: 1250px) {
-    main {
-        flex-direction: row;
-    }
-}

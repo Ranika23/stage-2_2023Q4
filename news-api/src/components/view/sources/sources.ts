@@ -24,6 +24,20 @@ class Sources {
         else {
             elemSources.append(fragment);
         }
+
+        const sourceItemChar: HTMLFormElement | null = document.querySelector('#sourceItemChar');
+        const elemChar: HTMLFormElement | null = document.querySelector('.buttons-char');
+        if (elemChar === null) Errors();
+        else {
+            for (let i = 65; i < 91; i++) {
+                if (sourceItemChar === null) Errors();
+                else {
+                    const charsClone = sourceItemChar.content.cloneNode(true);
+                    charsClone.querySelector('.source__char-item').textContent = String.fromCharCode(i);
+                    elemChar.append(charsClone);
+                }
+            }
+        }
     }
 }
 
