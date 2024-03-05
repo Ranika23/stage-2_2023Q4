@@ -60,6 +60,8 @@
     color: #70d6ff;
     transition: 0.25s;
     cursor: pointer;
+    font-weight: 400;
+    white-space: nowrap;
 }
 .source__char:hover,
 .source__char:focus {
@@ -67,10 +69,6 @@
     color: #69db7e;
     box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
     transform: translateY(-0.25em);
-}
-.source__char-item {
-    font-weight: 400;
-    white-space: nowrap;
 }
 @media (max-width: 500px) {
     .sources {
