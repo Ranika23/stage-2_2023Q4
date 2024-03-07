@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "husky": {
+    "hook": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "scripts": {
     "serve": "webpack-dev-server",
     "build": "webpack",
@@ -16,6 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
+    "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",

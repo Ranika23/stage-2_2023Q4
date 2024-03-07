@@ -2,24 +2,24 @@
 const path = require('path');
 
 module.exports = {
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   entry: './src/index.ts',
   module: {
     rules: [
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        include: [path.resolve(__dirname, 'src')]
-      }
-    ]
+        include: [path.resolve(__dirname, 'src')],
+      },
+    ],
   },
   resolve: {
-    extensions: ['ts', 'js']
+    extensions: ['.ts', '.js'],
   },
   output: {
-    publicPath: "public",
+    publicPath: 'public',
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'public'),
   },
-  mode: 'development'
-}
+  mode: 'development',
+};
