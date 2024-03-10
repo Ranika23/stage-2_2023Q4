@@ -1,0 +1,101 @@
+@font-face {
+  font-family: NotoSans;
+  font-weight: 400;
+  src: url(assets/fonts/NotoSans.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.body {
+  width: 100%;
+  margin: 0;
+  background: #fff695;
+}
+
+.body-container {
+  overflow: clip;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  font-family: NotoSans;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 150%;
+  background: #fff695;
+}
+
+.modal-login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  background-color: #f9f4b6;
+  z-index: 99999;
+  opacity: 1;
+  color: rgb(57, 57, 57);
+  transition: 0.2s;
+}
+
+.modal-login-form.close {
+  display: none;
+}
+
+.modal-login-form__input {
+  width: 400px;
+  height: 50px;
+  padding: 10px;
+  background-color: white;
+  border-color: aliceblue;
+  border-radius: 10px;
+  color: #555451;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.modal-login-form__input:valid {
+  background-color: rgb(227, 246, 214);
+}
+.modal-login-form__input:invalid {
+  background-color: rgb(247, 232, 232);
+}
+
+.modal-login-form__input[type='text']::placeholder {
+  color: #d1c167;
+}
+
+.modal-login-form__button {
+  display: flex;
+  width: 150px;
+  height: rgb(131, 129, 123);
+  padding: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #696865;
+  font-weight: 700;
+  box-shadow: inset 0px -3px 15px -4px #676016;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+@media (hover: hover) {
+  .modal-login-form__button:hover {
+    background: #a3a29e;
+    color: white;
+  }
+}
