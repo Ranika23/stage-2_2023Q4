@@ -1,5 +1,5 @@
 export function createLoginForm() {
-  const modalLoginForm: Element | null = document.createElement('form');
+  const modalLoginForm: HTMLElement | null = document.createElement('form');
   modalLoginForm.className = 'modal-login-form';
   modalLoginForm.setAttribute('onsubmit', 'return false');
 
@@ -12,7 +12,7 @@ export function createLoginForm() {
   creatButtonLoginForm(modalLoginForm);
 }
 
-function creatInputLoginForm(modalLoginForm: Element) {
+function creatInputLoginForm(modalLoginForm: HTMLElement) {
   const inputLoginFormOne: Element | null = document.createElement('input');
   const inputLoginFormTwo: Element | null = document.createElement('input');
 
@@ -20,10 +20,11 @@ function creatInputLoginForm(modalLoginForm: Element) {
   inputLoginFormTwo.className = 'modal-login-form__input';
 
   if (modalLoginForm === null) throw Error('Element is Error');
-  modalLoginForm.prepend(inputLoginFormOne);
-  modalLoginForm.prepend(inputLoginFormTwo);
+  modalLoginForm.append(inputLoginFormOne);
+  modalLoginForm.append(inputLoginFormTwo);
 
   setAttributeInput(inputLoginFormOne, inputLoginFormTwo);
+  setValidationForm(modalLoginForm);
 }
 
 function setAttributeInput(
@@ -36,6 +37,9 @@ function setAttributeInput(
   inputLoginFormOne.setAttribute('placeholder', 'First Name');
   inputLoginFormTwo.setAttribute('placeholder', 'Surname');
 
+  inputLoginFormOne.setAttribute('minlength', '3');
+  inputLoginFormTwo.setAttribute('minlength', '4');
+
   inputLoginFormOne.setAttribute('required', '');
   inputLoginFormTwo.setAttribute('required', '');
 
@@ -44,12 +48,46 @@ function setAttributeInput(
 
   inputLoginFormOne.setAttribute(
     'pattern',
-    `^\s*[A-ZА-Я][a-zа-я]+('[a-zа-я]+|-[A-ZА-Я][a-zа-я]+)?\s*$`,
+    `^\s*[A-Z][a-z]+('[a-z]+|-[A-Z][a-z]+)?\s*$`,
   );
   inputLoginFormTwo.setAttribute(
     'pattern',
-    `^\s*[A-ZА-Я][a-zа-я]+('[a-zа-я]+|-[A-ZА-Я][a-zа-я]+)?\s*$`,
+    `^\s*[A-Z][a-z]+('[a-z]+|-[A-Z][a-z]+)?\s*$`,
   );
+
+  inputLoginFormOne.setAttribute('autocomplete', 'off');
+  inputLoginFormTwo.setAttribute('autocomplete', 'off)');
+}
+
+function setValidationForm(modalLoginForm: HTMLElement) {
+  modalLoginForm.addEventListener('input', (e) => {
+    const inputForm = e.target as HTMLInputElement;
+    if (inputForm === null) throw Error('Element is null');
+    if (inputForm.value.length === 0) {
+      inputForm.setCustomValidity(
+        'Используйте только буквы английского алфавита и дефис',
+      );
+    } else if (
+      inputForm.value.length === 1 &&
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(inputForm.value[0]) === -1
+    ) {
+      inputForm.setCustomValidity('Укажите первую букву прописной');
+    } else if (
+      inputForm.value.length > 1 &&
+      inputForm.value[inputForm.value.length - 2] === '-' &&
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(
+        inputForm.value[inputForm.value.length - 1],
+      ) === -1
+    ) {
+      inputForm.setCustomValidity('Укажите прописную букву после дефиса');
+    } else {
+      inputForm.setCustomValidity(
+        inputForm.validity.patternMismatch
+          ? 'Используйте только буквы английского алфавита и дефис'
+          : '',
+      );
+    }
+  });
 }
 
 function creatButtonLoginForm(modalLoginForm: Element) {
