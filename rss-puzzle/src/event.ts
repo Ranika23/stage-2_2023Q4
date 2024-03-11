@@ -1,3 +1,5 @@
+import { saveUserLocalStorage } from './local-storage';
+
 export function closeLoginForm() {
   const buttonLoginForm: Element | null = document.querySelector(
     '.modal-login-form__button',
@@ -9,6 +11,7 @@ export function closeLoginForm() {
     throw Error('Element is Error');
 
   modalLoginForm.addEventListener('submit', () => {
+    saveUserLocalStorage();
     modalLoginForm.classList.add('close');
   });
 }
