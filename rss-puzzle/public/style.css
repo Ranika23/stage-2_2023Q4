@@ -98,6 +98,25 @@
   line-height: 35px;
 }
 
+.start-page__greeting {
+  width: auto;
+  height: 50px;
+  font-size: 2em;
+  line-height: normal;
+  font-weight: 700;
+  margin-top: 20px;
+  animation: seeGreeting 1s;
+}
+
+@keyframes seeGreeting {
+  0% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 2em;
+  }
+}
+
 .start-page__button {
   display: flex;
   width: 150px;

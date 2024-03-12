@@ -9,6 +9,7 @@ export function createStartPage() {
 
   addTitleStartPage(startPage);
   addDescrStartPage(startPage);
+  addGreeting(startPage);
   addButtonStartPage(startPage);
 }
 
@@ -29,6 +30,21 @@ function addDescrStartPage(startPage: HTMLElement) {
 
   if (descriptionGame === null) throw Error('Element is Error');
   startPage.append(descriptionGame);
+}
+
+function addGreeting(startPage: HTMLElement) {
+  const dataUser: string | null = localStorage.getItem('user');
+  if (dataUser === null) throw Error('Element is Error');
+
+  const firstName = JSON.parse(dataUser).firstName.toUpperCase();
+  const surName = JSON.parse(dataUser).surName.toUpperCase();
+
+  const greetingStartGame: HTMLElement | null = document.createElement('div');
+  greetingStartGame.className = 'start-page__greeting';
+  greetingStartGame.innerText = `Good to see you, ${firstName} ${surName}.`;
+
+  if (greetingStartGame === null) throw Error('Element is Error');
+  startPage.append(greetingStartGame);
 }
 
 function addButtonStartPage(startPage: HTMLElement) {
