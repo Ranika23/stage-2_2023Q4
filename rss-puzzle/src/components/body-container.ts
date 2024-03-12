@@ -7,4 +7,15 @@ export function createBodyElement() {
   body.className = 'body';
 
   body.prepend(bodyContainer);
+
+  const bodyHeader: Element | null = document.createElement('div');
+  bodyHeader.className = 'header';
+  const bodyMain: Element | null = document.createElement('div');
+  bodyMain.className = 'main';
+  const bodyFooter: Element | null = document.createElement('div');
+  bodyFooter.className = 'footer';
+
+  bodyContainer.append(bodyHeader);
+  bodyContainer.append(bodyMain);
+  bodyContainer.append(bodyFooter);
 }
