@@ -34,17 +34,17 @@ function addDescrStartPage(startPage: HTMLElement) {
 
 function addGreeting(startPage: HTMLElement) {
   const dataUser: string | null = localStorage.getItem('user');
-  if (dataUser === null) throw Error('Element is Error');
+  if (dataUser !== null) {
+    const firstName = JSON.parse(dataUser).firstName.toUpperCase();
+    const surName = JSON.parse(dataUser).surName.toUpperCase();
 
-  const firstName = JSON.parse(dataUser).firstName.toUpperCase();
-  const surName = JSON.parse(dataUser).surName.toUpperCase();
+    const greetingStartGame: HTMLElement | null = document.createElement('div');
+    greetingStartGame.className = 'start-page__greeting';
+    greetingStartGame.innerText = `Good to see you, ${firstName} ${surName}.`;
 
-  const greetingStartGame: HTMLElement | null = document.createElement('div');
-  greetingStartGame.className = 'start-page__greeting';
-  greetingStartGame.innerText = `Good to see you, ${firstName} ${surName}.`;
-
-  if (greetingStartGame === null) throw Error('Element is Error');
-  startPage.append(greetingStartGame);
+    if (greetingStartGame === null) throw Error('Element is Error');
+    startPage.append(greetingStartGame);
+  }
 }
 
 function addButtonStartPage(startPage: HTMLElement) {

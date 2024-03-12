@@ -1,4 +1,5 @@
 import { saveUserLocalStorage } from './local-storage';
+import { createStartPage } from './components/start-page';
 
 // close Login Form after click button
 export function closeLoginForm() {
@@ -14,12 +15,18 @@ export function closeLoginForm() {
   modalLoginForm.addEventListener('submit', () => {
     saveUserLocalStorage();
     closeLogin();
+    createStartPage();
+    closeStartPage();
   });
 }
 
 // check Login Status
 export function checkLoginStatus() {
-  if (localStorage.getItem('user') !== null) closeLogin();
+  if (localStorage.getItem('user') !== null) {
+    closeLogin();
+    createStartPage();
+    closeStartPage();
+  }
 }
 
 // logoutProcess
@@ -47,4 +54,18 @@ function openLogin() {
     document.querySelector('.modal-login-form');
   if (modalLoginForm === null) throw Error('Element is Error');
   modalLoginForm.classList.remove('close');
+}
+
+// close start page
+function closeStartPage() {
+  const startPage: Element | null = document.querySelector('.start-page');
+  if (startPage !== null) {
+    const buttonStart: Element | null = document.querySelector(
+      '.start-page__button',
+    );
+    if (buttonStart === null) throw Error('Element is Error');
+    buttonStart.addEventListener('click', () => {
+      startPage.classList.add('close');
+    });
+  }
 }
