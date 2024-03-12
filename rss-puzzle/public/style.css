@@ -63,6 +63,60 @@
   justify-content: space-between;
 }
 
+.start-page {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  background-image: url('assets/img/background-start.png');
+  background-size: 200%;
+  background-position: center;
+  z-index: 9999;
+  opacity: 1;
+  color: rgb(57, 57, 57);
+}
+
+.start-page__title {
+  width: auto;
+  height: 50px;
+  font-size: 3em;
+  letter-spacing: 10px;
+  line-height: normal;
+}
+
+.start-page__description {
+  width: auto;
+  height: auto;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 35px;
+}
+
+.start-page__button {
+  display: flex;
+  width: 150px;
+  height: rgb(131, 129, 123);
+  padding: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #696865;
+  font-weight: 700;
+  box-shadow: inset 0px -3px 15px -4px #676016;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 .modal-login-form {
   display: flex;
   flex-direction: column;
@@ -151,6 +205,11 @@
   }
 
   .game-page__button-logout:hover {
+    background: #a3a29e;
+    color: white;
+  }
+
+  .start-page__button:hover {
     background: #a3a29e;
     color: white;
   }

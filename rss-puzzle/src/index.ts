@@ -1,5 +1,6 @@
 import { createBodyElement } from './components/body-container';
 import { createLoginForm } from './components/login-form';
+import { createStartPage } from './components/start-page';
 
 import { creatButtonLogOut } from './components/buttons';
 
@@ -8,6 +9,7 @@ import { checkLoginStatus, closeLoginForm, logoutProcess } from './event';
 
 createBodyElement();
 createLoginForm();
+createStartPage();
 
 //game-page
 creatButtonLogOut();
