@@ -126,7 +126,7 @@
 .start-page__button {
   display: flex;
   width: 150px;
-  height: rgb(131, 129, 123);
+  height: 40px;
   padding: 10px;
   margin-top: 10px;
   justify-content: center;

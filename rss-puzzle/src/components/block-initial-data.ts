@@ -41,7 +41,9 @@ function creatFirstPuzzle(blockInitialData: HTMLElement, elem: string) {
 
   puzzle.setAttribute('draggable', 'true');
 
-  puzzle.width = elem.length * 15 + 10;
+  context.font = '20px serif';
+  const widthText = context.measureText(elem).width;
+  puzzle.width = widthText + 20;
   puzzle.height = 40;
 
   context?.beginPath();
@@ -56,7 +58,9 @@ function creatFirstPuzzle(blockInitialData: HTMLElement, elem: string) {
   context?.fill();
   context.font = '20px serif';
   context.fillStyle = 'black';
-  context.fillText(`${elem}`, 10, 25);
+  context.fillText(`${elem}`, puzzle.width / 2 - widthText / 2, 25);
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
 
   context?.stroke();
 
@@ -70,8 +74,12 @@ function creatMiddlePuzzle(blockInitialData: HTMLElement, elem: string) {
 
   puzzle.setAttribute('draggable', 'true');
 
-  puzzle.width = elem.length * 10 + 30;
+  context.font = '20px serif';
+  const widthText = context.measureText(elem).width;
+  puzzle.width = widthText + 30;
   puzzle.height = 40;
+
+  console.log(puzzle.width, widthText + 30, elem);
 
   context?.beginPath();
   context?.moveTo(0, 0);
@@ -86,7 +94,9 @@ function creatMiddlePuzzle(blockInitialData: HTMLElement, elem: string) {
   context?.fill();
   context.font = '20px serif';
   context.fillStyle = 'black';
-  context.fillText(`${elem}`, 20, 25);
+  context.fillText(`${elem}`, puzzle.width / 2 - widthText / 2 + 2, 25);
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
   context?.stroke();
 
   blockInitialData?.append(puzzle);
@@ -100,7 +110,9 @@ function creatLastPuzzle(blockInitialData: HTMLElement, elem: string) {
 
   puzzle.setAttribute('draggable', 'true');
 
-  puzzle.width = elem.length * 15 + 10;
+  context.font = '20px serif';
+  const widthText = context.measureText(elem).width;
+  puzzle.width = widthText + 40;
   puzzle.height = 40;
 
   context?.beginPath();
@@ -115,7 +127,9 @@ function creatLastPuzzle(blockInitialData: HTMLElement, elem: string) {
   context?.fill();
   context.font = '20px serif';
   context.fillStyle = 'black';
-  context.fillText(`${elem}`, 20, 25);
+  context.fillText(`${elem}`, puzzle.width / 2 - widthText / 2 + 2, 25);
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
   context?.stroke();
 
   blockInitialData?.append(puzzle);
