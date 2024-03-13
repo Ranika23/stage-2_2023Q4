@@ -69,3 +69,17 @@ function closeStartPage() {
     });
   }
 }
+
+export function moveToResultBlock() {
+  const blockInitialData: HTMLElement | null = document.querySelector(
+    '.game-page__block-initial-data',
+  );
+  const blockResult: HTMLElement | null = document.querySelector(
+    '.game-page__block-result',
+  );
+  blockInitialData?.addEventListener('click', (e) => {
+    const puzzle = e.target as HTMLElement;
+    blockResult?.append(puzzle);
+    puzzle.style.marginRight = '-14px';
+  });
+}
