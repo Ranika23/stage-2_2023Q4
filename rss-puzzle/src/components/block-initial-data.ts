@@ -79,8 +79,6 @@ function creatMiddlePuzzle(blockInitialData: HTMLElement, elem: string) {
   puzzle.width = widthText + 30;
   puzzle.height = 40;
 
-  console.log(puzzle.width, widthText + 30, elem);
-
   context?.beginPath();
   context?.moveTo(0, 0);
   context?.lineTo(puzzle.width - 10, 0);

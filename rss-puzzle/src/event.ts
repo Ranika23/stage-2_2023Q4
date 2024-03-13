@@ -79,7 +79,19 @@ export function moveToResultBlock() {
   );
   blockInitialData?.addEventListener('click', (e) => {
     const puzzle = e.target as HTMLElement;
-    blockResult?.append(puzzle);
-    puzzle.style.marginRight = '-14px';
+    if (puzzle?.parentElement === blockInitialData) blockResult?.append(puzzle);
+  });
+}
+
+export function moveFromResultBlock() {
+  const blockInitialData: HTMLElement | null = document.querySelector(
+    '.game-page__block-initial-data',
+  );
+  const blockResult: HTMLElement | null = document.querySelector(
+    '.game-page__block-result',
+  );
+  blockResult?.addEventListener('click', (e) => {
+    const puzzle = e.target as HTMLElement;
+    if (puzzle?.parentElement === blockResult) blockInitialData?.append(puzzle);
   });
 }

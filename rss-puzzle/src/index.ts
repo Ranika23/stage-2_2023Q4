@@ -10,6 +10,7 @@ import {
   closeLoginForm,
   logoutProcess,
   moveToResultBlock,
+  moveFromResultBlock,
 } from './event';
 // eslint-disable-next-line no-unused-vars
 
@@ -26,3 +27,4 @@ checkLoginStatus();
 closeLoginForm();
 logoutProcess();
 moveToResultBlock();
+moveFromResultBlock();
