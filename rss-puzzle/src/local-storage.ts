@@ -10,3 +10,22 @@ export function saveUserLocalStorage() {
   };
   localStorage.setItem('user', JSON.stringify(user));
 }
+
+export function saveLevelLocalStorage(rounds: number, words: number) {
+  const level = {
+    rounds: rounds,
+    words: words,
+  };
+  localStorage.setItem('level', JSON.stringify(level));
+}
+
+export function getLevelLocalStorage() {
+  const dataLevel: string | null = localStorage.getItem('level');
+  if (dataLevel !== null) {
+    const rounds = JSON.parse(dataLevel).rounds;
+    const words = JSON.parse(dataLevel).words;
+    if (words === 10) {
+      return [rounds + 1, -1];
+    } else return [rounds, words];
+  }
+}

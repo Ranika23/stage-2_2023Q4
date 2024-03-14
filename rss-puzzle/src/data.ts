@@ -1,6 +1,9 @@
-import wordsLevel_1 from '../public/dates/wordCollectionLevel6.json';
-console.log(wordsLevel_1);
+import wordsLevel_1 from '../public/dates/wordCollectionLevel1.json';
 
-export function sentence() {
-  return wordsLevel_1.rounds[0].words[4].textExample.split(' ');
+export function sentence(rounds: number, words: number) {
+  return wordsLevel_1.rounds[rounds].words[words].textExample.split(' ');
+}
+
+export function words(rounds: number) {
+  return wordsLevel_1.rounds[rounds];
 }

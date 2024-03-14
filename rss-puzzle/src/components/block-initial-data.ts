@@ -1,24 +1,40 @@
 import { sentence } from '../data';
-sentence();
+import { saveLevelLocalStorage } from '../local-storage';
 
-export function creatBlockInitialData() {
+export function creatBlockInitialData(rounds: number, words: number) {
+  if (document.querySelector('.game-page__block-initial-data') !== null) {
+    const lastElement: HTMLElement | null = document.querySelector(
+      '.game-page__block-initial-data',
+    );
+    lastElement?.remove();
+  }
   const blockInitialData: HTMLElement | null = document.createElement('div');
   blockInitialData.className = 'game-page__block-initial-data';
   document.querySelector('.main')?.append(blockInitialData);
 
-  creatPuzzle(blockInitialData);
+  creatPuzzle(blockInitialData, rounds, words);
 }
 
-function creatPuzzle(blockInitialData: HTMLElement) {
-  let randomWords: string[] | undefined = shuffle(sentence());
+export function creatPuzzle(
+  blockInitialData: HTMLElement,
+  rounds: number,
+  words: number,
+) {
+  saveLevelLocalStorage(rounds, words);
+  let randomWords: string[] | undefined = shuffle(sentence(rounds, words));
   if (randomWords === undefined) {
-    randomWords = shuffle(sentence());
+    const buttonContinue: HTMLButtonElement | null = document.querySelector(
+      '.game-page__button-continue',
+    );
+    buttonContinue?.disabled === false;
+    randomWords = shuffle(sentence(rounds, words));
   } else {
     randomWords.forEach((elem) => {
-      if (elem === sentence()[0]) creatFirstPuzzle(blockInitialData, elem);
+      if (elem === sentence(rounds, words)[0])
+        creatFirstPuzzle(blockInitialData, elem);
       else if (
         randomWords !== undefined &&
-        elem === sentence()[randomWords.length - 1]
+        elem === sentence(rounds, words)[randomWords.length - 1]
       )
         creatLastPuzzle(blockInitialData, elem);
       else creatMiddlePuzzle(blockInitialData, elem);
@@ -27,6 +43,7 @@ function creatPuzzle(blockInitialData: HTMLElement) {
 }
 
 function shuffle(array: string[]) {
+  console.log(array);
   const result = array.slice(0);
   result.sort(() => Math.random() - 0.5);
   if (JSON.stringify(array) == JSON.stringify(result)) shuffle(array);
@@ -36,6 +53,7 @@ function shuffle(array: string[]) {
 function creatFirstPuzzle(blockInitialData: HTMLElement, elem: string) {
   const puzzle: HTMLCanvasElement | null = document.createElement('canvas');
   puzzle.className = 'game-page__puzzle';
+  puzzle.classList.add(`${elem}`);
   const context = puzzle.getContext('2d');
   if (context === null) throw Error('Element is Error');
 
@@ -69,6 +87,7 @@ function creatFirstPuzzle(blockInitialData: HTMLElement, elem: string) {
 function creatMiddlePuzzle(blockInitialData: HTMLElement, elem: string) {
   const puzzle: HTMLCanvasElement | null = document.createElement('canvas');
   puzzle.className = 'game-page__puzzle';
+  puzzle.classList.add(`${elem}`);
   const context = puzzle.getContext('2d');
   if (context === null) throw Error('Element is Error');
 
@@ -103,6 +122,7 @@ function creatMiddlePuzzle(blockInitialData: HTMLElement, elem: string) {
 function creatLastPuzzle(blockInitialData: HTMLElement, elem: string) {
   const puzzle: HTMLCanvasElement | null = document.createElement('canvas');
   puzzle.className = 'game-page__puzzle';
+  puzzle.classList.add(`${elem}`);
   const context = puzzle.getContext('2d');
   if (context === null) throw Error('Element is Error');
 

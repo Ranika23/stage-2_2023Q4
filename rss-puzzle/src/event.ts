@@ -1,5 +1,6 @@
-import { saveUserLocalStorage } from './local-storage';
+import { saveUserLocalStorage, getLevelLocalStorage } from './local-storage';
 import { createStartPage } from './components/start-page';
+import { checkFullFill, clickContinua } from './button-actions/continue';
 
 // close Login Form after click button
 export function closeLoginForm() {
@@ -70,28 +71,47 @@ function closeStartPage() {
   }
 }
 
-export function moveToResultBlock() {
+export function moveToResultBlock(row: number) {
+  const buttonContinue: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-continue',
+  );
+  if (buttonContinue !== null) buttonContinue.disabled = true;
   const blockInitialData: HTMLElement | null = document.querySelector(
     '.game-page__block-initial-data',
   );
-  const blockResult: HTMLElement | null = document.querySelector(
+  const blockResult: Element | undefined = document.querySelector(
     '.game-page__block-result',
-  );
+  )?.children[row];
   blockInitialData?.addEventListener('click', (e) => {
     const puzzle = e.target as HTMLElement;
     if (puzzle?.parentElement === blockInitialData) blockResult?.append(puzzle);
+
+    checkFullFill();
   });
+  clickContinua();
 }
 
 export function moveFromResultBlock() {
+  let dataLevel = getLevelLocalStorage();
+  if (dataLevel === undefined) dataLevel = [0, 0];
   const blockInitialData: HTMLElement | null = document.querySelector(
     '.game-page__block-initial-data',
   );
-  const blockResult: HTMLElement | null = document.querySelector(
+  const blockResult: Element | undefined = document.querySelector(
     '.game-page__block-result',
+  )?.children[dataLevel[1]];
+  const buttonContinue: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-continue',
   );
+
   blockResult?.addEventListener('click', (e) => {
+    const dataLevel = getLevelLocalStorage();
+    if (dataLevel === undefined) throw Error('Element is undefined');
+    if (buttonContinue !== null) buttonContinue.disabled = true;
+
     const puzzle = e.target as HTMLElement;
-    if (puzzle?.parentElement === blockResult) blockInitialData?.append(puzzle);
+    if (dataLevel !== undefined)
+      if (puzzle?.parentElement?.classList[1] === String(dataLevel[1]))
+        blockInitialData?.append(puzzle);
   });
 }

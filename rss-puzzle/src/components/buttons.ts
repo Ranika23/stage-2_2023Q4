@@ -5,3 +5,11 @@ export function creatButtonLogOut() {
 
   document.querySelector('.header')?.prepend(buttonLogOut);
 }
+
+export function creatButtonContinue() {
+  const buttonContinue: HTMLElement | null = document.createElement('button');
+  buttonContinue.className = 'game-page__button-continue';
+  buttonContinue.innerText = 'Continue';
+  buttonContinue.setAttribute('disabled', 'true');
+  document.querySelector('.main')?.append(buttonContinue);
+}
