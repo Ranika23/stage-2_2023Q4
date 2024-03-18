@@ -1,19 +1,15 @@
-import { sentence } from '../data';
 import { creatBlockInitialData } from '../components/block-initial-data';
-import { getLevelLocalStorage } from '../local-storage';
+import {
+  getLevelLocalStorage,
+  getNextSentence,
+  saveLevelLocalStorage,
+} from '../local-storage';
 import { moveToResultBlock } from '../event';
 import { moveFromResultBlock } from '../event';
 
-//const rounds: number = 0;
-//const words: number = 0;
-//const originalSentence = sentence(rounds, words);
-
 export function checkFullFill() {
   const dataLevel = getLevelLocalStorage();
-  let originalSentence;
-  if (dataLevel !== undefined) {
-    originalSentence = sentence(dataLevel[0], dataLevel[1]);
-  } else originalSentence = sentence(0, 0);
+  const originalSentence = getNextSentence() as Array<Array<string>>;
 
   if (dataLevel === undefined) throw Error('Element is undefined');
   const blockResult: Element | undefined = document.querySelector(
@@ -24,12 +20,14 @@ export function checkFullFill() {
     '.game-page__button-continue',
   );
 
-  if (blockResult?.children.length === originalSentence.length) {
+  if (blockResult?.children.length === originalSentence[0].length) {
     if (buttonContinue !== null) {
       const finalSentence: string[] = [];
       for (let i = 0; i < blockResult?.children.length; i++) {
         finalSentence.push(blockResult?.children[i].classList[1]);
-        if (JSON.stringify(finalSentence) == JSON.stringify(originalSentence))
+        if (
+          JSON.stringify(finalSentence) == JSON.stringify(originalSentence[0])
+        )
           buttonContinue.disabled = false;
       }
     }
@@ -46,7 +44,7 @@ export function clickContinua() {
 
   buttonContinue?.addEventListener('click', () => {
     const dataLevel = getLevelLocalStorage();
-
+    const Sentence = getNextSentence() as Array<Array<string>>;
     const blockResult: NodeListOf<Element> | undefined =
       document.querySelectorAll('.game-page__row-block-result');
 
@@ -60,10 +58,20 @@ export function clickContinua() {
       dataLevel !== undefined &&
       blockInitialData !== null &&
       buttonContinue.disabled === false
-    )
-      creatBlockInitialData(dataLevel[0], dataLevel[1] + 1);
-    buttonContinue.disabled = true;
-    if (dataLevel !== undefined) moveToResultBlock(dataLevel[1] + 1);
-    if (dataLevel !== undefined) moveFromResultBlock();
+    ) {
+      if (dataLevel[1] === 9) {
+        saveLevelLocalStorage(dataLevel[0] + 1, 0);
+        creatBlockInitialData(dataLevel[0] + 1, 0, Sentence[1]);
+        buttonContinue.disabled = true;
+        if (dataLevel !== undefined) moveToResultBlock(0);
+        if (dataLevel !== undefined) moveFromResultBlock();
+      } else {
+        saveLevelLocalStorage(dataLevel[0], dataLevel[1] + 1);
+        creatBlockInitialData(dataLevel[0], dataLevel[1] + 1, Sentence[1]);
+        buttonContinue.disabled = true;
+        if (dataLevel !== undefined) moveToResultBlock(dataLevel[1] + 1);
+        if (dataLevel !== undefined) moveFromResultBlock();
+      }
+    }
   });
 }

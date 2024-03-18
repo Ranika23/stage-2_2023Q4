@@ -24,8 +24,27 @@ export function getLevelLocalStorage() {
   if (dataLevel !== null) {
     const rounds = JSON.parse(dataLevel).rounds;
     const words = JSON.parse(dataLevel).words;
-    if (words === 10) {
-      return [rounds + 1, -1];
-    } else return [rounds, words];
+    return [rounds, words];
+  }
+}
+
+export function saveNextSentence(
+  newSentence: string[],
+  nextSentence: string[],
+) {
+  const Sentence = {
+    newSentence: newSentence,
+    nextSentence: nextSentence,
+  };
+  localStorage.setItem('Sentence', JSON.stringify(Sentence));
+}
+
+export function getNextSentence() {
+  const sent = localStorage.getItem('Sentence');
+
+  if (sent !== null) {
+    const newSentence = JSON.parse(sent).newSentence;
+    const nextSentence = JSON.parse(sent).nextSentence;
+    return [newSentence, nextSentence];
   }
 }

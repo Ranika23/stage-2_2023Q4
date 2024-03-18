@@ -94,9 +94,6 @@ export function moveToResultBlock(row: number) {
 export function moveFromResultBlock() {
   let dataLevel = getLevelLocalStorage();
   if (dataLevel === undefined) dataLevel = [0, 0];
-  const blockInitialData: HTMLElement | null = document.querySelector(
-    '.game-page__block-initial-data',
-  );
   const blockResult: Element | undefined = document.querySelector(
     '.game-page__block-result',
   )?.children[dataLevel[1]];
@@ -110,8 +107,16 @@ export function moveFromResultBlock() {
     if (buttonContinue !== null) buttonContinue.disabled = true;
 
     const puzzle = e.target as HTMLElement;
-    if (dataLevel !== undefined)
-      if (puzzle?.parentElement?.classList[1] === String(dataLevel[1]))
+    if (
+      dataLevel !== undefined &&
+      puzzle?.parentElement?.classList[1] !== undefined
+    ) {
+      if (puzzle?.parentElement?.classList[1] === String(dataLevel[1])) {
+        const blockInitialData: HTMLElement | null = document.querySelector(
+          '.game-page__block-initial-data',
+        );
         blockInitialData?.append(puzzle);
+      }
+    }
   });
 }

@@ -1,7 +1,21 @@
 import { sentence } from '../data';
 import { saveLevelLocalStorage } from '../local-storage';
+import { saveNextSentence, getNextSentence } from '../local-storage';
 
-export function creatBlockInitialData(rounds: number, words: number) {
+export function creatBlockInitialData(
+  rounds: number,
+  words: number,
+  newSentence: string[],
+) {
+  if (getNextSentence() === undefined) {
+    const firstSentence = sentence(0, 0) as string[];
+    const secondSentence = sentence(0, 1) as string[];
+    saveNextSentence(firstSentence, secondSentence);
+    const sent = getNextSentence() as Array<Array<string>>;
+    newSentence = sent[0];
+    saveLevelLocalStorage(rounds, words);
+  }
+
   if (document.querySelector('.game-page__block-initial-data') !== null) {
     const lastElement: HTMLElement | null = document.querySelector(
       '.game-page__block-initial-data',
@@ -12,42 +26,47 @@ export function creatBlockInitialData(rounds: number, words: number) {
   blockInitialData.className = 'game-page__block-initial-data';
   document.querySelector('.main')?.append(blockInitialData);
 
-  creatPuzzle(blockInitialData, rounds, words);
+  creatPuzzle(blockInitialData, newSentence, rounds, words);
 }
 
 export function creatPuzzle(
   blockInitialData: HTMLElement,
+  newSentence: string[],
   rounds: number,
   words: number,
 ) {
-  saveLevelLocalStorage(rounds, words);
-  let randomWords: string[] | undefined = shuffle(sentence(rounds, words));
-  if (randomWords === undefined) {
-    const buttonContinue: HTMLButtonElement | null = document.querySelector(
-      '.game-page__button-continue',
-    );
-    buttonContinue?.disabled === false;
-    randomWords = shuffle(sentence(rounds, words));
-  } else {
-    randomWords.forEach((elem) => {
-      if (elem === sentence(rounds, words)[0])
-        creatFirstPuzzle(blockInitialData, elem);
-      else if (
-        randomWords !== undefined &&
-        elem === sentence(rounds, words)[randomWords.length - 1]
-      )
-        creatLastPuzzle(blockInitialData, elem);
-      else creatMiddlePuzzle(blockInitialData, elem);
-    });
-  }
+  (function saveSentence() {
+    if (words < 9)
+      saveNextSentence(sentence(rounds, words), sentence(rounds, words + 1));
+    else if (words >= 9)
+      saveNextSentence(sentence(rounds, words), sentence(rounds + 1, 0));
+  })();
+
+  const random: string[] = newSentence.slice();
+  const randomWords: string[] | undefined = shuffle(random);
+  if (randomWords === undefined) throw Error;
+  randomWords.forEach((elem) => {
+    if (elem === newSentence[0]) creatFirstPuzzle(blockInitialData, elem);
+    else if (
+      randomWords !== undefined &&
+      elem === newSentence[randomWords.length - 1]
+    )
+      creatLastPuzzle(blockInitialData, elem);
+    else creatMiddlePuzzle(blockInitialData, elem);
+  });
+  //}
 }
 
 function shuffle(array: string[]) {
-  console.log(array);
-  const result = array.slice(0);
-  result.sort(() => Math.random() - 0.5);
-  if (JSON.stringify(array) == JSON.stringify(result)) shuffle(array);
-  else return result;
+  let j, temp;
+  for (let i = array.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = array[j];
+    array[j] = array[i];
+    array[i] = temp;
+  }
+  if (array === undefined) shuffle(array);
+  else return array;
 }
 
 function creatFirstPuzzle(blockInitialData: HTMLElement, elem: string) {

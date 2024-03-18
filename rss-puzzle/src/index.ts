@@ -20,7 +20,7 @@ createLoginForm();
 //game-page
 creatButtonLogOut();
 creatBlockResult();
-creatBlockInitialData(0, 0);
+creatBlockInitialData(0, 0, []);
 creatButtonContinue();
 
 // event
