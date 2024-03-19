@@ -13,3 +13,11 @@ export function creatButtonContinue() {
   buttonContinue.setAttribute('disabled', 'true');
   document.querySelector('.main')?.append(buttonContinue);
 }
+
+export function creatButtonCheck() {
+  const buttonCheck: HTMLElement | null = document.createElement('button');
+  buttonCheck.className = 'game-page__button-check';
+  buttonCheck.innerText = 'Check';
+  buttonCheck.setAttribute('disabled', 'true');
+  document.querySelector('.main')?.append(buttonCheck);
+}

@@ -1,7 +1,11 @@
 import { createBodyElement } from './components/body-container';
 import { createLoginForm } from './components/login-form';
 
-import { creatButtonLogOut, creatButtonContinue } from './components/buttons';
+import {
+  creatButtonLogOut,
+  creatButtonContinue,
+  creatButtonCheck,
+} from './components/buttons';
 import { creatBlockInitialData } from './components/block-initial-data';
 import { creatBlockResult } from './components/block-result';
 
@@ -22,6 +26,7 @@ creatButtonLogOut();
 creatBlockResult();
 creatBlockInitialData(0, 0, []);
 creatButtonContinue();
+creatButtonCheck();
 
 // event
 checkLoginStatus();
