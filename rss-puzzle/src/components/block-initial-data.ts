@@ -44,15 +44,18 @@ export function creatPuzzle(
 
   const random: string[] = newSentence.slice();
   const randomWords: string[] | undefined = shuffle(random);
+
   if (randomWords === undefined) throw Error;
   randomWords.forEach((elem) => {
-    if (elem === newSentence[0]) creatFirstPuzzle(blockInitialData, elem);
+    const indWord: number = newSentence.indexOf(elem);
+    if (elem === newSentence[0])
+      creatFirstPuzzle(blockInitialData, elem, indWord);
     else if (
       randomWords !== undefined &&
       elem === newSentence[randomWords.length - 1]
     )
-      creatLastPuzzle(blockInitialData, elem);
-    else creatMiddlePuzzle(blockInitialData, elem);
+      creatLastPuzzle(blockInitialData, elem, indWord);
+    else creatMiddlePuzzle(blockInitialData, elem, indWord);
   });
   //}
 }
@@ -69,10 +72,15 @@ function shuffle(array: string[]) {
   else return array;
 }
 
-function creatFirstPuzzle(blockInitialData: HTMLElement, elem: string) {
+function creatFirstPuzzle(
+  blockInitialData: HTMLElement,
+  elem: string,
+  words: number,
+) {
   const puzzle: HTMLCanvasElement | null = document.createElement('canvas');
   puzzle.className = 'game-page__puzzle';
   puzzle.classList.add(`${elem}`);
+  puzzle.classList.add(`${words}`);
   const context = puzzle.getContext('2d');
   if (context === null) throw Error('Element is Error');
 
@@ -103,10 +111,15 @@ function creatFirstPuzzle(blockInitialData: HTMLElement, elem: string) {
 
   blockInitialData?.append(puzzle);
 }
-function creatMiddlePuzzle(blockInitialData: HTMLElement, elem: string) {
+function creatMiddlePuzzle(
+  blockInitialData: HTMLElement,
+  elem: string,
+  words: number,
+) {
   const puzzle: HTMLCanvasElement | null = document.createElement('canvas');
   puzzle.className = 'game-page__puzzle';
   puzzle.classList.add(`${elem}`);
+  puzzle.classList.add(`${words}`);
   const context = puzzle.getContext('2d');
   if (context === null) throw Error('Element is Error');
 
@@ -138,10 +151,15 @@ function creatMiddlePuzzle(blockInitialData: HTMLElement, elem: string) {
   blockInitialData?.append(puzzle);
 }
 
-function creatLastPuzzle(blockInitialData: HTMLElement, elem: string) {
+function creatLastPuzzle(
+  blockInitialData: HTMLElement,
+  elem: string,
+  words: number,
+) {
   const puzzle: HTMLCanvasElement | null = document.createElement('canvas');
   puzzle.className = 'game-page__puzzle';
   puzzle.classList.add(`${elem}`);
+  puzzle.classList.add(`${words}`);
   const context = puzzle.getContext('2d');
   if (context === null) throw Error('Element is Error');
 
