@@ -4,10 +4,15 @@ import {
   getNextSentence,
 } from './local-storage';
 import { createStartPage } from './components/start-page';
-import { checkFullFill, clickContinua } from './button-actions/continue';
+import {
+  checkFullFill,
+  clickContinua,
+  closeButtonContinue,
+} from './button-actions/continue';
 import {
   changeColorPuzzleResult,
   changeColorPuzzleInitial,
+  openButtonCheck,
 } from './button-actions/check';
 
 // close Login Form after click button
@@ -127,8 +132,15 @@ export function moveFromResultBlock() {
   blockResult?.addEventListener('click', (e) => {
     const dataLevel = getLevelLocalStorage();
     if (dataLevel === undefined) throw Error('Element is undefined');
-    if (buttonContinue !== null) buttonContinue.disabled = true;
-    if (buttonCheck !== null) buttonCheck.disabled = true;
+
+    if (buttonContinue !== null) {
+      buttonContinue.disabled = true;
+      closeButtonContinue();
+    }
+    if (buttonCheck !== null) {
+      buttonCheck.disabled = true;
+      openButtonCheck();
+    }
 
     const puzzle = e.target as HTMLElement;
     if (

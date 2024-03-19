@@ -262,7 +262,6 @@
 .game-page__button-continue {
   position: absolute;
   top: 73vh;
-  left: calc(50vw - 160px);
   display: flex;
   width: 150px;
   height: 40px;
@@ -278,6 +277,8 @@
   box-shadow: inset 0px -3px 15px -4px #676016;
   border: none;
   cursor: pointer;
+  opacity: 0;
+  z-index: 9;
   transition: 0.2s;
 }
 .game-page__button-continue:disabled {
@@ -288,7 +289,6 @@
 .game-page__button-check {
   position: absolute;
   top: 73vh;
-  left: calc(50vw + 10px);
   display: flex;
   width: 150px;
   height: 40px;
@@ -304,6 +304,8 @@
   box-shadow: inset 0px -3px 15px -4px #676016;
   border: none;
   cursor: pointer;
+  opacity: 1;
+  z-index: 99;
   transition: 0.2s;
 }
 .game-page__button-check:disabled {

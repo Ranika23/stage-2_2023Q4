@@ -7,8 +7,28 @@ import {
 import { moveToResultBlock } from '../event';
 import { moveFromResultBlock } from '../event';
 import { changeColorPuzzleResult, changeColorPuzzleInitial } from './check';
+import { closeButtonCheck, openButtonCheck } from './check';
 
 import { checkOrderWord } from './check';
+
+export function openButtonContinue() {
+  const buttonContinue: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-continue',
+  );
+  if (buttonContinue !== null) {
+    buttonContinue.style.opacity = '1';
+    buttonContinue.style.zIndex = '99';
+  }
+}
+export function closeButtonContinue() {
+  const buttonContinue: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-continue',
+  );
+  if (buttonContinue !== null) {
+    buttonContinue.style.opacity = '0';
+    buttonContinue.style.zIndex = '9';
+  }
+}
 
 export function checkFullFill() {
   const dataLevel = getLevelLocalStorage();
@@ -38,6 +58,8 @@ export function checkFullFill() {
           JSON.stringify(finalSentence) == JSON.stringify(originalSentence[0])
         ) {
           buttonContinue.disabled = false;
+          openButtonContinue();
+          closeButtonCheck();
         } else {
           function check() {
             checkOrderWord(rowBlockResult, originalSentence[0]);
@@ -135,6 +157,8 @@ export function clickContinua() {
         saveLevelLocalStorage(dataLevel[0], dataLevel[1] + 1);
         creatBlockInitialData(dataLevel[0], dataLevel[1] + 1, Sentence[1]);
         buttonContinue.disabled = true;
+        openButtonCheck();
+        closeButtonContinue();
         if (dataLevel !== undefined) moveToResultBlock(dataLevel[1] + 1);
         if (dataLevel !== undefined) moveFromResultBlock();
       }

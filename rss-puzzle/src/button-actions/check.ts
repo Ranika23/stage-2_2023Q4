@@ -1,4 +1,23 @@
 //import { getNextSentence } from '../local-storage';
+export function openButtonCheck() {
+  const buttonCheck: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-check',
+  );
+  if (buttonCheck !== null) {
+    buttonCheck.style.opacity = '1';
+    buttonCheck.style.zIndex = '99';
+  }
+}
+
+export function closeButtonCheck() {
+  const buttonCheck: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-check',
+  );
+  if (buttonCheck !== null) {
+    buttonCheck.style.opacity = '0';
+    buttonCheck.style.zIndex = '9';
+  }
+}
 
 export function checkOrderWord(
   blockResult: HTMLCollection,
