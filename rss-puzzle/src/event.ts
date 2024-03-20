@@ -14,6 +14,10 @@ import {
   changeColorPuzzleInitial,
   openButtonCheck,
 } from './button-actions/check';
+import {
+  enabledButtonAutoComplete,
+  clickAutoComplete,
+} from './button-actions/auto-complete';
 
 // close Login Form after click button
 export function closeLoginForm() {
@@ -130,6 +134,8 @@ export function moveFromResultBlock() {
   );
 
   blockResult?.addEventListener('click', (e) => {
+    enabledButtonAutoComplete();
+    clickAutoComplete();
     const dataLevel = getLevelLocalStorage();
     if (dataLevel === undefined) throw Error('Element is undefined');
 

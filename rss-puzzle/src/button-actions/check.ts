@@ -6,6 +6,7 @@ export function openButtonCheck() {
   if (buttonCheck !== null) {
     buttonCheck.style.opacity = '1';
     buttonCheck.style.zIndex = '99';
+    buttonCheck.disabled = false;
   }
 }
 
