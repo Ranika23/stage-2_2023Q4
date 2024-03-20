@@ -21,3 +21,11 @@ export function creatButtonCheck() {
   buttonCheck.setAttribute('disabled', 'true');
   document.querySelector('.main')?.append(buttonCheck);
 }
+
+export function creatButtonAutoComplete() {
+  const buttonAutoComplete: HTMLElement | null =
+    document.createElement('button');
+  buttonAutoComplete.className = 'game-page__button-auto-complete';
+  buttonAutoComplete.innerText = 'Auto-Complete';
+  document.querySelector('.main')?.append(buttonAutoComplete);
+}

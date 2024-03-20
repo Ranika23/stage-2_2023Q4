@@ -7,8 +7,30 @@ import {
 import { moveToResultBlock } from '../event';
 import { moveFromResultBlock } from '../event';
 import { changeColorPuzzleResult, changeColorPuzzleInitial } from './check';
+import { closeButtonCheck, openButtonCheck } from './check';
 
 import { checkOrderWord } from './check';
+import { enabledButtonAutoComplete, clickAutoComplete } from './auto-complete';
+
+export function openButtonContinue() {
+  const buttonContinue: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-continue',
+  );
+  if (buttonContinue !== null) {
+    buttonContinue.style.opacity = '1';
+    buttonContinue.style.zIndex = '99';
+    buttonContinue.disabled = false;
+  }
+}
+export function closeButtonContinue() {
+  const buttonContinue: HTMLButtonElement | null = document.querySelector(
+    '.game-page__button-continue',
+  );
+  if (buttonContinue !== null) {
+    buttonContinue.style.opacity = '0';
+    buttonContinue.style.zIndex = '9';
+  }
+}
 
 export function checkFullFill() {
   const dataLevel = getLevelLocalStorage();
@@ -38,6 +60,8 @@ export function checkFullFill() {
           JSON.stringify(finalSentence) == JSON.stringify(originalSentence[0])
         ) {
           buttonContinue.disabled = false;
+          openButtonContinue();
+          closeButtonCheck();
         } else {
           function check() {
             checkOrderWord(rowBlockResult, originalSentence[0]);
@@ -64,32 +88,6 @@ export function checkFullFill() {
                 Number(puzzle.classList[2]),
                 sentence,
               );
-              /* if (
-                dataLevel !== undefined &&
-                puzzle?.parentElement?.classList[1] !== undefined
-              ) {
-                if (
-                  puzzle?.parentElement?.classList[1] === String(dataLevel[1])
-                ) {
-                  const blockInitialData: HTMLElement | null =
-                    document.querySelector('.game-page__block-initial-data');
-                  if (blockInitialData === null)
-                    throw Error('Element is Error');
-                  blockInitialData?.append(puzzle);
-                  buttonCheck?.addEventListener('click', () => {
-                    changeColorPuzzleResult(
-                      blockResult,
-                      Number(puzzle.classList[2]),
-                      sentence,
-                    );
-                    changeColorPuzzleInitial(
-                      blockInitialData,
-                      Number(puzzle.classList[2]),
-                      sentence,
-                    );
-                  });
-                }
-              }*/
               buttonCheck?.removeEventListener('click', check);
             });
           }
@@ -109,6 +107,8 @@ export function clickContinua() {
   );
 
   buttonContinue?.addEventListener('click', () => {
+    enabledButtonAutoComplete();
+    clickAutoComplete();
     const dataLevel = getLevelLocalStorage();
     const Sentence = getNextSentence() as Array<Array<string>>;
     const blockResult: NodeListOf<Element> | undefined =
@@ -135,6 +135,8 @@ export function clickContinua() {
         saveLevelLocalStorage(dataLevel[0], dataLevel[1] + 1);
         creatBlockInitialData(dataLevel[0], dataLevel[1] + 1, Sentence[1]);
         buttonContinue.disabled = true;
+        openButtonCheck();
+        closeButtonContinue();
         if (dataLevel !== undefined) moveToResultBlock(dataLevel[1] + 1);
         if (dataLevel !== undefined) moveFromResultBlock();
       }

@@ -5,6 +5,7 @@ import {
   creatButtonLogOut,
   creatButtonContinue,
   creatButtonCheck,
+  creatButtonAutoComplete,
 } from './components/buttons';
 import { creatBlockInitialData } from './components/block-initial-data';
 import { creatBlockResult } from './components/block-result';
@@ -16,6 +17,8 @@ import {
   moveToResultBlock,
   moveFromResultBlock,
 } from './event';
+
+import { clickAutoComplete } from './button-actions/auto-complete';
 // eslint-disable-next-line no-unused-vars
 
 createBodyElement();
@@ -27,6 +30,7 @@ creatBlockResult();
 creatBlockInitialData(0, 0, []);
 creatButtonContinue();
 creatButtonCheck();
+creatButtonAutoComplete();
 
 // event
 checkLoginStatus();
@@ -34,3 +38,4 @@ closeLoginForm();
 logoutProcess();
 moveToResultBlock(0);
 moveFromResultBlock();
+clickAutoComplete();

@@ -262,7 +262,7 @@
 .game-page__button-continue {
   position: absolute;
   top: 73vh;
-  left: calc(50vw - 160px);
+  left: calc(50vw + 10px);
   display: flex;
   width: 150px;
   height: 40px;
@@ -278,6 +278,8 @@
   box-shadow: inset 0px -3px 15px -4px #676016;
   border: none;
   cursor: pointer;
+  opacity: 0;
+  z-index: 9;
   transition: 0.2s;
 }
 .game-page__button-continue:disabled {
@@ -304,11 +306,37 @@
   box-shadow: inset 0px -3px 15px -4px #676016;
   border: none;
   cursor: pointer;
+  opacity: 1;
+  z-index: 99;
   transition: 0.2s;
 }
 .game-page__button-check:disabled {
   color: #bbbab3;
   cursor: default;
+}
+
+.game-page__button-auto-complete {
+  position: absolute;
+  top: 73vh;
+  left: calc(50vw - 210px);
+  display: flex;
+  width: 200px;
+  height: 40px;
+  padding: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #bbbab3;
+  font-weight: 700;
+  box-shadow: inset 0px -3px 15px -4px #676016;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  z-index: 99;
+  transition: 0.2s;
 }
 
 @media (hover: hover) {
@@ -336,6 +364,11 @@
   }
 
   .game-page__button-check:enabled:hover {
+    background: #a3a29e;
+    color: white;
+  }
+
+  .game-page__button-auto-complete:hover {
     background: #a3a29e;
     color: white;
   }
