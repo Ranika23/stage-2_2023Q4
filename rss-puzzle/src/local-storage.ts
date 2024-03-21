@@ -31,10 +31,12 @@ export function getLevelLocalStorage() {
 export function saveNextSentence(
   newSentence: string[],
   nextSentence: string[],
+  hintTranslate: string,
 ) {
   const Sentence = {
     newSentence: newSentence,
     nextSentence: nextSentence,
+    hintTranslate: hintTranslate,
   };
   localStorage.setItem('Sentence', JSON.stringify(Sentence));
 }
@@ -45,6 +47,7 @@ export function getNextSentence() {
   if (sent !== null) {
     const newSentence = JSON.parse(sent).newSentence;
     const nextSentence = JSON.parse(sent).nextSentence;
-    return [newSentence, nextSentence];
+    const hintTranslate = JSON.parse(sent).hintTranslate;
+    return [newSentence, nextSentence, hintTranslate];
   }
 }

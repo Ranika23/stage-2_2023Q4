@@ -2,12 +2,19 @@ import { createBodyElement } from './components/body-container';
 import { createLoginForm } from './components/login-form';
 
 import {
+  creatHintContainer,
+  creatHintSentence,
+} from './components/hint-feature';
+import {
   creatButtonLogOut,
   creatButtonContinue,
   creatButtonCheck,
   creatButtonAutoComplete,
   creatButtonContainer,
 } from './components/buttons';
+
+import { clickIconHintTranslation } from './hint-actions/sentence-translation';
+
 import { creatBlockInitialData } from './components/block-initial-data';
 import { creatBlockResult } from './components/block-result';
 
@@ -28,6 +35,8 @@ createLoginForm();
 
 //game-page
 creatButtonLogOut();
+creatHintContainer();
+creatHintSentence();
 creatBlockResult();
 creatBlockInitialData(0, 0, []);
 creatButtonContainer();
@@ -44,3 +53,4 @@ moveFromResultBlock();
 clickAutoComplete();
 drapPuzzleInResult();
 drapPuzzleFromResult();
+clickIconHintTranslation();
