@@ -83,13 +83,12 @@ export function drapPuzzleFromResult() {
   function dragPuzzle(e: Event) {
     e.stopPropagation();
     const puzzle = e.target as HTMLCanvasElement;
-    console.log(puzzle);
+
     if (getLevelLocalStorage() === undefined) throw Error;
     const arrLocal = getLevelLocalStorage();
     if (arrLocal === undefined) throw Error;
     row = arrLocal[1];
     if (puzzle.parentElement?.classList[1] === String(row)) {
-      console.log(row);
       function dragStart() {
         const blockInitialData: Element | null = document.querySelector(
           '.game-page__block-initial-data',

@@ -1,4 +1,4 @@
-import { sentence } from '../data';
+import { sentence, hintTranslate } from '../data';
 import { saveLevelLocalStorage } from '../local-storage';
 import { saveNextSentence, getNextSentence } from '../local-storage';
 
@@ -8,9 +8,10 @@ export function creatBlockInitialData(
   newSentence: string[],
 ) {
   if (getNextSentence() === undefined) {
+    const hintTranslat = hintTranslate(0, 0) as string;
     const firstSentence = sentence(0, 0) as string[];
     const secondSentence = sentence(0, 1) as string[];
-    saveNextSentence(firstSentence, secondSentence);
+    saveNextSentence(firstSentence, secondSentence, hintTranslat);
     const sent = getNextSentence() as Array<Array<string>>;
     newSentence = sent[0];
     saveLevelLocalStorage(rounds, words);
@@ -42,9 +43,17 @@ export function creatPuzzle(
 ) {
   (function saveSentence() {
     if (words < 9)
-      saveNextSentence(sentence(rounds, words), sentence(rounds, words + 1));
+      saveNextSentence(
+        sentence(rounds, words),
+        sentence(rounds, words + 1),
+        hintTranslate(rounds, words),
+      );
     else if (words >= 9)
-      saveNextSentence(sentence(rounds, words), sentence(rounds + 1, 0));
+      saveNextSentence(
+        sentence(rounds, words),
+        sentence(rounds + 1, 0),
+        hintTranslate(rounds, words),
+      );
   })();
 
   const random: string[] = newSentence.slice();

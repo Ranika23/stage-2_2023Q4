@@ -19,3 +19,5 @@ export function createBodyElement() {
   bodyContainer.append(bodyMain);
   bodyContainer.append(bodyFooter);
 }
+
+
