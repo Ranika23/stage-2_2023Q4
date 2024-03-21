@@ -1,3 +1,10 @@
+export function creatButtonContainer() {
+  const buttonContainer: HTMLElement | null = document.createElement('div');
+  buttonContainer.className = 'game-page__button-container';
+
+  document.querySelector('.main')?.append(buttonContainer);
+}
+
 export function creatButtonLogOut() {
   const buttonLogOut: HTMLElement | null = document.createElement('button');
   buttonLogOut.className = 'game-page__button-logout';
@@ -11,7 +18,9 @@ export function creatButtonContinue() {
   buttonContinue.className = 'game-page__button-continue';
   buttonContinue.innerText = 'Continue';
   buttonContinue.setAttribute('disabled', 'true');
-  document.querySelector('.main')?.append(buttonContinue);
+  document
+    .querySelector('.game-page__button-container')
+    ?.append(buttonContinue);
 }
 
 export function creatButtonCheck() {
@@ -19,7 +28,7 @@ export function creatButtonCheck() {
   buttonCheck.className = 'game-page__button-check';
   buttonCheck.innerText = 'Check';
   buttonCheck.setAttribute('disabled', 'true');
-  document.querySelector('.main')?.append(buttonCheck);
+  document.querySelector('.game-page__button-container')?.append(buttonCheck);
 }
 
 export function creatButtonAutoComplete() {
@@ -27,5 +36,7 @@ export function creatButtonAutoComplete() {
     document.createElement('button');
   buttonAutoComplete.className = 'game-page__button-auto-complete';
   buttonAutoComplete.innerText = 'Auto-Complete';
-  document.querySelector('.main')?.append(buttonAutoComplete);
+  document
+    .querySelector('.game-page__button-container')
+    ?.append(buttonAutoComplete);
 }

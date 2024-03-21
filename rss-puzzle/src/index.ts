@@ -6,6 +6,7 @@ import {
   creatButtonContinue,
   creatButtonCheck,
   creatButtonAutoComplete,
+  creatButtonContainer,
 } from './components/buttons';
 import { creatBlockInitialData } from './components/block-initial-data';
 import { creatBlockResult } from './components/block-result';
@@ -29,9 +30,10 @@ createLoginForm();
 creatButtonLogOut();
 creatBlockResult();
 creatBlockInitialData(0, 0, []);
+creatButtonContainer();
+creatButtonAutoComplete();
 creatButtonContinue();
 creatButtonCheck();
-creatButtonAutoComplete();
 
 // event
 checkLoginStatus();

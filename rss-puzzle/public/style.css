@@ -15,10 +15,24 @@
   background: #fff695;
 }
 
+.body-container::before {
+  content: '';
+  position: fixed; /* Фиксируем на одном месте */
+  left: 0;
+  right: 0; /* Вся ширин */
+  top: 0;
+  bottom: 0; /* Вся высота */
+  z-index: -1; /* Фон ниже текста */
+  /* Параметры фона */
+  background: url(assets/img/background-start.png) center / cover no-repeat;
+  filter: blur(5px); /* Размытие */
+}
+
 .body-container {
   position: relative;
   overflow: clip;
-  max-width: 1440px;
+  /*max-width: 1440px;*/
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   display: flex;
@@ -29,14 +43,13 @@
   font-size: 16px;
   font-style: normal;
   line-height: 150%;
-  background: #fff695;
 }
 
 .header {
   width: 100%;
   height: 90px;
   margin: 0;
-  padding: 0;
+  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,7 +63,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
   flex: 1;
@@ -259,6 +272,15 @@
   background-color: #f9f4b6;
 }
 
+.game-page__button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 585px;
+  height: 50px;
+}
+
 .game-page__puzzle {
   cursor: pointer;
   margin-right: -14px;
@@ -269,8 +291,7 @@
 }
 .game-page__button-continue {
   position: absolute;
-  top: 73vh;
-  left: calc(50vw + 10px);
+  left: calc(100% - 150px);
   display: flex;
   width: 150px;
   height: 40px;
@@ -297,8 +318,7 @@
 
 .game-page__button-check {
   position: absolute;
-  top: 73vh;
-  left: calc(50vw + 10px);
+  left: calc(100% - 150px);
   display: flex;
   width: 150px;
   height: 40px;
@@ -324,9 +344,8 @@
 }
 
 .game-page__button-auto-complete {
-  position: absolute;
-  top: 73vh;
-  left: calc(50vw - 210px);
+  position: relative;
+  left: calc(0% - 190px);
   display: flex;
   width: 200px;
   height: 40px;
