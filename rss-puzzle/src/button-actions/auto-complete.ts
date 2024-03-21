@@ -1,6 +1,7 @@
 import { getLevelLocalStorage, getNextSentence } from '../local-storage';
 import { closeButtonCheck } from '../button-actions/check';
 import { openButtonContinue } from '../button-actions/continue';
+import { changeColorPuzzleResult, changeColorPuzzleInitial } from './check';
 
 export function clickAutoComplete() {
   const buttonAutoComplete: HTMLElement | null = document.querySelector(
@@ -25,6 +26,7 @@ export function clickAutoComplete() {
       movePuzzle();
       closeButtonCheck();
       openButtonContinue();
+      changeColorPuzzle();
 
       buttonAutoComplete.removeEventListener('click', clickOne);
       buttonAutoComplete.removeEventListener('click', clickTwo);
@@ -89,4 +91,30 @@ export function enabledButtonAutoComplete() {
   );
   if (buttonAutoComplete === null) throw Error;
   buttonAutoComplete.disabled = false;
+}
+
+function changeColorPuzzle() {
+  const blockInitialData: HTMLElement | null = document.querySelector(
+    '.game-page__block-initial-data',
+  );
+  const dataLevel = getLevelLocalStorage();
+  if (dataLevel === undefined || blockInitialData === null)
+    throw Error('Element is undefined');
+  const sentence = getNextSentence() as string[][];
+  const blockResultRow: Element | undefined = document.querySelector(
+    '.game-page__block-result',
+  )?.children[dataLevel[1]];
+  if (blockResultRow === undefined) throw Error('Element is undefined');
+  for (const puzzle of blockResultRow.children) {
+    changeColorPuzzleResult(
+      blockResultRow,
+      Number(puzzle.classList[2]),
+      sentence,
+    );
+    changeColorPuzzleInitial(
+      blockInitialData,
+      Number(puzzle.classList[2]),
+      sentence,
+    );
+  }
 }

@@ -6,7 +6,6 @@ export function openButtonCheck() {
   if (buttonCheck !== null) {
     buttonCheck.style.opacity = '1';
     buttonCheck.style.zIndex = '99';
-    buttonCheck.disabled = false;
   }
 }
 
@@ -24,8 +23,6 @@ export function checkOrderWord(
   blockResult: HTMLCollection,
   originalSentence: string[],
 ) {
-  console.log(blockResult, originalSentence);
-
   for (let i = 0; i < blockResult.length; i++) {
     const puzzle = blockResult[i] as HTMLCanvasElement | null;
     if (puzzle === null) throw Error('Element is Error');
@@ -38,8 +35,6 @@ export function checkOrderWord(
       else if (puzzleResult === originalSentence[originalSentence.length - 1])
         creatLastPuzzle(i, puzzle);
       else creatMiddlePuzzle(i, puzzle);
-
-      console.log('es');
     }
   }
 }
@@ -77,8 +72,6 @@ function creatFirstPuzzle(ind: number, puzzle: HTMLCanvasElement) {
   context.textBaseline = 'middle';
 
   context?.stroke();
-
-  //blockInitialData?.append(puzzle);
 }
 function creatMiddlePuzzle(ind: number, puzzle: HTMLCanvasElement) {
   if (puzzle === null) throw Error('Element is Error');
@@ -114,8 +107,6 @@ function creatMiddlePuzzle(ind: number, puzzle: HTMLCanvasElement) {
   context.textBaseline = 'middle';
 
   context?.stroke();
-
-  //blockInitialData?.append(puzzle);
 }
 
 function creatLastPuzzle(ind: number, puzzle: HTMLCanvasElement) {
@@ -150,8 +141,6 @@ function creatLastPuzzle(ind: number, puzzle: HTMLCanvasElement) {
   context.textAlign = 'center';
   context.textBaseline = 'middle';
   context?.stroke();
-
-  // blockInitialData?.append(puzzle);
 }
 
 export function changeColorPuzzleResult(
@@ -159,13 +148,11 @@ export function changeColorPuzzleResult(
   i: number,
   sentence: string[][],
 ) {
-  console.log(i);
   for (let i = 0; i < blockResult.children.length; i += 1) {
     const puzzle = blockResult.children[i] as HTMLCanvasElement | null;
     if (puzzle === null) throw Error('Element is Error');
     const countWords = sentence[0].length;
     const word = puzzle.classList[2];
-    console.log(word);
     if (word === '0') colorFirstPuzzle(i, puzzle);
     else if (word === String(countWords - 1)) colorLastPuzzle(i, puzzle);
     else colorMiddlePuzzle(i, puzzle);
@@ -177,14 +164,12 @@ export function changeColorPuzzleInitial(
   i: number,
   sentence: string[][],
 ) {
-  console.log(i);
   for (let i = 0; i < blockInitialData.children.length; i += 1) {
     const puzzle = blockInitialData.children[i] as HTMLCanvasElement | null;
     if (puzzle === null) throw Error('Element is Error');
 
     const countWords = sentence[0].length;
     const word = puzzle.classList[2];
-    console.log(word);
     if (word === '0') colorFirstPuzzle(i, puzzle);
     else if (word === String(countWords - 1)) colorLastPuzzle(i, puzzle);
     else colorMiddlePuzzle(i, puzzle);
@@ -224,8 +209,6 @@ function colorFirstPuzzle(ind: number, puzzle: HTMLCanvasElement) {
   context.textBaseline = 'middle';
 
   context?.stroke();
-
-  //blockInitialData?.append(puzzle);
 }
 function colorMiddlePuzzle(ind: number, puzzle: HTMLCanvasElement) {
   if (puzzle === null) throw Error('Element is Error');
@@ -261,8 +244,6 @@ function colorMiddlePuzzle(ind: number, puzzle: HTMLCanvasElement) {
   context.textBaseline = 'middle';
 
   context?.stroke();
-
-  //blockInitialData?.append(puzzle);
 }
 
 function colorLastPuzzle(ind: number, puzzle: HTMLCanvasElement) {
@@ -297,6 +278,4 @@ function colorLastPuzzle(ind: number, puzzle: HTMLCanvasElement) {
   context.textAlign = 'center';
   context.textBaseline = 'middle';
   context?.stroke();
-
-  // blockInitialData?.append(puzzle);
 }

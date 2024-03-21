@@ -234,6 +234,11 @@
   border: 1px solid #a3a29e;
   border-radius: 1px;
   background-color: #f9f4b6;
+  transition: 0.5s;
+}
+
+.game-page__block-result.hover {
+  background-color: #cfcc9a;
 }
 
 .game-page__row-block-result {
@@ -257,8 +262,11 @@
 .game-page__puzzle {
   cursor: pointer;
   margin-right: -14px;
+  transition: 0.5s;
 }
-
+.game-page__puzzle.hold {
+  background-color: #9e442d;
+}
 .game-page__button-continue {
   position: absolute;
   top: 73vh;
