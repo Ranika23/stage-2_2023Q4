@@ -1,13 +1,24 @@
 import { getNextSentence } from '../local-storage';
 
 export function creatHintSentence() {
-  const sentence = getNextSentence() as string[][];
+  //const sentence = getNextSentence() as string[][];
   const hintSentence: HTMLElement | null = document.createElement('div');
   hintSentence.className = 'game-page__hint-sentence';
   hintSentence.classList.add('close');
-  hintSentence.innerText = `${sentence[2]}`;
+
+  //hintSentence.innerText = `${sentence[2].join(' ')}`;
+  //console.log(sentence[2]);
 
   document.querySelector('.main')?.append(hintSentence);
+}
+
+export function changeHintSentence() {
+  const hintSentence: HTMLElement | null = document.querySelector(
+    '.game-page__hint-sentence',
+  );
+  if (hintSentence === null) throw Error;
+  const sentence = getNextSentence() as string[][];
+  hintSentence.innerText = `${sentence[2].join(' ')}`;
 }
 
 export function creatHintContainer() {

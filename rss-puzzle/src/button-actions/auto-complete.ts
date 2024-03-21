@@ -2,6 +2,7 @@ import { getLevelLocalStorage, getNextSentence } from '../local-storage';
 import { closeButtonCheck } from '../button-actions/check';
 import { openButtonContinue } from '../button-actions/continue';
 import { changeColorPuzzleResult, changeColorPuzzleInitial } from './check';
+import { openHintSentence } from '../hint-actions/sentence-translation';
 
 export function clickAutoComplete() {
   const buttonAutoComplete: HTMLElement | null = document.querySelector(
@@ -27,6 +28,7 @@ export function clickAutoComplete() {
       closeButtonCheck();
       openButtonContinue();
       changeColorPuzzle();
+      openHintSentence();
 
       buttonAutoComplete.removeEventListener('click', clickOne);
       buttonAutoComplete.removeEventListener('click', clickTwo);

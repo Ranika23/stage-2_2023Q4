@@ -13,6 +13,11 @@ import { checkOrderWord } from './check';
 import { enabledButtonAutoComplete, clickAutoComplete } from './auto-complete';
 import { drapPuzzleInResult, drapPuzzleFromResult } from '../drag-n-drop';
 
+import {
+  openHintSentence,
+  closeHintSentence,
+} from '../hint-actions/sentence-translation';
+
 export function openButtonContinue() {
   const buttonContinue: HTMLButtonElement | null = document.querySelector(
     '.game-page__button-continue',
@@ -62,6 +67,7 @@ export function checkFullFill() {
           buttonContinue.disabled = false;
           openButtonContinue();
           closeButtonCheck();
+          openHintSentence();
         } else {
           function check() {
             checkOrderWord(rowBlockResult, originalSentence[0]);
@@ -109,6 +115,7 @@ export function clickContinua() {
   buttonContinue?.addEventListener('click', () => {
     enabledButtonAutoComplete();
     clickAutoComplete();
+    closeHintSentence();
     const dataLevel = getLevelLocalStorage();
     const Sentence = getNextSentence() as Array<Array<string>>;
     const blockResult: NodeListOf<Element> | undefined =
