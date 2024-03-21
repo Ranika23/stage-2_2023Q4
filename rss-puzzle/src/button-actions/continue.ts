@@ -11,6 +11,7 @@ import { closeButtonCheck, openButtonCheck } from './check';
 
 import { checkOrderWord } from './check';
 import { enabledButtonAutoComplete, clickAutoComplete } from './auto-complete';
+import { drapPuzzleInResult, drapPuzzleFromResult } from '../drag-n-drop';
 
 export function openButtonContinue() {
   const buttonContinue: HTMLButtonElement | null = document.querySelector(
@@ -54,7 +55,6 @@ export function checkFullFill() {
       const finalSentence: string[] = [];
       for (let i = 0; i < blockResult?.children.length; i++) {
         finalSentence.push(blockResult?.children[i].classList[1]);
-        console.log(blockResult.children);
         const rowBlockResult: HTMLCollection = blockResult.children;
         if (
           JSON.stringify(finalSentence) == JSON.stringify(originalSentence[0])
@@ -141,5 +141,8 @@ export function clickContinua() {
         if (dataLevel !== undefined) moveFromResultBlock();
       }
     }
+
+    drapPuzzleInResult();
+    drapPuzzleFromResult();
   });
 }

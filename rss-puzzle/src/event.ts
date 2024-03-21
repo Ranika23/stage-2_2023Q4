@@ -19,6 +19,8 @@ import {
   clickAutoComplete,
 } from './button-actions/auto-complete';
 
+import { drapPuzzleInResult, drapPuzzleFromResult } from './drag-n-drop';
+
 // close Login Form after click button
 export function closeLoginForm() {
   const buttonLoginForm: Element | null = document.querySelector(
@@ -84,13 +86,6 @@ function closeStartPage() {
     if (buttonStart === null) throw Error('Element is Error');
     buttonStart.addEventListener('click', () => {
       startPage.classList.add('close');
-      alert(
-        `Проект находится на стадии разработки. 
-        
-        Уважаемый проверяющий, если у тебя есть возможность перенести время проверки моей работы на 21 марта, это очень поможет мне в достижении поставленной цели.
-        
-        Так или иначе, спасибо за инициативу в вопросе проверки моей работы!`,
-      );
     });
   }
 }
@@ -113,7 +108,8 @@ export function moveToResultBlock(row: number) {
   blockInitialData?.addEventListener('click', (e) => {
     const puzzle = e.target as HTMLElement;
     if (puzzle?.parentElement === blockInitialData) blockResult?.append(puzzle);
-
+    drapPuzzleInResult();
+    drapPuzzleFromResult();
     checkFullFill();
   });
   clickContinua();

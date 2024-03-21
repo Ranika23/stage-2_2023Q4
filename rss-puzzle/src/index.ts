@@ -19,6 +19,7 @@ import {
 } from './event';
 
 import { clickAutoComplete } from './button-actions/auto-complete';
+import { drapPuzzleInResult, drapPuzzleFromResult } from './drag-n-drop';
 // eslint-disable-next-line no-unused-vars
 
 createBodyElement();
@@ -39,3 +40,5 @@ logoutProcess();
 moveToResultBlock(0);
 moveFromResultBlock();
 clickAutoComplete();
+drapPuzzleInResult();
+drapPuzzleFromResult();
