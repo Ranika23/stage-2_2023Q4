@@ -24,7 +24,12 @@ export function creatBlockInitialData(
   }
   const blockInitialData: HTMLElement | null = document.createElement('div');
   blockInitialData.className = 'game-page__block-initial-data';
-  document.querySelector('.main')?.append(blockInitialData);
+  if (document.querySelector('.game-page__button-container') === null)
+    document.querySelector('.main')?.append(blockInitialData);
+  else
+    document
+      .querySelector('.game-page__button-container')
+      ?.before(blockInitialData);
 
   creatPuzzle(blockInitialData, newSentence, rounds, words);
 }
