@@ -31,7 +31,7 @@ export function getLevelLocalStorage() {
 export function saveNextSentence(
   newSentence: string[],
   nextSentence: string[],
-  hintTranslate: string,
+  hintTranslate: string[],
 ) {
   const Sentence = {
     newSentence: newSentence,

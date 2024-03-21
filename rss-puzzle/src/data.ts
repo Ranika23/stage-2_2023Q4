@@ -5,7 +5,9 @@ export function sentence(rounds: number, words: number) {
 }
 
 export function hintTranslate(rounds: number, words: number) {
-  return wordsLevel_1.rounds[rounds].words[words].textExampleTranslate;
+  return wordsLevel_1.rounds[rounds].words[words].textExampleTranslate.split(
+    ' ',
+  );
 }
 
 export function words(rounds: number) {

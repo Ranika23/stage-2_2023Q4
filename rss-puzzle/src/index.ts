@@ -39,6 +39,7 @@ creatHintContainer();
 creatHintSentence();
 creatBlockResult();
 creatBlockInitialData(0, 0, []);
+
 creatButtonContainer();
 creatButtonAutoComplete();
 creatButtonContinue();

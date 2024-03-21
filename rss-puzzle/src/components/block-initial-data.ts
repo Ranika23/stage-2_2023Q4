@@ -1,6 +1,7 @@
 import { sentence, hintTranslate } from '../data';
 import { saveLevelLocalStorage } from '../local-storage';
 import { saveNextSentence, getNextSentence } from '../local-storage';
+import { changeHintSentence } from '../components/hint-feature';
 
 export function creatBlockInitialData(
   rounds: number,
@@ -8,7 +9,7 @@ export function creatBlockInitialData(
   newSentence: string[],
 ) {
   if (getNextSentence() === undefined) {
-    const hintTranslat = hintTranslate(0, 0) as string;
+    const hintTranslat = hintTranslate(0, 0) as string[];
     const firstSentence = sentence(0, 0) as string[];
     const secondSentence = sentence(0, 1) as string[];
     saveNextSentence(firstSentence, secondSentence, hintTranslat);
@@ -71,7 +72,7 @@ export function creatPuzzle(
       creatLastPuzzle(blockInitialData, elem, indWord);
     else creatMiddlePuzzle(blockInitialData, elem, indWord);
   });
-  //}
+  changeHintSentence();
 }
 
 function shuffle(array: string[]) {
