@@ -2,8 +2,11 @@ import {
   saveUserLocalStorage,
   getLevelLocalStorage,
   getNextSentence,
+  saveNextSentence,
+  saveLevelLocalStorage,
 } from './local-storage';
 import { createStartPage } from './components/start-page';
+import { creatBlockInitialData } from './components/block-initial-data';
 import {
   checkFullFill,
   clickContinua,
@@ -20,6 +23,33 @@ import {
 } from './button-actions/auto-complete';
 
 import { drapPuzzleInResult, drapPuzzleFromResult } from './drag-n-drop';
+import { sentence, hintTranslate } from './data';
+
+export function lodingDate() {
+  if (getNextSentence() === undefined) {
+    const hintTranslat = hintTranslate(0, 0) as string[];
+    const firstSentence = sentence(0, 0) as string[];
+    const secondSentence = sentence(0, 1) as string[];
+    saveNextSentence(firstSentence, secondSentence, hintTranslat);
+    const sent = getNextSentence() as Array<Array<string>>;
+    const newSentence = sent[0];
+    saveLevelLocalStorage(0, 0);
+    creatBlockInitialData(0, 0, newSentence);
+  } else {
+    const dataLevel = getLevelLocalStorage();
+    if (dataLevel === undefined) throw Error('Date is undefined');
+
+    const hintTranslat = hintTranslate(dataLevel[0], 0) as string[];
+    const firstSentence = sentence(dataLevel[0], 0) as string[];
+    const secondSentence = sentence(dataLevel[0], 1) as string[];
+    saveNextSentence(firstSentence, secondSentence, hintTranslat);
+
+    saveLevelLocalStorage(dataLevel[0], 0);
+
+    const Sentence = getNextSentence() as Array<Array<string>>;
+    creatBlockInitialData(dataLevel[0], 0, Sentence[0]);
+  }
+}
 
 // close Login Form after click button
 export function closeLoginForm() {
