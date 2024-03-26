@@ -1,6 +1,5 @@
 import { sentence, hintTranslate } from '../data';
-import { saveLevelLocalStorage } from '../local-storage';
-import { saveNextSentence, getNextSentence } from '../local-storage';
+import { saveNextSentence } from '../local-storage';
 import { changeHintSentence } from '../components/hint-feature';
 
 export function creatBlockInitialData(
@@ -8,16 +7,6 @@ export function creatBlockInitialData(
   words: number,
   newSentence: string[],
 ) {
-  if (getNextSentence() === undefined) {
-    const hintTranslat = hintTranslate(0, 0) as string[];
-    const firstSentence = sentence(0, 0) as string[];
-    const secondSentence = sentence(0, 1) as string[];
-    saveNextSentence(firstSentence, secondSentence, hintTranslat);
-    const sent = getNextSentence() as Array<Array<string>>;
-    newSentence = sent[0];
-    saveLevelLocalStorage(rounds, words);
-  }
-
   if (document.querySelector('.game-page__block-initial-data') !== null) {
     const lastElement: HTMLElement | null = document.querySelector(
       '.game-page__block-initial-data',

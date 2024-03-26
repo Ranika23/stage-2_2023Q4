@@ -15,7 +15,6 @@ import {
 
 import { clickIconHintTranslation } from './hint-actions/sentence-translation';
 
-import { creatBlockInitialData } from './components/block-initial-data';
 import { creatBlockResult } from './components/block-result';
 
 import {
@@ -24,6 +23,7 @@ import {
   logoutProcess,
   moveToResultBlock,
   moveFromResultBlock,
+  lodingDate,
 } from './event';
 
 import { clickAutoComplete } from './button-actions/auto-complete';
@@ -38,7 +38,7 @@ creatButtonLogOut();
 creatHintContainer();
 creatHintSentence();
 creatBlockResult();
-creatBlockInitialData(0, 0, []);
+lodingDate();
 
 creatButtonContainer();
 creatButtonAutoComplete();
