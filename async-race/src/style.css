@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  min-height: 90vh;
+  background-color: rgb(255, 196, 196);
+  padding: 20px;
+}
+
+.header-container div {
+  display: flex;
+  gap: 10px;
+}
+
+.header-container div button {
+  width: auto;
+  height: auto;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(46, 23, 23);
+  transition: 0.5s;
+}
+
+.header-container div button a {
+  color: azure;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+@media (hover: hover) {
+  .header-container div button:hover {
+    background-color: azure;
+  }
+
+  .header-container div button a:hover {
+    color: rgb(46, 23, 23);
+  }
+}
