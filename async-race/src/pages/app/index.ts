@@ -36,6 +36,7 @@ class App {
     if (page) {
       const pageHTML = page.render();
       pageHTML.id = App.defaultIdPage;
+      pageHTML.className = App.defaultIdPage;
       document.body.append(pageHTML);
     }
   }

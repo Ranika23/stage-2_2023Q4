@@ -32,6 +32,41 @@ body {
   transition: 0.5s;
 }
 
+.current-page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.current-page div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.current-page div input {
+  border-radius: 5px;
+  width: 200px;
+  height: 25px;
+}
+
+.current-page div input[type=checkbox] {
+  width: 40px;
+  height: 25px;
+}
+
+.current-page div button {
+  width: auto;
+  height: auto;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(46, 23, 23);
+  color: azure;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
 @media (hover: hover) {
   .header-container div button:hover {
     background-color: azure;
@@ -39,5 +74,10 @@ body {
 
   .header-container div button a:hover {
     color: rgb(46, 23, 23);
+  }
+
+  .current-page div button:hover {
+    color: rgb(46, 23, 23);
+    background-color: azure;
   }
 }
