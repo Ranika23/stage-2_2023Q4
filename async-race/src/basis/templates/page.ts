@@ -71,6 +71,46 @@ abstract class Page {
     return containerButtonGarage;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  protected createTableWinners() {
+    const containerTitleTableWinner = document.createElement("div");
+    const titleTableNumber = document.createElement("div");
+    const titleTableCar = document.createElement("div");
+    const titleTableName = document.createElement("div");
+    const titleTableWins = document.createElement("div");
+    const titleTableBestTime = document.createElement("div");
+
+    containerTitleTableWinner.className = "container-title-table";
+    titleTableNumber.innerText = "Number";
+    titleTableCar.innerText = "Car";
+    titleTableName.innerText = "Name";
+    titleTableWins.innerText = "Wins";
+    titleTableBestTime.innerText = "Best time(seconds)";
+
+    containerTitleTableWinner.append(titleTableNumber);
+    containerTitleTableWinner.append(titleTableCar);
+    containerTitleTableWinner.append(titleTableName);
+    containerTitleTableWinner.append(titleTableWins);
+    containerTitleTableWinner.append(titleTableBestTime);
+    return containerTitleTableWinner;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  protected createTableButton() {
+    const containerButtonTableWinner = document.createElement("div");
+    const buttonTablePrev = document.createElement("button");
+    const buttonTableNext = document.createElement("button");
+
+    containerButtonTableWinner.className = "container-button-table";
+    buttonTablePrev.innerText = "prev";
+    buttonTableNext.innerText = "next";
+
+    containerButtonTableWinner.append(buttonTablePrev);
+    containerButtonTableWinner.append(buttonTableNext);
+
+    return containerButtonTableWinner;
+  }
+
   render() {
     return this.container;
   }

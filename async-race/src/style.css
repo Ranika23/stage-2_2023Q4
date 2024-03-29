@@ -67,6 +67,13 @@ body {
   transition: 0.5s;
 }
 
+.container-title-table {
+  width: 273px;
+  height: auto;
+  background-color: bisque;
+  font-size: 15px;
+}
+
 @media (hover: hover) {
   .header-container div button:hover {
     background-color: azure;
