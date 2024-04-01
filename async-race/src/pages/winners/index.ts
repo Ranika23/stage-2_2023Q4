@@ -2,11 +2,11 @@ import Page from "../../basis/templates/page";
 
 class WinnersPage extends Page {
   static TextObj = {
-    Headline: "Winners",
+    Headline: "Winners (0)",
   };
 
   static TextPage = {
-    Page: "Page#",
+    Page: "Page #1",
   };
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor

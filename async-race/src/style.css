@@ -8,7 +8,7 @@ body {
   gap: 10px;
   flex-direction: column;
   min-height: 90vh;
-  background-color: rgb(255, 196, 196);
+  background-color: rgb(33 17 11);
   padding: 20px;
 }
 
@@ -22,7 +22,7 @@ body {
   height: auto;
   padding: 5px;
   border-radius: 5px;
-  background-color: rgb(46, 23, 23);
+  background-color: rgb(119 81 48);;
   transition: 0.5s;
 }
 
@@ -40,8 +40,8 @@ body {
 
 .current-page div {
   display: flex;
-  align-items: center;
   gap: 5px;
+  color: rgb(221 147 82);
 }
 
 .current-page div input {
@@ -50,28 +50,90 @@ body {
   height: 25px;
 }
 
-.current-page div input[type=checkbox] {
+.current-page div input[type=color] {
   width: 40px;
   height: 25px;
+  cursor: pointer;
 }
 
-.current-page div button {
+.button-creat-garage,
+.container-button-garage button,
+.button-select,
+.button-remove,
+.prev-button,
+.next-button {
   width: auto;
   height: auto;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 5px;
-  background-color: rgb(46, 23, 23);
+  background-color: rgb(119 81 48);;
   color: azure;
   font-size: 14px;
   cursor: pointer;
   transition: 0.5s;
 }
 
+.prev-button,
+.next-button {
+  margin-top: 30px;
+  margin-right: 10px;
+  background-color: rgb(55 39 25);
+}
+
+.container-garage-cars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-garage-cars-first-line {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.container-garage-cars-second {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-a,
+.button-b {
+  width: 25px;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 5px;
+  background-color: rgb(33 17 11);
+}
+
+.button-a {
+  border-color: rgb(35, 176, 92);
+  color: rgb(35, 176, 92);
+}
+
+.button-b {
+  border-color: rgb(73, 83, 73);
+  color: rgb(73, 83, 73);
+}
+
+.container-garage-right {
+  margin-right: 50px;
+}
+
+.final-flag {
+  width: 30px;
+  height: 30px;
+  align-self: end;
+  background-image: url(./components/view/img/flag.png);
+  background-size: 100% 100%;
+}
+
 .container-title-table {
-  width: 273px;
+  width: 350px;
   height: auto;
   background-color: bisque;
   font-size: 15px;
+  justify-content: space-around;
 }
 
 @media (hover: hover) {
@@ -83,8 +145,14 @@ body {
     color: rgb(46, 23, 23);
   }
 
-  .current-page div button:hover {
+  .button-creat-garage:hover, 
+  .container-button-garage button:hover, 
+  .button-select:hover, 
+  .button-remove:hover,
+  .prev-button:hover,
+  .next-button:hover {
     color: rgb(46, 23, 23);
     background-color: azure;
   }
+
 }

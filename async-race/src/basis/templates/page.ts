@@ -1,3 +1,5 @@
+import { createGarageCar, Cars } from "./car";
+
 abstract class Page {
   protected container: HTMLElement;
 
@@ -16,6 +18,8 @@ abstract class Page {
   protected createTitleHeader(text: string) {
     const headerTitle = document.createElement("h1");
     headerTitle.innerText = text;
+    headerTitle.style.color = `rgb(202 233 202)`;
+    headerTitle.style.marginTop = `30px`;
     return headerTitle;
   }
 
@@ -23,6 +27,8 @@ abstract class Page {
   protected createNumberPage(text: string) {
     const numberPage = document.createElement("h2");
     numberPage.innerText = text;
+    numberPage.style.color = `rgb(202 233 202)`;
+    numberPage.style.marginBottom = `20px`;
     return numberPage;
   }
 
@@ -32,8 +38,11 @@ abstract class Page {
     const inputGarage = document.createElement("input");
     const checkboxGarage = document.createElement("input");
     const buttonCreatGarage = document.createElement("button");
-    checkboxGarage.setAttribute("type", "checkbox");
+
+    buttonCreatGarage.className = "button-creat-garage";
+    checkboxGarage.setAttribute("type", "color");
     buttonCreatGarage.innerText = "CREAT";
+
     containerInputGarage.append(inputGarage);
     containerInputGarage.append(checkboxGarage);
     containerInputGarage.append(buttonCreatGarage);
@@ -46,7 +55,10 @@ abstract class Page {
     const inputGarage = document.createElement("input");
     const checkboxGarage = document.createElement("input");
     const buttonCreatGarage = document.createElement("button");
-    checkboxGarage.setAttribute("type", "checkbox");
+
+    buttonCreatGarage.className = "button-creat-garage";
+    checkboxGarage.setAttribute("type", "color");
+
     buttonCreatGarage.innerText = "UPDATE";
     containerInputGarage.append(inputGarage);
     containerInputGarage.append(checkboxGarage);
@@ -60,6 +72,8 @@ abstract class Page {
     const buttonRaceGarage = document.createElement("button");
     const buttonResetGarage = document.createElement("button");
     const buttonGenerateCarsGarage = document.createElement("button");
+
+    containerButtonGarage.className = "container-button-garage";
 
     buttonRaceGarage.innerText = "RACE";
     buttonResetGarage.innerText = "RESET";
@@ -105,10 +119,18 @@ abstract class Page {
     buttonTablePrev.innerText = "prev";
     buttonTableNext.innerText = "next";
 
+    buttonTablePrev.className = "prev-button";
+    buttonTableNext.className = "next-button";
+
     containerButtonTableWinner.append(buttonTablePrev);
     containerButtonTableWinner.append(buttonTableNext);
 
     return containerButtonTableWinner;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  protected createGarageCars(data: Array<Cars>, ind: number) {
+    return createGarageCar(data, ind);
   }
 
   render() {
