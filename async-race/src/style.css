@@ -56,7 +56,12 @@ body {
   cursor: pointer;
 }
 
+.current-page div input[type=color]:disabled {
+  cursor: default;
+}
+
 .button-creat-garage,
+.button-update-garage,
 .container-button-garage button,
 .button-select,
 .button-remove,
@@ -71,6 +76,12 @@ body {
   font-size: 14px;
   cursor: pointer;
   transition: 0.5s;
+}
+
+.button-update-garage:disabled {
+  background-color: rgb(64, 60, 57);;
+  color: rgb(160, 166, 166);
+  cursor: default;
 }
 
 .prev-button,
@@ -150,7 +161,8 @@ body {
   .button-select:hover, 
   .button-remove:hover,
   .prev-button:hover,
-  .next-button:hover {
+  .next-button:hover,
+  .button-update-garage[disabled=false]:hover  {
     color: rgb(46, 23, 23);
     background-color: azure;
   }

@@ -40,6 +40,8 @@ abstract class Page {
     const buttonCreatGarage = document.createElement("button");
 
     buttonCreatGarage.className = "button-creat-garage";
+    inputGarage.className = "input-creat-car";
+    checkboxGarage.className = "color-creat-car";
     checkboxGarage.setAttribute("type", "color");
     buttonCreatGarage.innerText = "CREAT";
 
@@ -53,13 +55,19 @@ abstract class Page {
   protected createSecondInputGarage() {
     const containerInputGarage = document.createElement("div");
     const inputGarage = document.createElement("input");
-    const checkboxGarage = document.createElement("input");
+    const checkboxGarage: HTMLInputElement = document.createElement("input");
     const buttonCreatGarage = document.createElement("button");
 
-    buttonCreatGarage.className = "button-creat-garage";
-    checkboxGarage.setAttribute("type", "color");
+    buttonCreatGarage.className = "button-update-garage";
+    checkboxGarage.className = "checkbox-update-garage";
+    inputGarage.className = "input-update-garage";
 
+    checkboxGarage.setAttribute("type", "color");
     buttonCreatGarage.innerText = "UPDATE";
+    buttonCreatGarage.setAttribute("disabled", "true");
+    checkboxGarage.setAttribute("disabled", "true");
+    inputGarage.setAttribute("disabled", "true");
+
     containerInputGarage.append(inputGarage);
     containerInputGarage.append(checkboxGarage);
     containerInputGarage.append(buttonCreatGarage);

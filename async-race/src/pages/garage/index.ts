@@ -30,16 +30,19 @@ class GaragePage extends Page {
     this.container.append(buttons);
     this.container.append(title);
     this.container.append(numberPage);
+
     fetch("http://127.0.0.1:3000/garage")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        for (let i = 0; i < 4; i += 1) {
+        const len = data.length;
+        for (let i = len - 1; i >= 0; i -= 1) {
           this.container.append(this.createGarageCars(data, i));
         }
         this.container.append(tablePageButton);
       });
+
     return this.container;
   }
 }
