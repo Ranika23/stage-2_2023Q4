@@ -1,8 +1,10 @@
 import Page from "../../basis/templates/page";
+import { getCountCars, movePrevNext } from "../../basis/templates/car";
+import { getNumberPage, saveNumberPage } from "../fetch/index";
 
 const enum Count {
-  Car = "4",
-  Pages = "1",
+  Car = " ",
+  Pages = "",
 }
 class GaragePage extends Page {
   static TextObj = {
@@ -10,7 +12,7 @@ class GaragePage extends Page {
   };
 
   static TextPage = {
-    Page: `Page #${Count.Pages}`,
+    Page: `Page #${getNumberPage()}`,
   };
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -20,31 +22,31 @@ class GaragePage extends Page {
 
   render() {
     const title = this.createTitleHeader(GaragePage.TextObj.Headline);
-    const numberPage = this.createNumberPage(GaragePage.TextPage.Page);
+    const numberStartPage = this.createNumberPage(GaragePage.TextPage.Page);
     const firstInput = this.createFirstInputGarage();
     const secondInput = this.createSecondInputGarage();
     const buttons = this.createButtonGarage();
     const tablePageButton = this.createTableButton();
     // const garageCars = this.createGarageCars();
 
-    numberPage.className = "number-page";
+    numberStartPage.className = "number-page";
 
     this.container.append(firstInput);
     this.container.append(secondInput);
     this.container.append(buttons);
     this.container.append(title);
-    this.container.append(numberPage);
+    this.container.append(numberStartPage);
 
     fetch("http://127.0.0.1:3000/garage")
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        const len = data.length;
-        for (let i = len - 1; i >= 0; i -= 1) {
-          this.container.append(this.createGarageCars(data, i));
-        }
+      .then(() => {
         this.container.append(tablePageButton);
+        const numberPage = Number(getNumberPage());
+        saveNumberPage(numberPage);
+        movePrevNext(numberPage);
+        getCountCars();
       });
 
     return this.container;

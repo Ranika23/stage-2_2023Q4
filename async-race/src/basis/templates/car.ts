@@ -1,5 +1,10 @@
+/* eslint-disable no-alert */
 // eslint-disable-next-line import/no-cycle
-import { clickUpdateCar } from "../../pages/fetch/index";
+import {
+  clickUpdateCar,
+  getNumberPage,
+  saveNumberPage,
+} from "../../pages/fetch/index";
 // eslint-disable-next-line import/prefer-default-export
 export const enum Car {
   Fill = "white",
@@ -13,8 +18,6 @@ export interface Cars {
 }
 
 export function createGarageCar(data: Array<Cars>, ind: number) {
-  // eslint-disable-next-line no-console
-  console.log(data);
   const NameCar = data[ind].name as string;
   const Fill = data[ind].color as string;
   const containerGarageCar = document.createElement("div");
@@ -101,6 +104,7 @@ function updateCar(elem: HTMLElement) {
   const color = document.querySelector(
     ".checkbox-update-garage",
   ) as HTMLInputElement;
+
   const nameNode = elem.parentNode?.childNodes[2] as HTMLElement;
   const name = nameNode.innerHTML;
   const input = document.querySelector(
@@ -171,6 +175,7 @@ export function clickSelectCar() {
     const elem = e.target as HTMLElement;
     if (elem.classList[0] === "button-select") {
       updateCar(elem);
+
       const car = elem.parentNode?.parentNode?.childNodes[1].childNodes[0]
         .childNodes[2] as HTMLElement;
 
@@ -179,4 +184,93 @@ export function clickSelectCar() {
     }
   }
   document.addEventListener("click", select);
+}
+
+export function getCountCars() {
+  fetch("http://127.0.0.1:3000/garage")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const lenDate = data.length;
+      const garage = document.querySelector("h1") as HTMLElement;
+      // const page = document.querySelector("h2") as HTMLElement;
+
+      garage.innerHTML = `Garage (${lenDate})`;
+      // page.innerHTML = `Page #${1}`;
+    });
+}
+
+export function movePrevNext(numberPage: number) {
+  const cars = document.querySelectorAll(".container-garage-cars");
+  const pageActive = numberPage;
+  fetch("http://127.0.0.1:3000/garage")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const lenDate = data.length;
+      const pages = Math.floor((lenDate - (lenDate % 7)) / 7) + 1;
+      const page = document.querySelector("h2") as HTMLElement;
+
+      page.innerHTML = `Page #${numberPage}`;
+
+      for (let y = 1; y <= pages; y += 1) {
+        if (y === pageActive) {
+          const startPoint = lenDate - (pageActive - 1) * 7;
+
+          let endPoint;
+          if (lenDate - (pageActive - 1) * 7 - 7 < 0) endPoint = 0;
+          else endPoint = lenDate - (pageActive - 1) * 7 - 7;
+
+          for (let i = endPoint; i < startPoint; i += 1) {
+            for (let k = 0; k < cars.length; k += 1) {
+              cars[k].remove();
+            }
+            const containerGarageCar = createGarageCar(data, i);
+            document.querySelector(".number-page")?.after(containerGarageCar);
+
+            getCountCars();
+          }
+        }
+      }
+    });
+  return pageActive;
+}
+
+export function clickNextPage() {
+  fetch("http://127.0.0.1:3000/garage")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const maxCountPage = Math.ceil(data.length / 7);
+      const next = document.querySelector(".next-button");
+      function clickNext() {
+        const numberPage = Number(getNumberPage());
+        if (numberPage < maxCountPage) {
+          movePrevNext(numberPage + 1);
+          saveNumberPage(numberPage + 1);
+        }
+      }
+      next?.addEventListener("click", clickNext);
+    });
+}
+
+export function clickPrevPage() {
+  fetch("http://127.0.0.1:3000/garage")
+    .then((response) => {
+      return response.json();
+    })
+    .then(() => {
+      const next = document.querySelector(".prev-button");
+      function clickNext() {
+        const numberPage = Number(getNumberPage());
+        if (numberPage > 1) {
+          movePrevNext(numberPage - 1);
+          saveNumberPage(numberPage - 1);
+        }
+      }
+      next?.addEventListener("click", clickNext);
+    });
 }

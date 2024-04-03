@@ -91,6 +91,12 @@ body {
   background-color: rgb(55 39 25);
 }
 
+.prev-button:disabled,
+.next-button:disabled {
+  background-color: rgb(39, 37, 36);
+  cursor: default;
+}
+
 .container-garage-cars {
   display: flex;
   flex-direction: column;
@@ -160,9 +166,9 @@ body {
   .container-button-garage button:hover, 
   .button-select:hover, 
   .button-remove:hover,
-  .prev-button:hover,
-  .next-button:hover,
-  .button-update-garage[disabled=false]:hover  {
+  .prev-button:active:hover,
+  .next-button:active:hover,
+  .button-update-garage:active:hover  {
     color: rgb(46, 23, 23);
     background-color: azure;
   }
