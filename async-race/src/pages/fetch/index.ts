@@ -55,7 +55,11 @@ export function clickRemoveNewCar() {
   });
 }
 
-export function clickUpdateCar(elem: HTMLElement, id: string) {
+export function clickUpdateCar(
+  elem: HTMLElement,
+  id: string,
+  car: HTMLElement,
+) {
   function check() {
     const colorNode = document.querySelector(
       ".checkbox-update-garage",
@@ -65,29 +69,32 @@ export function clickUpdateCar(elem: HTMLElement, id: string) {
       ".input-update-garage",
     ) as HTMLInputElement;
     const name = nameNode.value;
-    if (color.length > 0) {
-      fetch(`http://127.0.0.1:3000/garage/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: `${name}`,
-        }),
-      }).then((res) => res.json());
-    }
-    if (name.length > 0) {
-      fetch(`http://127.0.0.1:3000/garage/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: `${name}`,
-        }),
-      }).then((res) => res.json());
-    }
 
+    if (name.length > 0 && car.classList[0] === "update") {
+      fetch(`http://127.0.0.1:3000/garage/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${name}`,
+          color: `${color}`,
+        }),
+      }).then((res) => res.json());
+    } else if (name.length === 0 && car.classList[0] === "update") {
+      const nameNod = elem.parentNode?.parentNode?.childNodes[0]
+        .childNodes[2] as HTMLElement;
+      fetch(`http://127.0.0.1:3000/garage/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${nameNod}`,
+          color: `${color}`,
+        }),
+      }).then((res) => res.json());
+    }
     // eslint-disable-next-line no-param-reassign
 
     changeColorNameCar(elem, color, name);
-    disabledUpdateCar();
+    disabledUpdateCar(car);
   }
 
   document

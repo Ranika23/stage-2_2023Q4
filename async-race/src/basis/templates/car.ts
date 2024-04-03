@@ -115,7 +115,7 @@ function updateCar(elem: HTMLElement) {
   return name;
 }
 
-export function disabledUpdateCar() {
+export function disabledUpdateCar(car: HTMLElement) {
   const button = document.querySelector(
     ".button-update-garage",
   ) as HTMLButtonElement;
@@ -129,6 +129,8 @@ export function disabledUpdateCar() {
   color.disabled = true;
   button.disabled = true;
   input.disabled = true;
+
+  car.classList.remove("update");
 }
 
 export function changeColorNameCar(
@@ -140,10 +142,10 @@ export function changeColorNameCar(
     .childNodes[2] as HTMLElement;
   const nameNode = elem.parentNode?.parentNode?.childNodes[0]
     .childNodes[2] as HTMLElement;
-  if (name.length > 0) {
+  if (name.length > 0 && car.classList[0] === "update") {
     nameNode.innerHTML = name;
   }
-  if (color.length > 0) {
+  if (color.length > 0 && car.classList[0] === "update") {
     car.innerHTML = `<svg fill = "${color}" version="1.1" class="shape1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
     width="79.536px" height="59.536px" viewBox="0 0 79.536 54.536" style="enable-background:new 0 0 79.536 79.536;"
     xml:space="preserve">
@@ -173,7 +175,7 @@ export function clickSelectCar() {
         .childNodes[2] as HTMLElement;
 
       car.classList.add("update");
-      clickUpdateCar(elem, elem.classList[1]);
+      clickUpdateCar(elem, elem.classList[1], car);
     }
   }
   document.addEventListener("click", select);

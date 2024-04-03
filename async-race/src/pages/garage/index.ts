@@ -1,12 +1,16 @@
 import Page from "../../basis/templates/page";
 
+const enum Count {
+  Car = "4",
+  Pages = "1",
+}
 class GaragePage extends Page {
   static TextObj = {
-    Headline: "Garage (4)",
+    Headline: `Garage (${Count.Car})`,
   };
 
   static TextPage = {
-    Page: "Page #1",
+    Page: `Page #${Count.Pages}`,
   };
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor

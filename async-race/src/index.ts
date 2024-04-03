@@ -4,7 +4,7 @@ import {
   clickRemoveNewCar,
   // clickUpdateCar,
 } from "./pages/fetch/index";
-// import { clickSelectCar } from "./basis/templates/car";
+import { clickSelectCar } from "./basis/templates/car";
 
 import App from "./pages/app/index";
 
@@ -28,4 +28,4 @@ fetch("http://127.0.0.1:3000/garage")
 
 clickCreatNewCar();
 clickRemoveNewCar();
-// clickSelectCar();
+clickSelectCar();
