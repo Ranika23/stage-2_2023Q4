@@ -82,6 +82,7 @@ abstract class Page {
     const buttonGenerateCarsGarage = document.createElement("button");
 
     containerButtonGarage.className = "container-button-garage";
+    buttonGenerateCarsGarage.className = "generate-button";
 
     buttonRaceGarage.innerText = "RACE";
     buttonResetGarage.innerText = "RESET";

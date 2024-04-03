@@ -8,6 +8,7 @@ import {
   clickSelectCar,
   clickNextPage,
   clickPrevPage,
+  generateCars,
 } from "./basis/templates/car";
 
 import App from "./pages/app/index";
@@ -37,3 +38,4 @@ clickNextPage();
 clickPrevPage();
 
 // movePrevNext();
+generateCars();

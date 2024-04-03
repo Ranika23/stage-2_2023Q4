@@ -4,6 +4,7 @@ import {
   clickUpdateCar,
   getNumberPage,
   saveNumberPage,
+  clickCreatRandomCar,
 } from "../../pages/fetch/index";
 // eslint-disable-next-line import/prefer-default-export
 export const enum Car {
@@ -273,4 +274,144 @@ export function clickPrevPage() {
       }
       next?.addEventListener("click", clickNext);
     });
+}
+
+function shuffle(arr: string[]) {
+  const array = arr.slice();
+  let j;
+  let temp;
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = array[j];
+    array[j] = array[i];
+    array[i] = temp;
+  }
+  return array;
+}
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i += 1) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+export function generateCars() {
+  const nameCars = [
+    "BMW IX",
+    "BMW XM",
+    "BMW 3GT",
+    "BMW 5GT",
+    "BMW 6GT",
+    "BMW X1",
+    "BMW X2",
+    "BMW X3",
+    "BMW X4",
+    "BMW X5",
+    "CHERY COWIN",
+    "CHERY EASTAR",
+    "CHERY INDIS",
+    "CHERY M11",
+    "CHERY QQ",
+    "CHERY TIGGO",
+    "CHERY VERY",
+    "CHERY FORA",
+    "CHERY XAMULET5",
+    "CHERY TIGGO 7",
+    "ALFA ROMEO 147",
+    "ALFA ROMEO 155",
+    "ALFA ROMEO 156",
+    "ALFA ROMEO 159",
+    "ALFA ROMEO 166",
+    "ALFA ROMEO BRERA",
+    "ALFA ROMEO GIULIETTA",
+    "ALFA ROMEO MITO",
+    "ALFA ROMEO SPIDER",
+    "ALFA ROMEO STELVIO Q4",
+    "CADILLAC ESCALADE",
+    "CADILLAC SRX",
+    "CADILLAC CTX",
+    "CADILLAC STS",
+    "CADILLAC ATS",
+    "CADILLAC XTS",
+    "CADILLAC XLR",
+    "CADILLAC ELR",
+    "CADILLAC CATERA",
+    "CADILLAC CT6",
+    "CHEVROLET AVEO",
+    "CHEVROLET VOLT",
+    "CHEVROLET VIVA",
+    "CHEVROLET TRAILBLAZER",
+    "CHEVROLET TAHOE",
+    "CHEVROLET SPARK",
+    "CHEVROLET SONIC",
+    "CHEVROLET ORLANDO",
+    "CHEVROLET NIVA",
+    "CHEVROLET MATIZ",
+    "CITROEN C-CROSSER",
+    "CITROEN XSARA",
+    "CITROEN SAXO",
+    "CITROEN JUMPER",
+    "CITROEN DS5",
+    "CITROEN DS4",
+    "CITROEN DS3",
+    "CITROEN C8",
+    "CITROEN C4 PICASSO",
+    "CITROEN C-ZERO",
+    "DODGE AVENGER",
+    "DODGE CALIBER",
+    "DODGE CHARGER",
+    "DODGE DURANGO",
+    "DODGE CARAVAN",
+    "DODGE INTREPID",
+    "DODGE MAGNUM",
+    "DODGE NEON",
+    "DODGE NITRO",
+    "DODGE RAM",
+    "FORD ECOSPORT",
+    "FORD TAURUS",
+    "FORD SHELBY",
+    "FORD S-MAX",
+    "FORD PUMA",
+    "FORD MUSTANG",
+    "FORD MONDEO",
+    "FORD MAVERICK",
+    "FORD KUGA",
+    "FORD KA",
+    "HONDA CIVIC",
+    "HONDA S2000",
+    "HONDA RIDGELINE",
+    "HONDA PRELUDE",
+    "HONDA PILOT",
+    "HONDA PASSPORT",
+    "HONDA ODYSSEY",
+    "HONDA LEGEND",
+    "HONDA JAZZ",
+    "HONDA PROLOGUE",
+    "MERCEDES EQS SUV",
+    "MERCEDES EQS 580",
+    "MERCEDES GLA",
+    "MERCEDES GLC",
+    "MERCEDES GLE",
+    "MERCEDES GLS",
+    "MERCEDES SLS",
+    "MERCEDES SLK",
+    "MERCEDES SL",
+    "MERCEDES GLK",
+  ];
+  document.querySelector(".generate-button")?.addEventListener("click", () => {
+    const randomCars = shuffle(nameCars);
+    for (let i = 0; i < randomCars.length; i += 1) {
+      const color = getRandomColor();
+      const name = randomCars[i];
+      clickCreatRandomCar(name, color);
+    }
+    const numberPage = getNumberPage();
+    getCountCars();
+    movePrevNext(numberPage);
+    clickNextPage();
+    clickPrevPage();
+  });
 }
