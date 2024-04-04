@@ -88,6 +88,10 @@ abstract class Page {
     buttonResetGarage.innerText = "RESET";
     buttonGenerateCarsGarage.innerText = "GENERATE CARS";
 
+    buttonRaceGarage.className = "race-button";
+    buttonResetGarage.className = "reset-button";
+    buttonResetGarage.setAttribute("disabled", "true");
+
     containerButtonGarage.append(buttonRaceGarage);
     containerButtonGarage.append(buttonResetGarage);
     containerButtonGarage.append(buttonGenerateCarsGarage);

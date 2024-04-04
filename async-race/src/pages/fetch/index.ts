@@ -210,3 +210,91 @@ export function clickStopMove() {
 
   document.addEventListener("click", stopMove, { once: true });
 }
+
+export function clickStartAllCars() {
+  function startMoveAll() {
+    const resetButton = document.querySelector(".reset-button");
+    const raceButton = document.querySelector(".race-button");
+    const allCars = document.querySelectorAll(".container-garage-cars");
+    for (let i = 0; i < allCars.length; i += 1) {
+      const elem = allCars[i].childNodes[1].childNodes[0]
+        .childNodes[0] as HTMLElement;
+      const buttonB = elem.parentNode?.childNodes[1] as HTMLElement;
+
+      elem.classList.add("disabled");
+      elem.setAttribute("disabled", "true");
+      raceButton?.classList.add("disabled");
+      raceButton?.setAttribute("disabled", "true");
+      buttonB.classList.add("active");
+      buttonB.removeAttribute("disabled");
+      resetButton?.classList.add("active");
+      resetButton?.removeAttribute("disabled");
+
+      const idCar = elem.classList[1];
+      fetch(`http://127.0.0.1:3000/engine?id=${idCar}&status=started`, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const veloSity = Number(data.velocity) * 1000;
+          const disTance = Number(data.distance);
+          const time = disTance / veloSity;
+          const car = elem.parentNode?.childNodes[2] as HTMLElement;
+          car.className = "move-car";
+          car.style.animation = `moveCar forwards ${time}s`;
+          fetch(`http://127.0.0.1:3000/engine?id=${idCar}&status=drive`, {
+            method: "PATCH",
+          })
+            .then((res) => res.json())
+            .catch(() => {
+              car.style.animationPlayState = "paused";
+            });
+        });
+    }
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    clickStopAllCars();
+  }
+
+  document
+    .querySelector(".race-button")
+    ?.addEventListener("click", startMoveAll, { once: true });
+}
+
+export function clickStopAllCars() {
+  function stopMoveAll() {
+    const resetButton = document.querySelector(".reset-button");
+    const raceButton = document.querySelector(".race-button");
+    const allCars = document.querySelectorAll(".container-garage-cars");
+    for (let i = 0; i < allCars.length; i += 1) {
+      const elem = allCars[i].childNodes[1].childNodes[0]
+        .childNodes[1] as HTMLElement;
+
+      const buttonA = elem.parentNode?.childNodes[0] as HTMLElement;
+
+      buttonA.classList.remove("disabled");
+      buttonA.removeAttribute("disabled");
+      raceButton?.classList.remove("disabled");
+      raceButton?.removeAttribute("disabled");
+      elem.classList.remove("active");
+      elem.setAttribute("disabled", "true");
+      resetButton?.classList.remove("active");
+      resetButton?.setAttribute("disabled", "true");
+
+      const idCar = elem.classList[1];
+      fetch(`http://127.0.0.1:3000/engine?id=${idCar}&status=stopped`, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then(() => {
+          const car = elem.parentNode?.childNodes[2] as HTMLElement;
+          car.style.animation = "none";
+          car.classList.remove("move-car");
+        });
+    }
+    clickStartAllCars();
+  }
+
+  document
+    .querySelector(".reset-button")
+    ?.addEventListener("click", stopMoveAll, { once: true });
+}

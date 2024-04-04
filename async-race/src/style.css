@@ -84,6 +84,18 @@ body {
   cursor: default;
 }
 
+.reset-button:disabled {
+  background-color: rgb(64, 60, 57);;
+  color: rgb(160, 166, 166);
+  cursor: default;
+}
+
+.race-button.disabled {
+  background-color: rgb(64, 60, 57);;
+  color: rgb(160, 166, 166);
+  cursor: default;
+}
+
 .prev-button,
 .next-button {
   margin-top: 30px;
@@ -200,6 +212,13 @@ body {
   .button-update-garage:active:hover  {
     color: rgb(46, 23, 23);
     background-color: azure;
+  }
+
+  .reset-button:disabled:hover,
+  .race-button:disabled:hover {
+    background-color: rgb(64, 60, 57);;
+    color: rgb(160, 166, 166);
+    cursor: default;
   }
 
 }

@@ -5,6 +5,8 @@ import {
   getNumberPage,
   saveNumberPage,
   clickCreatRandomCar,
+  clickStartAllCars,
+  clickStopAllCars,
 } from "../../pages/fetch/index";
 // eslint-disable-next-line import/prefer-default-export
 export const enum Car {
@@ -240,6 +242,8 @@ export function movePrevNext(numberPage: number) {
         }
       }
     });
+  clickStartAllCars();
+  clickStopAllCars();
   return pageActive;
 }
 
