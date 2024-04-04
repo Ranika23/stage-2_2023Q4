@@ -239,6 +239,7 @@ export function clickStartAllCars() {
           const veloSity = Number(data.velocity) * 1000;
           const disTance = Number(data.distance);
           const time = disTance / veloSity;
+
           const car = elem.parentNode?.childNodes[2] as HTMLElement;
           car.className = "move-car";
           car.style.animation = `moveCar forwards ${time}s`;

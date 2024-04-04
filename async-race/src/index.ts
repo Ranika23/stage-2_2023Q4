@@ -4,7 +4,6 @@ import {
   clickRemoveNewCar,
   clickStartMove,
   clickStopMove,
-  // clickUpdateCar,
 } from "./pages/fetch/index";
 import {
   clickSelectCar,

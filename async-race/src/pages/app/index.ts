@@ -1,3 +1,16 @@
+import {
+  clickCreatNewCar,
+  clickRemoveNewCar,
+  clickStartMove,
+  clickStopMove,
+} from "../fetch/index";
+import {
+  clickSelectCar,
+  clickNextPage,
+  clickPrevPage,
+  generateCars,
+} from "../../basis/templates/car";
+
 import Page from "../../basis/templates/page";
 import GaragePage from "../garage/index";
 import WinnersPage from "../winners/index";
@@ -38,6 +51,16 @@ class App {
       pageHTML.id = App.defaultIdPage;
       pageHTML.className = App.defaultIdPage;
       document.body.append(pageHTML);
+
+      clickCreatNewCar();
+      clickRemoveNewCar();
+      clickSelectCar();
+      clickNextPage();
+      clickPrevPage();
+      clickStartMove();
+      clickStopMove();
+
+      generateCars();
     }
   }
 

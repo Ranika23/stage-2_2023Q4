@@ -119,6 +119,7 @@ abstract class Page {
     containerTitleTableWinner.append(titleTableName);
     containerTitleTableWinner.append(titleTableWins);
     containerTitleTableWinner.append(titleTableBestTime);
+
     return containerTitleTableWinner;
   }
 
