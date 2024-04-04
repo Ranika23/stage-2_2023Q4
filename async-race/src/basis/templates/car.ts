@@ -80,6 +80,8 @@ export function createGarageCar(data: Array<Cars>, ind: number) {
   containerGarageCarSecondLineRight.className = "container-garage-right";
   buttonA.className = "button-a";
   buttonB.className = "button-b";
+  buttonA.classList.add(`${data[ind].id}`);
+  buttonB.classList.add(`${data[ind].id}`);
   buttonFinal.className = "final-flag";
 
   buttonA.innerText = "A";

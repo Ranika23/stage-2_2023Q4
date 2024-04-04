@@ -2,6 +2,7 @@ import "./style.css";
 import {
   clickCreatNewCar,
   clickRemoveNewCar,
+  clickStartMove,
   // clickUpdateCar,
 } from "./pages/fetch/index";
 import {
@@ -36,6 +37,7 @@ clickRemoveNewCar();
 clickSelectCar();
 clickNextPage();
 clickPrevPage();
+clickStartMove();
 
 // movePrevNext();
 generateCars();

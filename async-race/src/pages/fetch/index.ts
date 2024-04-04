@@ -143,3 +143,32 @@ export function clickCreatRandomCar(name: string, color: string) {
     }),
   }).then((res) => res.json());
 }
+
+export function clickStartMove() {
+  function startMove(e: Event) {
+    const elem = e.target as HTMLElement;
+    if (elem.classList[0] === "button-a") {
+      const idCar = elem.classList[1];
+      fetch(`http://127.0.0.1:3000/engine?id=${idCar}&status=started`, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const veloSity = Number(data.velocity) * 1000;
+          const disTance = Number(data.distance);
+          const time = disTance / veloSity;
+          const car = elem.parentNode?.childNodes[2] as HTMLElement;
+          car.className = "move-car";
+          car.style.animation = `moveCar forwards ${time}s`;
+          fetch(`http://127.0.0.1:3000/engine?id=${idCar}&status=drive`, {
+            method: "PATCH",
+          })
+            .then((res) => res.json())
+            .catch(() => {
+              car.style.animationPlayState = "paused";
+            });
+        });
+    }
+  }
+  document.addEventListener("click", startMove);
+}
