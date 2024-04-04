@@ -87,6 +87,8 @@ export function createGarageCar(data: Array<Cars>, ind: number) {
   buttonA.innerText = "A";
   buttonB.innerText = "B";
 
+  buttonB.setAttribute("disabled", "true");
+
   containerGarageCarSecondLineLeft.append(buttonA);
   containerGarageCarSecondLineLeft.append(buttonB);
   containerGarageCarSecondLineLeft.append(carSvg);

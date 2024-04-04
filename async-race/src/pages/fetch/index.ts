@@ -148,6 +148,13 @@ export function clickStartMove() {
   function startMove(e: Event) {
     const elem = e.target as HTMLElement;
     if (elem.classList[0] === "button-a") {
+      const buttonB = elem.parentNode?.childNodes[1] as HTMLElement;
+
+      elem.classList.add("disabled");
+      elem.setAttribute("disabled", "true");
+      buttonB.classList.add("active");
+      buttonB.removeAttribute("disabled");
+
       const idCar = elem.classList[1];
       fetch(`http://127.0.0.1:3000/engine?id=${idCar}&status=started`, {
         method: "PATCH",
@@ -169,6 +176,37 @@ export function clickStartMove() {
             });
         });
     }
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    clickStopMove();
   }
-  document.addEventListener("click", startMove);
+
+  document.addEventListener("click", startMove, { once: true });
+}
+
+export function clickStopMove() {
+  function stopMove(e: Event) {
+    const elem = e.target as HTMLElement;
+    if (elem.classList[0] === "button-b") {
+      const buttonA = elem.parentNode?.childNodes[0] as HTMLElement;
+
+      buttonA.classList.remove("disabled");
+      buttonA.removeAttribute("disabled");
+      elem.classList.remove("active");
+      elem.setAttribute("disabled", "true");
+
+      const idCar = elem.classList[1];
+      fetch(`http://127.0.0.1:3000/engine?id=${idCar}&status=stopped`, {
+        method: "PATCH",
+      })
+        .then((res) => res.json())
+        .then(() => {
+          const car = elem.parentNode?.childNodes[2] as HTMLElement;
+          car.style.animation = "none";
+          car.classList.remove("move-car");
+        });
+    }
+    clickStartMove();
+  }
+
+  document.addEventListener("click", stopMove, { once: true });
 }

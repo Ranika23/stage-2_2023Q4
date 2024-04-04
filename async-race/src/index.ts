@@ -3,6 +3,7 @@ import {
   clickCreatNewCar,
   clickRemoveNewCar,
   clickStartMove,
+  clickStopMove,
   // clickUpdateCar,
 } from "./pages/fetch/index";
 import {
@@ -23,21 +24,13 @@ export interface Cars {
 const app = new App();
 app.run();
 
-fetch("http://127.0.0.1:3000/garage")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    // eslint-disable-next-line no-console
-    console.log(data[0].id);
-  });
-
 clickCreatNewCar();
 clickRemoveNewCar();
 clickSelectCar();
 clickNextPage();
 clickPrevPage();
 clickStartMove();
+clickStopMove();
 
 // movePrevNext();
 generateCars();

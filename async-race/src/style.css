@@ -127,11 +127,24 @@ body {
 .button-a {
   border-color: rgb(35, 176, 92);
   color: rgb(35, 176, 92);
+  cursor: pointer;
+}
+
+.button-a.disabled {
+  border-color: rgb(66, 103, 81);
+  color: rgb(80, 119, 96);
+  cursor: default;
 }
 
 .button-b {
   border-color: rgb(73, 83, 73);
   color: rgb(73, 83, 73);
+}
+
+.button-b.active {
+  border-color: rgb(240, 73, 12);
+  color: rgb(178, 62, 30);
+  cursor: pointer;
 }
 
 .container-garage-right {
