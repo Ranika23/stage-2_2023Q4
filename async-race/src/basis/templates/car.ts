@@ -208,6 +208,22 @@ export function getCountCars() {
     });
 }
 
+export function getCountCarsWinners() {
+  fetch("http://127.0.0.1:3000/garage")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const numberPage = Number(getNumberPage());
+      const lenDate = data.length;
+      const garage = document.querySelector("h1") as HTMLElement;
+      const page = document.querySelector("h2") as HTMLElement;
+
+      garage.innerHTML = `Winners (${lenDate})`;
+      page.innerHTML = `Page #${numberPage}`;
+    });
+}
+
 export function movePrevNext(numberPage: number) {
   const cars = document.querySelectorAll(".container-garage-cars");
   const pageActive = numberPage;

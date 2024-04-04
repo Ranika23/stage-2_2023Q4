@@ -1,4 +1,6 @@
 import Page from "../../basis/templates/page";
+import { getNumberPage } from "../fetch/index";
+import { getCountCarsWinners } from "../../basis/templates/car";
 
 class WinnersPage extends Page {
   static TextObj = {
@@ -6,7 +8,7 @@ class WinnersPage extends Page {
   };
 
   static TextPage = {
-    Page: "Page #1",
+    Page: `Page #${getNumberPage()}`,
   };
 
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -23,6 +25,8 @@ class WinnersPage extends Page {
     this.container.append(numberPage);
     this.container.append(tablePage);
     this.container.append(tablePageButton);
+
+    getCountCarsWinners();
     return this.container;
   }
 }

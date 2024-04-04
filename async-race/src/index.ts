@@ -32,5 +32,4 @@ clickPrevPage();
 clickStartMove();
 clickStopMove();
 
-// movePrevNext();
 generateCars();

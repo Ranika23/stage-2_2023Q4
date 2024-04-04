@@ -1,6 +1,20 @@
 import Page from "../../basis/templates/page";
-import { getCountCars, movePrevNext } from "../../basis/templates/car";
-import { getNumberPage, saveNumberPage } from "../fetch/index";
+import {
+  getCountCars,
+  movePrevNext,
+  clickSelectCar,
+  clickNextPage,
+  clickPrevPage,
+  generateCars,
+} from "../../basis/templates/car";
+import {
+  getNumberPage,
+  saveNumberPage,
+  clickCreatNewCar,
+  clickRemoveNewCar,
+  clickStartMove,
+  clickStopMove,
+} from "../fetch/index";
 
 const enum Count {
   Car = " ",
@@ -48,6 +62,16 @@ class GaragePage extends Page {
         movePrevNext(numberPage);
         getCountCars();
       });
+
+    clickCreatNewCar();
+    clickRemoveNewCar();
+    clickSelectCar();
+    clickNextPage();
+    clickPrevPage();
+    clickStartMove();
+    clickStopMove();
+
+    generateCars();
 
     return this.container;
   }
