@@ -10,3 +10,16 @@ export function getUserSession() {
     return JSON.parse(userSession);
   }
 }
+
+// eslint-disable-next-line import/prefer-default-export
+export function saveUser(userName: string) {
+  localStorage.setItem("userName", JSON.stringify(userName));
+}
+
+// eslint-disable-next-line consistent-return
+export function getUser() {
+  const user: string | null = localStorage.getItem("userName");
+  if (user !== null) {
+    return JSON.parse(user);
+  }
+}

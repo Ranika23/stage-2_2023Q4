@@ -1,4 +1,5 @@
 import Pages from "../../basic/pages";
+import { getUser } from "../local-storage/index";
 
 class Main extends Pages {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -60,7 +61,7 @@ class Main extends Pages {
 
     sectionMain1ButtonTwo.innerText = "EXIT";
     buttonHref.href = "#login";
-    sectionMain1ArticlLabel1.innerText = `User: ${123}`;
+    sectionMain1ArticlLabel1.innerText = `User: ${getUser()}`;
     sectionMain1ArticlLabel2.innerText = "FUN CHAT";
 
     sectionMain2ArticlFormInput.placeholder = "Message...";
