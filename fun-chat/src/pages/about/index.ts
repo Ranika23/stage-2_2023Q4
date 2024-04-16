@@ -1,4 +1,5 @@
 import Pages from "../../basic/pages";
+import { getUserSession } from "../local-storage/index";
 
 enum TextAbout {
   title = "FUN CHAT",
@@ -30,7 +31,9 @@ class About extends Pages {
     buttonHref.className = "about-container__msg-button-link";
     button.className = "about__button";
 
-    buttonHref.href = "#login";
+    if (getUserSession() === "true") buttonHref.href = "#main";
+    if (getUserSession() === "false") buttonHref.href = "#login";
+
     button.innerText = "BACK";
 
     msgTitle.innerText = TextAbout.title;

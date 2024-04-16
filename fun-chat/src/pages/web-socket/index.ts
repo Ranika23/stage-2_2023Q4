@@ -1,5 +1,12 @@
+import ErrorPage from "../error/index";
+// import { saveUserSession } from "../local-storage/index";
+
 class OpenConnection {
-  static Open(idUser: string, nameUser: string, passwordUser: string) {
+  static UserAuthentication(
+    idUser: string,
+    nameUser: string,
+    passwordUser: string,
+  ) {
     const msg: object = {
       id: idUser,
       type: "USER_LOGIN",
@@ -18,7 +25,8 @@ class OpenConnection {
     myWS.onmessage = (event) => {
       if (JSON.parse(event.data).type === "USER_LOGIN") {
         window.location.href = "#main";
-      }
+        // saveUserSession(JSON.parse(event.data).payload.user.isLogined);
+      } else ErrorPage.ErrorLogIn(JSON.parse(event.data).payload.error);
     };
   }
 }

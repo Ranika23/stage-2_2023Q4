@@ -14,8 +14,14 @@ class ErrorPage extends Pages {
     headerTitle.innerText = "Error! The Page was not found or was deleted...";
     headerTitle.style.color = `rgb(202 233 202)`;
     headerTitle.style.marginTop = `30px`;
-    headerTitle.style.color = `grey`;
+    headerTitle.style.color = `#ffeded`;
     return headerTitle;
+  }
+
+  static ErrorLogIn(error: string) {
+    const divError = document.querySelector(".error-login-form") as HTMLElement;
+    divError.classList.add("open");
+    divError.innerText = error;
   }
 
   render() {
