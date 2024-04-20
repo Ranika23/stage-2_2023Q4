@@ -1,5 +1,5 @@
 import OpenConnection from "../web-socket/index";
-import { saveUser } from "../local-storage/index";
+import { saveUser, getUser } from "../local-storage/index";
 
 class EventSubmit {
   static submitForm() {
@@ -13,14 +13,30 @@ class EventSubmit {
         ".login-form__password-input input",
       );
       const nameUser = inputName?.value as string;
-      saveUser(nameUser);
+      saveUser(
+        nameUser,
+        `${inputPassword?.value}`,
+        `${nameUser}${inputPassword?.value}`,
+      );
 
       OpenConnection.UserAuthentication(
-        `${nameUser}${inputPassword?.value}`,
+        `1`,
         `${nameUser}`,
         `${inputPassword?.value}`,
       );
     });
+  }
+
+  static clickLogOut() {
+    document
+      .querySelector(".main-container__section1-button")
+      ?.addEventListener("click", () => {
+        OpenConnection.UserLogOut(
+          `${1}`,
+          `${getUser().name}`,
+          `${getUser().password}`,
+        );
+      });
   }
 }
 

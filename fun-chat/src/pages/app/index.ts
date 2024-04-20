@@ -5,22 +5,36 @@ import About from "../about/index";
 import ErrorPage from "../error/index";
 import EventSubmit from "../event/index";
 import { saveUserSession, getUserSession } from "../local-storage/index";
+import OpenConnection from "../web-socket/index";
+// import OpenConnection from "../web-socket/index";
 
 class App {
   private container: HTMLElement;
 
   private initialPage: Login;
 
+  constructor() {
+    this.container = document.body;
+    this.initialPage = new Login("login");
+  }
+
   static renderNewPage(idPage: string) {
     document.body.innerHTML = "";
     let page: Pages | null = null;
 
-    if (idPage === "login") {
+    if (idPage === "main") {
+      page = new Main(idPage);
+
+      setInterval(() => {
+        OpenConnection.UsersUnauthorized();
+        OpenConnection.GetUsersAuthenticated();
+      }, 4000);
+
+      saveUserSession("true");
+    } else if (idPage === "login") {
       page = new Login(idPage);
       saveUserSession("false");
-    } else if (idPage === "main") {
-      page = new Main(idPage);
-      saveUserSession("true");
+      // clearInterval(timerId);
     } else if (idPage === "about") {
       page = new About(idPage);
     } else {
@@ -30,6 +44,7 @@ class App {
     if (page) {
       const pageHTML = page.render();
       document.body.append(pageHTML);
+      EventSubmit.clickLogOut();
     }
   }
 
@@ -40,11 +55,6 @@ class App {
       EventSubmit.submitForm();
     }
     window.addEventListener("hashchange", hashChange);
-  }
-
-  constructor() {
-    this.container = document.body;
-    this.initialPage = new Login("login");
   }
 
   // eslint-disable-next-line class-methods-use-this

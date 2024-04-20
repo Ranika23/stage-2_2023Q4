@@ -1,5 +1,6 @@
 import Pages from "../../basic/pages";
 import { getUser } from "../local-storage/index";
+import OpenConnection from "../web-socket/index";
 
 class Main extends Pages {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -25,7 +26,7 @@ class Main extends Pages {
     const sectionMain2Article = document.createElement("article");
 
     const sectionMain2AsideInput = document.createElement("input");
-    const sectionMain2AsideUl = document.createElement("ul");
+    const sectionMain2AsideUl = document.createElement("ol");
 
     const sectionMain2ArticlArticle1 = document.createElement("article");
     const sectionMain2ArticlArticle2 = document.createElement("article");
@@ -58,10 +59,9 @@ class Main extends Pages {
 
     sectionMain2ArticlArticle1.className = "main-container__section2-article1";
     sectionMain2ArticlArticle2.className = "main-container__section2-article2";
-
     sectionMain1ButtonTwo.innerText = "EXIT";
     buttonHref.href = "#login";
-    sectionMain1ArticlLabel1.innerText = `User: ${getUser()}`;
+    sectionMain1ArticlLabel1.innerText = `User: ${getUser().name}`;
     sectionMain1ArticlLabel2.innerText = "FUN CHAT";
 
     sectionMain2ArticlFormInput.placeholder = "Message...";
@@ -116,6 +116,8 @@ class Main extends Pages {
   }
 
   render() {
+    OpenConnection.GetUsersAuthenticated();
+    OpenConnection.UsersUnauthorized();
     const main = this.creatContainerMain() as HTMLElement;
     this.container.append(main);
     return this.container;

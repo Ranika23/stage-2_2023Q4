@@ -12,8 +12,13 @@ export function getUserSession() {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export function saveUser(userName: string) {
-  localStorage.setItem("userName", JSON.stringify(userName));
+export function saveUser(userName: string, inputPassword: string, id: string) {
+  const user = {
+    idUser: id,
+    name: userName,
+    password: inputPassword,
+  };
+  localStorage.setItem("userName", JSON.stringify(user));
 }
 
 // eslint-disable-next-line consistent-return
