@@ -34,7 +34,6 @@ class App {
     } else if (idPage === "login") {
       page = new Login(idPage);
       saveUserSession("false");
-      // clearInterval(timerId);
     } else if (idPage === "about") {
       page = new About(idPage);
     } else {

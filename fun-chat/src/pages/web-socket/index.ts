@@ -1,5 +1,6 @@
+/* eslint-disable import/no-cycle */
 import ErrorPage from "../error/index";
-// import { saveUserSession } from "../local-storage/index";
+import EventSubmit from "../event/index";
 
 class OpenConnection {
   static UserAuthentication(
@@ -90,6 +91,7 @@ class OpenConnection {
             }
           }
           if (ulElement.innerHTML !== nameUser) listUser?.prepend(ulElement);
+          EventSubmit.searchUser();
         }
       }
     };
@@ -133,6 +135,7 @@ class OpenConnection {
             }
           }
           if (ulElement.innerHTML !== nameUser) listUser?.prepend(ulElement);
+          EventSubmit.searchUser();
         }
       }
     };
