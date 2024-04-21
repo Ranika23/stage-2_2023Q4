@@ -263,6 +263,7 @@ body {
 }
 
 .main-container__section2-aside ol li{
+  cursor: pointer;
   transition: 0.5s;
 }
 

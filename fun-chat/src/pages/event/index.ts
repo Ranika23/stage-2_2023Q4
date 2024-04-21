@@ -75,6 +75,33 @@ class EventSubmit {
     searchUsers();
     search?.addEventListener("input", searchUsers);
   }
+
+  static clickUserDialog() {
+    const listUser = document.querySelector("ol");
+    const titleDialog = document.querySelector(
+      ".main-container__section2-article1",
+    );
+
+    listUser?.addEventListener("click", (e) => {
+      if (titleDialog !== null) titleDialog.innerHTML = "";
+      const elem = e.target as HTMLElement;
+      const name = document.createElement("div");
+      const status = document.createElement("div");
+      name.innerHTML = elem.innerHTML;
+
+      if (elem.style.color === "green") {
+        status.style.color = "green";
+        status.innerHTML = "Online";
+      }
+      if (elem.style.color === "grey") {
+        status.style.color = "grey";
+        status.innerHTML = "Offline";
+      }
+
+      titleDialog?.append(name);
+      titleDialog?.append(status);
+    });
+  }
 }
 
 export default EventSubmit;

@@ -54,6 +54,7 @@ class OpenConnection {
   }
 
   static GetUsersAuthenticated() {
+    EventSubmit.clickUserDialog();
     const msg: object = {
       id: "1",
       type: "USER_ACTIVE",
