@@ -68,7 +68,7 @@ class OpenConnection {
     myWS.onmessage = (event) => {
       const userActive = JSON.parse(event.data).payload.users;
       const listUser = document.querySelector("ol");
-      // if (listUser !== null) listUser.innerHTML = "";
+
       for (let i = 0; i < userActive.length; i += 1) {
         const name = userActive[i].login;
         const ulElement = document.createElement("li");
@@ -77,16 +77,20 @@ class OpenConnection {
         ulElement.innerText = `${name}`;
 
         const arr = listUser?.children;
+        const nameUserLabel =
+          document.querySelector(".user-name-label")?.innerHTML;
+        const nameUser = nameUserLabel
+          ?.slice(nameUserLabel?.indexOf(":"))
+          .slice(2);
+
         if (arr !== undefined && arr !== null) {
           for (let y = 0; y < arr.length; y += 1) {
             if (arr[y].innerHTML === `${name}`) {
               arr[y].remove();
             }
           }
-          listUser?.prepend(ulElement);
+          if (ulElement.innerHTML !== nameUser) listUser?.prepend(ulElement);
         }
-
-        // listUser?.prepend(ulElement);
       }
     };
   }
@@ -107,7 +111,7 @@ class OpenConnection {
     myWS.onmessage = (event) => {
       const userActive = JSON.parse(event.data).payload.users;
       const listUser = document.querySelector("ol");
-      // if (listUser !== null) listUser.innerHTML = "";
+
       for (let i = 0; i < userActive.length; i += 1) {
         const name = userActive[i].login;
         const ulElement = document.createElement("li");
@@ -115,13 +119,20 @@ class OpenConnection {
         ulElement.style.color = "grey";
         ulElement.innerText = `${name}`;
         const arr = listUser?.children;
+
+        const nameUserLabel =
+          document.querySelector(".user-name-label")?.innerHTML;
+        const nameUser = nameUserLabel
+          ?.slice(nameUserLabel?.indexOf(":"))
+          .slice(2);
+
         if (arr !== undefined && arr !== null) {
           for (let y = 0; y < arr.length; y += 1) {
             if (arr[y].innerHTML === `${name}`) {
               arr[y].remove();
             }
           }
-          listUser?.prepend(ulElement);
+          if (ulElement.innerHTML !== nameUser) listUser?.prepend(ulElement);
         }
       }
     };

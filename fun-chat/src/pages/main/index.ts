@@ -59,6 +59,7 @@ class Main extends Pages {
 
     sectionMain2ArticlArticle1.className = "main-container__section2-article1";
     sectionMain2ArticlArticle2.className = "main-container__section2-article2";
+    sectionMain1ArticlLabel1.className = "user-name-label";
     sectionMain1ButtonTwo.innerText = "EXIT";
     buttonHref.href = "#login";
     sectionMain1ArticlLabel1.innerText = `User: ${getUser().name}`;
