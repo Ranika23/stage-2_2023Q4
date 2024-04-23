@@ -81,12 +81,16 @@ class EventSubmit {
     const titleDialog = document.querySelector(
       ".main-container__section2-article1",
     );
+    const submitSendMsg: HTMLButtonElement | null = document.querySelector(
+      ".main-container__section2-article-form button",
+    );
 
     listUser?.addEventListener("click", (e) => {
       if (titleDialog !== null) titleDialog.innerHTML = "";
       const elem = e.target as HTMLElement;
       const name = document.createElement("div");
       const status = document.createElement("div");
+      name.className = "main-container__section2-article1-name";
       name.innerHTML = elem.innerHTML;
 
       if (elem.style.color === "green") {
@@ -100,7 +104,91 @@ class EventSubmit {
 
       titleDialog?.append(name);
       titleDialog?.append(status);
+
+      if (submitSendMsg !== null) submitSendMsg.disabled = false;
     });
+  }
+
+  static clickSendMsg(myWS: WebSocket) {
+    const submitSendMsg = document.querySelector(
+      ".main-container__section2-article-form button",
+    );
+
+    function sendMessage(e: Event) {
+      e.preventDefault();
+
+      const toName = document.querySelector(
+        ".main-container__section2-article1-name",
+      )?.innerHTML;
+      const textSendMsg = document.querySelector(
+        ".main-container__section2-article-form input",
+      ) as HTMLInputElement;
+
+      const sendMsg: object = {
+        id: "1",
+        type: "MSG_SEND",
+        payload: {
+          message: {
+            to: toName,
+            text: textSendMsg.value,
+          },
+        },
+      };
+
+      myWS.send(JSON.stringify(sendMsg));
+
+      textSendMsg.value = "";
+    }
+    submitSendMsg?.addEventListener("click", sendMessage);
+  }
+
+  static addSendMsg(dateMsg: number, textMsg: string, statusMsg: boolean) {
+    const windowMsgs = document.querySelector(
+      ".main-container__section2-article2",
+    );
+    const windowMsgsLabel = document.querySelector(
+      ".main-container__section2-article2 label",
+    );
+
+    const containerMsg = document.createElement("div");
+    const containInf = document.createElement("div");
+    const fromUser = document.createElement("div");
+    const date = document.createElement("div");
+    const msg = document.createElement("div");
+    const status = document.createElement("div");
+
+    containerMsg.className = "container-send-text-msgs";
+    containInf.className = "container-send-text-msgs-inf";
+    date.className = "container-send-text-msgs-date";
+    status.className = "container-send-text-msgs-status";
+    msg.className = "send-text-msgs";
+
+    function formatDate() {
+      const newDate = new Date(dateMsg);
+      const month = newDate.getMonth() + 1;
+      const day = newDate.getUTCDate();
+      const year = newDate.getFullYear();
+      const time = newDate.toLocaleTimeString("ru-RU");
+
+      let resultMonth = `${month}`;
+      if (month < 10) resultMonth = `0${month}`;
+      return `${day}.${resultMonth}.${year}, ${time}`;
+    }
+
+    fromUser.innerText = "you";
+    date.innerText = formatDate();
+    msg.innerText = textMsg;
+    if (statusMsg === false) status.innerText = "undelivered";
+    else if (statusMsg === true) status.innerText = "delivered";
+
+    windowMsgsLabel?.remove();
+
+    containInf.append(fromUser);
+    containInf.append(date);
+    containerMsg.append(containInf);
+    containerMsg.append(msg);
+    containerMsg.append(status);
+    windowMsgs?.append(containerMsg);
   }
 }
 

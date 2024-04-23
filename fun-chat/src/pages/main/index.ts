@@ -56,6 +56,7 @@ class Main extends Pages {
 
     sectionMain2Aside.className = "main-container__section2-aside";
     sectionMain2Article.className = "main-container__section2-article";
+    sectionMain2ArticlForm.className = "main-container__section2-article-form";
 
     sectionMain2ArticlArticle1.className = "main-container__section2-article1";
     sectionMain2ArticlArticle2.className = "main-container__section2-article2";

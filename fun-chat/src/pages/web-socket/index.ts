@@ -20,13 +20,31 @@ class OpenConnection {
     };
 
     const myWS = new WebSocket("ws://localhost:4000");
+
     myWS.onopen = () => {
       myWS.send(JSON.stringify(msg));
+      setTimeout(() => {
+        EventSubmit.clickSendMsg(myWS);
+      }, 1000);
     };
     myWS.onmessage = (event) => {
       if (JSON.parse(event.data).type === "ERROR") {
         ErrorPage.ErrorLogIn(JSON.parse(event.data).payload.error);
-      } else window.location.href = "#main";
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(JSON.parse(event.data));
+        window.location.href = "#main";
+
+        setTimeout(() => {
+          if (JSON.parse(event.data).type === "MSG_SEND") {
+            const dateMsg = JSON.parse(event.data).payload.message.datetime;
+            const textMsg = JSON.parse(event.data).payload.message.text;
+            const statusMsg = JSON.parse(event.data).payload.message.status
+              .isDelivered;
+            EventSubmit.addSendMsg(dateMsg, textMsg, statusMsg);
+          }
+        }, 0);
+      }
     };
   }
 
@@ -41,7 +59,6 @@ class OpenConnection {
         },
       },
     };
-
     const myWS = new WebSocket("ws://localhost:4000");
     myWS.onopen = () => {
       myWS.send(JSON.stringify(msg));
