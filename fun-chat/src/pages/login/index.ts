@@ -74,6 +74,7 @@ class Login extends Pages {
 
     passwordTitle.innerText = "Password";
     password.append(passwordTitle);
+    passwordInputPlace.setAttribute("type", "password");
     passwordInputPlace.placeholder = "Enter Password";
     passwordInputPlace.setAttribute("required", "");
     passwordInputPlace.setAttribute("pattern", FormValidation.PasswordPattern);

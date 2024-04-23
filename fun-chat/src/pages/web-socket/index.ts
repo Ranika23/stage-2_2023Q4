@@ -51,6 +51,10 @@ class OpenConnection {
         ErrorPage.ErrorLogIn(JSON.parse(event.data).payload.error);
       }
     };
+    myWS.onclose = () => {
+      // eslint-disable-next-line no-console
+      console.log("close");
+    };
   }
 
   static GetUsersAuthenticated() {
