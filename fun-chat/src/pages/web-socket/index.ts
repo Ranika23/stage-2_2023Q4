@@ -25,14 +25,13 @@ class OpenConnection {
       myWS.send(JSON.stringify(msg));
       setTimeout(() => {
         EventSubmit.clickSendMsg(myWS);
+        EventSubmit.clickUserDialog(myWS);
       }, 1000);
     };
     myWS.onmessage = (event) => {
       if (JSON.parse(event.data).type === "ERROR") {
         ErrorPage.ErrorLogIn(JSON.parse(event.data).payload.error);
       } else {
-        // eslint-disable-next-line no-console
-        console.log(JSON.parse(event.data));
         window.location.href = "#main";
 
         setTimeout(() => {
@@ -41,7 +40,53 @@ class OpenConnection {
             const textMsg = JSON.parse(event.data).payload.message.text;
             const statusMsg = JSON.parse(event.data).payload.message.status
               .isDelivered;
-            EventSubmit.addSendMsg(dateMsg, textMsg, statusMsg);
+            const nameUserLabel =
+              document.querySelector(".user-name-label")?.innerHTML;
+            const nameFromUser = nameUserLabel
+              ?.slice(nameUserLabel?.indexOf(":"))
+              .slice(2);
+            const fromUser = JSON.parse(event.data).payload.message.from;
+            const toUser = document.querySelector(
+              ".main-container__section2-article1-name",
+            );
+
+            if (fromUser === nameFromUser) {
+              EventSubmit.addSendMsg(dateMsg, textMsg, statusMsg);
+            } else if (fromUser === toUser?.innerHTML) {
+              EventSubmit.addReceivedMsg(fromUser, dateMsg, textMsg);
+            }
+          } else if (JSON.parse(event.data).type === "MSG_FROM_USER") {
+            const windowMsgs = document.querySelector(
+              ".main-container__section2-article2",
+            );
+
+            const nameUserLabel =
+              document.querySelector(".user-name-label")?.innerHTML;
+            const nameFromUser = nameUserLabel
+              ?.slice(nameUserLabel?.indexOf(":"))
+              .slice(2);
+
+            const listMsgs = JSON.parse(event.data).payload.messages;
+
+            if (windowMsgs !== null && listMsgs.length > 0) {
+              windowMsgs.innerHTML = "";
+            }
+
+            if (windowMsgs !== null && listMsgs.length === 0) {
+              windowMsgs.innerHTML =
+                "Select the user to send the message to...";
+            }
+
+            for (let i = 0; i < listMsgs.length; i += 1) {
+              const dateMsg = listMsgs[i].datetime;
+              const textMsg = listMsgs[i].text;
+              const statusMsg = listMsgs[i].status.isDelivered;
+
+              if (listMsgs[i].from === nameFromUser) {
+                EventSubmit.addSendMsg(dateMsg, textMsg, statusMsg);
+              } else
+                EventSubmit.addReceivedMsg(listMsgs[i].from, dateMsg, textMsg);
+            }
           }
         }, 0);
       }
@@ -75,7 +120,6 @@ class OpenConnection {
   }
 
   static GetUsersAuthenticated() {
-    EventSubmit.clickUserDialog();
     const msg: object = {
       id: "1",
       type: "USER_ACTIVE",
@@ -159,6 +203,30 @@ class OpenConnection {
           if (ulElement.innerHTML !== nameUser) listUser?.prepend(ulElement);
           EventSubmit.searchUser();
         }
+      }
+    };
+  }
+
+  static getMessageHistory(loginUser: string) {
+    const msg: object = {
+      id: "1",
+      type: "MSG_FROM_USER",
+      payload: {
+        user: {
+          login: loginUser,
+        },
+      },
+    };
+    const myWS = new WebSocket("ws://localhost:4000");
+
+    myWS.onopen = () => {
+      myWS.send(JSON.stringify(msg));
+    };
+
+    myWS.onmessage = (event) => {
+      if (JSON.parse(event.data).type === "ERROR") {
+        // eslint-disable-next-line no-console
+        console.log(JSON.parse(event.data).payload.error);
       }
     };
   }

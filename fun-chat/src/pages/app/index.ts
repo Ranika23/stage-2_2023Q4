@@ -6,7 +6,6 @@ import ErrorPage from "../error/index";
 import EventSubmit from "../event/index";
 import { saveUserSession, getUserSession } from "../local-storage/index";
 import OpenConnection from "../web-socket/index";
-// import OpenConnection from "../web-socket/index";
 
 class App {
   private container: HTMLElement;

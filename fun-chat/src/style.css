@@ -146,6 +146,12 @@ body {
   color: #2c2c2c;
 }
 
+.count-msg {
+  width: 10px;
+  height: 10px;
+  border: 1px solid green;  
+}
+
 .login-form__button-about.login {
   position: absolute;
   bottom: 70px;
@@ -342,7 +348,8 @@ body {
     text-align: center;
 }
 
-.container-send-text-msgs {
+.container-send-text-msgs,
+.container-received-text-msgs {
   align-self: end;
   display: flex;
   align-items: center;
@@ -356,19 +363,25 @@ body {
   height: auto;
 }
 
-.container-send-text-msgs-inf {
+.container-send-text-msgs {
+  align-self: end;
+}
+
+.container-received-text-msgs {
+  align-self: start;
+}
+
+.container-send-text-msgs-inf,
+.container-received-text-msgs-inf {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 12px;
   width: 100%;
 }
 
-.container-send-text-msgs-date {
-  font-size: 20px;
-}
-
-.send-text-msgs {
+.send-text-msgs,
+.received-text-msgs {
   flex-wrap: wrap;
   width: 96%;
   border: 1px solid azure;
@@ -376,6 +389,10 @@ body {
   border-radius: 10px;
   padding: 5px;
   height: auto;
+}
+
+.received-text-msgs {
+  margin-bottom: 15px;
 }
 
 .container-send-text-msgs-status {

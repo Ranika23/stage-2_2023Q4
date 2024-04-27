@@ -33,7 +33,7 @@ class Main extends Pages {
     const sectionMain2ArticlForm = document.createElement("form");
 
     const sectionMain2ArticlArticle1Label = document.createElement("label");
-    const sectionMain2ArticlArticle2Label = document.createElement("label");
+    // const sectionMain2ArticlArticle2Label = document.createElement("label");
 
     const sectionMain2ArticlFormInput = document.createElement("input");
     const sectionMain2ArticlFormButton = document.createElement("button");
@@ -72,7 +72,7 @@ class Main extends Pages {
     sectionMain2ArticlFormButton.setAttribute("disabled", "true");
 
     sectionMain2AsideInput.placeholder = "Search...";
-    sectionMain2ArticlArticle2Label.innerText =
+    sectionMain2ArticlArticle2.innerText =
       "Select the user to send the message to...";
 
     sectionMain3Label1.innerText = "RSSchool";
@@ -94,7 +94,6 @@ class Main extends Pages {
     sectionMain2ArticlForm.append(sectionMain2ArticlFormButton);
 
     sectionMain2ArticlArticle1.append(sectionMain2ArticlArticle1Label);
-    sectionMain2ArticlArticle2.append(sectionMain2ArticlArticle2Label);
 
     sectionMain2Article.append(sectionMain2ArticlArticle1);
     sectionMain2Article.append(sectionMain2ArticlArticle2);

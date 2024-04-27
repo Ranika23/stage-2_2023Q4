@@ -76,7 +76,7 @@ class EventSubmit {
     search?.addEventListener("input", searchUsers);
   }
 
-  static clickUserDialog() {
+  static clickUserDialog(myWS: WebSocket) {
     const listUser = document.querySelector("ol");
     const titleDialog = document.querySelector(
       ".main-container__section2-article1",
@@ -92,6 +92,17 @@ class EventSubmit {
       const status = document.createElement("div");
       name.className = "main-container__section2-article1-name";
       name.innerHTML = elem.innerHTML;
+
+      const getMsg: object = {
+        id: "1",
+        type: "MSG_FROM_USER",
+        payload: {
+          user: {
+            login: elem.innerHTML,
+          },
+        },
+      };
+      myWS.send(JSON.stringify(getMsg));
 
       if (elem.style.color === "green") {
         status.style.color = "green";
@@ -134,7 +145,6 @@ class EventSubmit {
           },
         },
       };
-
       myWS.send(JSON.stringify(sendMsg));
 
       textSendMsg.value = "";
@@ -145,9 +155,6 @@ class EventSubmit {
   static addSendMsg(dateMsg: number, textMsg: string, statusMsg: boolean) {
     const windowMsgs = document.querySelector(
       ".main-container__section2-article2",
-    );
-    const windowMsgsLabel = document.querySelector(
-      ".main-container__section2-article2 label",
     );
 
     const containerMsg = document.createElement("div");
@@ -181,13 +188,50 @@ class EventSubmit {
     if (statusMsg === false) status.innerText = "undelivered";
     else if (statusMsg === true) status.innerText = "delivered";
 
-    windowMsgsLabel?.remove();
-
     containInf.append(fromUser);
     containInf.append(date);
     containerMsg.append(containInf);
     containerMsg.append(msg);
     containerMsg.append(status);
+    windowMsgs?.append(containerMsg);
+  }
+
+  static addReceivedMsg(from: string, dateMsg: number, textMsg: string) {
+    const windowMsgs = document.querySelector(
+      ".main-container__section2-article2",
+    );
+
+    const containerMsg = document.createElement("div");
+    const containInf = document.createElement("div");
+    const fromUser = document.createElement("div");
+    const date = document.createElement("div");
+    const msg = document.createElement("div");
+
+    containerMsg.className = "container-received-text-msgs";
+    containInf.className = "container-received-text-msgs-inf";
+    date.className = "container-received-text-msgs-date";
+    msg.className = "received-text-msgs";
+
+    function formatDate() {
+      const newDate = new Date(dateMsg);
+      const month = newDate.getMonth() + 1;
+      const day = newDate.getUTCDate();
+      const year = newDate.getFullYear();
+      const time = newDate.toLocaleTimeString("ru-RU");
+
+      let resultMonth = `${month}`;
+      if (month < 10) resultMonth = `0${month}`;
+      return `${day}.${resultMonth}.${year}, ${time}`;
+    }
+
+    fromUser.innerText = `${from}`;
+    date.innerText = formatDate();
+    msg.innerText = textMsg;
+
+    containInf.append(fromUser);
+    containInf.append(date);
+    containerMsg.append(containInf);
+    containerMsg.append(msg);
     windowMsgs?.append(containerMsg);
   }
 }
