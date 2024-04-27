@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="./node_modules/reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="./node_modules/reveal.js/dist/theme/black.css">
+
+		<link rel="stylesheet" href="./node_modules/reveal.js/plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>Slide 1</section>
+				<section>Slide 2</section>
+				<section>Slide 3</section>
+				<section>Slide 4</section>
+				<section>Slide 5</section>
+				<section>Slide 6</section>
+				<section>Slide 7</section>
+				<section>Slide 8</section>
+			</div>
+		</div>
+
+		<script src="./node_modules/reveal.js/dist/reveal.js"></script>
+		<script src="./node_modules/reveal.js/plugin/notes/notes.js"></script>
+		<script src="./node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="./node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
